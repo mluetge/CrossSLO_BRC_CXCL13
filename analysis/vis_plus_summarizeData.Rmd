@@ -1,0 +1,401 @@
+---
+title: "vis merged samples May20"
+author: "Mechthild Lütge"
+date: "14 May 2020"
+output:
+  html_document:
+    self_contained: no
+    code_folding: show
+    number_sections: no
+    toc: yes
+    toc_depth: 3
+    toc_float: true
+    collapsed: no
+    smooth_scroll: yes
+---
+
+```{r setup, include=FALSE}
+options(width = 100)
+knitr::opts_chunk$set(warning = FALSE, message = FALSE, dev = c("png", "pdf"))
+seed <- 1234
+```
+
+## load packages
+```{r libs}
+suppressPackageStartupMessages({
+  library(tidyverse)
+  library(Seurat)
+  library(magrittr)
+  library(dplyr)
+  library(purrr)
+  library(ggplot2)
+  library(here)
+  library(runSeurat3)
+  library(SingleCellExperiment)
+  library(RColorBrewer)
+  library(viridis)
+  library(ggsci)
+  library(scater)
+  library(scran)
+  library(pheatmap)
+  library(CellMixS)
+  library(muscat)
+})
+
+```
+
+
+## set dir and read input data
+```{r set dir}
+basedir <- here()
+sce <- readRDS(paste0(basedir, "/data/allSamplesMerged_sce.rds"))
+sce$SLO_plus_cond <- paste0(sce$SLO, '_' , sce$cond)
+dataCnts <- data.frame(table(sce$dataset))
+colnames(dataCnts) <- c('dataset', 'cnt_all')
+
+
+```
+
+
+## set color Vectors
+```{r color vectors}
+
+colorSLO <- c(viridis(3)[c(1,2)], brewer.pal(n=9, name="YlOrRd")[c(4)])
+colorCond <- brewer.pal(n=3, name="Paired")[c(1,2)]
+colorSLOCond <- c("#440154FF","#807DBA", "#FEB24C", "#F16913", "#21908CFF")
+colorBatch <- pal_igv()(n=length(unique(sce$batch)))
+
+# set colorPal names
+names(colorSLO) <- c("LN", "PP", "Spleen")
+names(colorCond) <- c("naive", "immunized")
+names(colorBatch) <- unique(sce$batch)
+names(colorSLOCond) <- c("LN_immunized","LN_naive", "Spleen_naive",
+                         "Spleen_immunized", "PP_immunized")
+
+
+```
+
+
+## keep only Cxcl13 positive cells
+```{r only cxcl13 expr cells}
+## keep only eyfp expressing cells
+sce <- sce[,which(logcounts(sce)[
+  which(rownames(sce)=='Rosa26eyfp.Rosa26eyfp'),] > 0)]
+dataCnts_post <- data.frame(table(sce$dataset))
+colnames(dataCnts_post) <- c('dataset', 'cnt_FRC')
+
+dataCnts <- dataCnts %>% left_join(., dataCnts_post, by = 'dataset')
+
+## keep only cxcl13 expressing cells
+sce2 <- sce[,which(logcounts(sce)[
+  which(rownames(sce)=='ENSMUSG00000023078.Cxcl13'),] > 0)]
+dataCnts_post <- data.frame(table(sce2$dataset))
+colnames(dataCnts_post) <- c('dataset', 'cnt_BRC')
+
+dataCnts <- dataCnts %>% left_join(., dataCnts_post, by = 'dataset')
+
+remove(sce2)
+```
+
+
+## plot data summaries {.tabset}
+
+```{r data summaries}
+
+metaDat <- data.frame(colData(sce)) %>% 
+  select(SLO, dataset, batch, cond, SLO_plus_cond) %>% distinct()
+
+dataCnts <- dataCnts %>% left_join(., metaDat, by = 'dataset')
+```
+
+### color SLO plus cond
+```{r cnt per SLO plus cond}
+
+ggplot(dataCnts, aes(x = SLO_plus_cond, y = cnt_FRC)) +
+  geom_bar(aes(color = SLO_plus_cond, fill = SLO_plus_cond, alpha = 0.8),
+           stat = "identity") +
+  scale_color_manual(values = colorSLOCond) +
+  scale_fill_manual(values = colorSLOCond) +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+
+
+
+```
+
+
+### color BRC
+```{r BRC cnt per SLO plus cond}
+
+dataCnts <- dataCnts %>% mutate(cnt_noBRC=cnt_FRC-cnt_BRC)
+dataCnts_long <- gather(dataCnts, BRC, cnt, cnt_BRC, cnt_noBRC) %>% 
+  mutate(BRClab = ifelse(BRC=="cnt_BRC", "Cxcl13_pos", "Cxcl13_neg"))
+
+ggplot(dataCnts_long, aes(x = SLO_plus_cond, y = cnt)) +
+  geom_bar(aes(color = BRClab, fill = BRClab),
+           stat = "identity") +
+  scale_color_manual(values = c("#A0A0A0", "#009999")) +
+  scale_fill_manual(values = c("#A0A0A0", "#009999")) +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+
+```
+
+
+### color batches
+```{r batch summary}
+
+ggplot(dataCnts, aes(x = SLO_plus_cond, y = cnt_FRC)) +
+  geom_bar(aes(color = batch, fill = batch, alpha = 0.9),
+           stat = "identity") +
+  scale_color_manual(values = colorBatch) +
+  scale_fill_manual(values = colorBatch) +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+
+
+
+```
+
+## DR and clustering
+
+### variance components per sample {.tabset}
+```{r var comp per smp}
+
+datSet <- unique(sce$dataset)
+sce_list <- lapply(datSet, function(dat){
+  sceSub <- sce[,sce$dataset == dat]
+})
+names(sce_list) <- datSet
+
+#determine variance components for each sce separately
+dec_list <- lapply(sce_list, function(sceSub){
+  dec <- modelGeneVar(sceSub)
+})
+
+names(dec_list) <- names(sce_list)
+
+#Get hvgs
+hvg_list <- lapply(dec_list, function(dec){
+  hvg <- getTopHVGs(dec, n=1000)
+})
+
+names(hvg_list) <- names(sce_list)
+
+# finding common hvg
+combined.dec <- do.call(combineVar, dec_list)
+chosen.hvgs <- combined.dec$bio > 0
+sum(chosen.hvgs)
+
+```
+
+
+```{r varPlot}
+
+# plot variance
+template_vp <- c(
+    "#### {{dat}}\n",
+    "```{r varPlot {{dat}}, echo = FALSE}\n",
+    "dec <- dec_list[['{{dat}}']]",
+    "fit <- metadata(dec)",
+    "plot(fit$mean, fit$var, xlab='Mean of log-expression',
+      ylab='Variance of log-expression')",
+    "curve(fit$trend(x), col='dodgerblue', add=TRUE, lwd=2)\n",
+    "```\n",
+    "\n"
+)
+
+plots_vp <- lapply(names(dec_list), 
+  function(dat) knitr::knit_expand(text = template_vp)
+)
+
+```
+
+`r knitr::knit(text = unlist(plots_vp))`
+
+
+```{r DR and clustering}
+
+sce <- runPCA(sce, subset_row=chosen.hvgs,
+    BSPARAM=BiocSingular::RandomParam(), ncomponents = 30)
+sce <- runTSNE(sce, dimred="PCA", perplexity=20)
+sce <- runUMAP(sce, subset_row=chosen.hvgs, dimred="PCA", pca =30,
+               spread = 2, min_dist = 0.1, n_neighbors=50, ntop = 5000)
+  
+#clustering 
+#g <- buildSNNGraph(sce, k=50, use.dimred="PCA")
+#clusters <- igraph::cluster_walktrap(g)$membership
+
+```
+
+## vis Data {.tabset}
+### SLO {.tabset}
+#### UMAP
+```{r SLO umap}
+
+p1 <- visGroup(sce, group = "SLO", dim_red = "UMAP") +
+  scale_color_manual(values = colorSLO) +
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+p1
+
+
+```
+
+#### TSNE
+```{r SLO tsne}
+
+p1 <- visGroup(sce, group = "SLO", dim_red = "TSNE") +
+  scale_color_manual(values = colorSLO) +
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("TSNE1") +
+  ylab("TSNE2")
+
+p1
+
+
+```
+
+
+### COND {.tabset}
+#### UMAP
+```{r COND umap}
+
+p1 <- visGroup(sce, group = "cond", dim_red = "UMAP") +
+  scale_color_manual(values = colorCond) +
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+p1
+
+
+```
+
+#### TSNE
+```{r COND tsne}
+
+p1 <- visGroup(sce, group = "cond", dim_red = "TSNE") +
+  scale_color_manual(values = colorCond) +
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("TSNE1") +
+  ylab("TSNE2")
+
+p1
+
+
+```
+
+
+### BATCH {.tabset}
+#### UMAP
+```{r Batch umap}
+
+p1 <- visGroup(sce, group = "batch", dim_red = "UMAP") +
+  scale_color_manual(values = colorBatch) +
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+p1
+
+
+```
+
+#### TSNE
+```{r BATCH tsne}
+
+p1 <- visGroup(sce, group = "batch", dim_red = "TSNE") +
+  scale_color_manual(values = colorBatch) +
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("TSNE1") +
+  ylab("TSNE2")
+
+p1
+
+
+```
+
+### SLO plus COND {.tabset}
+#### UMAP
+```{r SLO_plus_cond umap}
+
+p1 <- visGroup(sce, group = "SLO_plus_cond", dim_red = "UMAP") +
+  scale_color_manual(values = colorSLOCond) +
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+p1
+
+
+```
+
+#### TSNE
+```{r SLO_plus_cond tsne}
+
+p1 <- visGroup(sce, group = "SLO_plus_cond", dim_red = "TSNE") +
+  scale_color_manual(values = colorSLOCond) +
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("TSNE1") +
+  ylab("TSNE2")
+
+p1
+
+
+```
+
+
+## save object
+```{r save object}
+
+saveRDS(sce, paste0(basedir, "/data/allSamplesMerged_plusDR_sce.rds"))
+
+```
+
+
+## MDS plot 
+
+```{r mds plot, fig.height=3, fig.width=4}
+sce <- prepSCE(sce, 
+    kid = "SLO", 
+    gid = "cond",   
+    sid = "dataset",  
+    drop = F)       
+
+pb <- aggregateData(sce,
+    assay = "counts", fun = "sum",
+    by = c("cluster_id", "sample_id"))
+
+pb_mds <- pbMDS(pb) +
+  scale_color_manual(values = colorSLO)
+pb_mds
+
+```
+
+
+
+## session info
+```{r session info}
+sessionInfo()
+date()
+```
+

@@ -1,0 +1,178 @@
+---
+title: "merge samples May20"
+author: "Mechthild Lütge"
+date: "14 May 2020"
+output:
+  html_document:
+    self_contained: no
+    code_folding: show
+    number_sections: no
+    toc: yes
+    toc_depth: 3
+    toc_float: true
+    collapsed: no
+    smooth_scroll: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+set.seed(1000)
+```
+
+## load packages
+```{r libs}
+suppressPackageStartupMessages({
+  library(tidyverse)
+  library(Seurat)
+  library(magrittr)
+  library(dplyr)
+  library(purrr)
+  library(ggplot2)
+  library(here)
+  library(runSeurat3)
+  library(SingleCellExperiment)
+  library(ggpubr)
+  library(ggsci)
+})
+
+```
+
+
+## set dir
+```{r set dir}
+basedir <- here()
+metaDat <- read_tsv(paste0(basedir, "/metadata.txt"), col_names = T)
+
+```
+
+## load and assign samples
+```{r load plus assign samples}
+
+assignSamples <- function(smpNam, basedirSmp, smpSLO, smpCond, smpBatch){
+  smpNamFull <- list.files(path = paste0(basedirSmp, "/data/processedData/"),
+				 pattern = paste0(smpNam, ".*_seurat.rds"))
+  seuratSmp <- readRDS(paste0(basedirSmp, "/data/processedData/", smpNamFull))
+  seuratSmp$SLO <- smpSLO
+  seuratSmp$cond <- smpCond
+  seuratSmp$batch <- smpBatch
+  return(seuratSmp)
+}
+
+
+####################################################################
+
+for(i in 1:length(metaDat$dataset)){
+  seuratX <- assignSamples(smpNam = metaDat$dataset[i],
+                           basedirSmp = basedir,
+                           smpSLO =  metaDat$SLO[i],
+                           smpCond = metaDat$cond[i],
+                           smpBatch = metaDat$batch[i])
+  if(exists("seurat")){
+    seurat <- merge(x = seurat, y = seuratX, project = "CrossSLO")
+  }else{
+    seurat <- seuratX
+  }
+}
+
+remove(seuratX)
+
+```
+
+
+## remove contaminating cells
+```{r remove contaminating cells}
+
+(table(seurat$dataset))
+
+seurat <- subset(x = seurat,
+                 subset = (ENSMUSG00000020717.Pecam1 == 0 &
+                            ENSMUSG00000023043.Krt18 == 0 &
+                            ENSMUSG00000030787.Lyve1 == 0 &
+                            ENSMUSG00000026395.Ptprc == 0 &
+                            ENSMUSG00000003379.Cd79a == 0 &
+                            ENSMUSG00000032093.Cd3e == 0 &
+                            ENSMUSG00000041378.Cldn5 == 0 &
+                            ENSMUSG00000022797.Tfrc == 0 &
+                            `ENSMUSG00000069919.Hba-a1` == 0 &
+                            ENSMUSG00000040747.Cd53 == 0 &
+                            ENSMUSG00000033208.S100b == 0))
+
+(table(seurat$dataset))
+
+```
+
+
+## save SCE
+```{r sample QC}
+sce <- as.SingleCellExperiment(seurat)
+saveRDS(sce, file = paste0(basedir, "/data/allSamplesMerged_sce.rds"))
+
+
+```
+
+
+## check QC
+```{r check QC, fig.height=7, fig.width=9}
+
+colDat <- c(pal_npg()(10), pal_uchicago()(10), pal_aaas()(10))
+names(colDat) <- unique(sce$dataset)
+
+
+
+plotQC2 <- function(sce, feature){
+  p <- gghistogram(data = as.data.frame(sce@colData),
+              x=feature,
+              bins=70,
+              #title=unique(sce$dataset),
+              fill = "dataset",
+              palette = colDat,
+              legend = "right")
+  return(p)
+}
+
+plotQC3 <- function(sce, feature){
+  p <- gghistogram(data = as.data.frame(sce@colData),
+              x=feature,
+              y = "..density..",
+              bins=70,
+              fill = "dataset",
+              palette = colDat,
+              add_density = TRUE,
+              legend = "right")
+  return(p)
+}
+
+plotQC2(sce, "total_counts")
+plotQC3(sce, "total_counts")
+
+plotQC2(sce, "total_features_by_counts")
+plotQC3(sce, "total_features_by_counts")
+
+plotQC2(sce, "pct_counts_Mt")
+plotQC3(sce, "pct_counts_Mt")
+
+plotQC2(sce, "pct_counts_in_top_500_features")
+plotQC3(sce, "pct_counts_in_top_500_features")
+
+plotQC2(sce, "pct_counts_endogenous")
+plotQC3(sce, "pct_counts_endogenous")
+
+plotQC2(sce, "total_features_by_counts_Mt")
+plotQC3(sce, "total_features_by_counts_Mt")
+
+plotQC2(sce, "total_counts_Mt")
+plotQC3(sce, "total_counts_Mt")
+
+plotQC2(sce, "pct_counts_in_top_500_features_endogenous")
+plotQC3(sce, "pct_counts_in_top_500_features_endogenous")
+
+
+```
+
+
+## session info
+```{r session info}
+sessionInfo()
+date()
+```
+

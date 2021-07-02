@@ -1,0 +1,759 @@
+---
+title: "organ specific signatures - BRCs only"
+author: "Mechthild Lütge"
+date: "14 May 2020"
+output:
+  html_document:
+    self_contained: no
+    code_folding: show
+    number_sections: no
+    toc: yes
+    toc_depth: 3
+    toc_float: true
+    collapsed: no
+    smooth_scroll: yes
+---
+
+```{r setup, include=FALSE}
+options(width = 100)
+knitr::opts_chunk$set(warning = FALSE, message = FALSE, dev = c("png", "pdf"))
+seed <- 1234
+```
+
+## load packages
+```{r libs}
+suppressPackageStartupMessages({
+  library(tidyverse)
+  library(Seurat)
+  library(magrittr)
+  library(dplyr)
+  library(purrr)
+  library(ggplot2)
+  library(here)
+  library(runSeurat3)
+  library(SingleCellExperiment)
+  library(RColorBrewer)
+  library(viridis)
+  library(ggsci)
+  library(scater)
+  library(scran)
+  library(pheatmap)
+  library(biomaRt)
+  library(fgsea)
+  library(grid)
+  library(gridExtra)
+  library(clusterProfiler)
+  library(org.Mm.eg.db)
+  library(DOSE)
+  library(enrichplot)
+  library(msigdbr)
+})
+
+```
+
+## plotting funct
+```{r avg heatmap funct}
+
+avgHeatmap <- function(seurat, selGenes, colVecIdent, colVecCond=NULL,
+                       ordVec=NULL, gapVecR=NULL, gapVecC=NULL,cc=FALSE,
+                       cr=FALSE, condCol=FALSE){
+  
+  ## format gene names (depends on how gene list is inputed)
+  selGenes <- selGenes %>% 
+      mutate(geneID = (str_split(gene, '\\.', simplify = T)[,2]))
+  #selGenes <- selGenes$labelNam
+  
+  ## assay data
+  clusterAssigned <- as.data.frame(Idents(seurat)) %>%
+  dplyr::mutate(cell=rownames(.))
+  colnames(clusterAssigned)[1] <- "ident"
+  seuratDat <- GetAssayData(seurat)
+  
+  ## genes of interest
+  genes <- data.frame(gene=rownames(seurat)) %>% 
+    mutate(geneID=gsub("^.*\\.", "", gene)) %>%
+    filter(geneID %in% selGenes$geneID)
+
+  ## matrix with averaged cnts per ident
+  logNormExpres <- as.data.frame(t(as.matrix(
+    seuratDat[which(rownames(seuratDat) %in% genes$gene),])))
+  logNormExpres <- logNormExpres %>% dplyr::mutate(cell=rownames(.)) %>%
+    dplyr::left_join(.,clusterAssigned, by=c("cell")) %>%
+    dplyr::select(-cell) %>% dplyr::group_by(ident) %>%
+    dplyr::summarise_all(mean)
+  logNormExpresMa <- logNormExpres %>% dplyr::select(-ident) %>% as.matrix()
+  rownames(logNormExpresMa) <- logNormExpres$ident
+  logNormExpresMa <- t(logNormExpresMa)
+  rownames(logNormExpresMa) <- gsub("^.*?\\.","",rownames(logNormExpresMa))
+  
+  ## remove genes if they are all the same in all groups
+  ind <- apply(logNormExpresMa, 1, sd) == 0
+  logNormExpresMa <- logNormExpresMa[!ind,]
+  genes <- genes[!ind,]
+
+  ## color columns according to cluster
+  annotation_col <- as.data.frame(gsub("(^.*?_)","",
+                                       colnames(logNormExpresMa)))%>%
+    dplyr::mutate(celltype=gsub("(_.*$)","",colnames(logNormExpresMa)))
+  colnames(annotation_col)[1] <- "col1"
+  annotation_col <- annotation_col %>%
+    dplyr::mutate(cond = gsub("(^[0-9]_?)","",col1)) %>%
+    dplyr::select(cond, celltype)
+  rownames(annotation_col) <- colnames(logNormExpresMa) 
+
+  ann_colors = list(
+      cond = colVecCond,
+      celltype=colVecIdent)
+  if(is.null(ann_colors$cond)){
+    annotation_col$cond <- NULL
+  }
+  
+  ## adjust order
+  logNormExpresMa <- logNormExpresMa[selGenes$geneID,]
+  if(is.null(ordVec)){
+    ordVec <- levels(seurat)
+  }
+  logNormExpresMa <- logNormExpresMa[,ordVec]
+
+  ## scaled row-wise
+  pheatmap(logNormExpresMa, scale="row" ,treeheight_row = 0, cluster_rows = cr, 
+         cluster_cols = cc,
+         color = colorRampPalette(c("#2166AC", "#F7F7F7", "#B2182B"))(50),
+         annotation_col = annotation_col, cellwidth=15, cellheight=10,
+         annotation_colors = ann_colors, gaps_row = gapVecR, gaps_col = gapVecC)
+}
+
+
+
+```
+
+
+## set dir and read input data
+```{r set dir}
+basedir <- here()
+
+## read seurat objects with BRCs
+
+seurat <- readRDS(paste0(basedir,"/data/folBRC_allSLO_seurat.rds"))
+seurat <-rerunSeurat3(seurat)
+
+```
+
+
+## set color Vectors
+```{r color vectors}
+
+colPal <- c("#FF9933", "#660000","#CC6600", "#FF6666", "#389055")
+names(colPal) <- c("LZFDC","MRC","DZFDC","TBRC", "PRC2")
+
+
+colorSLO <- c(viridis(3)[c(1,2)], brewer.pal(n=9, name="YlOrRd")[c(4)])
+colorCond <- brewer.pal(n=3, name="Paired")[c(1,2)]
+colorSLOCond <- c("#440154FF","#807DBA", "#FEB24C", "#F16913", "#21908CFF")
+colorBatch <- pal_igv()(n=length(unique(seurat$batch)))
+colCl <- c(rcartocolor::carto_pal(name="Safe"),pal_aaas()(8))
+
+names(colorSLO) <- c("LN", "PP", "Spleen")
+names(colorCond) <- c("naive", "immunized")
+names(colorBatch) <- unique(seurat$batch)
+names(colorSLOCond) <- c("LN_immunized","LN_naive", "Spleen_naive",
+                         "Spleen_immunized", "PP_immunized")
+
+```
+
+## visualize data {.tabset}
+
+### clustering
+```{r clustering}
+
+DimPlot(seurat, reduction = "umap", cols=colPal, group.by = "clusterLabel")+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+```
+
+### SLO
+```{r SLO}
+
+DimPlot(seurat, reduction = "umap", cols=colorSLO, group.by = "SLO")+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+DimPlot(seurat, reduction = "umap", cols=colorSLO, group.by = "SLO",
+        pt.size=0.6)+
+  theme_void()
+```
+
+### Batch
+```{r Batch}
+
+DimPlot(seurat, reduction = "umap", cols=colorBatch, group.by = "batch")+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+```
+
+### Cond
+```{r Cond}
+
+DimPlot(seurat, reduction = "umap", cols=colorCond, group.by = "cond")+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+```
+
+
+### SLO plus cond
+```{r SLO plus cond}
+
+DimPlot(seurat, reduction = "umap", cols=colorSLOCond,group.by="SLO_plus_cond")+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+
+DimPlot(seurat, reduction = "umap",cols=colorSLOCond,group.by = "SLO_plus_cond",
+        pt.size=0.6)+
+  theme_void()
+```
+
+
+## vis fol BRC cluster characterization
+```{r vis fol BRC cluster character, fig.height=5, fig.width=6}
+seurat$SLO_clusterLabel <- paste0(seurat$SLO, "_", seurat$clusterLabel)
+seurat$SLO_clusterLabel <- factor(seurat$SLO_clusterLabel, 
+                                  levels = c("LN_LZFDC", "LN_MRC", "LN_DZFDC",
+                                             "LN_TBRC", 
+                                             "Spleen_LZFDC", "Spleen_MRC",
+                                             "Spleen_DZFDC", "Spleen_TBRC",
+                                             "PP_LZFDC", "PP_MRC", 
+                                             "PP_DZFDC", "PP_TBRC"
+                                             )) 
+
+col_SLOlab <- c(colorLab, colorLab, colorLab)
+names(col_SLOlab) <- c("LN_MRC","LN_TBRC","LN_LZFDC", "LN_DZFDC", 
+                       "Spleen_MRC","Spleen_TBRC","Spleen_LZFDC","Spleen_DZFDC",
+                      "PP_MRC", "PP_TBRC", "PP_LZFDC", "PP_DZFDC")
+
+
+selMarker <- list(LZFDC = c("Fcamr", "Cr2", "Pthlh"),
+                  MRC = c("Cxcl13", "Madcam1", "Tnfsf11"),
+                  DZFDC = c("Pdlim3", "Crym", "Cxcl12"),
+                  TBRC = c("Ccl21a","Ccl19", "Grem1")
+                  )
+
+genes <- data.frame(ensID=rownames(seurat)) %>%
+  mutate(gene=gsub("^.*\\.", "", ensID))
+selGenes <- data.frame(gene=unlist(selMarker)) %>%
+  rownames_to_column(var="grp") %>% mutate(Grp=gsub(".{1}$", "", grp)) %>% 
+  left_join(., genes, by="gene") %>%
+  filter(ensID != "ENSMUSG00000095320.Ccl21a")
+
+Idents(seurat) <- seurat$SLO_clusterLabel
+
+## sc heatmap across all
+seuratSub <- subset(seurat, downsample = 250)
+DoHeatmap(seuratSub, features = selGenes$ensID, group.by="SLO_clusterLabel",
+          group.colors = col_SLOlab, angle = 90,
+          draw.lines = F, size = 4, disp.min = -1)  +
+  NoLegend() +
+  scale_fill_continuous(type= "viridis")
+
+## avg heatmap across all
+selGenes$gene <- selGenes$ensID
+pOut <- avgHeatmap(seurat = seurat, selGenes = selGenes,
+                  colVecIdent = colorSLO, 
+                  ordVec=levels(seurat),
+                  gapVecR=c(3,6,9), gapVecC=c(4,8),cc=F,
+                  cr=F, condCol=T, colVecCond = colorLab)
+
+
+```
+
+### individual SLOs {.tabset}
+```{r avgHeat ind SLO, warning=FALSE, echo = FALSE}
+
+grpVec <- unique(seurat$SLO)
+
+template_ah <- c(
+    "#### {{grp}}\n",
+    "```{r avgHeat ind SLO {{grp}}, echo = FALSE, fig.height=6, fig.width=5}\n",
+    "seuratSub <- subset(seurat, SLO =='{{grp}}')",
+    "pOut <- avgHeatmap(seurat = seuratSub, selGenes = selGenes,
+                  colVecIdent = colorSLO, 
+                  ordVec=levels(seuratSub),
+                  gapVecR=c(3,6,9), gapVecC=NULL,cc=F,
+                  cr=F, condCol=T, colVecCond = colorLab)\n",
+    "```\n",
+    "\n"
+)
+    
+plots_ah <- lapply(grpVec, 
+  function(grp) knitr::knit_expand(text = template_ah)
+)
+
+```
+
+`r knitr::knit(text = unlist(plots_ah))`
+
+
+
+## SLO specific BRC gene signatures
+```{r SLO specific gene signatures}
+
+Idents(seurat) <- seurat$SLO
+seurat_markers_all <- FindAllMarkers(object = seurat,
+                                     only.pos = TRUE, min.pct = 0.25,
+                                     logfc.threshold = 0.25,
+                                     test.use = "wilcox")
+
+write.table(seurat_markers_all,
+            file=paste0(basedir, "/data/allBRC_SLOsignature.txt"),
+            row.names = FALSE, col.names = TRUE, quote = FALSE, sep = "\t")
+
+
+
+
+```
+
+### vis top marker {.tabset}
+#### across SLO
+```{r vis top marker SLO, fig.height=9, fig.width=5}
+selGenes <- seurat_markers_all %>% group_by(cluster) %>% 
+  top_n(-15, p_val_adj) %>% 
+  top_n(15, avg_log2FC)
+
+Idents(seurat) <- seurat$SLO_plus_clusterlabel
+
+pOut <- avgHeatmap(seurat = seurat, selGenes = selGenes,
+                  colVecIdent = colorSLO, 
+                  ordVec=levels(seurat),
+                  gapVecR=NULL, gapVecC=NULL,cc=F,
+                  cr=T, condCol=F)
+
+```
+
+
+## SLO specific gene signatures per subset {.tabset}
+```{r SLO specific gene signatures per subset}
+seurat$clusterGrp <- seurat$clusterLabel
+
+Idents(seurat) <- seurat$SLO
+cwDEgenes <- lapply(unique(seurat$clusterGrp), function(grp){
+  grpSub <- unique(seurat$clusterGrp)[which(unique(seurat$clusterGrp)==grp)]
+  seuratSub <- subset(seurat, clusterGrp == grpSub)
+  DEgenes <-FindAllMarkers(seuratSub, only.pos=T, logfc.threshold = 0.25,
+                           min.pct = 0.1)
+  DEgenes <- DEgenes %>% filter(p_val_adj<0.01)
+})
+
+names(cwDEgenes) <- unique(seurat$clusterGrp)
+
+```
+
+
+
+```{r avgHeat cwDE, warning=FALSE, echo = FALSE}
+
+grpVec <- unique(seurat$clusterGrp)
+seurat$clusterGrp_plus_SLO <- as.factor(paste0(seurat$clusterGrp,
+                                              "_",seurat$SLO))
+Idents(seurat) <- seurat$clusterGrp_plus_SLO
+
+template_ah <- c(
+    "### {{grp}}\n",
+    "```{r avgHeat cwDE {{grp}}, echo = FALSE, fig.height=8, fig.width=6}\n",
+    "DeSub <- cwDEgenes[['{{grp}}']]",
+    "DeSel <- DeSub %>% group_by(cluster) %>% top_n(., 10, avg_logFC)",
+    "gapVecCol <- seq(3, length(levels(seurat$clusterGrp_plus_SLO)), by=3)",
+    "pOut <- avgHeatmap(seurat = seurat, selGenes = DeSel,
+                     colVecIdent = colClGrp, colVecCond=colorSLO,
+                     ordVec=levels(seurat$clusterGrp_plus_SLO),
+                     gapVecR=c(10,20), gapVecC=gapVecCol,cc=FALSE,
+                     cr=F, condCol=T)\n",
+    "```\n",
+    "\n"
+)
+    
+plots_ah <- lapply(grpVec, 
+  function(grp) knitr::knit_expand(text = template_ah)
+)
+
+```
+
+`r knitr::knit(text = unlist(plots_ah))`
+
+
+## SLO marker overlap between grps 
+```{r SLO marker overlap, fig.height=21, fig.width=9}
+
+grpVec <- unique(seurat$clusterGrp)
+orgVec <- unique(seurat$SLO)
+
+orgMarker <- lapply(orgVec, 
+  function(slo){
+    TBRCgenes <- cwDEgenes[["TBRC"]] %>% filter(cluster==slo)
+    MRCgenes <- cwDEgenes[["MRC"]] %>% filter(cluster==slo)
+    LZFDCgenes <- cwDEgenes[["LZFDC"]] %>% filter(cluster==slo)
+    DZFDCgenes <- cwDEgenes[["DZFDC"]] %>% filter(cluster==slo)
+    all <- intersect(intersect(intersect(TBRCgenes$gene, MRCgenes$gene),
+                               LZFDCgenes$gene), DZFDCgenes$gene)
+  }
+)
+
+names(orgMarker) <- orgVec
+## orgMarker = DE genes in all shared folicular BRC subsets
+## (adj_pVal < 0.01, min_pct = 0.1, log_FC > 0.25)
+```
+
+## vis all marker conserved across all subsets {.tabset}
+### LN
+```{r vis all conserved marker LN, fig.height=16, fig.width=12}
+
+seurat$label_plus_organ_plus_cond <- factor(paste0(seurat$SLO_plus_clusterlabel, "_",
+                                            seurat$cond))
+Idents(seurat) <- seurat$label_plus_organ_plus_cond
+selGenes <- data.frame(gene=orgMarker[["LN"]])
+allGenes <- data.frame(gene=rownames(seurat)) %>%
+  mutate(geneNam=gsub("^.*\\.", "", gene))
+selGenesDat <- selGenes %>% left_join(., allGenes, by=c("gene"))
+
+seurat$label_plus_cond <- paste0(seurat$clusterLabel, "_", seurat$cond)
+colSel <- c(rep(colorCond[["naive"]], 5), rep(colorCond[["immunized"]], 5))
+names(colSel) <- unique(seurat$label_plus_cond)
+pOut <- avgHeatmap(seurat = seurat, selGenes = selGenesDat,
+                  colVecIdent = colorSLO, 
+                  ordVec=levels(seurat),
+                  gapVecC=c(10,15),cc=F,
+                  cr=T,condCol=T, colVecCond=colSel)
+```
+
+### Spleen
+```{r vis all conserved marker spleen, fig.height=12, fig.width=12}
+
+selGenes <- data.frame(gene=orgMarker[["Spleen"]])
+allGenes <- data.frame(gene=rownames(seurat)) %>%
+  mutate(geneNam=gsub("^.*\\.", "", gene))
+selGenesDat <- selGenes %>% left_join(., allGenes, by=c("gene")) %>% 
+  filter(nchar(geneNam)>1)
+
+pOut <- avgHeatmap(seurat = seurat, selGenes = selGenesDat,
+                  colVecIdent = colorSLO, 
+                  ordVec=levels(seurat),
+                  gapVecC=c(10,15),cc=F,
+                  cr=T,condCol=T, colVecCond=colSel)
+```
+
+### PP
+```{r vis all conserved marker PP, fig.height=8, fig.width=12}
+
+selGenes <- data.frame(gene=orgMarker[["PP"]])
+allGenes <- data.frame(gene=rownames(seurat)) %>%
+  mutate(geneNam=gsub("^.*\\.", "", gene))
+selGenesDat <- selGenes %>% left_join(., allGenes, by=c("gene"))
+
+pOut <- avgHeatmap(seurat = seurat, selGenes = selGenesDat,
+                  colVecIdent = colorSLO, 
+                  ordVec=levels(seurat),
+                  gapVecC=c(10,15),cc=F,
+                  cr=T,condCol=T, colVecCond=colSel)
+```
+
+
+
+## GSEA clusterProfiler {.tabset}
+### LN
+```{r GSEA clusterprofiler, fig.height=6, fig.width=12}
+orgMarkerDat <- data.frame(do.call("cbind", orgMarker)) %>% 
+  gather(., SLO, gene, LN:Spleen) %>% mutate(EnsID = gsub("\\..*$", "", gene))
+
+orgMarkerDatLN <- orgMarkerDat %>% filter(SLO == "LN")
+egoLN <- enrichGO(gene         = orgMarkerDatLN$EnsID,
+                OrgDb         = org.Mm.eg.db,
+                keyType       = 'ENSEMBL',
+                ont           = "BP",
+                pAdjustMethod = "BH",
+                pvalueCutoff  = 0.05,
+                qvalueCutoff  = 0.05)
+egoLN <- setReadable(egoLN, OrgDb = org.Mm.eg.db)
+dotplot(egoLN, showCategory=30)
+cnetplot(egoLN, node_label="all") 
+emapplot(egoLN, showCategory = 15)
+
+
+orgMarkerDatLN <- bitr(orgMarkerDatLN$EnsID, fromType = "ENSEMBL",
+        toType = c("ENTREZID"),
+        OrgDb = org.Mm.eg.db)
+eKeggLN <- enrichKEGG(gene    = orgMarkerDatLN$ENTREZID,
+                 organism     = 'mmu',
+                 pvalueCutoff = 0.05)
+dotplot(eKeggLN, showCategory=30)
+cnetplot(eKeggLN, node_label="all") 
+emapplot(eKeggLN, showCategory = 15)
+
+
+m_t2g <- msigdbr(species = "Mus musculus", category = "H") %>% 
+  dplyr::select(gs_name, entrez_gene)
+em <- enricher(orgMarkerDatLN$ENTREZID, TERM2GENE=m_t2g, minGSSize=5,
+               pvalueCutoff = 0.5, qvalueCutoff = 0.5)
+dotplot(em, showCategory=30)
+cnetplot(em, node_label="all") 
+emapplot(em, showCategory = 15)
+
+```
+
+
+### PP
+```{r GSEA clusterprofiler PP, fig.height=8, fig.width=14}
+
+orgMarkerDatPP <- orgMarkerDat %>% filter(SLO == "PP")
+egoPP <- enrichGO(gene         = orgMarkerDatPP$EnsID,
+                OrgDb         = org.Mm.eg.db,
+                keyType       = 'ENSEMBL',
+                ont           = "BP",
+                pAdjustMethod = "BH",
+                pvalueCutoff  = 0.05,
+                qvalueCutoff  = 0.05)
+egoPP <- setReadable(egoPP, OrgDb = org.Mm.eg.db)
+dotplot(egoPP, showCategory=30)
+cnetplot(egoPP, node_label="all") 
+emapplot(egoPP, showCategory = 15)
+
+orgMarkerDatPP <- bitr(orgMarkerDatPP$EnsID, fromType = "ENSEMBL",
+        toType = c("ENTREZID"),
+        OrgDb = org.Mm.eg.db)
+eKeggPP <- enrichKEGG(gene    = orgMarkerDatPP$ENTREZID,
+                 organism     = 'mmu',
+                 pvalueCutoff = 0.1)
+dotplot(eKeggPP, showCategory=30)
+emapplot(eKeggPP, showCategory = 15)
+
+em <- enricher(orgMarkerDatPP$ENTREZID,
+               TERM2GENE=m_t2g,
+               minGSSize=5,
+               pvalueCutoff = 0.5,
+               qvalueCutoff = 0.5)
+dotplot(em, showCategory=30)
+cnetplot(em, node_label="all") 
+emapplot(em, showCategory = 15)
+
+```
+
+### Spleen
+```{r GSEA clusterprofiler Spleen, fig.height=8, fig.width=12}
+ 
+orgMarkerDatSP <- orgMarkerDat %>% filter(SLO == "Spleen")
+egoSP <- enrichGO(gene         = orgMarkerDatSP$EnsID,
+                OrgDb         = org.Mm.eg.db,
+                keyType       = 'ENSEMBL',
+                ont           = "BP",
+                pAdjustMethod = "BH",
+                pvalueCutoff  = 0.05,
+                qvalueCutoff  = 0.05)
+egoSP <- setReadable(egoSP, OrgDb = org.Mm.eg.db)
+dotplot(egoSP, showCategory=30)
+cnetplot(egoSP, node_label="all") 
+emapplot(egoSP, showCategory = 15)
+
+orgMarkerDatSP <- bitr(orgMarkerDatSP$EnsID, fromType = "ENSEMBL",
+        toType = c("ENTREZID"),
+        OrgDb = org.Mm.eg.db)
+eKeggSP <- enrichKEGG(gene    = orgMarkerDatSP$ENTREZID,
+                 organism     = 'mmu',
+                 pvalueCutoff = 0.1)
+dotplot(eKeggSP, showCategory=30)
+cnetplot(eKeggSP, node_label="all")
+emapplot(eKeggSP, showCategory = 15)
+
+em <- enricher(orgMarkerDatSP$ENTREZID,
+               TERM2GENE=m_t2g,
+               minGSSize=5,
+               pvalueCutoff = 0.5,
+               qvalueCutoff = 0.5)
+dotplot(em, showCategory=30)
+cnetplot(em, node_label="all") 
+emapplot(em, showCategory = 15)
+
+```
+
+
+### vis summary all
+```{r vis summary, fig.height=6, fig.width=9}
+selLN <- c("GO:0010463", "GO:0071604", "GO:0048706", "GO:2000146", "GO:0006959",
+           "GO:1901342")
+selPW_LN <- egoLN@result %>% filter(p.adjust<0.05) %>% 
+  filter(ID %in% selLN) %>%
+  mutate(IDfac= factor(ID, levels = selLN)) %>% 
+  arrange(., IDfac) %>% 
+  dplyr::select(ID, Description, GeneRatio, p.adjust, Count) %>% 
+  mutate(SLO="LN")
+
+selSP <- c("GO:0019882", "GO:0048536", "GO:0098656", "GO:0008015", "GO:0035265",
+           "GO:0060537")
+selPW_SP <- egoSP@result %>% filter(p.adjust<0.05) %>% 
+  filter(ID %in% selSP) %>% 
+  mutate(IDfac= factor(ID, levels = selSP)) %>% 
+  arrange(., IDfac) %>% 
+  dplyr::select(ID, Description, GeneRatio, p.adjust, Count) %>% 
+  mutate(SLO="Spleen")
+
+selPP <- c("GO:0030509", "GO:0016331","GO:0030198", "GO:0061448", "GO:0042573",
+           "GO:0007178")
+selPW_PP <- egoPP@result %>% filter(p.adjust<0.05) %>% 
+  filter(ID %in% selPP) %>% 
+  mutate(IDfac= factor(ID, levels = selPP)) %>% 
+  arrange(., IDfac) %>% 
+  dplyr::select(ID, Description, GeneRatio, p.adjust, Count) %>% 
+  mutate(SLO="PP")
+
+
+selPW_all <- rbind(selPW_PP, selPW_SP, selPW_LN) %>%
+  mutate(nom=as.numeric(gsub("\\/.*", "", GeneRatio))) %>% 
+  mutate(denom=as.numeric(gsub(".*\\/", "", GeneRatio))) %>% 
+  mutate(geneRatio=nom/denom) %>% 
+  mutate(one_minPadjust=(1-p.adjust))
+ 
+level_order <- unique(selPW_all$Description)
+ggplot(selPW_all, aes(x=factor(Description, level= level_order), y=geneRatio)) + 
+  geom_point(aes(col=SLO, size=Count, alpha=one_minPadjust)) + 
+  scale_color_manual(values = colorSLO)+
+  scale_alpha_continuous(range = c(0.5,1), name="p.adjust",
+                         labels=c(0.04, 0.03, 0.02, 0.01),
+                         breaks = c(0.96, 0.97, 0.98, 0.99)) +
+  scale_size_continuous(range = c(3,6), labels = c(2,4,6,8),
+                        breaks = c(2,4,6,8)) +
+  geom_segment(aes(x=Description, 
+                   xend=Description, 
+                   y=min(geneRatio), 
+                   yend=max(geneRatio)), 
+               linetype="dashed", 
+               size=0.1) +   # Draw dashed lines
+  coord_flip() +
+  theme_minimal() +
+  theme(panel.border = element_rect(fill = NA), 
+        panel.grid = element_blank(), axis.title.y = element_blank())
+```
+
+
+
+## vis sel marker across all subsets {.tabset}
+### LN
+```{r vis sel marker LN, fig.height=7, fig.width=6}
+selGenes <- data.frame(geneNam = c("Ebf1", "Ebf3", "Hoxd9", "Ntrk1", "Egr3",
+                                   "Sfrp2", "Adh1","Gata6", "Lhx8",
+                                   "Scara5", "Ptn", "Inmt",
+                                   "Cldn1", "Adam12",
+                                   "Cxcl1", "Ccl11"))
+allGenes <- data.frame(gene=rownames(seurat)) %>%
+  mutate(geneNam=gsub("^.*\\.", "", gene))
+selGenesDat <- selGenes %>% left_join(., allGenes, by=c("geneNam"))
+
+Idents(seurat) <- seurat$label_plus_organ
+pOut <- avgHeatmap(seurat = seurat, selGenes = selGenesDat,
+                  colVecIdent = colorLab, 
+                  ordVec=levels(seurat),
+                  gapVecR=c(9,12,14), gapVecC=c(4,8),cc=F,
+                  cr=F, condCol=T, colVecCond=colorSLO)
+
+```
+
+### Spleen
+```{r vis sel marker Spleen, fig.height=6, fig.width=5}
+selGenes <- data.frame(geneNam = c("Tlx1", "Coch", "Ttn", "Pcdh10", "Gabra2",
+                                   "Gal3st2", "Lyz2","Cr2"))
+allGenes <- data.frame(gene=rownames(seurat)) %>%
+  mutate(geneNam=gsub("^.*\\.", "", gene))
+selGenesDat <- selGenes %>% left_join(., allGenes, by=c("geneNam"))
+
+Idents(seurat) <- seurat$label_plus_organ
+pOut <- avgHeatmap(seurat = seurat, selGenes = selGenesDat,
+                  colVecIdent = colorLab, 
+                  ordVec=levels(seurat),
+                  gapVecR=c(1,3,7), gapVecC=c(4,8),cc=F,
+                  cr=F, condCol=T, colVecCond=colorSLO)
+
+```
+
+
+### PP
+```{r vis sel marker PP, fig.height=6, fig.width=5}
+selGenes <- data.frame(geneNam = c("Mab21l2", "Dkk2", "Mgp", "Lum", "Mfap4",
+                                   "Sytl2", "Musk","Spon2", "Cxcl14"))
+allGenes <- data.frame(gene=rownames(seurat)) %>%
+  mutate(geneNam=gsub("^.*\\.", "", gene))
+selGenesDat <- selGenes %>% left_join(., allGenes, by=c("geneNam"))
+
+Idents(seurat) <- seurat$label_plus_organ
+pOut <- avgHeatmap(seurat = seurat, selGenes = selGenesDat,
+                  colVecIdent = colorLab, 
+                  ordVec=levels(seurat),
+                  gapVecR=c(3,5,8), gapVecC=c(4,8),cc=F,
+                  cr=F, condCol=T, colVecCond=colorSLO)
+
+```
+
+
+## organ specific genes dotplot
+```{r SLO sepcific genes, fig.height=8, fig.width=7}
+
+selMarkerAll <- read_tsv(paste0(basedir,"/data/SLOspecificSelMarker.txt"))
+
+
+genes <- data.frame(ensID=rownames(seurat)) %>%
+  mutate(gene=gsub("^.*\\.", "", ensID))
+selGenes <- selMarkerAll %>% 
+  left_join(., genes, by=c("geneNam"="gene"))
+
+Idents(seurat) <- seurat$SLO_clusterLabel
+clusterDat <- data.frame(ident=levels(seurat)) %>%
+  mutate(SLO=gsub("_.*$", "", ident)) %>% 
+  mutate(namFull=paste0(ident, "_", SLO)) %>%
+  mutate(label= gsub("^.*_", "", ident))
+
+DotPlot(seurat, assay="RNA", features = selGenes$ensID, split.by = "SLO",
+        cols = colorSLO[c(1,3,2)], col.max = 6) +
+  coord_flip() +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  scale_x_discrete(breaks=selGenes$ensID, labels=selGenes$geneNam) +
+  scale_y_discrete(breaks=clusterDat$namFull, labels=clusterDat$label) +
+  xlab("") + ylab("")
+
+
+DotPlot(seurat, assay="RNA", features = selGenes$ensID, split.by = "SLO",
+        cols = colorSLO[c(1,3,2)], col.max = 6) +
+  coord_flip() +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  scale_x_discrete(breaks=selGenes$ensID, labels=selGenes$geneNam) +
+  scale_y_discrete(breaks=clusterDat$namFull, labels=clusterDat$label) +
+  xlab("") + ylab("") + theme(legend.position = "none")
+
+```
+
+
+
+## save object
+```{r save seurat}
+saveRDS(seurat, file=paste0(basedir, "/data/allBRC_seurat.rds"))
+```
+
+
+## session info
+```{r session info}
+sessionInfo()
+date()
+```
+

@@ -1,0 +1,309 @@
+---
+title: "vis fol BRCs merged"
+author: "Mechthild Lütge"
+date: "29 Sept 2020"
+output:
+  html_document:
+    self_contained: no
+    code_folding: show
+    number_sections: no
+    toc: yes
+    toc_depth: 3
+    toc_float: true
+    collapsed: no
+    smooth_scroll: yes
+---
+
+```{r setup, include=FALSE}
+options(width = 100)
+knitr::opts_chunk$set(warning = FALSE, message = FALSE, dev = c("png", "pdf"))
+seed <- 1234
+```
+
+## load packages
+```{r libs}
+suppressPackageStartupMessages({
+  library(tidyverse)
+  library(Seurat)
+  library(magrittr)
+  library(dplyr)
+  library(purrr)
+  library(ggplot2)
+  library(here)
+  library(runSeurat3)
+  library(SingleCellExperiment)
+  library(RColorBrewer)
+  library(viridis)
+  library(ggsci)
+  library(pheatmap)
+  library(muscat)
+})
+
+```
+
+
+## set dir and read input data
+```{r set dir}
+basedir <- here()
+seurat <- readRDS(file=paste0(basedir, "/data/folBRC_allSLO_seurat.rds"))
+seurat <-rerunSeurat3(seurat)
+
+colPal <- c("#FF9933", "#660000","#CC6600", "#FF6666", "#389055")
+names(colPal) <- c("LZFDC","MRC","DZFDC","TBRC", "PRC2")
+
+
+colorSLO <- c(viridis(3)[c(1,2)], brewer.pal(n=9, name="YlOrRd")[c(4)])
+colorCond <- brewer.pal(n=3, name="Paired")[c(1,2)]
+colorSLOCond <- c("#440154FF","#807DBA", "#FEB24C", "#F16913", "#21908CFF")
+colorBatch <- pal_igv()(n=length(unique(seurat$batch)))
+colCl <- c(rcartocolor::carto_pal(name="Safe"),pal_aaas()(8))
+
+names(colorSLO) <- c("LN", "PP", "Spleen")
+names(colorCond) <- c("naive", "immunized")
+names(colorBatch) <- unique(seurat$batch)
+names(colorSLOCond) <- c("LN_immunized","LN_naive", "Spleen_naive",
+                         "Spleen_immunized", "PP_immunized")
+
+
+```
+
+## vis fol BRCs {.tabset}
+
+### clusterlabel
+```{r clusterlabel}
+
+DimPlot(seurat, reduction = "umap", cols=colPal, group.by = "clusterLabel")+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+DimPlot(seurat, reduction = "umap", cols=colPal, group.by = "clusterLabel",
+        shuffle=T,pt.size=0.6)+
+  theme_void()
+
+```
+
+### cond
+```{r SLO plus cond}
+
+DimPlot(seurat, reduction = "umap", cols=colorSLOCond,
+        group.by = "SLO_plus_cond")+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+DimPlot(seurat, reduction = "umap", cols=colorSLOCond,
+        group.by = "SLO_plus_cond",
+        shuffle=T,pt.size=0.6)+
+  theme_void()
+
+```
+
+## vis fol BRCs downsampled {.tabset}
+```{r fol BRC downs}
+Idents(seurat) <- seurat$SLO_plus_clusterlabel
+seuratSub <- subset(seurat, downsample = 300)
+seuratSub <- rerunSeurat3(seuratSub)
+seuratSub <- RunUMAP(object = seuratSub,
+                     min.dist = 0.6,
+                     spread = 1,
+                     reduction = "pca",
+                     dims = 1:20)
+
+```
+
+### clusterlabel
+```{r clusterlabel downs}
+
+DimPlot(seuratSub, reduction = "umap", cols=colPal, group.by = "clusterLabel")+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+
+DimPlot(seuratSub, reduction = "umap", cols=colPal, group.by = "clusterLabel",
+        pt.size=1, shuffle = T)+
+  theme_void()
+
+```
+
+### cond
+```{r SLO plus cond downs}
+
+DimPlot(seurat, reduction = "umap", cols=colorSLOCond,
+        group.by = "SLO_plus_cond")+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+DimPlot(seuratSub, reduction = "umap", cols=colorSLOCond,
+        group.by = "SLO_plus_cond",
+        pt.size=1, shuffle = T)+
+  theme_void()
+
+```
+
+
+
+
+#### Featureplot
+```{r LN chemokine expression featureplot, fig.height=5, fig.width=12}
+features <- c("ENSMUSG00000071005.Ccl19","ENSMUSG00000023078.Cxcl13")
+FeaturePlot(seuratSub,
+            features = features,
+            blend = TRUE,
+            cols = c("lightgrey", "#9b2929", "#145aa2"))
+
+```
+
+### Ridgeplots
+```{r chemokine expression Ridgeplot, fig.height=3.5, fig.width=7}
+
+colPal2 <- c(colPal, colPal, colPal)
+names(colPal2) <- c(paste0("LN_", names(colPal)), paste0("PP_", names(colPal)),
+                    paste0("Spleen_", names(colPal)))
+
+RidgePlot(seuratSub, features = features, ncol = 2, 
+          cols=colPal2, group.by = "SLO_plus_clusterlabel")
+
+```
+
+### avg heatmap selected marker
+```{r avg function}
+avgHeatmap <- function(seurat, selGenes, colVecIdent, colVecCond=NULL,
+                       ordVec=NULL, gapVecR=NULL, gapVecC=NULL,cc=FALSE,
+                       cr=FALSE, condCol=FALSE){
+  
+  selGenes <- selGenes$gene
+  
+  ## assay data
+  clusterAssigned <- as.data.frame(Idents(seurat)) %>%
+  dplyr::mutate(cell=rownames(.))
+  colnames(clusterAssigned)[1] <- "ident"
+  seuratDat <- GetAssayData(seurat)
+  
+  ## genes of interest
+  genes <- data.frame(gene=rownames(seurat)) %>% 
+    mutate(geneID=gsub("^.*\\.", "", gene)) %>% filter(geneID %in% selGenes)
+
+  ## matrix with averaged cnts per ident
+  logNormExpres <- as.data.frame(t(as.matrix(
+    seuratDat[which(rownames(seuratDat) %in% genes$gene),])))
+  logNormExpres <- logNormExpres %>% dplyr::mutate(cell=rownames(.)) %>%
+    dplyr::left_join(.,clusterAssigned, by=c("cell")) %>%
+    dplyr::select(-cell) %>% dplyr::group_by(ident) %>%
+    dplyr::summarise_all(mean)
+  logNormExpresMa <- logNormExpres %>% dplyr::select(-ident) %>% as.matrix()
+  rownames(logNormExpresMa) <- logNormExpres$ident
+  logNormExpresMa <- t(logNormExpresMa)
+  rownames(logNormExpresMa) <- gsub("^.*?\\.","",rownames(logNormExpresMa))
+  
+  ## remove genes if they are all the same in all groups
+  ind <- apply(logNormExpresMa, 1, sd) == 0
+  logNormExpresMa <- logNormExpresMa[!ind,]
+  genes <- genes[!ind,]
+
+  ## color columns according to cluster
+  annotation_col <- as.data.frame(gsub("(^.*?_)","",
+                                       colnames(logNormExpresMa)))%>%
+    dplyr::mutate(celltype=gsub("(_.*$)","",colnames(logNormExpresMa)))
+  colnames(annotation_col)[1] <- "col1"
+  annotation_col <- annotation_col %>%
+    dplyr::mutate(cond = gsub("(^[0-9]_?)","",col1)) %>%
+    dplyr::select(cond, celltype)
+  rownames(annotation_col) <- colnames(logNormExpresMa) 
+
+  ann_colors = list(
+      cond = colVecCond,
+      celltype=colVecIdent)
+  if(is.null(ann_colors$cond)){
+    annotation_col$cond <- NULL
+  }
+  
+  ## adjust order
+  logNormExpresMa <- logNormExpresMa[selGenes,]
+  if(is.null(ordVec)){
+    ordVec <- levels(seurat)
+  }
+  logNormExpresMa <- logNormExpresMa[,ordVec]
+  colVecScale <- colorRampPalette(c("#2166AC", "#F7F7F7", "#B2182B"))(30)
+  colVecScale <- c(rep(colVecScale[1], 10), colVecScale, rep(colVecScale[30], 10))
+  ## scaled row-wise
+  pheatmap(logNormExpresMa, scale="row" ,treeheight_row = 0, cluster_rows = cr, 
+         cluster_cols = cc,
+         color = colVecScale,
+         annotation_col = annotation_col, cellwidth=15, cellheight=10,
+         annotation_colors = ann_colors, gaps_row = gapVecR, gaps_col = gapVecC)
+}
+
+```
+
+
+```{r avg heatmap, fig.height=8, fig.width=7}
+Idents(seurat) <- seurat$SLO_plus_clusterlabel
+selMarker <- list(Chemokine = c("Cxcl13", "Cxcl12", "Ccl19"),
+                  valMarker = c("Cr2", "Madcam1", "Tnfsf11"),
+                  PRCMarker = c("Cd34", "Pi16")
+                  )
+
+selGenes <- data.frame(gene=unlist(selMarker)) %>%
+  rownames_to_column(var="grp") %>% mutate(Grp=gsub(".{1}$", "", grp))
+grpCnt <- selGenes %>% group_by(Grp) %>% summarise(cnt=n())
+gapR <- data.frame(Grp=unique(selGenes$Grp)) %>% 
+  left_join(.,grpCnt, by="Grp") %>% mutate(cumSum=cumsum(cnt)) 
+ordVec <- levels(seurat)[c(4,5,2,1,3,8,9,10,7,6,15,12,13,11,14)]
+gapC <- c(5,10)
+
+pOut <- avgHeatmap(seurat = seurat, selGenes = selGenes,
+                  colVecIdent = colorSLO, 
+                  ordVec=ordVec,
+                  gapVecR=gapR$cumSum, gapVecC=gapC,cc=F,
+                  cr=F, condCol=T, colVecCond = colPal)
+
+
+```
+
+
+## Diffusionmap
+```{r diff map}
+
+sce <- as.SingleCellExperiment(seurat)
+sce <- runDiffusionMap(sce)
+
+plotReducedDim(sce, "DiffusionMap", colour_by = "clusterLabel", shape_by = "SLO")
+plotReducedDim(sce, "DiffusionMap", colour_by = "SLO", shape_by = "SLO")
+
+seurat <- as.Seurat(sce)
+DimPlot(seurat, reduction = "DiffusionMap", cols=colPal, group.by = "clusterLabel")+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("DM1") +
+  ylab("DM2")
+
+DimPlot(seurat, reduction = "DiffusionMap", cols=colPal, group.by = "clusterLabel",
+        shuffle=T,pt.size=0.4)+
+  theme_void()
+
+DimPlot(seurat, reduction = "DiffusionMap", cols=colorSLO, group.by = "SLO",
+        shuffle=T,pt.size=0.4)+
+  theme_void()
+
+```
+
+
+## session info
+```{r session info}
+sessionInfo()
+date()
+```
+
+

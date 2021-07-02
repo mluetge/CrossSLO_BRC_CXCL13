@@ -15,6 +15,7 @@
 
 <title>characterization Spleen data</title>
 
+<script src="site_libs/header-attrs-2.9/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
@@ -44,6 +45,8 @@ div.section {
   padding-top: 12px;
 }
 </style>
+
+
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -304,12 +307,12 @@ div.tocify {
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
 <div class="row">
-<div class="col-sm-12 col-md-4 col-lg-3">
+<div class="col-xs-12 col-sm-4 col-md-3">
 <div id="TOC" class="tocify">
 </div>
 </div>
 
-<div class="toc-content col-sm-12 col-md-8 col-lg-9">
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -374,7 +377,7 @@ div.tocify {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2021-05-26
+<strong>Last updated:</strong> 2021-07-02
 </p>
 <p>
 <strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 1
@@ -398,7 +401,7 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 </div>
 <div id="strongRMarkdownfilestronguncommittedchanges" class="panel-collapse collapse">
 <div class="panel-body">
-<p>The R Markdown is untracked by Git. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
+<p>The R Markdown file has unstaged changes. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
 </div>
 </div>
 </div>
@@ -465,16 +468,16 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcommluetgeCrossSLOBRCCXCL13treeb4f7258a6659a48af70965887150cf51937d1e5dtargetblankb4f7258a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/tree/b4f7258a6659a48af70965887150cf51937d1e5d" target="_blank">b4f7258</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcommluetgeCrossSLOBRCCXCL13treee40d554d3a63df6e708df9336d36c1c656661411targetblanke40d554a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/tree/e40d554d3a63df6e708df9336d36c1c656661411" target="_blank">e40d554</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcommluetgeCrossSLOBRCCXCL13treeb4f7258a6659a48af70965887150cf51937d1e5dtargetblankb4f7258a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcommluetgeCrossSLOBRCCXCL13treee40d554d3a63df6e708df9336d36c1c656661411targetblanke40d554a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/tree/b4f7258a6659a48af70965887150cf51937d1e5d" target="_blank">b4f7258</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/tree/e40d554d3a63df6e708df9336d36c1c656661411" target="_blank">e40d554</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -483,12 +486,24 @@ Note that you need to be careful to ensure that all relevant files for the analy
 Ignored files:
     Ignored:    .Rhistory
     Ignored:    .Rproj.user/
-    Ignored:    analysis/figure/
+    Ignored:    data/destiny/
+    Ignored:    data/processedData/
 
 Untracked files:
-    Untracked:  analysis/CharacterizationLN_CXCL13seurat.Rmd
-    Untracked:  analysis/CharacterizePP_CXCL13seurat.Rmd
-    Untracked:  analysis/CharacterizeSpleen_CXCL13seurat.Rmd
+    Untracked:  analysis/IntegrateAcrossSLOs.Rmd
+    Untracked:  analysis/SLOspecific_signature.Rmd
+    Untracked:  analysis/mergeData.Rmd
+    Untracked:  analysis/visFolBRC_individualSLOs.Rmd
+    Untracked:  analysis/visFolBRC_merged.Rmd
+    Untracked:  analysis/vis_plus_summarizeData.Rmd
+    Untracked:  figure/
+    Untracked:  metadata.txt
+
+Unstaged changes:
+    Modified:   analysis/CharacterizationLN_CXCL13seurat.Rmd
+    Modified:   analysis/CharacterizePP_CXCL13seurat.Rmd
+    Modified:   analysis/CharacterizeSpleen_CXCL13seurat.Rmd
+    Modified:   analysis/index.Rmd
 
 </code></pre>
 <p>
@@ -501,9 +516,69 @@ Note that any generated files, e.g. HTML, png, CSS, etc., are not included in t
 <hr>
 </div>
 <div id="versions" class="tab-pane fade">
+
 <p>
-There are no past versions. Publish this analysis with <code>wflow_publish()</code> to start tracking its development.
+These are the previous versions of the repository in which changes were made to the R Markdown (<code>analysis/CharacterizeSpleen_CXCL13seurat.Rmd</code>) and HTML (<code>docs/CharacterizeSpleen_CXCL13seurat.html</code>) files. If you’ve configured a remote Git repository (see <code>?wflow_git_remote</code>), click on the hyperlinks in the table below to view the files as they were in that past version.
 </p>
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+File
+</th>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+<th>
+Message
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/afcdedc9a4aa5d06f26fd369c0a974adfc7971ba/analysis/CharacterizeSpleen_CXCL13seurat.Rmd" target="_blank">afcdedc</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-05-26
+</td>
+<td>
+characterize all SLO
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/mluetge/CrossSLO_BRC_CXCL13/afcdedc9a4aa5d06f26fd369c0a974adfc7971ba/docs/CharacterizeSpleen_CXCL13seurat.html" target="_blank">afcdedc</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-05-26
+</td>
+<td>
+characterize all SLO
+</td>
+</tr>
+</tbody>
+</table>
+</div>
 <hr>
 </div>
 </div>
@@ -554,7 +629,25 @@ names(colorSLOCond) &lt;- c(&quot;LN_immunized&quot;,&quot;LN_naive&quot;, &quot
                          &quot;Spleen_immunized&quot;, &quot;PP_immunized&quot;)
 
 
-colPal &lt;- c(rcartocolor::carto_pal(name=&quot;Safe&quot;), pal_futurama()(8))</code></pre>
+colPal2 &lt;- c(rcartocolor::carto_pal(name=&quot;Safe&quot;), pal_futurama()(8))
+
+## Spleen specific colPal
+## final color palette
+colPal3 &lt;- c(&quot;#87c5af&quot;, &quot;#94033b&quot;, &quot;#fc8f3b&quot;, &quot;#2580fe&quot;, &quot;#514e72&quot;, &quot;#007961&quot;,
+            &quot;#f4d403&quot;, &quot;#38b5fc&quot;, &quot;#eb6382&quot;, &quot;#8fa38c&quot;, &quot;#4673b4&quot;, &quot;#b94403&quot;,
+            &quot;#b7d165&quot;, &quot;#9b5662&quot;, &quot;#666b73&quot;, &quot;#075c62&quot;)
+names(colPal3) &lt;- c(&quot;LZFDC&quot;, &quot;MRC&quot;, &quot;TBRC&quot;,&quot;DZFDC&quot;,&quot;PRC2&quot;,&quot;RPF&quot;, &quot;muralCells&quot;, 
+                   &quot;PRC1&quot;, &quot;BCRC&quot;, &quot;medRC1&quot;,&quot;IFRC&quot;, &quot;Cxcl9TBRC&quot;, &quot;capsular&quot;,
+                   &quot;LPFRC&quot;, &quot;subepithelial&quot;, &quot;aFDC&quot;)
+
+
+## final color palette
+colPal &lt;- c(&quot;#87c5af&quot;, &quot;#94033b&quot;, &quot;#fc8f3b&quot;, &quot;#2580fe&quot;, &quot;#514e72&quot;, &quot;#007961&quot;,
+            &quot;#f4d403&quot;, &quot;#38b5fc&quot;, &quot;#eb6382&quot;, &quot;#8fa38c&quot;, &quot;#4673b4&quot;, &quot;#b94403&quot;,
+            &quot;#b7d165&quot;, &quot;#9b5662&quot;, &quot;#666b73&quot;)
+names(colPal) &lt;- c(&quot;LZFDC&quot;, &quot;MRC&quot;, &quot;TBRC&quot;,&quot;DZFDC&quot;,&quot;PRC2&quot;,&quot;RPF&quot;, &quot;muralCells&quot;, 
+                   &quot;PRC1&quot;, &quot;BCRC&quot;, &quot;medRC&quot;,&quot;IFRC&quot;, &quot;Cxcl9TBRC&quot;, &quot;capsular&quot;,
+                   &quot;LPFRC&quot;, &quot;subepithelial&quot;)</code></pre>
 </div>
 <div id="run-seurat-pipeline" class="section level2">
 <h2>run seurat pipeline</h2>
@@ -603,16 +696,53 @@ Elapsed time: 0 seconds</code></pre>
 <pre><code>[1] 29568 10712</code></pre>
 </div>
 <div id="visualize-data" class="section level2 tabset">
-<h2>visualize data</h2>
+<h2 class="tabset">visualize data</h2>
 <div id="clustering" class="section level3">
 <h3>clustering</h3>
-<pre class="r"><code>DimPlot(seurat, reduction = &quot;umap&quot;, cols=colPal)+
+<pre class="r"><code>DimPlot(seurat, reduction = &quot;umap&quot;, cols=colPal2)+
   theme_bw() +
   theme(axis.text = element_blank(), axis.ticks = element_blank(), 
         panel.grid.minor = element_blank()) +
   xlab(&quot;UMAP1&quot;) +
   ylab(&quot;UMAP2&quot;)</code></pre>
 <p><img src="figure/CharacterizeSpleen_CXCL13seurat.Rmd/clustering-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-clustering-1">
+Past versions of clustering-1.png
+</button>
+</p>
+<div id="fig-clustering-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/afcdedc9a4aa5d06f26fd369c0a974adfc7971ba/docs/figure/CharacterizeSpleen_CXCL13seurat.Rmd/clustering-1.png" target="_blank">afcdedc</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-05-26
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="batch" class="section level3">
 <h3>Batch</h3>
@@ -623,6 +753,43 @@ Elapsed time: 0 seconds</code></pre>
   xlab(&quot;UMAP1&quot;) +
   ylab(&quot;UMAP2&quot;)</code></pre>
 <p><img src="figure/CharacterizeSpleen_CXCL13seurat.Rmd/Batch-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-Batch-1">
+Past versions of Batch-1.png
+</button>
+</p>
+<div id="fig-Batch-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/afcdedc9a4aa5d06f26fd369c0a974adfc7971ba/docs/figure/CharacterizeSpleen_CXCL13seurat.Rmd/Batch-1.png" target="_blank">afcdedc</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-05-26
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="cond" class="section level3">
 <h3>Cond</h3>
@@ -633,10 +800,47 @@ Elapsed time: 0 seconds</code></pre>
   xlab(&quot;UMAP1&quot;) +
   ylab(&quot;UMAP2&quot;)</code></pre>
 <p><img src="figure/CharacterizeSpleen_CXCL13seurat.Rmd/Side-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-Side-1">
+Past versions of Side-1.png
+</button>
+</p>
+<div id="fig-Side-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/afcdedc9a4aa5d06f26fd369c0a974adfc7971ba/docs/figure/CharacterizeSpleen_CXCL13seurat.Rmd/Side-1.png" target="_blank">afcdedc</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-05-26
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 </div>
 <div id="vis-qc" class="section level2 tabset">
-<h2>vis QC</h2>
+<h2 class="tabset">vis QC</h2>
 <div id="total-features" class="section level3">
 <h3>total features</h3>
 <pre class="r"><code>FeaturePlot(seurat, reduction = &quot;umap&quot;,  features = &quot;total_features_by_counts&quot;,
@@ -647,6 +851,43 @@ Elapsed time: 0 seconds</code></pre>
   xlab(&quot;UMAP1&quot;) +
   ylab(&quot;UMAP2&quot;)</code></pre>
 <p><img src="figure/CharacterizeSpleen_CXCL13seurat.Rmd/vis%20QC%20total%20features-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-vis-QC-total-features-1">
+Past versions of “vis QC total features-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-vis-QC-total-features-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/afcdedc9a4aa5d06f26fd369c0a974adfc7971ba/docs/figure/CharacterizeSpleen_CXCL13seurat.Rmd/vis QC total features-1.png" target="_blank">afcdedc</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-05-26
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="total-counts" class="section level3">
 <h3>total counts</h3>
@@ -658,6 +899,43 @@ Elapsed time: 0 seconds</code></pre>
   xlab(&quot;UMAP1&quot;) +
   ylab(&quot;UMAP2&quot;)</code></pre>
 <p><img src="figure/CharacterizeSpleen_CXCL13seurat.Rmd/vis%20QC%20total%20counts-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-vis-QC-total-counts-1">
+Past versions of “vis QC total counts-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-vis-QC-total-counts-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/afcdedc9a4aa5d06f26fd369c0a974adfc7971ba/docs/figure/CharacterizeSpleen_CXCL13seurat.Rmd/vis QC total counts-1.png" target="_blank">afcdedc</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-05-26
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="percentage-mt-counts" class="section level3">
 <h3>percentage mt counts</h3>
@@ -669,12 +947,49 @@ Elapsed time: 0 seconds</code></pre>
   xlab(&quot;UMAP1&quot;) +
   ylab(&quot;UMAP2&quot;)</code></pre>
 <p><img src="figure/CharacterizeSpleen_CXCL13seurat.Rmd/vis%20QC%20percentage%20mt%20counts-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-vis-QC-percentage-mt-counts-1">
+Past versions of “vis QC percentage mt counts-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-vis-QC-percentage-mt-counts-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/afcdedc9a4aa5d06f26fd369c0a974adfc7971ba/docs/figure/CharacterizeSpleen_CXCL13seurat.Rmd/vis QC percentage mt counts-1.png" target="_blank">afcdedc</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-05-26
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 </div>
 <div id="find-marker" class="section level2">
 <h2>Find marker</h2>
-<pre class="r"><code>Idents(seurat) &lt;- seurat$RNA_snn_res.0.25
-seurat_markers_all &lt;- FindAllMarkers(object = seurat, assay =&quot;RNA&quot;,
+<pre class="r"><code>Idents(seurat) &lt;- seurat$originalexp_snn_res.0.25
+seurat_markers_all &lt;- FindAllMarkers(object = seurat,
                                      only.pos = TRUE, min.pct = 0.25,
                                      logfc.threshold = 0.25,
                                      test.use = &quot;wilcox&quot;)
@@ -711,7 +1026,7 @@ saveRDS(seurat, file=paste0(basedir, &quot;/data/Spleen_seurat.rds&quot;))
 ## cluster : (Srgn, Bst1, Crym, Mfge8, Ccl21a) </code></pre>
 </div>
 <div id="expression-of-xist" class="section level2 tabset">
-<h2>expression of Xist</h2>
+<h2 class="tabset">expression of Xist</h2>
 <div id="all" class="section level3">
 <h3>all</h3>
 <pre class="r"><code>FeaturePlot(seurat, reduction = &quot;umap&quot;,  features = &quot;ENSMUSG00000086503.Xist&quot;,
@@ -722,6 +1037,43 @@ saveRDS(seurat, file=paste0(basedir, &quot;/data/Spleen_seurat.rds&quot;))
   xlab(&quot;UMAP1&quot;) +
   ylab(&quot;UMAP2&quot;)</code></pre>
 <p><img src="figure/CharacterizeSpleen_CXCL13seurat.Rmd/Xist%20expression%20all-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-Xist-expression-all-1">
+Past versions of “Xist expression all-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-Xist-expression-all-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/afcdedc9a4aa5d06f26fd369c0a974adfc7971ba/docs/figure/CharacterizeSpleen_CXCL13seurat.Rmd/Xist expression all-1.png" target="_blank">afcdedc</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-05-26
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="batch-x" class="section level3">
 <h3>batch X</h3>
@@ -734,6 +1086,43 @@ FeaturePlot(seuratS, reduction = &quot;umap&quot;,  features = &quot;ENSMUSG0000
   xlab(&quot;UMAP1&quot;) +
   ylab(&quot;UMAP2&quot;)</code></pre>
 <p><img src="figure/CharacterizeSpleen_CXCL13seurat.Rmd/Xist%20expression%20BX-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-Xist-expression-BX-1">
+Past versions of “Xist expression BX-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-Xist-expression-BX-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/afcdedc9a4aa5d06f26fd369c0a974adfc7971ba/docs/figure/CharacterizeSpleen_CXCL13seurat.Rmd/Xist expression BX-1.png" target="_blank">afcdedc</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-05-26
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="batch-y" class="section level3">
 <h3>batch Y</h3>
@@ -746,6 +1135,43 @@ FeaturePlot(seuratS, reduction = &quot;umap&quot;,  features = &quot;ENSMUSG0000
   xlab(&quot;UMAP1&quot;) +
   ylab(&quot;UMAP2&quot;)</code></pre>
 <p><img src="figure/CharacterizeSpleen_CXCL13seurat.Rmd/Xist%20expression%20BY-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-Xist-expression-BY-1">
+Past versions of “Xist expression BY-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-Xist-expression-BY-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/afcdedc9a4aa5d06f26fd369c0a974adfc7971ba/docs/figure/CharacterizeSpleen_CXCL13seurat.Rmd/Xist expression BY-1.png" target="_blank">afcdedc</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-05-26
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="batch-z" class="section level3">
 <h3>batch Z</h3>
@@ -758,6 +1184,43 @@ FeaturePlot(seuratS, reduction = &quot;umap&quot;,  features = &quot;ENSMUSG0000
   xlab(&quot;UMAP1&quot;) +
   ylab(&quot;UMAP2&quot;)</code></pre>
 <p><img src="figure/CharacterizeSpleen_CXCL13seurat.Rmd/Xist%20expression%20BZ-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-Xist-expression-BZ-1">
+Past versions of “Xist expression BZ-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-Xist-expression-BZ-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/afcdedc9a4aa5d06f26fd369c0a974adfc7971ba/docs/figure/CharacterizeSpleen_CXCL13seurat.Rmd/Xist expression BZ-1.png" target="_blank">afcdedc</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-05-26
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="batch-w" class="section level3">
 <h3>batch W</h3>
@@ -770,6 +1233,43 @@ FeaturePlot(seuratS, reduction = &quot;umap&quot;,  features = &quot;ENSMUSG0000
   xlab(&quot;UMAP1&quot;) +
   ylab(&quot;UMAP2&quot;)</code></pre>
 <p><img src="figure/CharacterizeSpleen_CXCL13seurat.Rmd/Xist%20expression%20BW-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-Xist-expression-BW-1">
+Past versions of “Xist expression BW-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-Xist-expression-BW-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/afcdedc9a4aa5d06f26fd369c0a974adfc7971ba/docs/figure/CharacterizeSpleen_CXCL13seurat.Rmd/Xist expression BW-1.png" target="_blank">afcdedc</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-05-26
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>remove(seuratS)</code></pre>
 </div>
 </div>
@@ -814,7 +1314,7 @@ Running Louvain algorithm...
 Maximum modularity in 10 random starts: 0.7834
 Number of communities: 7
 Elapsed time: 0 seconds</code></pre>
-<pre class="r"><code>seurat_markers_sub &lt;- FindAllMarkers(object = seuratSub, assay =&quot;RNA&quot;,
+<pre class="r"><code>seurat_markers_sub &lt;- FindAllMarkers(object = seuratSub,
                                      only.pos = TRUE, min.pct = 0.25,
                                      logfc.threshold = 0.25,
                                      test.use = &quot;wilcox&quot;)
@@ -846,18 +1346,19 @@ Elapsed time: 0 seconds</code></pre>
 
 ## label cells
 seurat$clusterLabel &lt;- &quot;muralCells&quot;
-seurat$clusterLabel[which(seurat$RNA_snn_res.0.25 %in% c(&quot;0&quot;, &quot;9&quot;))] &lt;- &quot;redPulpFibroblast&quot;
-seurat$clusterLabel[which(seurat$RNA_snn_res.0.25 == &quot;10&quot;)] &lt;- &quot;BCRC&quot;
-seurat$clusterLabel[which(seurat$RNA_snn_res.0.25 == &quot;4&quot;)] &lt;- &quot;adventitial&quot;
-seurat$clusterLabel[which(seurat$RNA_snn_res.0.25 == &quot;7&quot;)] &lt;- &quot;capsular&quot;
-seurat$clusterLabel[which(seurat$RNA_snn_res.0.25 == &quot;6&quot;)] &lt;- &quot;aFDC&quot;
+seurat$clusterLabel[which(seurat$originalexp_snn_res.0.25 %in%
+                            c(&quot;0&quot;, &quot;9&quot;))] &lt;- &quot;RPF&quot;
+seurat$clusterLabel[which(seurat$originalexp_snn_res.0.25 == &quot;10&quot;)] &lt;- &quot;BCRC&quot;
+seurat$clusterLabel[which(seurat$originalexp_snn_res.0.25 == &quot;4&quot;)] &lt;- &quot;capsular&quot;
+seurat$clusterLabel[which(seurat$originalexp_snn_res.0.25 == &quot;7&quot;)] &lt;- &quot;PRC2&quot;
+seurat$clusterLabel[which(seurat$originalexp_snn_res.0.25 == &quot;6&quot;)] &lt;- &quot;aFDC&quot;
 
 ### label from re-embedding
-fdc &lt;- colnames(seuratSub)[which(seuratSub$RNA_snn_res.0.6 %in% c(&quot;2&quot;))]
-mrc &lt;- colnames(seuratSub)[which(seuratSub$RNA_snn_res.0.6 == &quot;0&quot;)]
-tbrc &lt;- colnames(seuratSub)[which(seuratSub$RNA_snn_res.0.6 %in%
+fdc &lt;- colnames(seuratSub)[which(seuratSub$originalexp_snn_res.0.6 %in% c(&quot;2&quot;))]
+mrc &lt;- colnames(seuratSub)[which(seuratSub$originalexp_snn_res.0.6 == &quot;0&quot;)]
+tbrc &lt;- colnames(seuratSub)[which(seuratSub$originalexp_snn_res.0.6 %in%
                                     c(&quot;1&quot;, &quot;4&quot;, &quot;5&quot;))]
-dzfdc &lt;- colnames(seuratSub)[which(seuratSub$RNA_snn_res.0.6 == &quot;3&quot;)]
+dzfdc &lt;- colnames(seuratSub)[which(seuratSub$originalexp_snn_res.0.6 == &quot;3&quot;)]
 
 seurat$clusterLabel[which(colnames(seurat) %in% fdc)] &lt;- &quot;LZFDC&quot;
 seurat$clusterLabel[which(colnames(seurat) %in% mrc)] &lt;- &quot;MRC&quot;
@@ -878,22 +1379,56 @@ Note 5: capsular fibroblasts contain “universal Fibroblast” cluster (Cd34, D
 </div>
 <div id="vis-cluster-label" class="section level2">
 <h2>vis cluster label</h2>
-<pre class="r"><code>colPal &lt;- c(&quot;#387890&quot;, &quot;#427CB6&quot;, &quot;#F9DF35&quot;, &quot;#F7E77C&quot;, &quot;#FF9933&quot;, &quot;#941372&quot;,
-            &quot;#F7C27C&quot;, &quot;#FF6666&quot;, &quot;#389055&quot;, &quot;#A0A0A0&quot;, &quot;#A83539&quot;, &quot;#CC6600&quot;)
-names(colPal) &lt;- c(&quot;redPulpFibroblast&quot;, &quot;muralCells&quot;, &quot;PRC&quot;, &quot;intPRC&quot;,
-                   &quot;LZFDC&quot;, &quot;MRC&quot;, &quot;aFDC&quot;,&quot;TBRC&quot;, &quot;capsular&quot;, &quot;adventitial&quot;,
-                   &quot;BCRC&quot;, &quot;DZFDC&quot;)
-
-DimPlot(seurat, reduction = &quot;umap&quot;, cols=colPal)+
+<pre class="r"><code>DimPlot(seurat, reduction = &quot;umap&quot;, cols=colPal3)+
   theme_bw() +
   theme(axis.text = element_blank(), axis.ticks = element_blank(), 
         panel.grid.minor = element_blank()) +
   xlab(&quot;UMAP1&quot;) +
   ylab(&quot;UMAP2&quot;)</code></pre>
 <p><img src="figure/CharacterizeSpleen_CXCL13seurat.Rmd/vis%20cl%20lab-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-vis-cl-lab-1">
+Past versions of “vis cl lab-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-vis-cl-lab-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/afcdedc9a4aa5d06f26fd369c0a974adfc7971ba/docs/figure/CharacterizeSpleen_CXCL13seurat.Rmd/vis cl lab-1.png" target="_blank">afcdedc</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-05-26
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<pre class="r"><code>DimPlot(seurat, reduction = &quot;umap&quot;, cols=colPal3, shuffle=T,pt.size=0.6)+
+  theme_void()</code></pre>
+<p><img src="figure/CharacterizeSpleen_CXCL13seurat.Rmd/vis%20cl%20lab-2.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="vis-cluster-characterization" class="section level2 tabset">
-<h2>vis cluster characterization</h2>
+<h2 class="tabset">vis cluster characterization</h2>
 <pre class="r"><code>avgHeatmap &lt;- function(seurat, selGenes, colVecIdent, colVecCond=NULL,
                        ordVec=NULL, gapVecR=NULL, gapVecC=NULL,cc=FALSE,
                        cr=FALSE, condCol=FALSE){
@@ -954,7 +1489,7 @@ DimPlot(seurat, reduction = &quot;umap&quot;, cols=colPal)+
   ## scaled row-wise
   pheatmap(logNormExpresMa, scale=&quot;row&quot; ,treeheight_row = 0, cluster_rows = cr, 
          cluster_cols = cc,
-         color = colorRampPalette(c(&quot;#2166AC&quot;, &quot;#F7F7F7&quot;, &quot;#B2182B&quot;))(50),
+         color = colorRampPalette(c(&quot;#45628f&quot;, &quot;#F7F7F7&quot;, &quot;#de425b&quot;))(50),
          annotation_col = annotation_col, cellwidth=15, cellheight=10,
          annotation_colors = ann_colors, gaps_row = gapVecR, gaps_col = gapVecC)
 }</code></pre>
@@ -978,14 +1513,15 @@ selMarker &lt;- list(FDC = c(&quot;Xist&quot;,&quot;Sox9&quot;, &quot;Fcer2a&quo
                   )
 
 
-selMarker &lt;- list(FDC = c(&quot;Xist&quot;,&quot;Sox9&quot;, &quot;Fcer2a&quot;, &quot;Fcamr&quot;, &quot;Cr2&quot;),
+selMarker &lt;- list(FDC = c(&quot;Fcgr2b&quot;, &quot;Cr2&quot;,&quot;Sox9&quot;),
                   aFDC = c(&quot;Cox4i1&quot;,&quot;Atp5e&quot;),
-                  MRC = c(&quot;Madcam1&quot;, &quot;Cxcl13&quot;, &quot;Tnfsf11&quot;),                  
+                  MRC = c(&quot;Cxcl13&quot;, &quot;Madcam1&quot;, &quot;Tnfsf11&quot;),                  
                   DZFDC = c(&quot;Pdlim3&quot;, &quot;Crym&quot;, &quot;Cxcl12&quot;),
-                  TBRC = c(&quot;Bst1&quot;, &quot;Glycam1&quot;, &quot;Fmod&quot;,&quot;Ccl21a&quot;,&quot;Ccl19&quot;,&quot;Ifitm1&quot;),
-                  PRC = c(&quot;Pdgfrb&quot;, &quot;Tlx1&quot;, &quot;Eng&quot;, &quot;Ly6a&quot;, &quot;Wt1&quot;),
-                  mural = c(&quot;Rgs5&quot;, &quot;Cnn1&quot;, &quot;Acta2&quot;, &quot;Mcam&quot;),
-                  adventitial = c(&quot;Cd34&quot;,&quot;Igfbp6&quot;, &quot;Lum&quot;)
+                  TBRC = c(&quot;Ccl21a&quot;,&quot;Ccl19&quot;, &quot;Fmod&quot;),
+                  RPF = c(&quot;Pdgfrb&quot;, &quot;Eng&quot;, &quot;Ly6a&quot;),
+                  mural = c(&quot;Cnn1&quot;, &quot;Cspg4&quot;, &quot;Mcam&quot;),
+                  capsular = c(&quot;Krt19&quot;, &quot;Upk3b&quot;),
+                  adventitial = c(&quot;Cd34&quot;,&quot;Pi16&quot;)
                   )</code></pre>
 <div id="avg-heatmap" class="section level3">
 <h3>avg heatmap</h3>
@@ -997,11 +1533,100 @@ gapR &lt;- data.frame(Grp=unique(selGenes$Grp)) %&gt;%
 ordVec &lt;- levels(seurat)[c(1, 9, 6, 4, 3, 10, 2, 8, 5,7)]
 
 pOut &lt;- avgHeatmap(seurat = seurat, selGenes = selGenes,
-                  colVecIdent = colPal, 
+                  colVecIdent = colPal3, 
                   ordVec=ordVec,
                   gapVecR=gapR$cumSum, gapVecC=NULL,cc=F,
                   cr=F, condCol=F)</code></pre>
 <p><img src="figure/CharacterizeSpleen_CXCL13seurat.Rmd/avg%20heatmap%20cl%20marker-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-avg-heatmap-cl-marker-1">
+Past versions of “avg heatmap cl marker-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-avg-heatmap-cl-marker-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/afcdedc9a4aa5d06f26fd369c0a974adfc7971ba/docs/figure/CharacterizeSpleen_CXCL13seurat.Rmd/avg heatmap cl marker-1.png" target="_blank">afcdedc</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-05-26
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>##save seurat</p>
+<pre class="r"><code>Idents(seurat) &lt;- seurat$clusterLabel
+saveRDS(seurat, file=paste0(basedir, &quot;/data/Spleen_seurat.rds&quot;))</code></pre>
+</div>
+</div>
+<div id="vis-cluster-label-wo-afdcs" class="section level2">
+<h2>vis cluster label wo aFDCs</h2>
+<pre class="r"><code>seurat &lt;- subset(seurat, clusterLabel != &quot;aFDC&quot;)
+seurat &lt;- ScaleData(object = seurat, verbose = FALSE,
+                        features = rownames(seurat))
+seurat &lt;- RunPCA(object = seurat, npcs = 20, verbose = FALSE)
+seurat &lt;- RunTSNE(object = seurat, reduction = &quot;pca&quot;, dims = 1:20)
+seurat &lt;- RunUMAP(object = seurat, reduction = &quot;pca&quot;, dims = 1:20)
+
+Idents(seurat) &lt;- seurat$clusterLabel
+
+DimPlot(seurat, reduction = &quot;umap&quot;, cols=colPal, shuffle=T)+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab(&quot;UMAP1&quot;) +
+  ylab(&quot;UMAP2&quot;)</code></pre>
+<p><img src="figure/CharacterizeSpleen_CXCL13seurat.Rmd/vis%20cl%20lab%20merged-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>DimPlot(seurat, reduction = &quot;umap&quot;, cols=colPal, shuffle=T,pt.size=0.6)+
+  theme_void()</code></pre>
+<p><img src="figure/CharacterizeSpleen_CXCL13seurat.Rmd/vis%20cl%20lab%20merged-2.png" width="672" style="display: block; margin: auto;" /></p>
+<div id="avg-heatmap-1" class="section level3">
+<h3>avg heatmap</h3>
+<pre class="r"><code>selMarker &lt;- list(FDC = c(&quot;Fcgr2b&quot;, &quot;Cr2&quot;,&quot;Sox9&quot;),
+                  aFDC = c(&quot;Cox4i1&quot;,&quot;Atp5e&quot;),
+                  MRC = c(&quot;Cxcl13&quot;, &quot;Madcam1&quot;, &quot;Tnfsf11&quot;),                  
+                  DZFDC = c(&quot;Pdlim3&quot;, &quot;Crym&quot;, &quot;Cxcl12&quot;),
+                  TBRC = c(&quot;Ccl21a&quot;,&quot;Ccl19&quot;, &quot;Fmod&quot;),
+                  RPF = c(&quot;Pdgfrb&quot;, &quot;Eng&quot;, &quot;Ly6a&quot;),
+                  mural = c(&quot;Cnn1&quot;, &quot;Cspg4&quot;, &quot;Mcam&quot;),
+                  capsular = c(&quot;Krt19&quot;, &quot;Upk3b&quot;),
+                  adventitial = c(&quot;Cd34&quot;,&quot;Pi16&quot;)
+                  )
+
+selGenes &lt;- data.frame(gene=unlist(selMarker)) %&gt;%
+  rownames_to_column(var=&quot;grp&quot;) %&gt;% mutate(Grp=gsub(&quot;.{1}$&quot;, &quot;&quot;, grp))
+grpCnt &lt;- selGenes %&gt;% group_by(Grp) %&gt;% summarise(cnt=n())
+gapR &lt;- data.frame(Grp=unique(selGenes$Grp)) %&gt;% 
+  left_join(.,grpCnt, by=&quot;Grp&quot;) %&gt;% mutate(cumSum=cumsum(cnt)) 
+ordVec &lt;- levels(seurat)[c(8,5,3,2,9,1,7,4,6)]
+
+pOut &lt;- avgHeatmap(seurat = seurat, selGenes = selGenes,
+                  colVecIdent = colPal, 
+                  ordVec=ordVec,
+                  gapVecR=gapR$cumSum, gapVecC=NULL,cc=F,
+                  cr=F, condCol=F)</code></pre>
+<p><img src="figure/CharacterizeSpleen_CXCL13seurat.Rmd/avg%20heatmap%20cl%20marker%20merged-1.png" width="576" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="compare-to-all-eyfp-data" class="section level2">
@@ -1016,43 +1641,28 @@ seuratdat &lt;- data.frame(labelNew=seurat$clusterLabel) %&gt;%
   left_join(., seuratEYFPdat, by=&quot;cellname&quot;)
 
 table(seuratdat$labelNew, seuratdat$labelOld)</code></pre>
-<pre><code>                   
-                    adventitial aFDC capsular DZFDC LZFDC  MRC muralCells  PRC redPulpFibroblast
-  adventitial              1000    0        1     0     0    1          1    0                 0
-  aFDC                        0  344        0     2     0    2          0    0                 0
-  BCRC                        0    2        0     0     0    0          0  124                 1
-  capsular                    1    0      309     0     0    0          0    0                 0
-  DZFDC                       0    0        0   493    36   12          0    1                 0
-  LZFDC                       0    0        0    28   596    1          0    0                 0
-  MRC                         0    0        0     7     0  675          0    3                 0
-  muralCells                  2    0        1     0     0    0       1970  439                12
-  redPulpFibroblast           0    1        0     0     0    0          3    3              2972
-  TBRC                        1    0        0     0     1   29          0   11                 5
-                   
-                    TBRC
-  adventitial          1
-  aFDC                 3
-  BCRC                 1
-  capsular             0
-  DZFDC                0
-  LZFDC                0
-  MRC                 24
-  muralCells         203
-  redPulpFibroblast    3
-  TBRC              1387</code></pre>
+<pre><code>            
+             adventitial aFDC capsular DZFDC LZFDC  MRC muralCells  PRC redPulpFibroblast TBRC
+  BCRC                 0    2        0     0     0    0          0  124                 1    1
+  capsular          1000    0        1     0     0    1          1    0                 0    1
+  DZFDC                0    0        0   493    36   12          0    1                 0    0
+  LZFDC                0    0        0    28   596    1          0    0                 0    0
+  MRC                  0    0        0     7     0  675          0    3                 0   24
+  muralCells           2    0        1     0     0    0       1970  439                12  203
+  PRC2                 1    0      309     0     0    0          0    0                 0    0
+  RPF                  0    1        0     0     0    0          3    3              2972    3
+  TBRC                 1    0        0     0     1   29          0   11                 5 1387</code></pre>
 <pre class="r"><code>seurat$labelOld &lt;- seuratdat$labelOld
 table(seurat$labelOld)</code></pre>
 <pre><code>
       adventitial              aFDC          capsular             DZFDC             LZFDC 
-             1004               347               311               530               633 
+             1004                 3               311               528               633 
               MRC        muralCells               PRC redPulpFibroblast              TBRC 
-              720              1974               581              2990              1622 </code></pre>
+              718              1974               581              2990              1619 </code></pre>
 <pre class="r"><code>table(seurat$clusterLabel)</code></pre>
 <pre><code>
-      adventitial              aFDC              BCRC          capsular             DZFDC 
-             1004               351               128               310               542 
-            LZFDC               MRC        muralCells redPulpFibroblast              TBRC 
-              625               709              2627              2982              1434 </code></pre>
+      BCRC   capsular      DZFDC      LZFDC        MRC muralCells       PRC2        RPF       TBRC 
+       128       1004        542        625        709       2627        310       2982       1434 </code></pre>
 <pre class="r"><code>DimPlot(seurat, reduction = &quot;umap&quot;, cols=colPal, group.by=&quot;labelOld&quot;)+
   theme_bw() +
   theme(axis.text = element_blank(), axis.ticks = element_blank(), 
@@ -1060,20 +1670,57 @@ table(seurat$labelOld)</code></pre>
   xlab(&quot;UMAP1&quot;) +
   ylab(&quot;UMAP2&quot;)</code></pre>
 <p><img src="figure/CharacterizeSpleen_CXCL13seurat.Rmd/comp%20all%20eyfp-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>##save seurat</p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-comp-all-eyfp-1">
+Past versions of “comp all eyfp-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-comp-all-eyfp-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/afcdedc9a4aa5d06f26fd369c0a974adfc7971ba/docs/figure/CharacterizeSpleen_CXCL13seurat.Rmd/comp all eyfp-1.png" target="_blank">afcdedc</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-05-26
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>##save seurat wo aFDC</p>
 <pre class="r"><code>Idents(seurat) &lt;- seurat$clusterLabel
-saveRDS(seurat, file=paste0(basedir, &quot;/data/Spleen_seurat.rds&quot;))</code></pre>
+saveRDS(seurat, file=paste0(basedir, &quot;/data/Spleen_wo_aFDC_seurat.rds&quot;))</code></pre>
 </div>
 <div id="session-info" class="section level2">
 <h2>session info</h2>
 <pre class="r"><code>sessionInfo()</code></pre>
-<pre><code>R version 4.0.0 (2020-04-24)
+<pre><code>R version 4.1.0 (2021-05-18)
 Platform: x86_64-apple-darwin17.0 (64-bit)
 Running under: macOS Catalina 10.15.7
 
 Matrix products: default
-BLAS:   /Library/Frameworks/R.framework/Versions/4.0/Resources/lib/libRblas.dylib
-LAPACK: /Library/Frameworks/R.framework/Versions/4.0/Resources/lib/libRlapack.dylib
+BLAS:   /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRblas.dylib
+LAPACK: /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRlapack.dylib
 
 locale:
 [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
@@ -1082,85 +1729,86 @@ attached base packages:
 [1] parallel  stats4    stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
- [1] harmony_1.0                 Rcpp_1.0.6                  rcartocolor_2.0.0          
- [4] edgeR_3.30.3                limma_3.44.3                muscat_1.2.1               
- [7] CellMixS_1.4.2              kSamples_1.2-9              SuppDists_1.1-9.5          
-[10] pheatmap_1.0.12             scran_1.16.0                scater_1.16.2              
-[13] ggsci_2.9                   viridis_0.6.0               viridisLite_0.4.0          
-[16] RColorBrewer_1.1-2          SingleCellExperiment_1.10.1 SummarizedExperiment_1.18.2
-[19] DelayedArray_0.14.1         matrixStats_0.58.0          Biobase_2.48.0             
-[22] GenomicRanges_1.40.0        GenomeInfoDb_1.24.2         IRanges_2.22.2             
-[25] S4Vectors_0.26.1            BiocGenerics_0.34.0         runSeurat3_0.1.0           
-[28] here_1.0.1                  magrittr_2.0.1              SeuratObject_4.0.0         
-[31] Seurat_4.0.1                forcats_0.5.1               stringr_1.4.0              
-[34] dplyr_1.0.5                 purrr_0.3.4                 readr_1.4.0                
-[37] tidyr_1.1.3                 tibble_3.1.1                ggplot2_3.3.3              
-[40] tidyverse_1.3.1            
+ [1] harmony_0.1.0               Rcpp_1.0.6                  rcartocolor_2.0.0          
+ [4] edgeR_3.34.0                limma_3.48.1                muscat_1.6.0               
+ [7] CellMixS_1.8.0              kSamples_1.2-9              SuppDists_1.1-9.5          
+[10] pheatmap_1.0.12             scran_1.20.1                scater_1.20.1              
+[13] scuttle_1.2.0               ggsci_2.9                   viridis_0.6.1              
+[16] viridisLite_0.4.0           RColorBrewer_1.1-2          SingleCellExperiment_1.14.1
+[19] SummarizedExperiment_1.22.0 Biobase_2.52.0              GenomicRanges_1.44.0       
+[22] GenomeInfoDb_1.28.0         IRanges_2.26.0              S4Vectors_0.30.0           
+[25] BiocGenerics_0.38.0         MatrixGenerics_1.4.0        matrixStats_0.59.0         
+[28] runSeurat3_0.1.0            here_1.0.1                  magrittr_2.0.1             
+[31] SeuratObject_4.0.2          Seurat_4.0.3                forcats_0.5.1              
+[34] stringr_1.4.0               dplyr_1.0.7                 purrr_0.3.4                
+[37] readr_1.4.0                 tidyr_1.1.3                 tibble_3.1.2               
+[40] ggplot2_3.3.5               tidyverse_1.3.1            
 
 loaded via a namespace (and not attached):
-  [1] estimability_1.3          scattermore_0.7           coda_0.19-4              
-  [4] bit64_4.0.5               knitr_1.33                multcomp_1.4-17          
-  [7] irlba_2.3.3               data.table_1.14.0         rpart_4.1-15             
- [10] doParallel_1.0.16         RCurl_1.98-1.3            generics_0.1.0           
- [13] TH.data_1.0-10            cowplot_1.1.1             RSQLite_2.2.7            
- [16] RANN_2.6.1                future_1.21.0             bit_4.0.4                
- [19] spatstat.data_2.1-0       xml2_1.3.2                lubridate_1.7.10         
- [22] httpuv_1.6.0              assertthat_0.2.1          xfun_0.22                
- [25] hms_1.0.0                 jquerylib_0.1.4           evaluate_0.14            
- [28] promises_1.2.0.1          progress_1.2.2            fansi_0.4.2              
- [31] caTools_1.18.2            dbplyr_2.1.1              readxl_1.3.1             
- [34] igraph_1.2.6              DBI_1.1.1                 geneplotter_1.66.0       
- [37] htmlwidgets_1.5.3         spatstat.geom_2.1-0       ellipsis_0.3.1           
- [40] RSpectra_0.16-0           backports_1.2.1           annotate_1.66.0          
- [43] deldir_0.2-10             vctrs_0.3.7               ROCR_1.0-11              
- [46] abind_1.4-5               cachem_1.0.4              withr_2.4.2              
- [49] emmeans_1.6.0             sctransform_0.3.2         prettyunits_1.1.1        
+  [1] scattermore_0.7           bit64_4.0.5               knitr_1.33               
+  [4] irlba_2.3.3               DelayedArray_0.18.0       data.table_1.14.0        
+  [7] rpart_4.1-15              KEGGREST_1.32.0           RCurl_1.98-1.3           
+ [10] doParallel_1.0.16         generics_0.1.0            ScaledMatrix_1.0.0       
+ [13] cowplot_1.1.1             RSQLite_2.2.7             RANN_2.6.1               
+ [16] future_1.21.0             bit_4.0.4                 spatstat.data_2.1-0      
+ [19] xml2_1.3.2                lubridate_1.7.10          httpuv_1.6.1             
+ [22] assertthat_0.2.1          xfun_0.24                 hms_1.1.0                
+ [25] jquerylib_0.1.4           evaluate_0.14             promises_1.2.0.1         
+ [28] progress_1.2.2            fansi_0.5.0               caTools_1.18.2           
+ [31] dbplyr_2.1.1              readxl_1.3.1              geneplotter_1.70.0       
+ [34] igraph_1.2.6              DBI_1.1.1                 htmlwidgets_1.5.3        
+ [37] spatstat.geom_2.2-0       ellipsis_0.3.2            RSpectra_0.16-0          
+ [40] backports_1.2.1           annotate_1.70.0           deldir_0.2-10            
+ [43] sparseMatrixStats_1.4.0   vctrs_0.3.8               Cairo_1.5-12.2           
+ [46] ROCR_1.0-11               abind_1.4-5               cachem_1.0.5             
+ [49] withr_2.4.2               sctransform_0.3.2         prettyunits_1.1.1        
  [52] goftest_1.2-2             cluster_2.1.2             lazyeval_0.2.2           
- [55] crayon_1.4.1              genefilter_1.70.0         labeling_0.4.2           
+ [55] crayon_1.4.1              genefilter_1.74.0         labeling_0.4.2           
  [58] pkgconfig_2.0.3           nlme_3.1-152              vipor_0.4.5              
- [61] blme_1.0-5                rlang_0.4.10              globals_0.14.0           
- [64] lifecycle_1.0.0           miniUI_0.1.1.1            sandwich_3.0-0           
- [67] modelr_0.1.8              rsvd_1.0.5                cellranger_1.1.0         
- [70] rprojroot_2.0.2           polyclip_1.10-0           lmtest_0.9-38            
- [73] Matrix_1.3-2              boot_1.3-27               zoo_1.8-9                
- [76] reprex_2.0.0              beeswarm_0.3.1            ggridges_0.5.3           
+ [61] blme_1.0-5                rlang_0.4.11              globals_0.14.0           
+ [64] lifecycle_1.0.0           miniUI_0.1.1.1            modelr_0.1.8             
+ [67] rsvd_1.0.5                cellranger_1.1.0          rprojroot_2.0.2          
+ [70] polyclip_1.10-0           lmtest_0.9-38             Matrix_1.3-4             
+ [73] boot_1.3-28               zoo_1.8-9                 reprex_2.0.0             
+ [76] beeswarm_0.4.0            whisker_0.4               ggridges_0.5.3           
  [79] GlobalOptions_0.1.2       png_0.1-7                 rjson_0.2.20             
- [82] bitops_1.0-7              KernSmooth_2.23-18        blob_1.2.1               
- [85] DelayedMatrixStats_1.10.1 workflowr_1.6.2           shape_1.4.5              
- [88] parallelly_1.24.0         scales_1.1.1              memoise_2.0.0            
- [91] plyr_1.8.6                ica_1.0-2                 gplots_3.1.1             
- [94] zlibbioc_1.34.0           compiler_4.0.0            dqrng_0.2.1              
- [97] clue_0.3-59               lme4_1.1-26               DESeq2_1.28.1            
-[100] fitdistrplus_1.1-3        cli_2.5.0                 XVector_0.28.0           
-[103] lmerTest_3.1-3            listenv_0.8.0             patchwork_1.1.1          
-[106] pbapply_1.4-3             TMB_1.7.20                MASS_7.3-53.1            
-[109] mgcv_1.8-35               tidyselect_1.1.0          stringi_1.5.3            
-[112] highr_0.9                 yaml_2.2.1                BiocSingular_1.4.0       
-[115] locfit_1.5-9.4            ggrepel_0.9.1             grid_4.0.0               
-[118] sass_0.3.1                tools_4.0.0               future.apply_1.7.0       
-[121] circlize_0.4.12           rstudioapi_0.13           foreach_1.5.1            
-[124] git2r_0.28.0              gridExtra_2.3             farver_2.1.0             
-[127] Rtsne_0.15                digest_0.6.27             shiny_1.6.0              
-[130] broom_0.7.6               later_1.2.0               RcppAnnoy_0.0.18         
-[133] httr_1.4.2                AnnotationDbi_1.50.3      ComplexHeatmap_2.4.3     
-[136] colorspace_2.0-0          rvest_1.0.0               XML_3.99-0.6             
-[139] fs_1.5.0                  tensor_1.5                reticulate_1.19          
-[142] splines_4.0.0             uwot_0.1.10               statmod_1.4.35           
-[145] spatstat.utils_2.1-0      plotly_4.9.3              xtable_1.8-4             
-[148] jsonlite_1.7.2            nloptr_1.2.2.2            R6_2.5.0                 
-[151] pillar_1.6.0              htmltools_0.5.1.1         mime_0.10                
-[154] glue_1.4.2                fastmap_1.1.0             minqa_1.2.4              
-[157] BiocParallel_1.22.0       BiocNeighbors_1.6.0       codetools_0.2-18         
-[160] mvtnorm_1.1-1             utf8_1.2.1                lattice_0.20-41          
-[163] bslib_0.2.4               spatstat.sparse_2.0-0     pbkrtest_0.5.1           
-[166] numDeriv_2016.8-1.1       ggbeeswarm_0.6.0          colorRamps_2.3           
-[169] leiden_0.3.7              gtools_3.8.2              survival_3.2-11          
-[172] glmmTMB_1.0.2.1           rmarkdown_2.7             munsell_0.5.0            
-[175] GetoptLong_1.0.5          GenomeInfoDbData_1.2.3    iterators_1.0.13         
-[178] variancePartition_1.18.3  haven_2.4.1               reshape2_1.4.4           
-[181] gtable_0.3.0              spatstat.core_2.1-2      </code></pre>
+ [82] bitops_1.0-7              KernSmooth_2.23-20        Biostrings_2.60.1        
+ [85] blob_1.2.1                DelayedMatrixStats_1.14.0 workflowr_1.6.2          
+ [88] shape_1.4.6               parallelly_1.26.1         beachmat_2.8.0           
+ [91] scales_1.1.1              memoise_2.0.0             plyr_1.8.6               
+ [94] ica_1.0-2                 gplots_3.1.1              zlibbioc_1.38.0          
+ [97] compiler_4.1.0            dqrng_0.3.0               lme4_1.1-27.1            
+[100] clue_0.3-59               DESeq2_1.32.0             fitdistrplus_1.1-5       
+[103] cli_2.5.0                 XVector_0.32.0            lmerTest_3.1-3           
+[106] listenv_0.8.0             TMB_1.7.20                patchwork_1.1.1          
+[109] pbapply_1.4-3             MASS_7.3-54               mgcv_1.8-36              
+[112] tidyselect_1.1.1          stringi_1.6.2             highr_0.9                
+[115] yaml_2.2.1                BiocSingular_1.8.1        locfit_1.5-9.4           
+[118] ggrepel_0.9.1             grid_4.1.0                sass_0.4.0               
+[121] tools_4.1.0               future.apply_1.7.0        circlize_0.4.13          
+[124] rstudioapi_0.13           bluster_1.2.1             foreach_1.5.1            
+[127] git2r_0.28.0              metapod_1.0.0             gridExtra_2.3            
+[130] farver_2.1.0              Rtsne_0.15                digest_0.6.27            
+[133] shiny_1.6.0               broom_0.7.8               later_1.2.0              
+[136] RcppAnnoy_0.0.18          httr_1.4.2                AnnotationDbi_1.54.1     
+[139] ComplexHeatmap_2.8.0      colorspace_2.0-2          rvest_1.0.0              
+[142] XML_3.99-0.6              fs_1.5.0                  tensor_1.5               
+[145] reticulate_1.20           splines_4.1.0             uwot_0.1.10              
+[148] statmod_1.4.36            spatstat.utils_2.2-0      plotly_4.9.4.1           
+[151] xtable_1.8-4              nloptr_1.2.2.2            jsonlite_1.7.2           
+[154] R6_2.5.0                  pillar_1.6.1              htmltools_0.5.1.1        
+[157] mime_0.11                 minqa_1.2.4               glue_1.4.2               
+[160] fastmap_1.1.0             BiocParallel_1.26.0       BiocNeighbors_1.10.0     
+[163] codetools_0.2-18          utf8_1.2.1                lattice_0.20-44          
+[166] bslib_0.2.5.1             spatstat.sparse_2.0-0     pbkrtest_0.5.1           
+[169] numDeriv_2016.8-1.1       ggbeeswarm_0.6.0          colorRamps_2.3           
+[172] leiden_0.3.8              gtools_3.9.2              glmmTMB_1.1.1            
+[175] survival_3.2-11           rmarkdown_2.9             munsell_0.5.0            
+[178] GetoptLong_1.0.5          GenomeInfoDbData_1.2.6    iterators_1.0.13         
+[181] variancePartition_1.22.0  haven_2.4.1               reshape2_1.4.4           
+[184] gtable_0.3.0              spatstat.core_2.2-0      </code></pre>
 <pre class="r"><code>date()</code></pre>
-<pre><code>[1] &quot;Wed May 26 15:44:35 2021&quot;</code></pre>
+<pre><code>[1] &quot;Fri Jul  2 13:17:05 2021&quot;</code></pre>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
@@ -1169,13 +1817,13 @@ loaded via a namespace (and not attached):
 </p>
 <div id="workflowr-sessioninfo" class="collapse">
 <pre class="r"><code>sessionInfo()</code></pre>
-<pre><code>R version 4.0.0 (2020-04-24)
+<pre><code>R version 4.1.0 (2021-05-18)
 Platform: x86_64-apple-darwin17.0 (64-bit)
 Running under: macOS Catalina 10.15.7
 
 Matrix products: default
-BLAS:   /Library/Frameworks/R.framework/Versions/4.0/Resources/lib/libRblas.dylib
-LAPACK: /Library/Frameworks/R.framework/Versions/4.0/Resources/lib/libRlapack.dylib
+BLAS:   /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRblas.dylib
+LAPACK: /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRlapack.dylib
 
 locale:
 [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
@@ -1184,83 +1832,84 @@ attached base packages:
 [1] parallel  stats4    stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
- [1] harmony_1.0                 Rcpp_1.0.6                  rcartocolor_2.0.0          
- [4] edgeR_3.30.3                limma_3.44.3                muscat_1.2.1               
- [7] CellMixS_1.4.2              kSamples_1.2-9              SuppDists_1.1-9.5          
-[10] pheatmap_1.0.12             scran_1.16.0                scater_1.16.2              
-[13] ggsci_2.9                   viridis_0.6.0               viridisLite_0.4.0          
-[16] RColorBrewer_1.1-2          SingleCellExperiment_1.10.1 SummarizedExperiment_1.18.2
-[19] DelayedArray_0.14.1         matrixStats_0.58.0          Biobase_2.48.0             
-[22] GenomicRanges_1.40.0        GenomeInfoDb_1.24.2         IRanges_2.22.2             
-[25] S4Vectors_0.26.1            BiocGenerics_0.34.0         runSeurat3_0.1.0           
-[28] here_1.0.1                  magrittr_2.0.1              SeuratObject_4.0.0         
-[31] Seurat_4.0.1                forcats_0.5.1               stringr_1.4.0              
-[34] dplyr_1.0.5                 purrr_0.3.4                 readr_1.4.0                
-[37] tidyr_1.1.3                 tibble_3.1.1                ggplot2_3.3.3              
-[40] tidyverse_1.3.1            
+ [1] harmony_0.1.0               Rcpp_1.0.6                  rcartocolor_2.0.0          
+ [4] edgeR_3.34.0                limma_3.48.1                muscat_1.6.0               
+ [7] CellMixS_1.8.0              kSamples_1.2-9              SuppDists_1.1-9.5          
+[10] pheatmap_1.0.12             scran_1.20.1                scater_1.20.1              
+[13] scuttle_1.2.0               ggsci_2.9                   viridis_0.6.1              
+[16] viridisLite_0.4.0           RColorBrewer_1.1-2          SingleCellExperiment_1.14.1
+[19] SummarizedExperiment_1.22.0 Biobase_2.52.0              GenomicRanges_1.44.0       
+[22] GenomeInfoDb_1.28.0         IRanges_2.26.0              S4Vectors_0.30.0           
+[25] BiocGenerics_0.38.0         MatrixGenerics_1.4.0        matrixStats_0.59.0         
+[28] runSeurat3_0.1.0            here_1.0.1                  magrittr_2.0.1             
+[31] SeuratObject_4.0.2          Seurat_4.0.3                forcats_0.5.1              
+[34] stringr_1.4.0               dplyr_1.0.7                 purrr_0.3.4                
+[37] readr_1.4.0                 tidyr_1.1.3                 tibble_3.1.2               
+[40] ggplot2_3.3.5               tidyverse_1.3.1            
 
 loaded via a namespace (and not attached):
-  [1] estimability_1.3          scattermore_0.7           coda_0.19-4              
-  [4] bit64_4.0.5               knitr_1.33                multcomp_1.4-17          
-  [7] irlba_2.3.3               data.table_1.14.0         rpart_4.1-15             
- [10] doParallel_1.0.16         RCurl_1.98-1.3            generics_0.1.0           
- [13] TH.data_1.0-10            cowplot_1.1.1             RSQLite_2.2.7            
- [16] RANN_2.6.1                future_1.21.0             bit_4.0.4                
- [19] spatstat.data_2.1-0       xml2_1.3.2                lubridate_1.7.10         
- [22] httpuv_1.6.0              assertthat_0.2.1          xfun_0.22                
- [25] hms_1.0.0                 jquerylib_0.1.4           evaluate_0.14            
- [28] promises_1.2.0.1          progress_1.2.2            fansi_0.4.2              
- [31] caTools_1.18.2            dbplyr_2.1.1              readxl_1.3.1             
- [34] igraph_1.2.6              DBI_1.1.1                 geneplotter_1.66.0       
- [37] htmlwidgets_1.5.3         spatstat.geom_2.1-0       ellipsis_0.3.1           
- [40] RSpectra_0.16-0           backports_1.2.1           annotate_1.66.0          
- [43] deldir_0.2-10             vctrs_0.3.7               ROCR_1.0-11              
- [46] abind_1.4-5               cachem_1.0.4              withr_2.4.2              
- [49] emmeans_1.6.0             sctransform_0.3.2         prettyunits_1.1.1        
+  [1] scattermore_0.7           bit64_4.0.5               knitr_1.33               
+  [4] irlba_2.3.3               DelayedArray_0.18.0       data.table_1.14.0        
+  [7] rpart_4.1-15              KEGGREST_1.32.0           RCurl_1.98-1.3           
+ [10] doParallel_1.0.16         generics_0.1.0            ScaledMatrix_1.0.0       
+ [13] cowplot_1.1.1             RSQLite_2.2.7             RANN_2.6.1               
+ [16] future_1.21.0             bit_4.0.4                 spatstat.data_2.1-0      
+ [19] xml2_1.3.2                lubridate_1.7.10          httpuv_1.6.1             
+ [22] assertthat_0.2.1          xfun_0.24                 hms_1.1.0                
+ [25] jquerylib_0.1.4           evaluate_0.14             promises_1.2.0.1         
+ [28] progress_1.2.2            fansi_0.5.0               caTools_1.18.2           
+ [31] dbplyr_2.1.1              readxl_1.3.1              geneplotter_1.70.0       
+ [34] igraph_1.2.6              DBI_1.1.1                 htmlwidgets_1.5.3        
+ [37] spatstat.geom_2.2-0       ellipsis_0.3.2            RSpectra_0.16-0          
+ [40] backports_1.2.1           annotate_1.70.0           deldir_0.2-10            
+ [43] sparseMatrixStats_1.4.0   vctrs_0.3.8               Cairo_1.5-12.2           
+ [46] ROCR_1.0-11               abind_1.4-5               cachem_1.0.5             
+ [49] withr_2.4.2               sctransform_0.3.2         prettyunits_1.1.1        
  [52] goftest_1.2-2             cluster_2.1.2             lazyeval_0.2.2           
- [55] crayon_1.4.1              genefilter_1.70.0         labeling_0.4.2           
+ [55] crayon_1.4.1              genefilter_1.74.0         labeling_0.4.2           
  [58] pkgconfig_2.0.3           nlme_3.1-152              vipor_0.4.5              
- [61] blme_1.0-5                rlang_0.4.10              globals_0.14.0           
- [64] lifecycle_1.0.0           miniUI_0.1.1.1            sandwich_3.0-0           
- [67] modelr_0.1.8              rsvd_1.0.5                cellranger_1.1.0         
- [70] rprojroot_2.0.2           polyclip_1.10-0           lmtest_0.9-38            
- [73] Matrix_1.3-2              boot_1.3-27               zoo_1.8-9                
- [76] reprex_2.0.0              beeswarm_0.3.1            ggridges_0.5.3           
+ [61] blme_1.0-5                rlang_0.4.11              globals_0.14.0           
+ [64] lifecycle_1.0.0           miniUI_0.1.1.1            modelr_0.1.8             
+ [67] rsvd_1.0.5                cellranger_1.1.0          rprojroot_2.0.2          
+ [70] polyclip_1.10-0           lmtest_0.9-38             Matrix_1.3-4             
+ [73] boot_1.3-28               zoo_1.8-9                 reprex_2.0.0             
+ [76] beeswarm_0.4.0            whisker_0.4               ggridges_0.5.3           
  [79] GlobalOptions_0.1.2       png_0.1-7                 rjson_0.2.20             
- [82] bitops_1.0-7              KernSmooth_2.23-18        blob_1.2.1               
- [85] DelayedMatrixStats_1.10.1 workflowr_1.6.2           shape_1.4.5              
- [88] parallelly_1.24.0         scales_1.1.1              memoise_2.0.0            
- [91] plyr_1.8.6                ica_1.0-2                 gplots_3.1.1             
- [94] zlibbioc_1.34.0           compiler_4.0.0            dqrng_0.2.1              
- [97] clue_0.3-59               lme4_1.1-26               DESeq2_1.28.1            
-[100] fitdistrplus_1.1-3        cli_2.5.0                 XVector_0.28.0           
-[103] lmerTest_3.1-3            listenv_0.8.0             patchwork_1.1.1          
-[106] pbapply_1.4-3             TMB_1.7.20                MASS_7.3-53.1            
-[109] mgcv_1.8-35               tidyselect_1.1.0          stringi_1.5.3            
-[112] highr_0.9                 yaml_2.2.1                BiocSingular_1.4.0       
-[115] locfit_1.5-9.4            ggrepel_0.9.1             grid_4.0.0               
-[118] sass_0.3.1                tools_4.0.0               future.apply_1.7.0       
-[121] circlize_0.4.12           rstudioapi_0.13           foreach_1.5.1            
-[124] git2r_0.28.0              gridExtra_2.3             farver_2.1.0             
-[127] Rtsne_0.15                digest_0.6.27             shiny_1.6.0              
-[130] broom_0.7.6               later_1.2.0               RcppAnnoy_0.0.18         
-[133] httr_1.4.2                AnnotationDbi_1.50.3      ComplexHeatmap_2.4.3     
-[136] colorspace_2.0-0          rvest_1.0.0               XML_3.99-0.6             
-[139] fs_1.5.0                  tensor_1.5                reticulate_1.19          
-[142] splines_4.0.0             uwot_0.1.10               statmod_1.4.35           
-[145] spatstat.utils_2.1-0      plotly_4.9.3              xtable_1.8-4             
-[148] jsonlite_1.7.2            nloptr_1.2.2.2            R6_2.5.0                 
-[151] pillar_1.6.0              htmltools_0.5.1.1         mime_0.10                
-[154] glue_1.4.2                fastmap_1.1.0             minqa_1.2.4              
-[157] BiocParallel_1.22.0       BiocNeighbors_1.6.0       codetools_0.2-18         
-[160] mvtnorm_1.1-1             utf8_1.2.1                lattice_0.20-41          
-[163] bslib_0.2.4               spatstat.sparse_2.0-0     pbkrtest_0.5.1           
-[166] numDeriv_2016.8-1.1       ggbeeswarm_0.6.0          colorRamps_2.3           
-[169] leiden_0.3.7              gtools_3.8.2              survival_3.2-11          
-[172] glmmTMB_1.0.2.1           rmarkdown_2.7             munsell_0.5.0            
-[175] GetoptLong_1.0.5          GenomeInfoDbData_1.2.3    iterators_1.0.13         
-[178] variancePartition_1.18.3  haven_2.4.1               reshape2_1.4.4           
-[181] gtable_0.3.0              spatstat.core_2.1-2      </code></pre>
+ [82] bitops_1.0-7              KernSmooth_2.23-20        Biostrings_2.60.1        
+ [85] blob_1.2.1                DelayedMatrixStats_1.14.0 workflowr_1.6.2          
+ [88] shape_1.4.6               parallelly_1.26.1         beachmat_2.8.0           
+ [91] scales_1.1.1              memoise_2.0.0             plyr_1.8.6               
+ [94] ica_1.0-2                 gplots_3.1.1              zlibbioc_1.38.0          
+ [97] compiler_4.1.0            dqrng_0.3.0               lme4_1.1-27.1            
+[100] clue_0.3-59               DESeq2_1.32.0             fitdistrplus_1.1-5       
+[103] cli_2.5.0                 XVector_0.32.0            lmerTest_3.1-3           
+[106] listenv_0.8.0             TMB_1.7.20                patchwork_1.1.1          
+[109] pbapply_1.4-3             MASS_7.3-54               mgcv_1.8-36              
+[112] tidyselect_1.1.1          stringi_1.6.2             highr_0.9                
+[115] yaml_2.2.1                BiocSingular_1.8.1        locfit_1.5-9.4           
+[118] ggrepel_0.9.1             grid_4.1.0                sass_0.4.0               
+[121] tools_4.1.0               future.apply_1.7.0        circlize_0.4.13          
+[124] rstudioapi_0.13           bluster_1.2.1             foreach_1.5.1            
+[127] git2r_0.28.0              metapod_1.0.0             gridExtra_2.3            
+[130] farver_2.1.0              Rtsne_0.15                digest_0.6.27            
+[133] shiny_1.6.0               broom_0.7.8               later_1.2.0              
+[136] RcppAnnoy_0.0.18          httr_1.4.2                AnnotationDbi_1.54.1     
+[139] ComplexHeatmap_2.8.0      colorspace_2.0-2          rvest_1.0.0              
+[142] XML_3.99-0.6              fs_1.5.0                  tensor_1.5               
+[145] reticulate_1.20           splines_4.1.0             uwot_0.1.10              
+[148] statmod_1.4.36            spatstat.utils_2.2-0      plotly_4.9.4.1           
+[151] xtable_1.8-4              nloptr_1.2.2.2            jsonlite_1.7.2           
+[154] R6_2.5.0                  pillar_1.6.1              htmltools_0.5.1.1        
+[157] mime_0.11                 minqa_1.2.4               glue_1.4.2               
+[160] fastmap_1.1.0             BiocParallel_1.26.0       BiocNeighbors_1.10.0     
+[163] codetools_0.2-18          utf8_1.2.1                lattice_0.20-44          
+[166] bslib_0.2.5.1             spatstat.sparse_2.0-0     pbkrtest_0.5.1           
+[169] numDeriv_2016.8-1.1       ggbeeswarm_0.6.0          colorRamps_2.3           
+[172] leiden_0.3.8              gtools_3.9.2              glmmTMB_1.1.1            
+[175] survival_3.2-11           rmarkdown_2.9             munsell_0.5.0            
+[178] GetoptLong_1.0.5          GenomeInfoDbData_1.2.6    iterators_1.0.13         
+[181] variancePartition_1.22.0  haven_2.4.1               reshape2_1.4.4           
+[184] gtable_0.3.0              spatstat.core_2.2-0      </code></pre>
 </div>
 </div>
 
@@ -1276,6 +1925,8 @@ footer is added to webpages before the MathJax javascript. -->
     "HTML-CSS": { availableFonts: ["TeX"] }
   });
 </script>
+
+
 
 
 </div>
@@ -1314,6 +1965,9 @@ $(document).ready(function () {
 
 <script>
 $(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
 
     // move toc-ignore selectors from section div to header
     $('div.section.toc-ignore')

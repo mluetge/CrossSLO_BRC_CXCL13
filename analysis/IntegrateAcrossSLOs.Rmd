@@ -1,0 +1,508 @@
+---
+title: "integrate data across organs"
+author: "Mechthild Lütge"
+date: "14 May 2020"
+output:
+  html_document:
+    self_contained: no
+    code_folding: show
+    number_sections: no
+    toc: yes
+    toc_depth: 3
+    toc_float: true
+    collapsed: no
+    smooth_scroll: yes
+---
+
+```{r setup, include=FALSE}
+options(width = 100)
+knitr::opts_chunk$set(warning = FALSE, message = FALSE, dev = c("png", "pdf"))
+seed <- 1234
+```
+
+## load packages
+```{r libs}
+suppressPackageStartupMessages({
+  library(tidyverse)
+  library(Seurat)
+  library(magrittr)
+  library(dplyr)
+  library(purrr)
+  library(ggplot2)
+  library(here)
+  library(runSeurat3)
+  library(SingleCellExperiment)
+  library(RColorBrewer)
+  library(viridis)
+  library(ggsci)
+  library(scater)
+  library(scran)
+  library(pheatmap)
+  library(CellMixS)
+  library(muscat)
+  library(edgeR)
+  library(circlize)
+})
+
+```
+
+
+## set dir and read input data
+```{r set dir}
+basedir <- here()
+seuratLN <- readRDS(file=paste0(basedir, "/data/LN_seurat.rds"))
+seuratPP <- readRDS(file=paste0(basedir, "/data/PP_seurat.rds"))
+seuratSP <- readRDS(file=paste0(basedir, "/data/Spleen_wo_aFDC_seurat.rds"))
+seurat <- merge(seuratLN, c(seuratPP, seuratSP))
+seurat <- rerunSeurat3(seurat)
+
+remove(seuratLN)
+remove(seuratPP)
+remove(seuratSP)
+
+seurat$group <- seurat$clusterLabel
+
+saveRDS(seurat, file = paste0(basedir,
+                              "/data/allCells_merged_plus_processed_seurat.rds"))
+
+
+## final color palette
+colPal <- c("#87c5af", "#94033b", "#fc8f3b", "#2580fe", "#514e72", "#007961",
+            "#f4d403", "#38b5fc", "#eb6382", "#8fa38c", "#4673b4", "#b94403",
+            "#b7d165", "#9b5662", "#666b73")
+names(colPal) <- c("LZFDC", "MRC", "TBRC","DZFDC","PRC2","RPF", "muralCells", 
+                   "PRC1", "BCRC", "medRC","IFRC", "Cxcl9TBRC", "capsular",
+                   "LPFRC", "subepithelial")
+
+
+colorSLO <- c(viridis(3)[c(1,2)], brewer.pal(n=9, name="YlOrRd")[c(4)])
+colorCond <- brewer.pal(n=3, name="Paired")[c(1,2)]
+colorSLOCond <- c("#440154FF","#807DBA", "#FEB24C", "#F16913", "#21908CFF")
+colorBatch <- pal_igv()(n=length(unique(seurat$batch)))
+
+names(colorSLO) <- c("LN", "PP", "Spleen")
+names(colorCond) <- c("naive", "immunized")
+names(colorBatch) <- unique(seurat$batch)
+names(colorSLOCond) <- c("LN_immunized","LN_naive", "Spleen_naive",
+                         "Spleen_immunized", "PP_immunized")
+
+```
+
+
+## visualize data {.tabset}
+### SLO
+```{r SLO, fig.height=3, fig.width=4.5}
+
+DimPlot(seurat, reduction = "umap", cols=colorSLO, group.by = "SLO")+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+DimPlot(seurat, reduction = "umap", cols=colorSLO, group.by = "SLO",
+        shuffle=T,pt.size=0.6)+
+  theme_void()
+
+```
+
+
+### labels
+```{r clustering, fig.height=3.2, fig.width=5.5}
+
+DimPlot(seurat, reduction = "umap", cols=colPal, group.by = "clusterLabel")+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+DimPlot(seurat, reduction = "umap", cols=colPal, group.by = "clusterLabel",
+        shuffle=T,pt.size=0.6)+
+  theme_void()
+
+```
+
+### SLO plus cond
+```{r slo plus cond, fig.height=3, fig.width=4.5}
+
+DimPlot(seurat, reduction = "umap", cols=colorSLOCond,
+        group.by = "SLO_plus_cond")+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+DimPlot(seurat, reduction = "umap", cols=colorSLOCond,
+        group.by = "SLO_plus_cond",
+        shuffle=T,pt.size=0.6)+
+  theme_void()
+
+```
+
+
+## integrate data across SLOs
+```{r integrate all, eval=T}
+seurat$SLO_plus_clusterlabel <- paste0(seurat$SLO, "_", seurat$clusterLabel)
+seurat$SLO_plus_group <- paste0(seurat$SLO, "_", seurat$group)
+
+Idents(seurat) <- seurat$SLO_plus_group
+#seuratSub <- subset(seurat, downsample = 300)
+#seurat <- subset(seurat, clusterLabel == "aFDC", invert=T)
+seurat.list <- SplitObject(object = seurat, split.by = "SLO")
+for (i in 1:length(x = seurat.list)) {
+    seurat.list[[i]] <- NormalizeData(object = seurat.list[[i]],
+                                      verbose = FALSE)
+    seurat.list[[i]] <- FindVariableFeatures(object = seurat.list[[i]], 
+        selection.method = "vst", nfeatures = 2000, verbose = FALSE)
+}
+
+seurat.anchors <- FindIntegrationAnchors(object.list = seurat.list, dims = 1:15,
+                                         k.filter = 50)
+seurat.int <- IntegrateData(anchorset = seurat.anchors, dims = 1:15)
+DefaultAssay(object = seurat.int) <- "integrated"
+
+# rerun seurat
+seurat.int <- ScaleData(object = seurat.int, verbose = FALSE,
+                        features = rownames(seurat.int))
+seurat.int <- RunPCA(object = seurat.int, npcs = 20, verbose = FALSE)
+seurat.int <- RunTSNE(object = seurat.int, reduction = "pca", dims = 1:20)
+seurat.int <- RunUMAP(object = seurat.int, reduction = "pca", dims = 1:20)
+
+seurat.int <- FindNeighbors(object = seurat.int, reduction = "pca", dims = 1:20)
+res <- c(0.6,0.8,0.4,0.25)
+for(i in 1:length(res)){
+  seurat.int <- FindClusters(object = seurat.int, resolution = res[i],
+                             random.seed = 1234)
+}
+
+DefaultAssay(object = seurat.int) <- "originalexp"
+seurat.int$intCluster <- seurat.int$integrated_snn_res.0.6
+Idents(seurat.int) <- seurat.int$intCluster
+
+colCl <- c(rcartocolor::carto_pal(name="Safe"),pal_aaas()(8))
+colClust <- colCl[c(1:length(unique(seurat.int$intCluster)))]
+names(colClust) <- unique(seurat.int$intCluster)
+
+## adjust cluster colors to match folBRCs
+colClust[["1"]] <- "#f0b64d" #TBRC
+colClust[["5"]] <- "#ffd28f" #TBRC
+colClust[["8"]] <- "#752333" #MRC/DZFDC
+colClust[["10"]] <- "#5fb5a6" #LZFDC
+colClust[["13"]] <- "#3b4671" #PRC2
+
+colClust[["0"]] <- "#3b7156" 
+colClust[["3"]] <- "#a97426" 
+colClust[["11"]] <- "#c7826d" 
+colClust[["15"]] <- "#2670a9" 
+  
+```
+
+
+### visualize integrated data {.tabset}
+#### SLO
+```{r SLO int}
+
+DimPlot(seurat.int, reduction = "umap", cols=colorSLO, group.by = "SLO")+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+DimPlot(seurat.int, reduction = "umap", cols=colorSLO, group.by = "SLO",
+        pt.size=0.4, shuffle = T)+
+  theme_void()
+
+```
+
+#### label
+```{r label int}
+
+DimPlot(seurat.int, reduction = "umap", cols=colPal, group.by = "clusterLabel")+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+
+DimPlot(seurat.int, reduction = "umap", cols=colPal, group.by = "clusterLabel",
+        pt.size=0.4, shuffle = T)+
+  theme_void()
+
+```
+
+
+#### cluster
+```{r cluster int}
+
+DimPlot(seurat.int, reduction = "umap", cols=colClust)+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+
+DimPlot(seurat.int, reduction = "umap", cols=colClust,
+        pt.size=0.4, shuffle = T)+
+  theme_void()
+
+```
+
+### save integrated object
+```{r save int object, eval=F}
+saveRDS(seurat.int, 
+        file = paste0(basedir, "/data/allCells_merged_plus_processed",
+                      "_integrated_seurat.rds"))
+```
+
+
+### chord diagram
+```{r chord diagram, fig.height=8, fig.width=8}
+
+seurat.int$organ_plus_label <- paste0(seurat.int$SLO, "_",
+                                      seurat.int$group)
+datClustFreq <- data.frame(table(seurat.int$organ_plus_label)) %>%
+  mutate(tenPerc=Freq/100*30) %>% dplyr::select(Var1, tenPerc)
+
+datClustint_Lab <- data.frame(table(seurat.int$organ_plus_label,
+                                    seurat.int$intCluster)) %>% 
+  left_join(., datClustFreq, by="Var1") %>% filter(Freq>tenPerc) %>%
+  mutate(origDest=paste0(Var1, "_", Var2))
+
+datClustint_Lablong <- data.frame(orig=seurat.int$organ_plus_label,
+                                    dest=seurat.int$intCluster) %>% 
+  mutate(origDest=paste0(orig, "_", dest)) %>% 
+  filter(origDest %in% datClustint_Lab$origDest)
+
+###############################################################################
+
+origin <- paste0("orig ", sample(c(1:10), 20, replace = T))
+destination <- paste0("dest ", sample(c(1:10), 20, replace = T))
+data <- data.frame(origin, destination)
+
+## Transform input data in a adjacency matrix
+adjacencyData <- with(datClustint_Lablong, table(orig, dest))
+
+## create named vector with colors
+colDat <- data.frame(col=colorSLO, SLO=names(colorSLO))
+datClustint_Lab <- datClustint_Lab %>% mutate(SLO=gsub("_.*$", "", Var1)) %>% 
+  left_join(., colDat, by="SLO")
+grid.col <- datClustint_Lab$col
+names(grid.col) <- datClustint_Lab$Var1
+grid.col <- c(grid.col, colClust)
+  
+## determine selected dest (cluster)
+selDest <- datClustint_Lab %>% group_by(Var2) %>% summarise(cnt=n_distinct(SLO))
+selDestVec <- selDest$Var2[which(selDest$cnt>1)]
+adjacencyDatafram <- data.frame(adjacencyData) %>%
+  mutate(selVal= ifelse(dest %in% selDestVec & Freq>0, T, F))
+
+## plot only sel links
+vis_mat = matrix(FALSE, nrow = nrow(adjacencyData), ncol = ncol(adjacencyData))
+vis_mat[which(adjacencyDatafram$selVal)] = TRUE
+rownames(vis_mat) = rownames(adjacencyData)
+colnames(vis_mat) = colnames(adjacencyData)
+
+chordDiagram(adjacencyData,
+             grid.col = grid.col, 
+             annotationTrack = c("grid"),
+             annotationTrackHeight = mm_h(5),
+             link.visible = vis_mat,
+             transparency = 0.1)
+
+## create short label names
+rowShort <- data.frame(long=rownames(adjacencyData)) %>% 
+  mutate(SLO=gsub("_.*", "", long)) %>% mutate(label=gsub(".*_", "", long)) %>% 
+  mutate(LabShort=substr(label, start = 1, stop = 5)) %>% 
+  mutate(short=paste0(SLO, "_", LabShort))
+#rownames(adjacencyData) <- rowShort$short
+
+## create color matrix with transparent links
+adjacencyDatafram_col <- adjacencyDatafram %>% mutate(SLO=gsub("_.*", "", orig))
+col_mat = matrix("#408B8A85", nrow = nrow(adjacencyData),
+                 ncol = ncol(adjacencyData))
+col_mat[which(adjacencyDatafram_col$SLO == "LN")] = "#44015440"
+col_mat[which(adjacencyDatafram_col$SLO == "PP")] = "#21908C40"
+col_mat[which(adjacencyDatafram_col$SLO == "Spleen")] = "#FEB24C40"
+
+col_mat[which(adjacencyDatafram_col$SLO == "LN" &
+                adjacencyDatafram_col$selVal)] = "#440154FF"
+col_mat[which(adjacencyDatafram_col$SLO == "PP" &
+                adjacencyDatafram_col$selVal)] = "#21908CFF"
+col_mat[which(adjacencyDatafram_col$SLO == "Spleen" &
+                adjacencyDatafram_col$selVal)] = "#FEB24CFF"
+
+rownames(col_mat) = rownames(adjacencyData)
+colnames(col_mat) = colnames(adjacencyData)
+
+chordDiagram(adjacencyData,
+             grid.col = grid.col, 
+             annotationTrack = c("grid"),
+             annotationTrackHeight = mm_h(5),
+             col = col_mat)
+
+chordDiagram(adjacencyData,
+             grid.col = grid.col, 
+             annotationTrack = c("grid", "name"),
+             annotationTrackHeight = c(mm_h(5), mm_h(7)),
+             col = col_mat)
+
+chordDiagram(adjacencyData,
+             grid.col = grid.col, 
+             annotationTrack = NULL,
+             preAllocateTracks = list(track.height = 0.2),
+             col = col_mat)
+
+circos.track(track.index = 1, panel.fun = function(x, y) {
+    circos.text(CELL_META$xcenter, CELL_META$ylim[1], CELL_META$sector.index, 
+        facing = "clockwise", niceFacing = TRUE, adj = c(0, 0.5))
+}, bg.border = NA)
+
+```
+
+
+### subset data to selected clusters
+```{r subset data}
+
+## extract sel subsets based on coord diagram from integration
+clustSel <- adjacencyDatafram %>% dplyr::filter(selVal==T)
+seuratSub <- subset(seurat, SLO_plus_clusterlabel %in% clustSel$orig)
+saveRDS(seuratSub, file=paste0(basedir, "/data/folBRC_allSLO_seurat.rds"))
+```
+
+
+### sankey diagram
+```{r sankey, eval=FALSE, fig.height=5, fig.width=8, include=T}
+# seurat.int$organ_plus_label <- paste0(seurat.int$SLO, "_",
+#                                       seurat.int$group)
+# datClustFreq <- data.frame(table(seurat.int$organ_plus_label)) %>%
+#   mutate(tenPerc=Freq/100*25) %>% dplyr::select(Var1, tenPerc)
+# 
+# datClustint_Lab <- data.frame(table(seurat.int$organ_plus_label,
+#                                     seurat.int$integrated_snn_res.0.6)) %>% 
+#   left_join(., datClustFreq, by="Var1") %>% filter(Freq>tenPerc)
+  
+## sankey network
+links <- data.frame(
+  source=datClustint_Lab$Var1,
+  target=datClustint_Lab$Var2, 
+  value=datClustint_Lab$Freq
+)
+ 
+nodes <- data.frame(
+  name=c(sort(as.character(links$source)), as.character(links$target)) %>% 
+    unique()
+)
+
+links <- links %>% arrange(., source)
+links$IDsource <- match(links$source, nodes$name)-1 
+links$IDtarget <- match(links$target, nodes$name)-1
+links$group <- "outGroup"
+
+cat(paste(shQuote(grid.col, type="cmd"), collapse=", "))
+cat(paste(shQuote(names(grid.col), type="cmd"), collapse=", "))
+
+my_color <- 'd3.scaleOrdinal() .domain(["outGroup", "LN_medRC", "LN_TBRC", "PP_TBRC", "LN_medRC", "PP_LPFRC", "Spleen_redPulpFibroblast", "PP_TBRC", "Spleen_TBRC", "Spleen_muralCells", "LN_adventitial", "LN_DZFDC", "LN_MRC", "PP_DZFDC", "PP_MRC", "Spleen_DZFDC", "Spleen_MRC", "LN_IFRC", "LN_LZFDC", "PP_DZFDC", "PP_LZFDC", "Spleen_DZFDC", "Spleen_LZFDC", "Spleen_adventitial", "LN_DPTpos", "PP_adventitial", "Spleen_capsular", "LN_Cxcl9TBRC", "PP_subepithelial", "Spleen_BCRC", "2", "1", "0", "5", "9", "7", "15", "8", "11", "13", "10", "18", "3", "17", "4", "14", "6", "16", "12"]) .range(["#C0C0C0", "#440154FF", "#440154FF", "#21908CFF", "#440154FF", "#21908CFF", "#FEB24C", "#21908CFF", "#FEB24C", "#FEB24C", "#440154FF", "#440154FF", "#440154FF", "#21908CFF", "#21908CFF", "#FEB24C", "#FEB24C", "#440154FF", "#440154FF", "#21908CFF", "#21908CFF", "#FEB24C", "#FEB24C", "#FEB24C", "#440154FF", "#21908CFF", "#FEB24C", "#440154FF", "#21908CFF", "#FEB24C", "#88CCEE", "#CC6677", "#DDCC77", "#117733", "#332288", "#AA4499", "#44AA99", "#999933", "#882255", "#661100", "#6699CC", "#888888", "#3B4992FF", "#EE0000FF", "#008B45FF", "#631879FF", "#008280FF", "#BB0021FF", "#5F559BFF"])'
+
+p <- networkD3::sankeyNetwork(Links = links, Nodes = nodes, Source = "IDsource",
+                              Target = "IDtarget", Value = "value",
+                              NodeID = "name",
+                              sinksRight=T,
+                              nodeWidth=40,
+                              fontSize=10,
+                              nodePadding=5,
+                              iterations=0,
+                              LinkGroup="group",
+                              colourScale=grid.col)
+p
+
+## color all folBRC links
+InGroup = c("LZFDC")
+InGroup1 = c("DZFDC")
+InGroup2 = c("MRC")
+InGroup3 = c("TBRC")
+links <- links %>% mutate(cluster= gsub("^.*_", "", source))
+links$group[which(links$cluster %in% InGroup)] <- "inGroup"
+links$group[which(links$cluster %in% InGroup1)] <- "inGroup1"
+links$group[which(links$cluster %in% InGroup2)] <- "inGroup2"
+links$group[which(links$cluster %in% InGroup3)] <- "inGroup3"
+
+
+my_color <- 'd3.scaleOrdinal() .domain(["outGroup", "inGroup", "inGroup1", "inGroup2", "inGroup3", "LN_medRC", "LN_TBRC", "PP_TBRC", "LN_medRC", "PP_LPFRC", "Spleen_redPulpFibroblast", "PP_TBRC", "Spleen_TBRC", "Spleen_muralCells", "LN_adventitial", "LN_DZFDC", "LN_MRC", "PP_DZFDC", "PP_MRC", "Spleen_DZFDC", "Spleen_MRC", "LN_IFRC", "LN_LZFDC", "PP_DZFDC", "PP_LZFDC", "Spleen_DZFDC", "Spleen_LZFDC", "Spleen_adventitial", "LN_DPTpos", "PP_adventitial", "Spleen_capsular", "LN_Cxcl9TBRC", "PP_subepithelial", "Spleen_BCRC", "2", "1", "0", "5", "9", "7", "15", "8", "11", "13", "10", "18", "3", "17", "4", "14", "6", "16", "12"]) .range(["#C0C0C0", "#FF8000", "#CC6600","#941372" ,"#FF6666", "#440154FF", "#440154FF", "#21908CFF", "#440154FF", "#21908CFF", "#FEB24C", "#21908CFF", "#FEB24C", "#FEB24C", "#440154FF", "#440154FF", "#440154FF", "#21908CFF", "#21908CFF", "#FEB24C", "#FEB24C", "#440154FF", "#440154FF", "#21908CFF", "#21908CFF", "#FEB24C", "#FEB24C", "#FEB24C", "#440154FF", "#21908CFF", "#FEB24C", "#440154FF", "#21908CFF", "#FEB24C", "#88CCEE", "#CC6677", "#DDCC77", "#117733", "#332288", "#AA4499", "#44AA99", "#999933", "#882255", "#661100", "#6699CC", "#888888", "#3B4992FF", "#EE0000FF", "#008B45FF", "#631879FF", "#008280FF", "#BB0021FF", "#5F559BFF"])'
+
+
+p <- networkD3::sankeyNetwork(Links = links, Nodes = nodes, Source = "IDsource",
+                              Target = "IDtarget", Value = "value",
+                              NodeID = "name",
+                              sinksRight=F,
+                              nodeWidth=40,
+                              fontSize=0,
+                              nodePadding=2,
+                              iterations=0,
+                              LinkGroup="group",
+                              colourScale=my_color)
+p
+
+p <- networkD3::sankeyNetwork(Links = links, Nodes = nodes, Source = "IDsource",
+                              Target = "IDtarget", Value = "value",
+                              NodeID = "name",
+                              sinksRight=F,
+                              nodeWidth=40,
+                              fontSize=10,
+                              nodePadding=2,
+                              iterations=0,
+                              LinkGroup="group",
+                              colourScale=my_color,
+                              margin = list(left = 100))
+p
+
+library(htmlwidgets)
+onRender(p, jsCode = 
+  'function(el, x) { 
+      d3.selectAll(".node text").attr("text-anchor", "begin").attr("x", -20);
+  }')
+
+onRender(p, jsCode = 
+  'function(el, x) { 
+      d3.selectAll(".node text").attr("text-anchor", "begin").attr("x", 0);
+  }')
+
+```
+
+### Actual
+
+```{r sankey 2, eval=FALSE}
+networkD3::sankeyNetwork(Links = links, Nodes = nodes, Source = "IDsource",
+                              Target = "IDtarget", Value = "value",
+                              NodeID = "name",
+                              sinksRight=F,
+                              nodeWidth=40,
+                              fontSize=10,
+                              nodePadding=2,
+                              iterations=0,
+                              LinkGroup="group",
+                              colourScale=my_color,
+                              margin = list(left = 100))
+```
+
+```{js sankey out, eval=FALSE}
+setTimeout(function () {
+    $('.nav-tabs a').on('shown.bs.tab', function() { 
+        d3.selectAll(".node text").attr("text-anchor", "begin").attr("x", 20);
+      })
+  }, 10)
+```
+
+
+## session info
+```{r session info}
+sessionInfo()
+date()
+```
+
+
+

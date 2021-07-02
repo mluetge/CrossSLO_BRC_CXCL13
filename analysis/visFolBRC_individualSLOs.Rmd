@@ -1,0 +1,267 @@
+---
+title: "vis fol BRCs"
+author: "Mechthild Lütge"
+date: "29 Sept 2020"
+output:
+  html_document:
+    self_contained: no
+    code_folding: show
+    number_sections: no
+    toc: yes
+    toc_depth: 3
+    toc_float: true
+    collapsed: no
+    smooth_scroll: yes
+---
+
+```{r setup, include=FALSE}
+options(width = 100)
+knitr::opts_chunk$set(warning = FALSE, message = FALSE, dev = c("png", "pdf"))
+seed <- 1234
+```
+
+## load packages
+```{r libs}
+suppressPackageStartupMessages({
+  library(tidyverse)
+  library(Seurat)
+  library(magrittr)
+  library(dplyr)
+  library(purrr)
+  library(ggplot2)
+  library(here)
+  library(runSeurat3)
+  library(SingleCellExperiment)
+  library(RColorBrewer)
+  library(viridis)
+  library(ggsci)
+  library(pheatmap)
+  library(muscat)
+})
+
+```
+
+
+## set dir and read input data
+```{r set dir}
+basedir <- here()
+seurat <- readRDS(file=paste0(basedir, "/data/folBRC_allSLO_seurat.rds"))
+
+seuratLN <- subset(seurat, SLO=="LN")
+seuratLN <-rerunSeurat3(seuratLN)
+
+seuratPP <- subset(seurat, SLO=="PP")
+seuratPP <-rerunSeurat3(seuratPP)
+
+seuratSP <- subset(seurat, SLO=="Spleen")
+seuratSP <-rerunSeurat3(seuratSP)
+
+
+colPal <- c("#387890", "#427CB6", "#941372", "#F7C27C", "#FF6666", "#389055",
+            "#A0A0A0", "#A83539", "#0066CC", "#a9c8d6" ,"#CCCC00", "#FF9933",
+            "#006633", "#CC6600", "#5d5f5f", "#2405BF", "#5151FC", "#4E85F2",
+            "#128961")
+
+names(colPal) <- c("redPulpFibroblast", "muralCells", "MRC", "aFDC", "TBRC",
+                   "capsular", "adventitial", "BCRC", "medRC1", "medRC2",
+                   "IFRC", "LZFDC", "Cxcl9TBRC","DZFDC", "DPTpos",
+                   "LPFRC1", "LPFRC2", "LPFRC3", "subepithelial")
+
+
+colorSLO <- c(viridis(3)[c(1,2)], brewer.pal(n=9, name="YlOrRd")[c(4)])
+colorCond <- brewer.pal(n=3, name="Paired")[c(1,2)]
+colorSLOCond <- c("#440154FF","#807DBA", "#FEB24C", "#F16913", "#21908CFF")
+colorBatch <- pal_igv()(n=length(unique(seurat$batch)))
+colCl <- c(rcartocolor::carto_pal(name="Safe"),pal_aaas()(8))
+
+names(colorSLO) <- c("LN", "PP", "Spleen")
+names(colorCond) <- c("naive", "immunized")
+names(colorBatch) <- unique(seurat$batch)
+names(colorSLOCond) <- c("LN_immunized","LN_naive", "Spleen_naive",
+                         "Spleen_immunized", "PP_immunized")
+
+
+```
+
+## vis fol BRCs {.tabset}
+
+### LN {.tabset}
+```{r sel LN}
+seurat <- seuratLN
+```
+
+#### clusterlabel
+```{r LN clusterlabel}
+
+DimPlot(seurat, reduction = "umap", cols=colPal, group.by = "clusterLabel")+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+```
+
+#### cond
+```{r LN SLO plus cond}
+
+DimPlot(seurat, reduction = "umap", cols=colorSLOCond,
+        group.by = "SLO_plus_cond")+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+```
+
+#### Featureplot
+```{r LN chemokine expression featureplot, fig.height=5, fig.width=12}
+features <- c("ENSMUSG00000071005.Ccl19","ENSMUSG00000023078.Cxcl13")
+FeaturePlot(seurat,
+            features = features,
+            blend = TRUE,
+            cols = c("lightgrey", "#9b2929", "#145aa2"))
+
+```
+
+#### Ridgeplots
+```{r LN chemokine expression Ridgeplot, fig.height=3.5, fig.width=7}
+
+RidgePlot(seurat, features = features, ncol = 2, 
+          cols=colPal, group.by = "clusterLabel")
+
+```
+
+#### Violinplot
+```{r LN chemokine expression violinplot, fig.height=4, fig.width=8}
+
+VlnPlot(seurat, features = features, cols=colPal, group.by = "clusterLabel",
+        pt.size = 0)
+
+```
+
+
+### PP {.tabset}
+```{r sel PP}
+seurat <- seuratPP
+```
+
+#### clusterlabel
+```{r PP clusterlabel}
+
+DimPlot(seurat, reduction = "umap", cols=colPal, group.by = "clusterLabel")+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+```
+
+#### cond
+```{r PP SLO plus cond}
+
+DimPlot(seurat, reduction = "umap", cols=colorSLOCond,
+        group.by = "SLO_plus_cond")+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+```
+
+#### Featureplot
+```{r PP chemokine expression featureplot, fig.height=5, fig.width=12}
+features <- c("ENSMUSG00000071005.Ccl19","ENSMUSG00000023078.Cxcl13")
+FeaturePlot(seurat,
+            features = features,
+            blend = TRUE,
+            cols = c("lightgrey", "#9b2929", "#145aa2"))
+
+```
+
+#### Ridgeplots
+```{r PP chemokine expression Ridgeplot, fig.height=3.5, fig.width=7}
+
+RidgePlot(seurat, features = features, ncol = 2, 
+          cols=colPal, group.by = "clusterLabel")
+
+```
+
+#### Violinplot
+```{r PP chemokine expression violinplot, fig.height=4, fig.width=8}
+
+VlnPlot(seurat, features = features, cols=colPal, group.by = "clusterLabel",
+        pt.size = 0)
+
+```
+
+
+
+### SP {.tabset}
+```{r sel SP}
+seurat <- seuratSP
+```
+
+#### clusterlabel
+```{r SP clusterlabel}
+
+DimPlot(seurat, reduction = "umap", cols=colPal, group.by = "clusterLabel")+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+```
+
+#### cond
+```{r SP SLO plus cond}
+
+DimPlot(seurat, reduction = "umap", cols=colorSLOCond,
+        group.by = "SLO_plus_cond")+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+```
+
+#### Featureplot
+```{r SP chemokine expression featureplot, fig.height=5, fig.width=12}
+features <- c("ENSMUSG00000071005.Ccl19","ENSMUSG00000023078.Cxcl13")
+FeaturePlot(seurat,
+            features = features,
+            blend = TRUE,
+            cols = c("lightgrey", "#9b2929", "#145aa2"))
+
+```
+
+#### Ridgeplots
+```{r SP chemokine expression Ridgeplot, fig.height=3.5, fig.width=7}
+
+RidgePlot(seurat, features = features, ncol = 2, 
+          cols=colPal, group.by = "clusterLabel")
+
+```
+
+#### Violinplot
+```{r SP chemokine expression violinplot, fig.height=4, fig.width=8}
+
+VlnPlot(seurat, features = features, cols=colPal, group.by = "clusterLabel",
+        pt.size = 0)
+
+```
+
+
+
+## session info
+```{r session info}
+sessionInfo()
+date()
+```
+
+
