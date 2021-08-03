@@ -301,7 +301,7 @@ remove(seuratS)
 ```{r re-embedding}
 seuratSub <- subset(seurat, idents=c("3", "1"))
 
-seuratSub <- rerunSeurat3(seuratSub, res = c(0.4, 0.1, 0.25, 0.6))
+seuratSub <- rerunSeurat3(seuratSub, res = c(0.4, 0.8, 0.25, 0.6))
 seurat_markers_sub <- FindAllMarkers(object = seuratSub,
                                      only.pos = TRUE, min.pct = 0.25,
                                      logfc.threshold = 0.25,
@@ -348,11 +348,12 @@ seurat$clusterLabel[which(seurat$originalexp_snn_res.0.25 == "7")] <- "PRC2"
 seurat$clusterLabel[which(seurat$originalexp_snn_res.0.25 == "6")] <- "aFDC"
 
 ### label from re-embedding
-fdc <- colnames(seuratSub)[which(seuratSub$originalexp_snn_res.0.6 %in% c("2"))]
-mrc <- colnames(seuratSub)[which(seuratSub$originalexp_snn_res.0.6 == "0")]
-tbrc <- colnames(seuratSub)[which(seuratSub$originalexp_snn_res.0.6 %in%
-                                    c("1", "4", "5"))]
-dzfdc <- colnames(seuratSub)[which(seuratSub$originalexp_snn_res.0.6 == "3")]
+fdc <- colnames(seuratSub)[which(seuratSub$originalexp_snn_res.0.8 %in%
+                                   c("2", "3", "7", "8", "10"))]
+mrc <- colnames(seuratSub)[which(seuratSub$originalexp_snn_res.0.8 == "5")]
+tbrc <- colnames(seuratSub)[which(seuratSub$originalexp_snn_res.0.8 %in%
+                                    c("0", "1", "6", "9"))]
+dzfdc <- colnames(seuratSub)[which(seuratSub$originalexp_snn_res.0.8 == "4")]
 
 seurat$clusterLabel[which(colnames(seurat) %in% fdc)] <- "LZFDC"
 seurat$clusterLabel[which(colnames(seurat) %in% mrc)] <- "MRC"
@@ -552,9 +553,9 @@ DimPlot(seurat, reduction = "umap", cols=colPal, shuffle=T,pt.size=0.6)+
 ```{r avg heatmap cl marker merged, fig.height=8, fig.width=6}
 
 selMarker <- list(FDC = c("Fcgr2b", "Cr2","Sox9"),
-                  aFDC = c("Cox4i1","Atp5e"),
-                  MRC = c("Cxcl13", "Madcam1", "Tnfsf11"),                  
+#                  aFDC = c("Cox4i1","Atp5e"),
                   DZFDC = c("Pdlim3", "Crym", "Cxcl12"),
+                  MRC = c("Cxcl13", "Madcam1", "Tnfsf11"),                  
                   TBRC = c("Ccl21a","Ccl19", "Fmod"),
                   RPF = c("Pdgfrb", "Eng", "Ly6a"),
                   mural = c("Cnn1", "Cspg4", "Mcam"),
@@ -567,7 +568,7 @@ selGenes <- data.frame(gene=unlist(selMarker)) %>%
 grpCnt <- selGenes %>% group_by(Grp) %>% summarise(cnt=n())
 gapR <- data.frame(Grp=unique(selGenes$Grp)) %>% 
   left_join(.,grpCnt, by="Grp") %>% mutate(cumSum=cumsum(cnt)) 
-ordVec <- levels(seurat)[c(8,5,3,2,9,1,7,4,6)]
+ordVec <- levels(seurat)[c(5,3,8,2,9,1,7,4,6)]
 
 pOut <- avgHeatmap(seurat = seurat, selGenes = selGenes,
                   colVecIdent = colPal, 

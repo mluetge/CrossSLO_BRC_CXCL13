@@ -186,8 +186,8 @@ colClust <- colCl[c(1:length(unique(seurat.int$intCluster)))]
 names(colClust) <- unique(seurat.int$intCluster)
 
 ## adjust cluster colors to match folBRCs
-colClust[["1"]] <- "#f0b64d" #TBRC
-colClust[["5"]] <- "#ffd28f" #TBRC
+colClust[["1"]] <- "#e59c62" #TBRC
+colClust[["5"]] <- "#d27125" #TBRC
 colClust[["8"]] <- "#752333" #MRC/DZFDC
 colClust[["10"]] <- "#5fb5a6" #LZFDC
 colClust[["13"]] <- "#3b4671" #PRC2

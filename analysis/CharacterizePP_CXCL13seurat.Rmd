@@ -420,13 +420,12 @@ selMarker <- list(LZFDC = c("Cttnbp2", "Fcamr", "Cr2"),
                   sub = c("Bmp5", "Acta2")
                   )
 
-selMarker <- list(LZFDC = c("Fcer2a", "Fcamr", "Cr2", "Coch", "Sox9"),
+selMarker <- list(LZFDC = c("Fcamr", "Cr2", "Sox9"),
                   MRC = c("Madcam1", "Cxcl13", "Tnfsf11"),                 
-                  DZFDC = c("Crym", "Pdlim3", "Emp2", 
-                            "Clec14a", "Dcn", "Cxcl12"),
-                  TBRC = c("Fmod", "Ccl21a","Ccl19", "Vtn"),
-                  adventitial = c("Ogn","Cd34", "Ly6c1", "Igfbp6"),
-                  LPFRC = c("Cxcl10", "Cxcl9", "Adamdec1"),
+                  DZFDC = c("Crym", "Pdlim3", "Cxcl12"),
+                  TBRC = c("Ccl21a","Ccl19", "Fmod"),
+                  adventitial = c("Pi16","Cd34"),
+                  LPFRC = c("Cxcl9", "Adamdec1"),
                   sub = c("Bmp5", "Acta2")
                   )
 

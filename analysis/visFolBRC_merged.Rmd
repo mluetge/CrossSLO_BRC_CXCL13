@@ -37,6 +37,7 @@ suppressPackageStartupMessages({
   library(ggsci)
   library(pheatmap)
   library(muscat)
+  library(scater)
 })
 
 ```
@@ -47,9 +48,10 @@ suppressPackageStartupMessages({
 basedir <- here()
 seurat <- readRDS(file=paste0(basedir, "/data/folBRC_allSLO_seurat.rds"))
 seurat <-rerunSeurat3(seurat)
+saveRDS(seurat, file=paste0(basedir, "/data/folBRC_allSLO_seurat.rds"))
 
-colPal <- c("#FF9933", "#660000","#CC6600", "#FF6666", "#389055")
-names(colPal) <- c("LZFDC","MRC","DZFDC","TBRC", "PRC2")
+colPal <- c("#87c5af", "#94033b", "#fc8f3b", "#2580fe", "#514e72")
+names(colPal) <- c("LZFDC", "MRC", "TBRC","DZFDC","PRC2")
 
 
 colorSLO <- c(viridis(3)[c(1,2)], brewer.pal(n=9, name="YlOrRd")[c(4)])
@@ -234,7 +236,7 @@ avgHeatmap <- function(seurat, selGenes, colVecIdent, colVecCond=NULL,
     ordVec <- levels(seurat)
   }
   logNormExpresMa <- logNormExpresMa[,ordVec]
-  colVecScale <- colorRampPalette(c("#2166AC", "#F7F7F7", "#B2182B"))(30)
+  colVecScale <- colorRampPalette(c("#45628f", "#F7F7F7", "#de425b"))(30)
   colVecScale <- c(rep(colVecScale[1], 10), colVecScale, rep(colVecScale[30], 10))
   ## scaled row-wise
   pheatmap(logNormExpresMa, scale="row" ,treeheight_row = 0, cluster_rows = cr, 
@@ -259,7 +261,7 @@ selGenes <- data.frame(gene=unlist(selMarker)) %>%
 grpCnt <- selGenes %>% group_by(Grp) %>% summarise(cnt=n())
 gapR <- data.frame(Grp=unique(selGenes$Grp)) %>% 
   left_join(.,grpCnt, by="Grp") %>% mutate(cumSum=cumsum(cnt)) 
-ordVec <- levels(seurat)[c(4,5,2,1,3,8,9,10,7,6,15,12,13,11,14)]
+ordVec <- levels(seurat)[c(4,2,5,1,3,8,10,9,7,6,13,12,15,11,14)]
 gapC <- c(5,10)
 
 pOut <- avgHeatmap(seurat = seurat, selGenes = selGenes,
