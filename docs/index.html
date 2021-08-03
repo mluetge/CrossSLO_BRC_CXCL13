@@ -13,6 +13,7 @@
 
 <title>Home</title>
 
+<script src="site_libs/header-attrs-2.9/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
@@ -39,6 +40,8 @@ div.section {
   padding-top: 12px;
 }
 </style>
+
+
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -294,7 +297,7 @@ $(document).ready(function () {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2021-06-09
+<strong>Last updated:</strong> 2021-08-03
 </p>
 <p>
 <strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 1 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 1
@@ -325,16 +328,16 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcommluetgeCrossSLOBRCCXCL13treee40d554d3a63df6e708df9336d36c1c656661411targetblanke40d554a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/tree/e40d554d3a63df6e708df9336d36c1c656661411" target="_blank">e40d554</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcommluetgeCrossSLOBRCCXCL13treef45bed1da1d13948e8079688920fdf0a61fdae21targetblankf45bed1a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/tree/f45bed1da1d13948e8079688920fdf0a61fdae21" target="_blank">f45bed1</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcommluetgeCrossSLOBRCCXCL13treee40d554d3a63df6e708df9336d36c1c656661411targetblanke40d554a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcommluetgeCrossSLOBRCCXCL13treef45bed1da1d13948e8079688920fdf0a61fdae21targetblankf45bed1a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/tree/e40d554d3a63df6e708df9336d36c1c656661411" target="_blank">e40d554</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/tree/f45bed1da1d13948e8079688920fdf0a61fdae21" target="_blank">f45bed1</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -343,13 +346,11 @@ Note that you need to be careful to ensure that all relevant files for the analy
 Ignored files:
     Ignored:    .Rhistory
     Ignored:    .Rproj.user/
-
-Untracked files:
-    Untracked:  analysis/IntegrateAcrossSLOs.Rmd
-    Untracked:  analysis/visFolBRC_individualSLOs.Rmd
+    Ignored:    data/GSEA/
+    Ignored:    data/destiny/
+    Ignored:    data/processedData/
 
 Unstaged changes:
-    Modified:   analysis/CharacterizeSpleen_CXCL13seurat.Rmd
     Modified:   analysis/index.Rmd
 
 </code></pre>
@@ -389,6 +390,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/1f27cea5638ec11795ed815300ef71869e6d3b0b/analysis/index.Rmd" target="_blank">1f27cea</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-07-02
+</td>
+<td>
+update colors and labels plus marker genes
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/mluetge/CrossSLO_BRC_CXCL13/1f27cea5638ec11795ed815300ef71869e6d3b0b/docs/index.html" target="_blank">1f27cea</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-07-02
+</td>
+<td>
+update colors and labels plus marker genes
+</td>
+</tr>
 <tr>
 <td>
 html
@@ -485,7 +520,9 @@ Start workflowr project.
 Characterization PP: <a href="CharacterizePP_CXCL13seurat.html">link</a><br />
 Characterization Spleen: <a href="CharacterizeSpleen_CXCL13seurat.html">link</a><br />
 Integrate all CXCL13 pos across SLOs: <a href="IntegrateAcrossSLOs.html">link</a><br />
-visualize shared subsets individual SLOs: <a href="visFolBRC_individualSLOs.html">link</a></p>
+visualize shared subsets individual SLOs: <a href="visFolBRC_individualSLOs.html">link</a><br />
+Organ specific gene signature: <a href="SLOspecific_signature.html">link</a><br />
+Subset specific gene signature: <a href="SubsetSpecificGeneSignatures.html">link</a></p>
 
 
 <!-- Adjust MathJax settings so that all math formulae are shown using
@@ -499,6 +536,8 @@ footer is added to webpages before the MathJax javascript. -->
     "HTML-CSS": { availableFonts: ["TeX"] }
   });
 </script>
+
+
 
 
 

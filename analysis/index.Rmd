@@ -13,4 +13,5 @@ Characterization PP: [link](CharacterizePP_CXCL13seurat.html)
 Characterization Spleen: [link](CharacterizeSpleen_CXCL13seurat.html)  
 Integrate all CXCL13 pos across SLOs: [link](IntegrateAcrossSLOs.html)  
 visualize shared subsets individual SLOs: [link](visFolBRC_individualSLOs.html)  
-
+Organ specific gene signature: [link](SLOspecific_signature.html)  
+Subset specific gene signature: [link](SubsetSpecificGeneSignatures.html)  
