@@ -1,0 +1,193 @@
+---
+title: "automated assignments"
+author: "Mechthild Lütge"
+date: "14 May 2020"
+output:
+  html_document:
+    self_contained: no
+    code_folding: show
+    number_sections: no
+    toc: yes
+    toc_depth: 3
+    toc_float: true
+    collapsed: no
+    smooth_scroll: yes
+---
+
+```{r setup, include=FALSE}
+options(width = 100)
+knitr::opts_chunk$set(warning = FALSE, message = FALSE, dev = c("png", "pdf"))
+seed <- 1234
+```
+
+## load packages
+```{r libs}
+suppressPackageStartupMessages({
+  library(celldex)
+  library(tidyverse)
+  library(Seurat)
+  library(magrittr)
+  library(dplyr)
+  library(purrr)
+  library(ggplot2)
+  library(here)
+  library(runSeurat3)
+  library(SingleCellExperiment)
+  library(ggpubr)
+  library(ggsci)
+  library(RColorBrewer)
+  library(viridis)
+  library(pheatmap)
+  library(SingleR)
+})
+
+```
+
+
+## set dir and load object
+```{r set dir}
+basedir <- here()
+seurat <- readRDS(file = paste0(basedir, 
+                              "/data/lympho/allSamples_merged_seurat.rds"))
+
+```
+
+
+## color vectors
+```{r colVec}
+
+colPal <- pal_igv()(length(levels(seurat)))
+colSmp <- c(pal_uchicago()(8), pal_npg()(8))[1:length(unique(seurat$dataset))]
+colBatch <- pal_jco()(length(unique(seurat$batch)))
+colorSLO <- c(viridis(3)[c(1,2)], brewer.pal(n=9, name="YlOrRd")[c(4)])
+colorCond <- brewer.pal(n=3, name="Paired")[c(1,2)]
+
+names(colPal) <- levels(seurat)
+names(colSmp) <- unique(seurat$dataset)
+names(colBatch) <- unique(seurat$batch)
+
+names(colorSLO) <- c("LN", "PP", "Spleen")
+names(colorCond) <- c("naive", "immunized")
+
+```
+
+
+## vis data {.tabset}
+### clusters
+```{r vis cluster}
+DimPlot(seurat, reduction = "umap", cols=colPal)+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+
+```
+
+### SLO
+```{r vis SLO}
+
+DimPlot(seurat, reduction = "umap", group.by = "SLO", cols=colorSLO)+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+DimPlot(seurat, reduction = "umap", group.by = "SLO", cols=colorSLO,
+        pt.size=0.6)+
+  theme_void()
+
+```
+
+
+### Sample
+```{r vis sample}
+
+DimPlot(seurat, reduction = "umap", group.by = "dataset", cols=colSmp)+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+
+```
+
+### batch
+```{r vis batch}
+
+DimPlot(seurat, reduction = "umap", group.by = "batch", cols=colBatch)+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+DimPlot(seurat, reduction = "umap", group.by = "batch", cols=colBatch,
+        pt.size=0.6)+
+  theme_void()
+
+
+```
+
+
+## automated cell type assignment
+```{r sce and load ref}
+sce <- as.SingleCellExperiment(seurat)
+rownames(sce) <- gsub("\\..*","",rownames(sce))
+
+## immGenDatabase
+immgen <- ImmGenData(ensembl=TRUE)
+
+pred2 <- SingleR(test = sce, ref = immgen, 
+    labels = immgen$label.main, assay.type.test=1)
+
+## assign seurat
+seurat$main.label <- pred2$labels
+
+```
+
+## remove cells with rare labels
+```{r remove cells with rare labels}
+mainDat <- data.frame(table(pred2$labels))
+remLabels <- mainDat$Var1[which(mainDat$Freq <100)] 
+
+seuratSub <- subset(seurat, main.label %in% remLabels, invert=T)
+```
+
+
+## vis label {.tabset}
+```{r color for labels}
+colLabMain <- c(pal_aaas()(10))[1:length(unique(seuratSub$main.label))]
+
+
+```
+
+
+### label main
+```{r vis label main}
+DimPlot(seuratSub, reduction = "umap", group.by = "main.label", cols=colLabMain)+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+DimPlot(seuratSub, reduction = "umap", group.by = "label")+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+```
+
+
+## session info
+```{r session info}
+sessionInfo()
+date()
+```
+

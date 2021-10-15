@@ -1,0 +1,368 @@
+---
+title: "characterization hemato"
+author: "Mechthild Lütge"
+date: "14 May 2020"
+output:
+  html_document:
+    self_contained: no
+    code_folding: show
+    number_sections: no
+    toc: yes
+    toc_depth: 3
+    toc_float: true
+    collapsed: no
+    smooth_scroll: yes
+---
+
+```{r setup, include=FALSE}
+options(width = 100)
+knitr::opts_chunk$set(warning = FALSE, message = FALSE, dev = c("png", "pdf"))
+seed <- 1234
+```
+
+## load packages
+```{r libs}
+suppressPackageStartupMessages({
+  library(celldex)
+  library(tidyverse)
+  library(Seurat)
+  library(magrittr)
+  library(dplyr)
+  library(purrr)
+  library(ggplot2)
+  library(here)
+  library(runSeurat3)
+  library(SingleCellExperiment)
+  library(ggpubr)
+  library(ggsci)
+  library(RColorBrewer)
+  library(viridis)
+  library(pheatmap)
+  library(SingleR)
+})
+
+```
+
+
+## set dir and load object
+```{r set dir}
+basedir <- here()
+seurat <- readRDS(file = paste0(basedir, 
+                              "/data/lympho/allSamples_merged_seurat.rds"))
+
+```
+
+
+## color vectors
+```{r colVec}
+
+colPal <- pal_igv()(length(levels(seurat)))
+colSmp <- c(pal_uchicago()(8), pal_npg()(8))[1:length(unique(seurat$dataset))]
+colBatch <- pal_jco()(length(unique(seurat$batch)))
+colorSLO <- c(viridis(3)[c(1,2)], brewer.pal(n=9, name="YlOrRd")[c(4)])
+colorCond <- brewer.pal(n=3, name="Paired")[c(1,2)]
+
+names(colPal) <- levels(seurat)
+names(colSmp) <- unique(seurat$dataset)
+names(colBatch) <- unique(seurat$batch)
+
+names(colorSLO) <- c("LN", "PP", "Spleen")
+names(colorCond) <- c("naive", "immunized")
+
+```
+
+
+
+## vis data {.tabset}
+### clusters
+```{r vis cluster}
+DimPlot(seurat, reduction = "umap", cols=colPal)+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+
+```
+
+### SLO
+```{r vis SLO}
+
+DimPlot(seurat, reduction = "umap", group.by = "SLO", cols=colorSLO)+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+DimPlot(seurat, reduction = "umap", group.by = "SLO", cols=colorSLO,
+        pt.size=0.6, shuffle =T)+
+  theme_void()
+
+```
+
+
+### Sample
+```{r vis sample}
+
+DimPlot(seurat, reduction = "umap", group.by = "dataset", cols=colSmp)+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+
+```
+
+### batch
+```{r vis batch}
+
+DimPlot(seurat, reduction = "umap", group.by = "batch", cols=colBatch)+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+DimPlot(seurat, reduction = "umap", group.by = "batch", cols=colBatch,
+        pt.size=0.6)+
+  theme_void()
+
+
+```
+
+## marker genes
+```{r marker genes, eval=FALSE}
+
+seurat_markers_all <- FindAllMarkers(object = seurat, assay ="RNA",
+                                     only.pos = TRUE, min.pct = 0.25,
+                                     logfc.threshold = 0.25,
+                                     test.use = "wilcox")
+
+```
+
+
+
+## assign celltype label and remove contaminating cells
+```{r assign label}
+
+## remove RBC (res0.25 cl 15)
+Idents(seurat) <- seurat$RNA_snn_res.0.25
+seurat <- subset(seurat, idents = "15", invert = T)
+
+
+## remove potential doublets (cells from myeloid cluster that express cd79a)
+cd79pos <- colnames(seurat)[which(
+  seurat@assays$RNA[which(rownames(seurat) == "ENSMUSG00000003379.Cd79a"),] >0)]
+cont <- colnames(seurat)[which(seurat$RNA_snn_res.0.25 == "11")]
+cont <- cont[which(cont %in% cd79pos)]
+
+seurat <- subset(seurat, cells = cont, invert=T)
+
+
+## assign cluster labels based on known markers and unbiased marker genes
+## label cells
+seurat$clusterLabel <- "proDZ"
+seurat$clusterLabel[which(seurat$RNA_snn_res.0.25 == "0")] <- "naiveBcells"
+seurat$clusterLabel[which(seurat$RNA_snn_res.0.25 == "2")] <- "LZBcells"
+seurat$clusterLabel[which(seurat$RNA_snn_res.0.25 == "4")] <- "DZshmBcells"
+seurat$clusterLabel[which(seurat$RNA_snn_res.0.25 == "9")] <- "plasmaCells"
+seurat$clusterLabel[which(seurat$RNA_snn_res.0.25 == "10")] <- "NKcells"
+seurat$clusterLabel[which(seurat$RNA_snn_res.0.4 == "6")] <- "mdMacrophages"
+seurat$clusterLabel[which(seurat$RNA_snn_res.0.4 == "15")] <- "trMacrophages"
+seurat$clusterLabel[which(seurat$RNA_snn_res.0.4 == "8")] <- "DCs"
+seurat$clusterLabel[which(seurat$RNA_snn_res.0.4 == "17")] <- "Neutrophils"
+seurat$clusterLabel[which(seurat$RNA_snn_res.0.4 == "16")] <- "infMacrophages"
+seurat$clusterLabel[which(seurat$RNA_snn_res.0.6 == "4")] <- "Tfh"
+seurat$clusterLabel[which(seurat$RNA_snn_res.0.6 == "19")] <- "Th17"
+seurat$clusterLabel[which(seurat$RNA_snn_res.0.6 == "16")] <- "Cd8Tcells"
+seurat$clusterLabel[which(seurat$RNA_snn_res.0.6 == "21")] <- "Cd8Tcells"
+seurat$clusterLabel[which(seurat$RNA_snn_res.0.6 == "15")] <- "proCd4Tcells"
+seurat$clusterLabel[which(seurat$RNA_snn_res.0.6 == "6")] <- "naiveCd4Tcells"
+seurat$clusterLabel[which(seurat$RNA_snn_res.0.6 == "1")] <- "Th1Th2"
+
+seurat <- ScaleData(object = seurat, verbose = FALSE,
+                        features = rownames(seurat))
+seurat <- RunPCA(object = seurat, npcs = 20, verbose = FALSE)
+seurat <- RunTSNE(object = seurat, reduction = "pca", dims = 1:20)
+seurat <- RunUMAP(object = seurat, reduction = "pca", dims = 1:20)
+
+
+```
+
+
+## vis label {.tabset}
+```{r color for labels}
+colLab <- c("#a0b9c4", "#78abb7", "#567a83", "#3c454a", "#9eabb1",
+            "#f3948f", "#cd5f5a", "#b2635e", "#924440", "#74403d", 
+            "#af744d", "#ea9a67",
+            "#eab562", "#f1d75f", "#b5a147", "#786c30", "#62714c")
+
+
+names(colLab) <- c("naiveBcells", "LZBcells", "DZshmBcells", "proDZ",
+                   "plasmaCells", 
+                   "naiveCd4Tcells", "Th1Th2", "Th17", "Tfh", "proCd4Tcells", 
+                   "Cd8Tcells", "NKcells", 
+                   "DCs", "mdMacrophages", "trMacrophages", "infMacrophages", 
+                   "Neutrophils")
+```
+
+### label main
+```{r vis label main}
+DimPlot(seurat, reduction = "umap", group.by = "clusterLabel", cols=colLab)+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+DimPlot(seurat, reduction = "umap", group.by = "clusterLabel", cols=colLab,
+        pt.size=0.6)+
+  theme_void()
+
+```
+
+
+### SLO
+```{r vis SLO fil}
+DimPlot(seurat, reduction = "umap", group.by = "SLO", cols=colorSLO)+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+DimPlot(seurat, reduction = "umap", group.by = "SLO", cols=colorSLO,
+        pt.size=0.6, shuffle =T)+
+  theme_void()
+
+```
+
+
+
+## vis cluster characterization {.tabset}
+
+```{r avg heatmap funct}
+avgHeatmap <- function(seurat, selGenes, colVecIdent, colVecCond=NULL,
+                       ordVec=NULL, gapVecR=NULL, gapVecC=NULL,cc=FALSE,
+                       cr=FALSE, condCol=FALSE){
+  
+  selGenes <- selGenes$gene
+  
+  ## assay data
+  clusterAssigned <- as.data.frame(Idents(seurat)) %>%
+  dplyr::mutate(cell=rownames(.))
+  colnames(clusterAssigned)[1] <- "ident"
+  seuratDat <- GetAssayData(seurat)
+  
+  ## genes of interest
+  genes <- data.frame(gene=rownames(seurat)) %>% 
+    mutate(geneID=gsub("^.*\\.", "", gene)) %>% 
+    dplyr::filter(geneID %in% selGenes)
+
+  ## matrix with averaged cnts per ident
+  logNormExpres <- as.data.frame(t(as.matrix(
+    seuratDat[which(rownames(seuratDat) %in% genes$gene),])))
+  logNormExpres <- logNormExpres %>% dplyr::mutate(cell=rownames(.)) %>%
+    dplyr::left_join(.,clusterAssigned, by=c("cell")) %>%
+    dplyr::select(-cell) %>% dplyr::group_by(ident) %>%
+    dplyr::summarise_all(mean)
+  logNormExpresMa <- logNormExpres %>% dplyr::select(-ident) %>% as.matrix()
+  rownames(logNormExpresMa) <- logNormExpres$ident
+  logNormExpresMa <- t(logNormExpresMa)
+  rownames(logNormExpresMa) <- gsub("^.*?\\.","",rownames(logNormExpresMa))
+  
+  ## remove genes if they are all the same in all groups
+  ind <- apply(logNormExpresMa, 1, sd) == 0
+  logNormExpresMa <- logNormExpresMa[!ind,]
+  genes <- genes[!ind,]
+
+  ## color columns according to cluster
+  annotation_col <- as.data.frame(gsub("(^.*?_)","",
+                                       colnames(logNormExpresMa)))%>%
+    dplyr::mutate(celltype=gsub("(_.*$)","",colnames(logNormExpresMa)))
+  colnames(annotation_col)[1] <- "col1"
+  annotation_col <- annotation_col %>%
+    dplyr::mutate(cond = gsub("(^[0-9]_?)","",col1)) %>%
+    dplyr::select(cond, celltype)
+  rownames(annotation_col) <- colnames(logNormExpresMa) 
+
+  ann_colors = list(
+      cond = colVecCond,
+      celltype=colVecIdent)
+  if(is.null(ann_colors$cond)){
+    annotation_col$cond <- NULL
+  }
+  
+  ## adjust order
+  logNormExpresMa <- logNormExpresMa[selGenes,]
+  if(is.null(ordVec)){
+    ordVec <- levels(seurat)
+  }
+  logNormExpresMa <- logNormExpresMa[,ordVec]
+
+  ## scaled row-wise
+  pheatmap(logNormExpresMa, scale="row" ,treeheight_row = 0, cluster_rows = cr, 
+         cluster_cols = cc,
+         color = colorRampPalette(c("#45628f", "#F7F7F7", "#de425b"))(50),
+         annotation_col = annotation_col, cellwidth=15, cellheight=10,
+         annotation_colors = ann_colors, gaps_row = gapVecR, gaps_col = gapVecC)
+}
+
+```
+
+
+```{r marker cluster characterization}
+
+selMarker <- list(Bcells_ = c("Cd79a", "Cd79b", "Cd38", "Ighd", "Ighm", "Bach2", 
+                             "Bcl6", "Mcm2", "Mcm3", "Ung", "Aurkb", "Kif11",
+                             "Mki67", "Top2a", "Pclaf", "Jchain", "Prdm1"),                
+                  Tcells_ = c("Cd3e", "Cd4", "Sell", "Ccr7", "Il7r", "Cd44",
+                             "Il2ra", "Il17a", "Rorc", "Il21", "Cxcr5", "Cd8a",
+                             "Cd8b1"),
+                  NKcells_ = c("Gzma", "Ncr1", "Nkg7"),                  
+                  Myeloids_ = c("Cd68", "Itgax", "Csf1r", "Ccr1", "Fcgr3",
+                               "Cd14", "Ly6c2", "Marco", "C1qa", "Ccl22", 
+                               "Il15", "Mx1", "Ccl5","S100a8", "Ly6g", 
+                               "Retnlg"))
+
+```
+
+
+### avg heatmap
+```{r avg heatmap cl marker, fig.height=12, fig.width=8}
+Idents(seurat) <- seurat$clusterLabel
+
+selGenes <- data.frame(gene=unlist(selMarker)) %>%
+  rownames_to_column(var="grp") %>% mutate(Grp=gsub("_.*", "", grp))
+grpCnt <- selGenes %>% group_by(Grp) %>% summarise(cnt=n())
+gapR <- data.frame(Grp=unique(selGenes$Grp)) %>% 
+  left_join(.,grpCnt, by="Grp") %>% mutate(cumSum=cumsum(cnt)) 
+ordVec <- names(colLab)
+
+pOut <- avgHeatmap(seurat = seurat, selGenes = selGenes,
+                  colVecIdent = colLab, 
+                  ordVec=ordVec,
+                  gapVecR=gapR$cumSum, gapVecC=NULL,cc=F,
+                  cr=F, condCol=F)
+
+```
+
+
+## save object
+```{r save object}
+saveRDS(seurat, file = paste0(basedir,
+                              "/data/lympho/allSamples_mergedLab_seurat.rds"))
+```
+
+
+
+
+## session info
+```{r session info}
+sessionInfo()
+date()
+```
+

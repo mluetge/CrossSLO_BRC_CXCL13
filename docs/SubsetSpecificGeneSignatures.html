@@ -15,7 +15,7 @@
 
 <title>organ specific signatures - BRCs only</title>
 
-<script src="site_libs/header-attrs-2.9/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
@@ -377,7 +377,7 @@ div.tocify {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2021-07-28
+<strong>Last updated:</strong> 2021-09-21
 </p>
 <p>
 <strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 1
@@ -401,7 +401,7 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 </div>
 <div id="strongRMarkdownfilestronguncommittedchanges" class="panel-collapse collapse">
 <div class="panel-body">
-<p>The R Markdown is untracked by Git. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
+<p>The R Markdown file has unstaged changes. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
 </div>
 </div>
 </div>
@@ -468,16 +468,16 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcommluetgeCrossSLOBRCCXCL13tree1f27cea5638ec11795ed815300ef71869e6d3b0btargetblank1f27ceaa"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/tree/1f27cea5638ec11795ed815300ef71869e6d3b0b" target="_blank">1f27cea</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcommluetgeCrossSLOBRCCXCL13treea94da38292b52aed7da041d5b8bda8023fb4dc15targetblanka94da38a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/tree/a94da38292b52aed7da041d5b8bda8023fb4dc15" target="_blank">a94da38</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcommluetgeCrossSLOBRCCXCL13tree1f27cea5638ec11795ed815300ef71869e6d3b0btargetblank1f27ceaa" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcommluetgeCrossSLOBRCCXCL13treea94da38292b52aed7da041d5b8bda8023fb4dc15targetblanka94da38a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/tree/1f27cea5638ec11795ed815300ef71869e6d3b0b" target="_blank">1f27cea</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/tree/a94da38292b52aed7da041d5b8bda8023fb4dc15" target="_blank">a94da38</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -486,17 +486,18 @@ Note that you need to be careful to ensure that all relevant files for the analy
 Ignored files:
     Ignored:    .Rhistory
     Ignored:    .Rproj.user/
+    Ignored:    data/GSEA/
     Ignored:    data/destiny/
     Ignored:    data/processedData/
+    Ignored:    data/processedDataLymphocytes/
 
 Untracked files:
-    Untracked:  analysis/SubsetSpecificGeneSignatures.Rmd
+    Untracked:  analysis/plotSubsetSpecificSignatures.Rmd
+    Untracked:  figure/plotSubsetSpecificSignatures.Rmd/
 
 Unstaged changes:
-    Modified:   analysis/CharacterizePP_CXCL13seurat.Rmd
-    Modified:   analysis/CharacterizeSpleen_CXCL13seurat.Rmd
-    Modified:   analysis/IntegrateAcrossSLOs.Rmd
     Modified:   analysis/SLOspecific_signature.Rmd
+    Modified:   analysis/SubsetSpecificGeneSignatures.Rmd
     Modified:   analysis/visFolBRC_merged.Rmd
 
 </code></pre>
@@ -510,9 +511,69 @@ Note that any generated files, e.g. HTML, png, CSS, etc., are not included in t
 <hr>
 </div>
 <div id="versions" class="tab-pane fade">
+
 <p>
-There are no past versions. Publish this analysis with <code>wflow_publish()</code> to start tracking its development.
+These are the previous versions of the repository in which changes were made to the R Markdown (<code>analysis/SubsetSpecificGeneSignatures.Rmd</code>) and HTML (<code>docs/SubsetSpecificGeneSignatures.html</code>) files. If you’ve configured a remote Git repository (see <code>?wflow_git_remote</code>), click on the hyperlinks in the table below to view the files as they were in that past version.
 </p>
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+File
+</th>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+<th>
+Message
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/f45bed1da1d13948e8079688920fdf0a61fdae21/analysis/SubsetSpecificGeneSignatures.Rmd" target="_blank">f45bed1</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-08-03
+</td>
+<td>
+update BRC specific genes
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/mluetge/CrossSLO_BRC_CXCL13/f45bed1da1d13948e8079688920fdf0a61fdae21/docs/SubsetSpecificGeneSignatures.html" target="_blank">f45bed1</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-08-03
+</td>
+<td>
+update BRC specific genes
+</td>
+</tr>
+</tbody>
+</table>
+</div>
 <hr>
 </div>
 </div>
@@ -545,6 +606,7 @@ There are no past versions. Publish this analysis with <code>wflow_publish()</co
   library(enrichplot)
   library(msigdbr)
   library(muscat)
+  library(ggpubr)
 })</code></pre>
 </div>
 <div id="plotting-funct" class="section level2">
@@ -656,6 +718,43 @@ names(colorSLOCond) &lt;- c(&quot;LN_immunized&quot;,&quot;LN_naive&quot;, &quot
   xlab(&quot;UMAP1&quot;) +
   ylab(&quot;UMAP2&quot;)</code></pre>
 <p><img src="figure/SubsetSpecificGeneSignatures.Rmd/clustering-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-clustering-1">
+Past versions of clustering-1.png
+</button>
+</p>
+<div id="fig-clustering-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/f45bed1da1d13948e8079688920fdf0a61fdae21/docs/figure/SubsetSpecificGeneSignatures.Rmd/clustering-1.png" target="_blank">f45bed1</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-08-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="slo" class="section level3">
 <h3>SLO</h3>
@@ -666,10 +765,84 @@ names(colorSLOCond) &lt;- c(&quot;LN_immunized&quot;,&quot;LN_naive&quot;, &quot
   xlab(&quot;UMAP1&quot;) +
   ylab(&quot;UMAP2&quot;)</code></pre>
 <p><img src="figure/SubsetSpecificGeneSignatures.Rmd/SLO-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-SLO-1">
+Past versions of SLO-1.png
+</button>
+</p>
+<div id="fig-SLO-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/f45bed1da1d13948e8079688920fdf0a61fdae21/docs/figure/SubsetSpecificGeneSignatures.Rmd/SLO-1.png" target="_blank">f45bed1</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-08-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>DimPlot(seurat, reduction = &quot;umap&quot;, cols=colorSLO, group.by = &quot;SLO&quot;,
         pt.size=0.6)+
   theme_void()</code></pre>
 <p><img src="figure/SubsetSpecificGeneSignatures.Rmd/SLO-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-SLO-2">
+Past versions of SLO-2.png
+</button>
+</p>
+<div id="fig-SLO-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/f45bed1da1d13948e8079688920fdf0a61fdae21/docs/figure/SubsetSpecificGeneSignatures.Rmd/SLO-2.png" target="_blank">f45bed1</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-08-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="batch" class="section level3">
 <h3>Batch</h3>
@@ -680,6 +853,43 @@ names(colorSLOCond) &lt;- c(&quot;LN_immunized&quot;,&quot;LN_naive&quot;, &quot
   xlab(&quot;UMAP1&quot;) +
   ylab(&quot;UMAP2&quot;)</code></pre>
 <p><img src="figure/SubsetSpecificGeneSignatures.Rmd/Batch-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-Batch-1">
+Past versions of Batch-1.png
+</button>
+</p>
+<div id="fig-Batch-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/f45bed1da1d13948e8079688920fdf0a61fdae21/docs/figure/SubsetSpecificGeneSignatures.Rmd/Batch-1.png" target="_blank">f45bed1</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-08-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="cond" class="section level3">
 <h3>Cond</h3>
@@ -690,6 +900,43 @@ names(colorSLOCond) &lt;- c(&quot;LN_immunized&quot;,&quot;LN_naive&quot;, &quot
   xlab(&quot;UMAP1&quot;) +
   ylab(&quot;UMAP2&quot;)</code></pre>
 <p><img src="figure/SubsetSpecificGeneSignatures.Rmd/Cond-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-Cond-1">
+Past versions of Cond-1.png
+</button>
+</p>
+<div id="fig-Cond-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/f45bed1da1d13948e8079688920fdf0a61fdae21/docs/figure/SubsetSpecificGeneSignatures.Rmd/Cond-1.png" target="_blank">f45bed1</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-08-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="slo-plus-cond" class="section level3">
 <h3>SLO plus cond</h3>
@@ -700,10 +947,84 @@ names(colorSLOCond) &lt;- c(&quot;LN_immunized&quot;,&quot;LN_naive&quot;, &quot
   xlab(&quot;UMAP1&quot;) +
   ylab(&quot;UMAP2&quot;)</code></pre>
 <p><img src="figure/SubsetSpecificGeneSignatures.Rmd/SLO%20plus%20cond-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-SLO-plus-cond-1">
+Past versions of “SLO plus cond-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-SLO-plus-cond-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/f45bed1da1d13948e8079688920fdf0a61fdae21/docs/figure/SubsetSpecificGeneSignatures.Rmd/SLO plus cond-1.png" target="_blank">f45bed1</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-08-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>DimPlot(seurat, reduction = &quot;umap&quot;,cols=colorSLOCond,group.by = &quot;SLO_plus_cond&quot;,
         pt.size=0.6)+
   theme_void()</code></pre>
 <p><img src="figure/SubsetSpecificGeneSignatures.Rmd/SLO%20plus%20cond-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-SLO-plus-cond-2">
+Past versions of “SLO plus cond-2.png”
+</button>
+</p>
+<div id="fig-no-spaces-SLO-plus-cond-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/f45bed1da1d13948e8079688920fdf0a61fdae21/docs/figure/SubsetSpecificGeneSignatures.Rmd/SLO plus cond-2.png" target="_blank">f45bed1</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-08-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 </div>
 <div id="subset-specific-marker" class="section level2">
@@ -727,56 +1048,30 @@ names(conservedMarker) &lt;- clVec</code></pre>
 <pre class="r"><code>conservedMarkerDat &lt;- do.call(&quot;rbind&quot;, conservedMarker) %&gt;% 
   rownames_to_column(., var=&quot;long&quot;) %&gt;% 
   mutate(ensID=gsub(&quot;^[^\\.]*\\.&quot;, &quot;&quot;, long)) %&gt;% 
-  mutate(label=gsub(&quot;^.*\\.&quot;, &quot;&quot;, ensID)) %&gt;% 
-  filter(PP_p_val_adj &lt; 0.01 &amp; Spleen_p_val_adj &lt; 0.01 &amp; LN_p_val_adj &lt; 0.01) %&gt;% 
-  filter(!duplicated(ensID))
+  mutate(label=gsub(&quot;^.*\\.&quot;, &quot;&quot;, ensID)) #%&gt;% 
+#  filter(PP_p_val_adj &lt; 0.01 &amp; Spleen_p_val_adj &lt; 0.01 &amp; LN_p_val_adj &lt; 0.01) %&gt;% 
+#  filter(!duplicated(ensID))
 
 
-DoHeatmap(seurat, features = conservedMarkerDat$ensID, group.by = &quot;clusterLabel&quot;, 
-          group.colors = colPal, slot = &#39;scale.data&#39;, label = T,
-          disp.min = -1, disp.max = 1.5, draw.lines = F) +
-  scale_fill_gradientn(colors=colorRampPalette(c(&quot;#45628f&quot;, &quot;#F7F7F7&quot;, &quot;#de425b&quot;))(30)) +
-  scale_y_discrete(breaks=conservedMarkerDat$ensID, labels=conservedMarkerDat$label)</code></pre>
-<p><img src="figure/SubsetSpecificGeneSignatures.Rmd/sc%20heatmap%20slo%20specific-1.png" width="1344" style="display: block; margin: auto;" /></p>
+#DoHeatmap(seurat, features = conservedMarkerDat$ensID, group.by = &quot;clusterLabel&quot;, 
+#          group.colors = colPal, slot = &#39;scale.data&#39;, label = T,
+#          disp.min = -1, disp.max = 1.5, draw.lines = F) +
+#  scale_fill_gradientn(colors=colorRampPalette(c(&quot;#45628f&quot;, &quot;#F7F7F7&quot;, &quot;#de425b&quot;))(30)) +
+#  scale_y_discrete(breaks=conservedMarkerDat$ensID, labels=conservedMarkerDat$label)</code></pre>
 </div>
 <div id="only-markers-that-diff-up-in-all-pairwise-comparisons" class="section level3">
 <h3>only markers that diff up in all pairwise comparisons</h3>
-<pre class="r"><code>clVec &lt;- levels(seurat$clusterLabel)
-highlyConservedMarker &lt;- lapply(clVec, function(cl){
-  otherCl &lt;- clVec[which(clVec!=cl)]
-  consMarker &lt;- NULL
-  for(i in 1:length(otherCl)){
-    cl2 &lt;- otherCl[i]
-    markers &lt;- FindMarkers(seurat, ident.1 = cl, ident.2 = cl2,
-                           only.pos = T) %&gt;%
-      filter(p_val_adj &lt;0.01) %&gt;% 
-      rownames_to_column(., var = &quot;gene&quot;)
-    if(is.null(consMarker)){
-      consMarker &lt;- markers$gene
-    }
-    consMarker &lt;- consMarker[which(consMarker %in% markers$gene)]
-  }
-  consMarkerDat &lt;- data.frame(gene=consMarker) %&gt;% 
-    mutate(subset=cl)
-  return(consMarkerDat)
-})
-names(highlyConservedMarker) &lt;- clVec
-
-
-hConservedMarkerDat &lt;- do.call(&quot;rbind&quot;, highlyConservedMarker) %&gt;% 
-  mutate(label=gsub(&quot;^.*\\.&quot;, &quot;&quot;, gene)) 
-seurat$label_plus_SLO &lt;- paste0(seurat$clusterLabel, &quot;_&quot;, seurat$SLO)
-DoHeatmap(seurat, features = hConservedMarkerDat$gene, group.by = &quot;clusterLabel&quot;, 
-          group.colors = colPal, slot = &#39;scale.data&#39;, label = T,
-          disp.min = -1, disp.max = 1.5, draw.lines = F) +
-  scale_fill_gradientn(colors=colorRampPalette(c(&quot;#45628f&quot;, &quot;#F7F7F7&quot;, &quot;#de425b&quot;))(30)) +
-  scale_y_discrete(breaks=hConservedMarkerDat$gene, labels=hConservedMarkerDat$label)</code></pre>
-<p><img src="figure/SubsetSpecificGeneSignatures.Rmd/highly%20conserved%20makers-1.png" width="1344" style="display: block; margin: auto;" /> ## GSEA clusterProfiler {.tabset} ### cons genes</p>
+</div>
+</div>
+<div id="gsea-clusterprofiler" class="section level2 tabset">
+<h2 class="tabset">GSEA clusterProfiler</h2>
+<div id="cons-genes" class="section level3">
+<h3>cons genes</h3>
 <pre class="r"><code>clVec &lt;- levels(seurat$clusterLabel)
 GOcons &lt;- lapply(clVec, function(cl){
   conservedMarkerDatSub &lt;- conservedMarkerDat %&gt;% 
-    filter(subset == cl) %&gt;% mutate(ENS=gsub(&quot;\\..*$&quot;, &quot;&quot;, ensID)) %&gt;% 
-    slice_min(., max_pval, n=200)
+    filter(subset == cl) %&gt;% mutate(ENS=gsub(&quot;\\..*$&quot;, &quot;&quot;, ensID)) #%&gt;% 
+    #slice_min(., max_pval, n=200)
   egoSS &lt;- enrichGO(gene      = unique(conservedMarkerDatSub$ENS),
                 OrgDb         = org.Mm.eg.db,
                 keyType       = &#39;ENSEMBL&#39;,
@@ -793,18 +1088,28 @@ names(GOcons) &lt;- clVec</code></pre>
 </div>
 <div id="vis-summary-all" class="section level3">
 <h3>vis summary all</h3>
-<pre class="r"><code>selGO &lt;- c(&quot;LZFDC.GO:0001818&quot;,&quot;LZFDC.GO:0007159&quot;,&quot;LZFDC.GO:0032653&quot;,
-           &quot;LZFDC.GO:0002822&quot;,&quot;LZFDC.GO:0070661&quot;,
-           &quot;DZFDC.GO:0002688&quot;, &quot;DZFDC.GO:0048259&quot;, &quot;DZFDC.GO:0030336&quot;,
-           &quot;MRC.GO:0050673&quot;, &quot;MRC.GO:0007015&quot;,
-           &quot;TBRC.GO:005092&quot;, &quot;TBRC.GO:0035455&quot;, &quot;TBRC.GO:0031295&quot;,
-           &quot;TBRC.GO:0006959&quot;,&quot;TBRC.GO:0032612&quot;,
-           &quot;PRC2.GO:0030198&quot;, &quot;PRC2.GO:0035265&quot;, &quot;PRC2.GO:0031589&quot;,
-           &quot;PRC2.GO:0032755&quot;, &quot;PRC2.GO:0032640&quot;)
+<pre class="r"><code>## table to select pathways
+GOconsDat &lt;- do.call(&quot;rbind&quot;, GOcons)
+#write.table(GOconsDat, quote=F, row.names = T, col.names = T, sep= &quot;\t&quot;,
+#            file = paste0(basedir, &quot;/data/GSEA/SubsetSpecificGO.txt&quot;))
+    
+
+selGO &lt;- c(&quot;LZFDC.GO:0006898&quot;,&quot;LZFDC.GO:0007249&quot;,&quot;LZFDC.GO:0022407&quot;,
+           &quot;LZFDC.GO:0019884&quot;,&quot;LZFDC.GO:0008593&quot;, &quot;LZFDC.GO:0032606&quot;,
+           &quot;LZFDC.GO:0071559&quot;,
+           &quot;DZFDC.GO:0097529&quot;, &quot;DZFDC.GO:0001516&quot;, &quot;DZFDC.GO:0071621&quot;,
+           &quot;MRC.GO:0097529&quot;, &quot;MRC.GO:0071774&quot;,
+           &quot;MRC.GO:0007229&quot;, 
+           &quot;TBRC.GO:0002407&quot;, &quot;TBRC.GO:0002548&quot;, &quot;TBRC.GO:0031295&quot;,
+           &quot;TBRC.GO:0032612&quot;,&quot;TBRC.GO:0006959&quot;, &quot;TBRC.GO:0002460&quot;,
+           &quot;PRC2.GO:0030198&quot;, &quot;PRC2.GO:0061448&quot;, &quot;PRC2.GO:0045765&quot;,
+           &quot;PRC2.GO:0090287&quot;, &quot;PRC2.GO:0048762&quot;)
 
 
 GOconsDat &lt;- do.call(&quot;rbind&quot;, GOcons) %&gt;% rownames_to_column(., var=&quot;IDlab&quot;) %&gt;% 
-  filter(IDlab %in% selGO) %&gt;% 
+  filter(IDlab %in% selGO)
+GOconsDat$subset &lt;- factor(GOconsDat$subset, levels=c(&quot;PRC2&quot;, &quot;TBRC&quot;, &quot;MRC&quot;, &quot;DZFDC&quot;,&quot;LZFDC&quot;))
+GOconsDat &lt;- GOconsDat %&gt;% 
   arrange(., Count) %&gt;% arrange(., subset) %&gt;%
   mutate(nom=as.numeric(gsub(&quot;\\/.*&quot;, &quot;&quot;, GeneRatio))) %&gt;% 
   mutate(denom=as.numeric(gsub(&quot;.*\\/&quot;, &quot;&quot;, GeneRatio))) %&gt;% 
@@ -831,7 +1136,57 @@ ggplot(GOconsDat, aes(x=factor(Description, level= level_order), y=geneRatio)) +
   theme_minimal() +
   theme(panel.border = element_rect(fill = NA), 
         panel.grid = element_blank(), axis.title.y = element_blank())</code></pre>
-<p><img src="figure/SubsetSpecificGeneSignatures.Rmd/vis%20summary-1.png" width="1056" style="display: block; margin: auto;" /></p>
+<p><img src="figure/SubsetSpecificGeneSignatures.Rmd/vis%20summary-1.png" width="1152" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-vis-summary-1">
+Past versions of “vis summary-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-vis-summary-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/f45bed1da1d13948e8079688920fdf0a61fdae21/docs/figure/SubsetSpecificGeneSignatures.Rmd/vis summary-1.png" target="_blank">f45bed1</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-08-03
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<pre class="r"><code>GOconsDat &lt;- GOconsDat %&gt;% mutate(qscore=-log(p.adjust, base=10)) %&gt;% 
+  mutate(DescriptionLab = paste0(subset, &quot;: &quot;, Description))
+p &lt;- ggbarplot(GOconsDat, x = &quot;DescriptionLab&quot;, y = &quot;qscore&quot;,
+          fill = &quot;subset&quot;,               
+          color = &quot;subset&quot;,            
+          palette = colPal,            
+          sort.val = &quot;asc&quot;,           
+          sort.by.groups = TRUE      
+          #x.text.angle = 90           
+          ) + 
+  rotate()
+p</code></pre>
+<p><img src="figure/SubsetSpecificGeneSignatures.Rmd/unnamed-chunk-1-1.png" width="1728" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="session-info" class="section level2">
@@ -853,100 +1208,105 @@ attached base packages:
 [10] base     
 
 other attached packages:
- [1] muscat_1.6.0                msigdbr_7.4.1               enrichplot_1.12.2          
- [4] DOSE_3.18.1                 org.Mm.eg.db_3.13.0         AnnotationDbi_1.54.1       
- [7] clusterProfiler_4.0.2       gridExtra_2.3               fgsea_1.18.0               
-[10] biomaRt_2.48.2              pheatmap_1.0.12             scran_1.20.1               
-[13] scater_1.20.1               scuttle_1.2.0               ggsci_2.9                  
-[16] viridis_0.6.1               viridisLite_0.4.0           RColorBrewer_1.1-2         
-[19] SingleCellExperiment_1.14.1 SummarizedExperiment_1.22.0 Biobase_2.52.0             
-[22] GenomicRanges_1.44.0        GenomeInfoDb_1.28.1         IRanges_2.26.0             
-[25] S4Vectors_0.30.0            BiocGenerics_0.38.0         MatrixGenerics_1.4.0       
-[28] matrixStats_0.60.0          runSeurat3_0.1.0            here_1.0.1                 
-[31] magrittr_2.0.1              SeuratObject_4.0.2          Seurat_4.0.3               
-[34] forcats_0.5.1               stringr_1.4.0               dplyr_1.0.7                
-[37] purrr_0.3.4                 readr_2.0.0                 tidyr_1.1.3                
-[40] tibble_3.1.3                ggplot2_3.3.5               tidyverse_1.3.1            
+ [1] ggpubr_0.4.0                muscat_1.6.0                msigdbr_7.4.1              
+ [4] enrichplot_1.12.2           DOSE_3.18.2                 org.Mm.eg.db_3.13.0        
+ [7] AnnotationDbi_1.54.1        clusterProfiler_4.0.5       gridExtra_2.3              
+[10] fgsea_1.18.0                biomaRt_2.48.3              pheatmap_1.0.12            
+[13] scran_1.20.1                scater_1.20.1               scuttle_1.2.1              
+[16] ggsci_2.9                   viridis_0.6.1               viridisLite_0.4.0          
+[19] RColorBrewer_1.1-2          SingleCellExperiment_1.14.1 SummarizedExperiment_1.22.0
+[22] Biobase_2.52.0              GenomicRanges_1.44.0        GenomeInfoDb_1.28.4        
+[25] IRanges_2.26.0              S4Vectors_0.30.0            BiocGenerics_0.38.0        
+[28] MatrixGenerics_1.4.3        matrixStats_0.60.1          runSeurat3_0.1.0           
+[31] here_1.0.1                  magrittr_2.0.1              SeuratObject_4.0.2         
+[34] Seurat_4.0.4                forcats_0.5.1               stringr_1.4.0              
+[37] dplyr_1.0.7                 purrr_0.3.4                 readr_2.0.1                
+[40] tidyr_1.1.3                 tibble_3.1.4                ggplot2_3.3.5              
+[43] tidyverse_1.3.1            
 
 loaded via a namespace (and not attached):
   [1] rsvd_1.0.5                ica_1.0-2                 foreach_1.5.1            
   [4] lmtest_0.9-38             rprojroot_2.0.2           crayon_1.4.1             
-  [7] rbibutils_2.2.1           spatstat.core_2.3-0       MASS_7.3-54              
- [10] nlme_3.1-152              backports_1.2.1           reprex_2.0.0             
- [13] GOSemSim_2.18.0           rlang_0.4.11              XVector_0.32.0           
+  [7] rbibutils_2.2.3           spatstat.core_2.3-0       MASS_7.3-54              
+ [10] nlme_3.1-153              backports_1.2.1           reprex_2.0.1             
+ [13] GOSemSim_2.18.1           rlang_0.4.11              XVector_0.32.0           
  [16] ROCR_1.0-11               readxl_1.3.1              irlba_2.3.3              
- [19] nloptr_1.2.2.2            limma_3.48.1              filelock_1.0.2           
- [22] BiocParallel_1.26.1       rjson_0.2.20              bit64_4.0.5              
+ [19] nloptr_1.2.2.2            limma_3.48.3              filelock_1.0.2           
+ [22] BiocParallel_1.26.2       rjson_0.2.20              bit64_4.0.5              
  [25] glue_1.4.2                sctransform_0.3.2         pbkrtest_0.5.1           
  [28] vipor_0.4.5               spatstat.sparse_2.0-0     spatstat.geom_2.2-2      
- [31] haven_2.4.1               tidyselect_1.1.1          fitdistrplus_1.1-5       
- [34] variancePartition_1.22.0  XML_3.99-0.6              zoo_1.8-9                
- [37] xtable_1.8-4              evaluate_0.14             Rdpack_2.1.2             
- [40] cli_3.0.1                 zlibbioc_1.38.0           sn_2.0.0                 
- [43] rstudioapi_0.13           miniUI_0.1.1.1            bslib_0.2.5.1            
- [46] rpart_4.1-15              mathjaxr_1.4-0            fastmatch_1.1-3          
- [49] treeio_1.16.1             shiny_1.6.0               BiocSingular_1.8.1       
- [52] xfun_0.24                 clue_0.3-59               multtest_2.48.0          
- [55] cluster_2.1.2             caTools_1.18.2            tidygraph_1.2.0          
- [58] KEGGREST_1.32.0           ggrepel_0.9.1             ape_5.5                  
- [61] listenv_0.8.0             Biostrings_2.60.1         png_0.1-7                
- [64] future_1.21.0             withr_2.4.2               bitops_1.0-7             
- [67] ggforce_0.3.3             plyr_1.8.6                cellranger_1.1.0         
- [70] coda_0.19-4               dqrng_0.3.0               pillar_1.6.1             
- [73] gplots_3.1.1              GlobalOptions_0.1.2       cachem_1.0.5             
- [76] multcomp_1.4-17           fs_1.5.0                  GetoptLong_1.0.5         
- [79] DelayedMatrixStats_1.14.0 vctrs_0.3.8               ellipsis_0.3.2           
- [82] generics_0.1.0            metap_1.4                 tools_4.1.0              
- [85] beeswarm_0.4.0            munsell_0.5.0             tweenr_1.0.2             
- [88] emmeans_1.6.2-1           DelayedArray_0.18.0       fastmap_1.1.0            
- [91] compiler_4.1.0            abind_1.4-5               httpuv_1.6.1             
- [94] rcartocolor_2.0.0         plotly_4.9.4.1            GenomeInfoDbData_1.2.6   
- [97] glmmTMB_1.1.2             workflowr_1.6.2           edgeR_3.34.0             
-[100] lattice_0.20-44           deldir_0.2-10             mutoss_0.1-12            
-[103] utf8_1.2.2                later_1.2.0               BiocFileCache_2.0.0      
-[106] jsonlite_1.7.2            scales_1.1.1              ScaledMatrix_1.0.0       
-[109] tidytree_0.3.4            pbapply_1.4-3             sparseMatrixStats_1.4.0  
-[112] estimability_1.3          genefilter_1.74.0         lazyeval_0.2.2           
-[115] promises_1.2.0.1          doParallel_1.0.16         goftest_1.2-2            
-[118] spatstat.utils_2.2-0      reticulate_1.20           sandwich_3.0-1           
-[121] rmarkdown_2.9             cowplot_1.1.1             blme_1.0-5               
-[124] statmod_1.4.36            Rtsne_0.15                downloader_0.4           
-[127] uwot_0.1.10               igraph_1.2.6              plotrix_3.8-1            
-[130] survival_3.2-11           numDeriv_2016.8-1.1       yaml_2.2.1               
-[133] htmltools_0.5.1.1         memoise_2.0.0             locfit_1.5-9.4           
-[136] graphlayouts_0.7.1        digest_0.6.27             assertthat_0.2.1         
-[139] mime_0.11                 rappdirs_0.3.3            RSQLite_2.2.7            
-[142] future.apply_1.7.0        data.table_1.14.0         blob_1.2.2               
-[145] labeling_0.4.2            splines_4.1.0             Cairo_1.5-12.2           
-[148] RCurl_1.98-1.3            broom_0.7.8               hms_1.1.0                
-[151] modelr_0.1.8              colorspace_2.0-2          mnormt_2.0.2             
-[154] BiocManager_1.30.16       tmvnsim_1.0-2             ggbeeswarm_0.6.0         
-[157] shape_1.4.6               aplot_0.0.6               sass_0.4.0               
-[160] Rcpp_1.0.7                RANN_2.6.1                mvtnorm_1.1-2            
-[163] circlize_0.4.13           fansi_0.5.0               tzdb_0.1.2               
-[166] parallelly_1.27.0         R6_2.5.0                  ggridges_0.5.3           
-[169] lifecycle_1.0.0           TFisher_0.2.0             bluster_1.2.1            
-[172] curl_4.3.2                minqa_1.2.4               leiden_0.3.8             
-[175] jquerylib_0.1.4           DO.db_2.9                 Matrix_1.3-4             
-[178] qvalue_2.24.0             TH.data_1.0-10            RcppAnnoy_0.0.18         
-[181] iterators_1.0.13          TMB_1.7.20                htmlwidgets_1.5.3        
-[184] beachmat_2.8.0            polyclip_1.10-0           shadowtext_0.0.8         
-[187] rvest_1.0.1               ComplexHeatmap_2.8.0      mgcv_1.8-36              
-[190] globals_0.14.0            patchwork_1.1.1           codetools_0.2-18         
-[193] lubridate_1.7.10          GO.db_3.13.0              metapod_1.0.0            
-[196] gtools_3.9.2              prettyunits_1.1.1         dbplyr_2.1.1             
-[199] gtable_0.3.0              DBI_1.1.1                 git2r_0.28.0             
-[202] highr_0.9                 tensor_1.5                httr_1.4.2               
-[205] KernSmooth_2.23-20        stringi_1.7.3             progress_1.2.2           
-[208] reshape2_1.4.4            farver_2.1.0              annotate_1.70.0          
-[211] ggtree_3.0.2              xml2_1.3.2                colorRamps_2.3           
-[214] rvcheck_0.1.8             boot_1.3-28               BiocNeighbors_1.10.0     
-[217] lme4_1.1-27.1             geneplotter_1.70.0        scattermore_0.7          
-[220] DESeq2_1.32.0             bit_4.0.4                 scatterpie_0.1.6         
-[223] spatstat.data_2.1-0       ggraph_2.0.5              pkgconfig_2.0.3          
-[226] babelgene_21.4            lmerTest_3.1-3            knitr_1.33               </code></pre>
+ [31] haven_2.4.3               tidyselect_1.1.1          rio_0.5.27               
+ [34] fitdistrplus_1.1-5        variancePartition_1.22.0  XML_3.99-0.7             
+ [37] zoo_1.8-9                 xtable_1.8-4              evaluate_0.14            
+ [40] Rdpack_2.1.2              cli_3.0.1                 zlibbioc_1.38.0          
+ [43] sn_2.0.0                  rstudioapi_0.13           miniUI_0.1.1.1           
+ [46] whisker_0.4               bslib_0.3.0               rpart_4.1-15             
+ [49] mathjaxr_1.4-0            fastmatch_1.1-3           treeio_1.16.2            
+ [52] shiny_1.6.0               BiocSingular_1.8.1        xfun_0.26                
+ [55] clue_0.3-59               multtest_2.48.0           cluster_2.1.2            
+ [58] caTools_1.18.2            tidygraph_1.2.0           KEGGREST_1.32.0          
+ [61] ggrepel_0.9.1             ape_5.5                   listenv_0.8.0            
+ [64] Biostrings_2.60.2         png_0.1-7                 future_1.22.1            
+ [67] withr_2.4.2               bitops_1.0-7              ggforce_0.3.3            
+ [70] plyr_1.8.6                cellranger_1.1.0          coda_0.19-4              
+ [73] dqrng_0.3.0               pillar_1.6.2              gplots_3.1.1             
+ [76] GlobalOptions_0.1.2       cachem_1.0.6              multcomp_1.4-17          
+ [79] fs_1.5.0                  GetoptLong_1.0.5          DelayedMatrixStats_1.14.3
+ [82] vctrs_0.3.8               ellipsis_0.3.2            generics_0.1.0           
+ [85] metap_1.4                 tools_4.1.0               foreign_0.8-81           
+ [88] beeswarm_0.4.0            munsell_0.5.0             tweenr_1.0.2             
+ [91] emmeans_1.6.3             DelayedArray_0.18.0       fastmap_1.1.0            
+ [94] compiler_4.1.0            abind_1.4-5               httpuv_1.6.3             
+ [97] rcartocolor_2.0.0         plotly_4.9.4.1            GenomeInfoDbData_1.2.6   
+[100] glmmTMB_1.1.2.2           workflowr_1.6.2           edgeR_3.34.1             
+[103] lattice_0.20-44           deldir_0.2-10             mutoss_0.1-12            
+[106] utf8_1.2.2                later_1.3.0               BiocFileCache_2.0.0      
+[109] jsonlite_1.7.2            scales_1.1.1              ScaledMatrix_1.0.0       
+[112] carData_3.0-4             estimability_1.3          tidytree_0.3.5           
+[115] pbapply_1.4-3             sparseMatrixStats_1.4.2   genefilter_1.74.0        
+[118] lazyeval_0.2.2            promises_1.2.0.1          car_3.0-11               
+[121] doParallel_1.0.16         goftest_1.2-2             spatstat.utils_2.2-0     
+[124] reticulate_1.20           openxlsx_4.2.4            sandwich_3.0-1           
+[127] rmarkdown_2.10            cowplot_1.1.1             blme_1.0-5               
+[130] statmod_1.4.36            Rtsne_0.15                downloader_0.4           
+[133] uwot_0.1.10               igraph_1.2.6              plotrix_3.8-2            
+[136] survival_3.2-13           numDeriv_2016.8-1.1       yaml_2.2.1               
+[139] htmltools_0.5.2           memoise_2.0.0             locfit_1.5-9.4           
+[142] graphlayouts_0.7.1        digest_0.6.27             assertthat_0.2.1         
+[145] mime_0.11                 rappdirs_0.3.3            RSQLite_2.2.8            
+[148] yulab.utils_0.0.2         future.apply_1.8.1        data.table_1.14.0        
+[151] blob_1.2.2                labeling_0.4.2            splines_4.1.0            
+[154] Cairo_1.5-12.2            RCurl_1.98-1.4            broom_0.7.9              
+[157] hms_1.1.0                 modelr_0.1.8              colorspace_2.0-2         
+[160] mnormt_2.0.2              tmvnsim_1.0-2             ggbeeswarm_0.6.0         
+[163] shape_1.4.6               aplot_0.1.0               sass_0.4.0               
+[166] Rcpp_1.0.7                RANN_2.6.1                mvtnorm_1.1-2            
+[169] circlize_0.4.13           fansi_0.5.0               tzdb_0.1.2               
+[172] parallelly_1.28.1         R6_2.5.1                  ggridges_0.5.3           
+[175] lifecycle_1.0.0           TFisher_0.2.0             zip_2.2.0                
+[178] bluster_1.2.1             ggsignif_0.6.3            curl_4.3.2               
+[181] minqa_1.2.4               leiden_0.3.9              jquerylib_0.1.4          
+[184] DO.db_2.9                 Matrix_1.3-4              qvalue_2.24.0            
+[187] TH.data_1.0-10            RcppAnnoy_0.0.19          iterators_1.0.13         
+[190] TMB_1.7.21                htmlwidgets_1.5.4         beachmat_2.8.1           
+[193] polyclip_1.10-0           shadowtext_0.0.8          gridGraphics_0.5-1       
+[196] rvest_1.0.1               ComplexHeatmap_2.8.0      mgcv_1.8-36              
+[199] globals_0.14.0            patchwork_1.1.1           codetools_0.2-18         
+[202] lubridate_1.7.10          GO.db_3.13.0              metapod_1.0.0            
+[205] gtools_3.9.2              prettyunits_1.1.1         dbplyr_2.1.1             
+[208] gtable_0.3.0              DBI_1.1.1                 git2r_0.28.0             
+[211] highr_0.9                 ggfun_0.0.3               tensor_1.5               
+[214] httr_1.4.2                KernSmooth_2.23-20        stringi_1.7.4            
+[217] progress_1.2.2            reshape2_1.4.4            farver_2.1.0             
+[220] annotate_1.70.0           ggtree_3.0.4              xml2_1.3.2               
+[223] colorRamps_2.3            boot_1.3-28               BiocNeighbors_1.10.0     
+[226] lme4_1.1-27.1             geneplotter_1.70.0        ggplotify_0.1.0          
+[229] scattermore_0.7           DESeq2_1.32.0             bit_4.0.4                
+[232] scatterpie_0.1.7          spatstat.data_2.1-0       ggraph_2.0.5             
+[235] pkgconfig_2.0.3           babelgene_21.4            lmerTest_3.1-3           
+[238] rstatix_0.7.0             knitr_1.34               </code></pre>
 <pre class="r"><code>date()</code></pre>
-<pre><code>[1] &quot;Wed Jul 28 14:02:20 2021&quot;</code></pre>
+<pre><code>[1] &quot;Tue Sep 21 11:30:35 2021&quot;</code></pre>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
@@ -971,98 +1331,103 @@ attached base packages:
 [10] base     
 
 other attached packages:
- [1] muscat_1.6.0                msigdbr_7.4.1               enrichplot_1.12.2          
- [4] DOSE_3.18.1                 org.Mm.eg.db_3.13.0         AnnotationDbi_1.54.1       
- [7] clusterProfiler_4.0.2       gridExtra_2.3               fgsea_1.18.0               
-[10] biomaRt_2.48.2              pheatmap_1.0.12             scran_1.20.1               
-[13] scater_1.20.1               scuttle_1.2.0               ggsci_2.9                  
-[16] viridis_0.6.1               viridisLite_0.4.0           RColorBrewer_1.1-2         
-[19] SingleCellExperiment_1.14.1 SummarizedExperiment_1.22.0 Biobase_2.52.0             
-[22] GenomicRanges_1.44.0        GenomeInfoDb_1.28.1         IRanges_2.26.0             
-[25] S4Vectors_0.30.0            BiocGenerics_0.38.0         MatrixGenerics_1.4.0       
-[28] matrixStats_0.60.0          runSeurat3_0.1.0            here_1.0.1                 
-[31] magrittr_2.0.1              SeuratObject_4.0.2          Seurat_4.0.3               
-[34] forcats_0.5.1               stringr_1.4.0               dplyr_1.0.7                
-[37] purrr_0.3.4                 readr_2.0.0                 tidyr_1.1.3                
-[40] tibble_3.1.3                ggplot2_3.3.5               tidyverse_1.3.1            
+ [1] ggpubr_0.4.0                muscat_1.6.0                msigdbr_7.4.1              
+ [4] enrichplot_1.12.2           DOSE_3.18.2                 org.Mm.eg.db_3.13.0        
+ [7] AnnotationDbi_1.54.1        clusterProfiler_4.0.5       gridExtra_2.3              
+[10] fgsea_1.18.0                biomaRt_2.48.3              pheatmap_1.0.12            
+[13] scran_1.20.1                scater_1.20.1               scuttle_1.2.1              
+[16] ggsci_2.9                   viridis_0.6.1               viridisLite_0.4.0          
+[19] RColorBrewer_1.1-2          SingleCellExperiment_1.14.1 SummarizedExperiment_1.22.0
+[22] Biobase_2.52.0              GenomicRanges_1.44.0        GenomeInfoDb_1.28.4        
+[25] IRanges_2.26.0              S4Vectors_0.30.0            BiocGenerics_0.38.0        
+[28] MatrixGenerics_1.4.3        matrixStats_0.60.1          runSeurat3_0.1.0           
+[31] here_1.0.1                  magrittr_2.0.1              SeuratObject_4.0.2         
+[34] Seurat_4.0.4                forcats_0.5.1               stringr_1.4.0              
+[37] dplyr_1.0.7                 purrr_0.3.4                 readr_2.0.1                
+[40] tidyr_1.1.3                 tibble_3.1.4                ggplot2_3.3.5              
+[43] tidyverse_1.3.1            
 
 loaded via a namespace (and not attached):
   [1] rsvd_1.0.5                ica_1.0-2                 foreach_1.5.1            
   [4] lmtest_0.9-38             rprojroot_2.0.2           crayon_1.4.1             
-  [7] rbibutils_2.2.1           spatstat.core_2.3-0       MASS_7.3-54              
- [10] nlme_3.1-152              backports_1.2.1           reprex_2.0.0             
- [13] GOSemSim_2.18.0           rlang_0.4.11              XVector_0.32.0           
+  [7] rbibutils_2.2.3           spatstat.core_2.3-0       MASS_7.3-54              
+ [10] nlme_3.1-153              backports_1.2.1           reprex_2.0.1             
+ [13] GOSemSim_2.18.1           rlang_0.4.11              XVector_0.32.0           
  [16] ROCR_1.0-11               readxl_1.3.1              irlba_2.3.3              
- [19] nloptr_1.2.2.2            limma_3.48.1              filelock_1.0.2           
- [22] BiocParallel_1.26.1       rjson_0.2.20              bit64_4.0.5              
+ [19] nloptr_1.2.2.2            limma_3.48.3              filelock_1.0.2           
+ [22] BiocParallel_1.26.2       rjson_0.2.20              bit64_4.0.5              
  [25] glue_1.4.2                sctransform_0.3.2         pbkrtest_0.5.1           
  [28] vipor_0.4.5               spatstat.sparse_2.0-0     spatstat.geom_2.2-2      
- [31] haven_2.4.1               tidyselect_1.1.1          fitdistrplus_1.1-5       
- [34] variancePartition_1.22.0  XML_3.99-0.6              zoo_1.8-9                
- [37] xtable_1.8-4              evaluate_0.14             Rdpack_2.1.2             
- [40] cli_3.0.1                 zlibbioc_1.38.0           sn_2.0.0                 
- [43] rstudioapi_0.13           miniUI_0.1.1.1            bslib_0.2.5.1            
- [46] rpart_4.1-15              mathjaxr_1.4-0            fastmatch_1.1-3          
- [49] treeio_1.16.1             shiny_1.6.0               BiocSingular_1.8.1       
- [52] xfun_0.24                 clue_0.3-59               multtest_2.48.0          
- [55] cluster_2.1.2             caTools_1.18.2            tidygraph_1.2.0          
- [58] KEGGREST_1.32.0           ggrepel_0.9.1             ape_5.5                  
- [61] listenv_0.8.0             Biostrings_2.60.1         png_0.1-7                
- [64] future_1.21.0             withr_2.4.2               bitops_1.0-7             
- [67] ggforce_0.3.3             plyr_1.8.6                cellranger_1.1.0         
- [70] coda_0.19-4               dqrng_0.3.0               pillar_1.6.1             
- [73] gplots_3.1.1              GlobalOptions_0.1.2       cachem_1.0.5             
- [76] multcomp_1.4-17           fs_1.5.0                  GetoptLong_1.0.5         
- [79] DelayedMatrixStats_1.14.0 vctrs_0.3.8               ellipsis_0.3.2           
- [82] generics_0.1.0            metap_1.4                 tools_4.1.0              
- [85] beeswarm_0.4.0            munsell_0.5.0             tweenr_1.0.2             
- [88] emmeans_1.6.2-1           DelayedArray_0.18.0       fastmap_1.1.0            
- [91] compiler_4.1.0            abind_1.4-5               httpuv_1.6.1             
- [94] rcartocolor_2.0.0         plotly_4.9.4.1            GenomeInfoDbData_1.2.6   
- [97] glmmTMB_1.1.2             workflowr_1.6.2           edgeR_3.34.0             
-[100] lattice_0.20-44           deldir_0.2-10             mutoss_0.1-12            
-[103] utf8_1.2.2                later_1.2.0               BiocFileCache_2.0.0      
-[106] jsonlite_1.7.2            scales_1.1.1              ScaledMatrix_1.0.0       
-[109] tidytree_0.3.4            pbapply_1.4-3             sparseMatrixStats_1.4.0  
-[112] estimability_1.3          genefilter_1.74.0         lazyeval_0.2.2           
-[115] promises_1.2.0.1          doParallel_1.0.16         goftest_1.2-2            
-[118] spatstat.utils_2.2-0      reticulate_1.20           sandwich_3.0-1           
-[121] rmarkdown_2.9             cowplot_1.1.1             blme_1.0-5               
-[124] statmod_1.4.36            Rtsne_0.15                downloader_0.4           
-[127] uwot_0.1.10               igraph_1.2.6              plotrix_3.8-1            
-[130] survival_3.2-11           numDeriv_2016.8-1.1       yaml_2.2.1               
-[133] htmltools_0.5.1.1         memoise_2.0.0             locfit_1.5-9.4           
-[136] graphlayouts_0.7.1        digest_0.6.27             assertthat_0.2.1         
-[139] mime_0.11                 rappdirs_0.3.3            RSQLite_2.2.7            
-[142] future.apply_1.7.0        data.table_1.14.0         blob_1.2.2               
-[145] labeling_0.4.2            splines_4.1.0             Cairo_1.5-12.2           
-[148] RCurl_1.98-1.3            broom_0.7.8               hms_1.1.0                
-[151] modelr_0.1.8              colorspace_2.0-2          mnormt_2.0.2             
-[154] BiocManager_1.30.16       tmvnsim_1.0-2             ggbeeswarm_0.6.0         
-[157] shape_1.4.6               aplot_0.0.6               sass_0.4.0               
-[160] Rcpp_1.0.7                RANN_2.6.1                mvtnorm_1.1-2            
-[163] circlize_0.4.13           fansi_0.5.0               tzdb_0.1.2               
-[166] parallelly_1.27.0         R6_2.5.0                  ggridges_0.5.3           
-[169] lifecycle_1.0.0           TFisher_0.2.0             bluster_1.2.1            
-[172] curl_4.3.2                minqa_1.2.4               leiden_0.3.8             
-[175] jquerylib_0.1.4           DO.db_2.9                 Matrix_1.3-4             
-[178] qvalue_2.24.0             TH.data_1.0-10            RcppAnnoy_0.0.18         
-[181] iterators_1.0.13          TMB_1.7.20                htmlwidgets_1.5.3        
-[184] beachmat_2.8.0            polyclip_1.10-0           shadowtext_0.0.8         
-[187] rvest_1.0.1               ComplexHeatmap_2.8.0      mgcv_1.8-36              
-[190] globals_0.14.0            patchwork_1.1.1           codetools_0.2-18         
-[193] lubridate_1.7.10          GO.db_3.13.0              metapod_1.0.0            
-[196] gtools_3.9.2              prettyunits_1.1.1         dbplyr_2.1.1             
-[199] gtable_0.3.0              DBI_1.1.1                 git2r_0.28.0             
-[202] highr_0.9                 tensor_1.5                httr_1.4.2               
-[205] KernSmooth_2.23-20        stringi_1.7.3             progress_1.2.2           
-[208] reshape2_1.4.4            farver_2.1.0              annotate_1.70.0          
-[211] ggtree_3.0.2              xml2_1.3.2                colorRamps_2.3           
-[214] rvcheck_0.1.8             boot_1.3-28               BiocNeighbors_1.10.0     
-[217] lme4_1.1-27.1             geneplotter_1.70.0        scattermore_0.7          
-[220] DESeq2_1.32.0             bit_4.0.4                 scatterpie_0.1.6         
-[223] spatstat.data_2.1-0       ggraph_2.0.5              pkgconfig_2.0.3          
-[226] babelgene_21.4            lmerTest_3.1-3            knitr_1.33               </code></pre>
+ [31] haven_2.4.3               tidyselect_1.1.1          rio_0.5.27               
+ [34] fitdistrplus_1.1-5        variancePartition_1.22.0  XML_3.99-0.7             
+ [37] zoo_1.8-9                 xtable_1.8-4              evaluate_0.14            
+ [40] Rdpack_2.1.2              cli_3.0.1                 zlibbioc_1.38.0          
+ [43] sn_2.0.0                  rstudioapi_0.13           miniUI_0.1.1.1           
+ [46] whisker_0.4               bslib_0.3.0               rpart_4.1-15             
+ [49] mathjaxr_1.4-0            fastmatch_1.1-3           treeio_1.16.2            
+ [52] shiny_1.6.0               BiocSingular_1.8.1        xfun_0.26                
+ [55] clue_0.3-59               multtest_2.48.0           cluster_2.1.2            
+ [58] caTools_1.18.2            tidygraph_1.2.0           KEGGREST_1.32.0          
+ [61] ggrepel_0.9.1             ape_5.5                   listenv_0.8.0            
+ [64] Biostrings_2.60.2         png_0.1-7                 future_1.22.1            
+ [67] withr_2.4.2               bitops_1.0-7              ggforce_0.3.3            
+ [70] plyr_1.8.6                cellranger_1.1.0          coda_0.19-4              
+ [73] dqrng_0.3.0               pillar_1.6.2              gplots_3.1.1             
+ [76] GlobalOptions_0.1.2       cachem_1.0.6              multcomp_1.4-17          
+ [79] fs_1.5.0                  GetoptLong_1.0.5          DelayedMatrixStats_1.14.3
+ [82] vctrs_0.3.8               ellipsis_0.3.2            generics_0.1.0           
+ [85] metap_1.4                 tools_4.1.0               foreign_0.8-81           
+ [88] beeswarm_0.4.0            munsell_0.5.0             tweenr_1.0.2             
+ [91] emmeans_1.6.3             DelayedArray_0.18.0       fastmap_1.1.0            
+ [94] compiler_4.1.0            abind_1.4-5               httpuv_1.6.3             
+ [97] rcartocolor_2.0.0         plotly_4.9.4.1            GenomeInfoDbData_1.2.6   
+[100] glmmTMB_1.1.2.2           workflowr_1.6.2           edgeR_3.34.1             
+[103] lattice_0.20-44           deldir_0.2-10             mutoss_0.1-12            
+[106] utf8_1.2.2                later_1.3.0               BiocFileCache_2.0.0      
+[109] jsonlite_1.7.2            scales_1.1.1              ScaledMatrix_1.0.0       
+[112] carData_3.0-4             estimability_1.3          tidytree_0.3.5           
+[115] pbapply_1.4-3             sparseMatrixStats_1.4.2   genefilter_1.74.0        
+[118] lazyeval_0.2.2            promises_1.2.0.1          car_3.0-11               
+[121] doParallel_1.0.16         goftest_1.2-2             spatstat.utils_2.2-0     
+[124] reticulate_1.20           openxlsx_4.2.4            sandwich_3.0-1           
+[127] rmarkdown_2.10            cowplot_1.1.1             blme_1.0-5               
+[130] statmod_1.4.36            Rtsne_0.15                downloader_0.4           
+[133] uwot_0.1.10               igraph_1.2.6              plotrix_3.8-2            
+[136] survival_3.2-13           numDeriv_2016.8-1.1       yaml_2.2.1               
+[139] htmltools_0.5.2           memoise_2.0.0             locfit_1.5-9.4           
+[142] graphlayouts_0.7.1        digest_0.6.27             assertthat_0.2.1         
+[145] mime_0.11                 rappdirs_0.3.3            RSQLite_2.2.8            
+[148] yulab.utils_0.0.2         future.apply_1.8.1        data.table_1.14.0        
+[151] blob_1.2.2                labeling_0.4.2            splines_4.1.0            
+[154] Cairo_1.5-12.2            RCurl_1.98-1.4            broom_0.7.9              
+[157] hms_1.1.0                 modelr_0.1.8              colorspace_2.0-2         
+[160] mnormt_2.0.2              tmvnsim_1.0-2             ggbeeswarm_0.6.0         
+[163] shape_1.4.6               aplot_0.1.0               sass_0.4.0               
+[166] Rcpp_1.0.7                RANN_2.6.1                mvtnorm_1.1-2            
+[169] circlize_0.4.13           fansi_0.5.0               tzdb_0.1.2               
+[172] parallelly_1.28.1         R6_2.5.1                  ggridges_0.5.3           
+[175] lifecycle_1.0.0           TFisher_0.2.0             zip_2.2.0                
+[178] bluster_1.2.1             ggsignif_0.6.3            curl_4.3.2               
+[181] minqa_1.2.4               leiden_0.3.9              jquerylib_0.1.4          
+[184] DO.db_2.9                 Matrix_1.3-4              qvalue_2.24.0            
+[187] TH.data_1.0-10            RcppAnnoy_0.0.19          iterators_1.0.13         
+[190] TMB_1.7.21                htmlwidgets_1.5.4         beachmat_2.8.1           
+[193] polyclip_1.10-0           shadowtext_0.0.8          gridGraphics_0.5-1       
+[196] rvest_1.0.1               ComplexHeatmap_2.8.0      mgcv_1.8-36              
+[199] globals_0.14.0            patchwork_1.1.1           codetools_0.2-18         
+[202] lubridate_1.7.10          GO.db_3.13.0              metapod_1.0.0            
+[205] gtools_3.9.2              prettyunits_1.1.1         dbplyr_2.1.1             
+[208] gtable_0.3.0              DBI_1.1.1                 git2r_0.28.0             
+[211] highr_0.9                 ggfun_0.0.3               tensor_1.5               
+[214] httr_1.4.2                KernSmooth_2.23-20        stringi_1.7.4            
+[217] progress_1.2.2            reshape2_1.4.4            farver_2.1.0             
+[220] annotate_1.70.0           ggtree_3.0.4              xml2_1.3.2               
+[223] colorRamps_2.3            boot_1.3-28               BiocNeighbors_1.10.0     
+[226] lme4_1.1-27.1             geneplotter_1.70.0        ggplotify_0.1.0          
+[229] scattermore_0.7           DESeq2_1.32.0             bit_4.0.4                
+[232] scatterpie_0.1.7          spatstat.data_2.1-0       ggraph_2.0.5             
+[235] pkgconfig_2.0.3           babelgene_21.4            lmerTest_3.1-3           
+[238] rstatix_0.7.0             knitr_1.34               </code></pre>
 </div>
 </div>
 

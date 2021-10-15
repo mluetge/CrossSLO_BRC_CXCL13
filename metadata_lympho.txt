@@ -1,0 +1,7 @@
+dataset	SLO	cond	batch
+5_20210729_Mu_LN_D14VSV_Bcells_v3	LN	immunized	Bcells
+6_20210729_Mu_PP_D14VSV_Bcells_v3	PP	immunized	Bcells
+7_20210729_Mu_Spl_D14VSV_Bcells_v3	Spleen	immunized	Bcells
+8_20210729_Mu_LN_D14VSV_TcellsMacs_v3	LN	immunized	Tcells
+9_20210729_Mu_PP_D14VSV_TcellsMacs_v3	PP	immunized	Tcells
+10_20210729_Mu_Spl_D14VSV_TcellsMacs_v3	Spleen	immunized	Tcells

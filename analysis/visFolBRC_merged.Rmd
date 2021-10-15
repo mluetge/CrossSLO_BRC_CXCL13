@@ -47,8 +47,8 @@ suppressPackageStartupMessages({
 ```{r set dir}
 basedir <- here()
 seurat <- readRDS(file=paste0(basedir, "/data/folBRC_allSLO_seurat.rds"))
-seurat <-rerunSeurat3(seurat)
-saveRDS(seurat, file=paste0(basedir, "/data/folBRC_allSLO_seurat.rds"))
+#seurat <-rerunSeurat3(seurat)
+#saveRDS(seurat, file=paste0(basedir, "/data/folBRC_allSLO_seurat.rds"))
 
 colPal <- c("#87c5af", "#94033b", "#fc8f3b", "#2580fe", "#514e72")
 names(colPal) <- c("LZFDC", "MRC", "TBRC","DZFDC","PRC2")
@@ -116,6 +116,9 @@ seuratSub <- RunUMAP(object = seuratSub,
                      reduction = "pca",
                      dims = 1:20)
 
+## save subsampled object
+saveRDS(seuratSub, file= paste0(basedir,
+                                "/data/folBRC_allSLO_subSampled_seurat.rds"))
 ```
 
 ### clusterlabel

@@ -49,6 +49,7 @@ suppressPackageStartupMessages({
   library(enrichplot)
   library(msigdbr)
   library(muscat)
+  library(ggpubr)
 })
 
 ```
@@ -262,22 +263,22 @@ names(conservedMarker) <- clVec
 conservedMarkerDat <- do.call("rbind", conservedMarker) %>% 
   rownames_to_column(., var="long") %>% 
   mutate(ensID=gsub("^[^\\.]*\\.", "", long)) %>% 
-  mutate(label=gsub("^.*\\.", "", ensID)) %>% 
-  filter(PP_p_val_adj < 0.01 & Spleen_p_val_adj < 0.01 & LN_p_val_adj < 0.01) %>% 
-  filter(!duplicated(ensID))
+  mutate(label=gsub("^.*\\.", "", ensID)) #%>% 
+#  filter(PP_p_val_adj < 0.01 & Spleen_p_val_adj < 0.01 & LN_p_val_adj < 0.01) %>% 
+#  filter(!duplicated(ensID))
 
 
-DoHeatmap(seurat, features = conservedMarkerDat$ensID, group.by = "clusterLabel", 
-          group.colors = colPal, slot = 'scale.data', label = T,
-          disp.min = -1, disp.max = 1.5, draw.lines = F) +
-  scale_fill_gradientn(colors=colorRampPalette(c("#45628f", "#F7F7F7", "#de425b"))(30)) +
-  scale_y_discrete(breaks=conservedMarkerDat$ensID, labels=conservedMarkerDat$label)
+#DoHeatmap(seurat, features = conservedMarkerDat$ensID, group.by = "clusterLabel", 
+#          group.colors = colPal, slot = 'scale.data', label = T,
+#          disp.min = -1, disp.max = 1.5, draw.lines = F) +
+#  scale_fill_gradientn(colors=colorRampPalette(c("#45628f", "#F7F7F7", "#de425b"))(30)) +
+#  scale_y_discrete(breaks=conservedMarkerDat$ensID, labels=conservedMarkerDat$label)
 
 ```
 
 
 ### only markers that diff up in all pairwise comparisons
-```{r highly conserved makers, fig.height=8, fig.width=14}
+```{r highly conserved makers, eval=FALSE, fig.height=8, fig.width=14, include=FALSE}
 
 clVec <- levels(seurat$clusterLabel)
 highlyConservedMarker <- lapply(clVec, function(cl){
@@ -318,8 +319,8 @@ DoHeatmap(seurat, features = hConservedMarkerDat$gene, group.by = "clusterLabel"
 clVec <- levels(seurat$clusterLabel)
 GOcons <- lapply(clVec, function(cl){
   conservedMarkerDatSub <- conservedMarkerDat %>% 
-    filter(subset == cl) %>% mutate(ENS=gsub("\\..*$", "", ensID)) %>% 
-    slice_min(., max_pval, n=200)
+    filter(subset == cl) %>% mutate(ENS=gsub("\\..*$", "", ensID)) #%>% 
+    #slice_min(., max_pval, n=200)
   egoSS <- enrichGO(gene      = unique(conservedMarkerDatSub$ENS),
                 OrgDb         = org.Mm.eg.db,
                 keyType       = 'ENSEMBL',
@@ -339,20 +340,30 @@ names(GOcons) <- clVec
 
 
 ### vis summary all
-```{r vis summary, fig.height=8, fig.width=11}
+```{r vis summary, fig.height=9, fig.width=12}
 
-selGO <- c("LZFDC.GO:0001818","LZFDC.GO:0007159","LZFDC.GO:0032653",
-           "LZFDC.GO:0002822","LZFDC.GO:0070661",
-           "DZFDC.GO:0002688", "DZFDC.GO:0048259", "DZFDC.GO:0030336",
-           "MRC.GO:0050673", "MRC.GO:0007015",
-           "TBRC.GO:005092", "TBRC.GO:0035455", "TBRC.GO:0031295",
-           "TBRC.GO:0006959","TBRC.GO:0032612",
-           "PRC2.GO:0030198", "PRC2.GO:0035265", "PRC2.GO:0031589",
-           "PRC2.GO:0032755", "PRC2.GO:0032640")
+## table to select pathways
+GOconsDat <- do.call("rbind", GOcons)
+#write.table(GOconsDat, quote=F, row.names = T, col.names = T, sep= "\t",
+#            file = paste0(basedir, "/data/GSEA/SubsetSpecificGO.txt"))
+	
+
+selGO <- c("LZFDC.GO:0006898","LZFDC.GO:0007249","LZFDC.GO:0022407",
+           "LZFDC.GO:0019884","LZFDC.GO:0008593", "LZFDC.GO:0032606",
+           "LZFDC.GO:0071559",
+           "DZFDC.GO:0097529", "DZFDC.GO:0001516", "DZFDC.GO:0071621",
+           "MRC.GO:0097529", "MRC.GO:0071774",
+           "MRC.GO:0007229", 
+           "TBRC.GO:0002407", "TBRC.GO:0002548", "TBRC.GO:0031295",
+           "TBRC.GO:0032612","TBRC.GO:0006959", "TBRC.GO:0002460",
+           "PRC2.GO:0030198", "PRC2.GO:0061448", "PRC2.GO:0045765",
+           "PRC2.GO:0090287", "PRC2.GO:0048762")
 
 
 GOconsDat <- do.call("rbind", GOcons) %>% rownames_to_column(., var="IDlab") %>% 
-  filter(IDlab %in% selGO) %>% 
+  filter(IDlab %in% selGO)
+GOconsDat$subset <- factor(GOconsDat$subset, levels=c("PRC2", "TBRC", "MRC", "DZFDC","LZFDC"))
+GOconsDat <- GOconsDat %>% 
   arrange(., Count) %>% arrange(., subset) %>%
   mutate(nom=as.numeric(gsub("\\/.*", "", GeneRatio))) %>% 
   mutate(denom=as.numeric(gsub(".*\\/", "", GeneRatio))) %>% 
@@ -379,6 +390,25 @@ ggplot(GOconsDat, aes(x=factor(Description, level= level_order), y=geneRatio)) +
   theme_minimal() +
   theme(panel.border = element_rect(fill = NA), 
         panel.grid = element_blank(), axis.title.y = element_blank())
+```
+
+
+```{r fig.height=8, fig.width=18}
+
+GOconsDat <- GOconsDat %>% mutate(qscore=-log(p.adjust, base=10)) %>% 
+  mutate(DescriptionLab = paste0(subset, ": ", Description))
+p <- ggbarplot(GOconsDat, x = "DescriptionLab", y = "qscore",
+          fill = "subset",               
+          color = "subset",            
+          palette = colPal,            
+          sort.val = "asc",           
+          sort.by.groups = TRUE      
+          #x.text.angle = 90           
+          ) + 
+  rotate()
+p
+
+
 ```
 
 

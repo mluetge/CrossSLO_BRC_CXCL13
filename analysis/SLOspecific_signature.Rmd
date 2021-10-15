@@ -48,6 +48,7 @@ suppressPackageStartupMessages({
   library(enrichplot)
   library(msigdbr)
   library(muscat)
+  library(ggpubr)
 })
 
 ```
@@ -303,14 +304,30 @@ orgMarker <- lapply(orgVec,
     MRCgenes <- cwDEgenes[["MRC"]] %>% filter(cluster==slo)
     LZFDCgenes <- cwDEgenes[["LZFDC"]] %>% filter(cluster==slo)
     DZFDCgenes <- cwDEgenes[["DZFDC"]] %>% filter(cluster==slo)
-    all <- intersect(intersect(intersect(TBRCgenes$gene, MRCgenes$gene),
-                               LZFDCgenes$gene), DZFDCgenes$gene)
+    PRC2genes <- cwDEgenes[["PRC2"]] %>% filter(cluster==slo)
+    all <- intersect(intersect(intersect(intersect(TBRCgenes$gene, MRCgenes$gene),
+                               LZFDCgenes$gene), DZFDCgenes$gene), PRC2genes$gene)
   }
 )
 
 names(orgMarker) <- orgVec
 ## orgMarker = DE genes in all shared folicular BRC subsets
 ## (adj_pVal < 0.01, min_pct = 0.1, log_FC > 0.25)
+
+orgMarker <- lapply(orgVec, 
+                    function(slo){
+                      GrpGeneList <- lapply(grpVec, function(grp){
+                        genesGrp <- cwDEgenes[[grp]] %>% filter(cluster==slo)
+                        })
+                      SLOgenes <- data.frame(do.call("rbind", GrpGeneList)) %>% 
+                        group_by(gene) %>% summarise(cnt=n()) %>%
+                        filter(cnt>=(length(grpVec)-1))
+                      out <- SLOgenes$gene
+                      }
+                    )
+
+names(orgMarker) <- orgVec
+
 ```
 
 ## vis all marker conserved across all subsets {.tabset}
@@ -393,6 +410,10 @@ DoHeatmap(seurat, features = selFeatures$ensID, group.by = "SLO",
 orgMarkerDat <- data.frame(do.call("cbind", orgMarker)) %>% 
   gather(., SLO, gene, LN:Spleen) %>% mutate(EnsID = gsub("\\..*$", "", gene))
 
+write.table(orgMarkerDat,
+            file = paste0(basedir, "/data/GSEA/SLOspecificGenes.txt"),
+            sep="\t", quote = F, row.names = F, col.names = T)
+
 orgMarkerDatLN <- orgMarkerDat %>% filter(SLO == "LN")
 egoLN <- enrichGO(gene         = unique(orgMarkerDatLN$EnsID),
                 OrgDb         = org.Mm.eg.db,
@@ -419,8 +440,8 @@ egoPP <- enrichGO(gene         = unique(orgMarkerDatPP$EnsID),
                 keyType       = 'ENSEMBL',
                 ont           = "BP",
                 pAdjustMethod = "BH",
-                pvalueCutoff  = 0.05,
-                qvalueCutoff  = 0.05)
+                pvalueCutoff  = 0.5,
+                qvalueCutoff  = 0.5)
 egoPP <- setReadable(egoPP, OrgDb = org.Mm.eg.db)
 dotplot(egoPP, showCategory=30)
 cnetplot(egoPP, node_label="all") 
@@ -443,13 +464,23 @@ egoSP <- setReadable(egoSP, OrgDb = org.Mm.eg.db)
 dotplot(egoSP, showCategory=30)
 cnetplot(egoSP, node_label="all") 
 
+goplot(egoSP)
+egoSP2 <- pairwise_termsim(egoSP)
+treeplot(egoSP2)
+emapplot(egoSP2)
+upsetplot(egoSP2)
+egoSP2 <- simplify(egoSP2, cutoff=0.7, by="p.adjust", select_fun=min)
+emapplot(egoSP2)
+treeplot(egoSP2)
+dotplot(egoSP, showCategory=30)
 
 ```
 
 
-### vis summary all
+### vis summary all {.tabset}
+#### Dotplot 
 ```{r vis summary, fig.height=6, fig.width=7}
-selLN <- c("GO:0048706", "GO:1901342", "GO:2000146","GO:0002920","GO:0009611")
+selLN <- c("GO:0003002", "GO:0007389", "GO:0010464","GO:1901342","GO:0009611")
 selPW_LN <- egoLN@result %>% filter(qvalue<0.05) %>% 
   filter(ID %in% selLN) %>%
   mutate(IDfac= factor(ID, levels = selLN)) %>% 
@@ -458,7 +489,7 @@ selPW_LN <- egoLN@result %>% filter(qvalue<0.05) %>%
   mutate(SLO="LN") %>% 
   arrange(., Count)
 
-selSP <- c("GO:0019882", "GO:0030098", "GO:0048536", "GO:0042692", "GO:0045766")
+selSP <- c("GO:0019882", "GO:0048536", "GO:1903522", "GO:0045766","GO:0055072")
 selPW_SP <- egoSP@result %>% filter(qvalue<0.05) %>% 
   filter(ID %in% selSP) %>% 
   mutate(IDfac= factor(ID, levels = selSP)) %>% 
@@ -467,8 +498,8 @@ selPW_SP <- egoSP@result %>% filter(qvalue<0.05) %>%
   mutate(SLO="Spleen") %>% 
   arrange(., Count)
 
-selPP <- c("GO:0016114", "GO:0042573","GO:0048562", "GO:0048546", "GO:0030514")
-selPW_PP <- egoPP@result %>% filter(qvalue<0.05) %>% 
+selPP <- c("GO:0071604", "GO:0042573","GO:0006694","GO:0030510", "GO:0048562")
+selPW_PP <- egoPP@result %>% filter(qvalue<1) %>% 
   filter(ID %in% selPP) %>% 
   mutate(IDfac= factor(ID, levels = selPP)) %>% 
   arrange(., IDfac) %>% 
@@ -502,6 +533,80 @@ ggplot(selPW_all, aes(x=factor(Description, level= level_order), y=geneRatio)) +
   theme_minimal() +
   theme(panel.border = element_rect(fill = NA), 
         panel.grid = element_blank(), axis.title.y = element_blank())
+```
+
+#### Network 
+```{r network}
+selGOLN <- c("GO:0009611", "GO:0003002", "GO:0010464", "GO:1901342")
+selGOPP <- c("GO:0042573","GO:0006694", "GO:0030510", "GO:0048562")
+selGOSP <- c("GO:0019882", "GO:1903522", "GO:0055072", "GO:0048536")
+selGOall <- c(selGOLN, selGOPP, selGOSP)
+  
+egoLN@result <- egoLN@result %>% filter(ID %in% selGOLN) %>% mutate(SLO = "LN")
+cnetplot(egoLN, node_label="all", 
+        color_category="#440154FF", 
+        color_gene="#a473b0",
+        cex_label_gene = 0.5) 
+
+egoPP@result <- egoPP@result %>% filter(ID %in% selGOPP) %>% mutate(SLO = "PP")
+cnetplot(egoPP, node_label="all", 
+        color_category="#21908CFF", 
+        color_gene="#7cbab8",
+        cex_label_gene = 0.5) 
+
+egoSP@result <- egoSP@result %>% filter(ID %in% selGOSP) %>%
+  mutate(SLO = "Spleen")
+cnetplot(egoSP, node_label="all", 
+        color_category="#FEB24C", 
+        color_gene="#e5c9a2",
+        cex_label_gene = 0.5) 
+
+```
+
+
+#### barplot
+```{r}
+
+egoResAll <- rbind(egoLN@result, egoPP@result, egoSP@result) %>%
+  mutate(qscore=-log(p.adjust, base=10)) 
+p <- ggbarplot(egoResAll, x = "Description", y = "qscore",
+          fill = "SLO",               
+          color = "SLO",            
+          palette = colorSLO,            
+          sort.val = "asc",           
+          sort.by.groups = TRUE      
+          #x.text.angle = 90           
+          ) + 
+  rotate()
+p
+
+
+```
+
+
+#### compare cluster
+```{r compare cluster}
+
+orgMarkerList <- lapply(orgVec, function(slo){
+  selMarker <- orgMarkerDat %>% filter(SLO == slo)
+  out <- selMarker$EnsID
+})
+names(orgMarkerList) <- orgVec
+
+ck <- compareCluster(geneCluster = orgMarkerList,
+                     fun = enrichGO,
+                     OrgDb = org.Mm.eg.db,
+                     keyType = 'ENSEMBL',
+                     ont = "BP",
+                     pvalueCutoff  = 0.1,
+                     qvalueCutoff  = 0.1
+)
+ck <- setReadable(ck, OrgDb = org.Mm.eg.db)
+ck@compareClusterResult <- ck@compareClusterResult %>% filter(ID %in% selGOall)
+
+
+cnetplot(ck) 
+
 ```
 
 
