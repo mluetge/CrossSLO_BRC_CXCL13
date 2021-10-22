@@ -1,0 +1,221 @@
+---
+title: "create input files for cellphonedb"
+author: ""
+date: ""
+output: 
+  html_document:
+    keep_md: true
+    toc: true
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, echo = FALSE}
+options(width = 100)
+knitr::opts_chunk$set(warning = FALSE, message = FALSE, dev = c("png", "pdf"))
+seed <- 1234
+```
+
+# Load packages
+
+```{r load-packages, warning = FALSE}
+suppressPackageStartupMessages({
+  library(scater)
+  library(ensembldb)
+  library(dplyr)
+  library(reshape2)
+  library(Matrix)
+  library(org.Mm.eg.db)
+  library(purrr)
+  library(scran)
+  library(Seurat)
+  library(mclust)
+  library(tidyverse)
+  library(biomaRt)
+  library(here)
+})
+```
+
+
+## load input data
+```{r input data}
+basedir <- here()
+seuratLY <- readRDS(file = paste0(basedir, 
+                              "/data/lympho/allSamples_mergedLab_seurat.rds"))
+seuratBRC <- readRDS(file=paste0(basedir, "/data/folBRC_allSLO_seurat.rds"))
+
+## Each SLO individually
+seuratLY$label_plus_SLO <- paste0(seuratLY$clusterLabel, "_", seuratLY$SLO)
+
+### only imm BRCs
+seuratBRC <- subset(seuratBRC, cond == "immunized")
+
+## plot input data
+Idents(seuratLY) <- seuratLY$clusterLabel
+DimPlot(seuratLY, reduction = "umap")+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+Idents(seuratBRC) <- seuratBRC$clusterLabel
+DimPlot(seuratBRC, reduction = "umap")+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+
+```
+
+# filter cells and assign cluster
+```{r filter and assign cluster to cells}
+
+seuratBRC$group <- "BRC"
+seuratLY$group <- "LYMPHO"
+
+## only cluster XYZ
+## seuratLY <- subset(seuratLY, idents="XYZ")
+
+## subsample seuratLY
+Idents(seuratLY) <- seuratLY$label_plus_SLO
+seuratLY <- subset(seuratLY, downsample = 200) ## uncomment to subsample in R script
+
+## subsample seuratBRC
+Idents(seuratBRC) <- seuratBRC$SLO_plus_clusterlabel
+seuratBRC <- subset(seuratBRC, downsample = 200) ## uncomment to subsample in R script
+
+
+Idents(seuratLY) <- seuratLY$clusterLabel
+Idents(seuratBRC) <- seuratBRC$clusterLabel
+  
+## merge
+### fix assay and gene names
+sceBRC <- as.SingleCellExperiment(seuratBRC)
+sceLY <- as.SingleCellExperiment(seuratLY)
+
+genesBRC <- data.frame(geneB=rownames(sceBRC)) %>% 
+  mutate(ensID=gsub("\\..*","",geneB))
+genesLY <- data.frame(geneL=rownames(sceLY)) %>% 
+  mutate(ensID=gsub("\\..*","",geneL))
+genesBoth <- full_join(genesBRC, genesLY, by="ensID") %>% 
+  mutate(gene=ifelse(is.na(geneL), geneB, geneL)) %>% 
+  dplyr::select(ensID, gene)
+genesBRC <- genesBRC %>% left_join(., genesBoth, by="ensID")
+genesLY <- genesLY %>% left_join(., genesBoth, by="ensID")
+
+rownames(sceBRC) <- genesBRC$gene
+rownames(sceLY) <- genesLY$gene
+
+seuratBRC <- as.Seurat(sceBRC)
+seuratLY <- as.Seurat(sceLY)
+
+seuratBRC@assays$RNA <- seuratBRC@assays$originalexp
+seuratLY@assays$originalexp <- seuratLY@assays$RNA
+
+seuratMerge <- merge(seuratBRC, seuratLY)
+seuratMerge <- ScaleData(seuratMerge, assay = "RNA")
+seuratMerge <- ScaleData(seuratMerge, assay = "originalexp")
+
+remove(seuratBRC)
+remove(seuratLY)
+
+sceMerge <- as.SingleCellExperiment(seuratMerge)
+(table(sceMerge@colData$group))
+
+## assign celltype
+colData(sceMerge)$clusterFinal <- paste0(colData(sceMerge)$group, "_", 
+                                         colData(sceMerge)$clusterLabel)
+(table(sceMerge@colData$clusterFinal))
+
+```
+
+
+# create count matrix for cellphonedb
+```{r create cnt mat}
+
+## set human ensIDs as rownames
+ensIDs <- gsub("\\..*","",rownames(sceMerge))
+
+## map to human orthologs
+mart2 <- useMart("ensembl", dataset="hsapiens_gene_ensembl")
+mart1 = useMart("ensembl", dataset="mmusculus_gene_ensembl") 
+
+# human / mouse
+geneIDS_hum <- getLDS(attributes=c("ensembl_gene_id"),
+           filters="ensembl_gene_id", values=ensIDs, mart=mart1,
+           attributesL=c("ensembl_gene_id"), martL=mart2)
+
+geneIDsMatch <- as.data.frame(ensIDs) %>% 
+  left_join(., geneIDS_hum, by=c("ensIDs"="Gene.stable.ID")) 
+geneIDsMatch$Gene.stable.ID.1[
+  which(is.na(geneIDsMatch$Gene.stable.ID.1))] <- "unknown"
+geneIDsMatch <- geneIDsMatch[!duplicated(geneIDsMatch$ensIDs),]
+rowData(sceMerge)$humGene <- geneIDsMatch$Gene.stable.ID.1
+dim(sceMerge)
+sceMerge <- sceMerge[which(rowData(sceMerge)$humGene != "unknown"),] 
+dim(sceMerge)
+
+## filter for SLO and write cnt mat plus metadat
+lapply(unique(sceMerge$SLO), function(slo){
+  sceSLO <- sceMerge[,which(sceMerge@colData$SLO == slo)]
+  cellPhoneSLO <- cbind(rowData(sceSLO)$humGene, as.matrix(logcounts(sceSLO)))
+  colnames(cellPhoneSLO)[1] <- "gene"
+  write.table(cellPhoneSLO, 
+              file = paste0(basedir,
+                            "/data/cellphonedb/folBRCimm_LYMsub_",slo,
+                            "_countMatrix.txt"),
+              row.names = FALSE, col.names = TRUE, quote = FALSE, sep = "\t")
+
+  metaDatSLO <- as.data.frame(cbind(colnames(sceSLO),
+                                    colData(sceSLO)$clusterFinal))
+  colnames(metaDatSLO) <- c("Cell", "cell_type")
+  write.table(metaDatSLO, 
+              file = paste0(basedir,
+                            "/data/cellphonedb/folBRCimm_LYMsub_",slo,
+                            "_metaData.txt"),
+              row.names = FALSE, col.names = TRUE, quote = FALSE, sep = "\t")
+
+
+})
+
+
+
+```
+
+
+## session info
+```{r session info}
+sessionInfo()
+date()
+```
+
+
+
+cd /Users/mechthildluetge/Projects/scRNAseq/ILC_Hungwei/data/cellphonedb
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+
+## run cellphonedb
+### build database
+cellphonedb database generate --user-interactions custom_interaction_file.csv
+
+##run statistical analysis
+## subsampling in R script.. 
+cellphonedb method statistical_analysis /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/folBRC_LYMsub_LN_metaData.txt /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/folBRC_LYMsub_LN_countMatrix.txt --output-path /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/outLN/ --database /Users/mechthildluetge/Projects/scRNAseq/ILC_Hungwei/data/cellphonedb/out/cellphonedb_user_2021-10-05-09_17.db --debug-seed 3 --iterations 100
+
+cellphonedb method statistical_analysis /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/folBRC_LYMsub_PP_metaData.txt /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/folBRC_LYMsub_PP_countMatrix.txt --output-path /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/outPP/ --database /Users/mechthildluetge/Projects/scRNAseq/ILC_Hungwei/data/cellphonedb/out/cellphonedb_user_2021-10-05-09_17.db --debug-seed 3 --iterations 100
+
+cellphonedb method statistical_analysis /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/folBRC_LYMsub_Spleen_metaData.txt /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/folBRC_LYMsub_Spleen_countMatrix.txt --output-path /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/outSP/ --database /Users/mechthildluetge/Projects/scRNAseq/ILC_Hungwei/data/cellphonedb/out/cellphonedb_user_2021-10-05-09_17.db --debug-seed 3 --iterations 100
+
+
+Count network interactions:
+cellphonedb plot heatmap_plot /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/folBRC_LYMsub_LN_metaData.txt --pvalues-path /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/outLN/pvalues.txt --output-path /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/outLN
+cellphonedb plot heatmap_plot /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/folBRC_LYMsub_PP_metaData.txt --pvalues-path /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/outPP/pvalues.txt --output-path /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/outPP
+cellphonedb plot heatmap_plot /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/folBRC_LYMsub_Spleen_metaData.txt --pvalues-path /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/outSP/pvalues.txt --output-path /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/outSP
+
+We use CellPhoneDB as tool to predict cellular communication between SILT FRCs and ILC populations in our dataset. In brief, pairs of known interacting ligands and receptors are derived from public databases and cell types are analysed for enriched receptor–ligand interactions based on expression of a receptor by one cell type and a ligand by another cell type. 
+
+deactivate  

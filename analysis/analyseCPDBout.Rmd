@@ -48,19 +48,20 @@ names(colBRC) <- c("LZFDC", "MRC", "TBRC","DZFDC","PRC2")
 #                         col_names = T)
 
 colLab <- c("#a0b9c4", "#78abb7", "#567a83", "#3c454a", "#9eabb1",
-            "#924440", 
+            "#924440", "#eab562",
             "#f1d75f", "#b5a147", "#786c30")
 
 
 names(colLab) <- c("naiveBcells", "LZBcells", "DZshmBcells", "proDZ",
                    "plasmaCells", 
-                   "Tfh",  
+                   "Tfh", "DCs",
                    "mdMacrophages", "trMacrophages", "infMacrophages")
 
 
 ordLymph <- c("LYMPHO_naiveBcells", "LYMPHO_LZBcells", "LYMPHO_DZshmBcells",
               "LYMPHO_proDZ", "LYMPHO_plasmaCells","LYMPHO_trMacrophages",
-              "LYMPHO_mdMacrophages", "LYMPHO_infMacrophages", "LYMPHO_Tfh")      
+              "LYMPHO_mdMacrophages", "LYMPHO_infMacrophages",
+              "LYMPHO_DCs", "LYMPHO_Tfh")      
 
 ordBRC <- c("LZFDC", "DZFDC", "MRC", "TBRC", "PRC2")
 
@@ -132,7 +133,7 @@ names(intList) <- sloVec
 ## select lympho populations to exclude from downstream analysis
 selPop <- c("LYMPHO_Cd8Tcells", "LYMPHO_NKcells", "LYMPHO_Th17",
             "LYMPHO_Th1Th2", "LYMPHO_naiveCd4Tcells", "LYMPHO_proCd4Tcells",
-            "LYMPHO_DCs", "LYMPHO_Neutrophils")
+            "LYMPHO_Neutrophils")
 
 ## filter for sign int
 signInt <- lapply(intList, function(all){
@@ -303,9 +304,14 @@ pheatmap(t(cntPairConsmat), scale="row" ,treeheight_row = 0, cluster_rows = F,
 ## dotplot with cons subset specific int
 ```{r dotplot cons subSpec int, fig.height=9, fig.width=6}
 
+## treat MRC and DZFDC as same for sel
+signIntDatOrd_mod <- signIntDatOrd %>%
+  mutate(cellA=ifelse(cellA=="BRC_MRC", "BRC_DZFDC", cellA)) %>% 
+  mutate(CellsInt=paste0(cellA, "|", cellB))
+
 
 ## subset specific interactions that conserved across SLOs
-ConsIntSubSpec <- signIntDatOrd %>% group_by(intPair, cellB, SLO) %>% 
+ConsIntSubSpec <- signIntDatOrd_mod %>% group_by(intPair, cellB, SLO) %>% 
   summarise(cntIntP=n()) %>% filter(cntIntP == 1) %>% 
   mutate(sel=paste0(intPair, "_", cellB))
 ConsIntSubSpecFil <- signIntCons %>%
@@ -314,11 +320,6 @@ ConsIntSubSpecFil <- signIntCons %>%
   filter(sel %in% ConsIntSubSpec$sel) 
 
 ## filter for sign int
-selInt <- lapply(intList, function(all){
-  allSig <- all %>% filter(intPair %in% ConsIntSubSpecFil$intPair) 
-})
-names(selInt) <- sloVec
-
 selIntDat <- data.frame(do.call("rbind", intList))
 
 ## reorder int to always BRC to LYMPHO and remove selPop 
