@@ -68,7 +68,7 @@ ordBRC <- c("LZFDC", "DZFDC", "MRC", "TBRC", "PRC2")
 ```
 
 
-## significant interactions CellPhoneDB {.tabset}
+## count significant interactions CellPhoneDB {.tabset}
 
 ### format data
 ```{r format data wt}
@@ -300,8 +300,8 @@ pheatmap(t(cntPairConsmat), scale="row" ,treeheight_row = 0, cluster_rows = F,
 ```
 
 
-
-## dotplot with cons subset specific int
+## vis conserved int {.tabset}
+### dotplot with cons subset specific int
 ```{r dotplot cons subSpec int, fig.height=9, fig.width=6}
 
 ## treat MRC and DZFDC as same for sel
@@ -372,6 +372,76 @@ p
 
 
 ```
+
+
+### dotplot with subset specific int conserved in min 2 SLO
+
+```{r dotplot min 2 SLO subSpec int, fig.height=12, fig.width=6}
+
+# ## interactions conserved across all 3 SLOs
+# ## for MRC + DZFDC less stringend as we've fewer cells in PP (cut >=2)
+# signIntCons <- signIntDatOrd %>% 
+#   dplyr::select(intPair, cellA, cellB, groupA, groupB) %>% 
+#   group_by(intPair, cellA, cellB, groupA, groupB) %>%
+#   summarise(cnt=n()) %>% 
+#   filter(ifelse(cellA %in% c("BRC_DZFDC", "BRC_MRC"), cnt>1, cnt == 3))
+
+
+## interactions conserved across at least 2 SLOs
+signIntCons <- signIntDatOrd %>% 
+  dplyr::select(intPair, cellA, cellB, groupA, groupB) %>% 
+  group_by(intPair, cellA, cellB, groupA, groupB) %>%
+  summarise(cnt=n()) %>% 
+  filter(cnt > 1)
+
+signIntConsSel <- signIntCons %>% ungroup() %>% 
+  group_by(intPair, cellB) %>%
+  summarise(cnt=n()) %>% 
+  filter(cnt == 1)
+
+signIntConsSpec <- signIntCons %>% ungroup() %>% 
+  left_join(., signIntConsSel, by=c("intPair", "cellB")) %>% 
+  filter(!is.na(cnt.y)) %>% 
+  mutate(sel2=paste0(intPair, "_", cellA))
+
+
+selIntDatOrd_mean <- selIntDatOrd %>%
+  filter(intPair %in% signIntConsSpec$intPair) %>% 
+  group_by(intPair, CellsInt, cellA, cellB) %>% 
+  summarise(meanSLO=mean(mean), meanPval=mean(pVal)) %>% 
+  mutate(logPval=-log(meanPval)) %>% 
+  mutate(sel2=paste0(intPair, "_", cellA)) %>% 
+  filter(sel2 %in% signIntConsSpec$sel2) %>% 
+  mutate(col=factor(gsub(".*_", "", cellA), levels = ordBRC)) %>% 
+  arrange(., col)
+
+selIntDatOrd_mean$logPval[which(selIntDatOrd_mean$logPval > 4)] <- 4
+
+## remove dupl intPairs
+dupPairSum <- selIntDatOrd_mean %>% group_by(intPair, cellA) %>% 
+  summarise(cnt=n())
+dupPair <- dupPairSum$intPair[duplicated(dupPairSum$intPair)]
+selIntDatOrd_mean <-  selIntDatOrd_mean %>% filter(!intPair %in% dupPair)
+                             
+p <- ggplot(selIntDatOrd_mean, aes(x=cellB,y=intPair)) +
+  geom_point(aes(size=logPval,color=col)) +
+  scale_color_manual(values=colBRC) +
+  scale_radius(range = c(0, 4)) +
+  scale_y_discrete(limits=unique(selIntDatOrd_mean$intPair)) +
+  scale_x_discrete(limits=ordLymph) +
+  theme_bw() +
+  theme(panel.grid.minor = element_blank(),
+        panel.grid.major = element_blank(),
+        axis.text=element_text(size=10, colour = "black"),
+        axis.text.x = element_text(angle = 90, hjust = 1),
+        axis.title=element_blank(),
+        panel.border = element_rect(size = 0.7, linetype = "solid",
+                                    colour = "black"))
+p
+
+
+```
+
 
 
 ## session info

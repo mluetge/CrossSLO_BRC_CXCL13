@@ -24,5 +24,6 @@ Merge lymphocyte data: [link](mergeData_lympho.html)
 Characterization lymphocyte data: [link](CharacterizeLympho.html)  
 
 ## CellPhoneDB analysis
-create CellPhoneDB input: [link](createCPDBinput.html)  
-visualize CellPhoneDB out: [link](analyseCPDBout.html)  
+create CellPhoneDB input: [link](createCPDBinput_immOnly.html)  
+visualize CellPhoneDB out: [link](analyseCPDBoutImm.html)  
+visualize sel int: [link](CellPhoneDBout_selInt_imm.html)  

@@ -1,0 +1,523 @@
+---
+title: "process cellPhone ouput imm BRC - LYMPHO"
+author: ""
+date: ""
+output: 
+  html_document:
+    keep_md: true
+    toc: true
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, echo = FALSE}
+options(width = 100)
+knitr::opts_chunk$set(warning = FALSE, message = FALSE, dev = c("png", "pdf"))
+seed <- 1234
+```
+
+## Load packages
+
+```{r load-packages, warning = FALSE}
+suppressPackageStartupMessages({
+  library(tidyverse)
+  library(corrplot)
+  library(SummarizedExperiment)
+  library(RColorBrewer)
+  library(here)
+  library(ggsci)
+  library(pheatmap)
+  library(ggplot2)
+  library(reshape2)
+  library(viridis)
+  library(Seurat)
+  library(biomaRt)
+})
+```
+
+## set parameter
+```{r read input wt}
+basedir <- paste0(here(), "/data/")
+
+colorSLO <- c(viridis(3)[c(1,2)], brewer.pal(n=9, name="YlOrRd")[c(4)])
+names(colorSLO) <- c("LN", "PP", "SP")
+
+colBRC <- c("#87c5af", "#94033b", "#fc8f3b", "#2580fe", "#514e72")
+names(colBRC) <- c("LZFDC", "MRC", "TBRC","DZFDC","PRC2")
+
+# ## load selected intPairs
+# selIntPairs <- read_tsv(paste0(basedir, "/cellphonedb/selIntPairs2.txt"),
+#                         col_names = T)
+
+colLab <- c("#a0b9c4", "#78abb7", "#567a83", "#3c454a", "#9eabb1",
+            "#924440", "#eab562",
+            "#f1d75f", "#b5a147", "#786c30")
+
+
+names(colLab) <- c("naiveBcells", "LZBcells", "DZshmBcells", "proDZ",
+                   "plasmaCells", 
+                   "Tfh", "DCs",
+                   "mdMacrophages", "trMacrophages", "infMacrophages")
+
+
+ordLymph <- c("LYMPHO_naiveBcells", "LYMPHO_LZBcells", "LYMPHO_DZshmBcells",
+              "LYMPHO_proDZ", "LYMPHO_plasmaCells","LYMPHO_trMacrophages",
+              "LYMPHO_mdMacrophages", "LYMPHO_infMacrophages",
+              "LYMPHO_DCs", "LYMPHO_Tfh")      
+
+ordBRC <- c("LZFDC", "DZFDC", "MRC", "TBRC", "PRC2")
+
+```
+
+
+## read CellPhoneDB out 
+
+### format data
+```{r format data}
+
+sloVec <- c("LN", "PP", "SP")
+
+intList <- lapply(sloVec, function(slo){
+  means <- read_tsv(paste0(basedir, "cellphonedb/out", slo, "imm/means.txt"))
+  pVal <- read_tsv(paste0(basedir, "cellphonedb/out", slo, "imm/pvalues.txt"))
+
+  ### create intPairs
+  #### means
+  meansCut  <- means %>%
+    dplyr::select(-c(id_cp_interaction, partner_a, partner_b, gene_a, gene_b,
+              receptor_a, receptor_b, annotation_strategy, secreted, is_integrin,
+              interacting_pair))
+  rownames(meansCut) <- means$interacting_pair
+
+  #### pVal
+  pValCut  <- pVal %>%
+    dplyr::select(-c(id_cp_interaction, partner_a, partner_b, gene_a, gene_b,
+              receptor_a, receptor_b, annotation_strategy, secreted, is_integrin,
+              interacting_pair))
+  rownames(pValCut) <- pVal$interacting_pair
+  
+  #### cellA/cellB
+  CellNames <- data.frame(CellsInt = as.character(colnames(meansCut))) %>%
+    mutate(cellA=gsub("\\|.*","" ,CellsInt)) %>%
+    mutate(cellB=gsub("^.*\\|","" ,CellsInt)) %>% 
+    mutate(groupA=gsub("_.*","" ,CellsInt)) %>% 
+    mutate(groupB=gsub("_.*","",gsub("^.*\\|","" ,CellsInt))) 
+
+
+  ### summarize mean
+  meansCut_long <- meansCut %>% rownames_to_column(var="intPair") %>%
+    melt(., id.vars=c("intPair"), measure.vars=colnames(meansCut),
+         variable.name="CellsInt", value.name="mean") %>% 
+    left_join(., CellNames, by="CellsInt") %>% 
+    filter(!groupA == groupB)
+
+  ### summarize pVal
+  pValCut_long <- pValCut %>% rownames_to_column(var="intPair") %>%
+    melt(., id.vars=c("intPair"), measure.vars=colnames(meansCut),
+         variable.name="CellsInt", value.name="pVal") %>% 
+    left_join(., CellNames, by="CellsInt") %>% 
+    filter(!groupA == groupB)
+
+  allSum <- meansCut_long %>% mutate(pVal=pValCut_long$pVal) %>%
+    mutate(SLO = slo) %>% 
+    mutate(sign=ifelse(pVal<0.05, "p < 0.05", "p > 0.05"))
+
+})
+names(intList) <- sloVec
+
+
+```
+
+
+### filter and order
+```{r filter and order, fig.height=6, fig.width=6}
+
+## select lympho populations to exclude from downstream analysis
+selPop <- c("LYMPHO_Cd8Tcells", "LYMPHO_NKcells", "LYMPHO_Th17",
+            "LYMPHO_Th1Th2", "LYMPHO_naiveCd4Tcells", "LYMPHO_proCd4Tcells",
+            "LYMPHO_Neutrophils")
+
+## filter for sign int
+signInt <- lapply(intList, function(all){
+  allSig <- all %>% filter(pVal<0.05) 
+})
+names(signInt) <- sloVec
+
+signIntDat <- data.frame(do.call("rbind", signInt))
+
+## reorder int to always BRC to LYMPHO and remove selPop 
+reordInt <- signIntDat %>% filter(groupA=="LYMPHO") %>% 
+  mutate(intA=gsub("_.*", "", intPair)) %>% 
+  mutate(intB=gsub(".*_", "", intPair))
+reordIntFin <- data.frame(intPair=paste0(reordInt$intB, "_", reordInt$intA),
+                          CellsInt=paste0(reordInt$cellB, "|", reordInt$cellA),
+                          mean=reordInt$mean,
+                          cellA=reordInt$cellB,
+                          cellB=reordInt$cellA,
+                          groupA=reordInt$groupB,
+                          groupB=reordInt$groupA,
+                          pVal=reordInt$pVal,
+                          SLO=reordInt$SLO,
+                          sign=reordInt$sign)
+
+signIntDatOrd <- rbind(signIntDat[which(signIntDat$groupA=="BRC"),],
+                       reordIntFin) %>% 
+  filter(!cellB %in% selPop)
+
+
+```
+
+## selected int {.tabset}
+
+```{r load sel int}
+selInt <- readxl::read_xlsx(paste0(basedir,
+                                  "cellphonedb/selectedInt_Funct.xlsx"))
+selIntOrd <- selInt %>% arrange(., target, functGrp)
+```
+
+
+### across all {.tabset}
+
+#### Receptor on BRC
+
+```{r sel int across all receptor BRC, fig.height=14, fig.width=14}
+
+## only BRC to lympho
+selIntSub <- selIntOrd %>% filter(target == "BRC")
+
+myeloids <- c("LYMPHO_infMacrophages", "LYMPHO_mdMacrophages",
+              "LYMPHO_trMacrophages")
+GCbcells <- c("LYMPHO_DZshmBcells", "LYMPHO_LZBcells", "LYMPHO_proDZ")
+
+## conservation of int
+signIntCons <- signIntDatOrd %>% 
+  filter(intPair %in% selIntSub$intPair) %>% 
+  dplyr::select(intPair, cellA, cellB, groupA, groupB) %>% 
+  group_by(intPair, cellA, cellB, groupA, groupB) %>%
+  summarise(cnt=n()) %>% 
+  ungroup() %>% 
+  mutate(grpB = ifelse(cellB %in% myeloids, "myeloid cells",
+                         ifelse(cellB %in% GCbcells, "GC Bcells",
+                                gsub("LYMPHO_" ,"" ,cellB)))) 
+           
+signIntConsGrp <- signIntCons %>% 
+  group_by(intPair, cellA, grpB) %>% summarise(cnt = max(cnt))
+         
+### heatmap with cnts sel int across grouped lympho subset
+cntPairConsform <- signIntConsGrp %>%
+  mutate(BRC=gsub(".*_", "", cellA)) %>% 
+  mutate(LYMPHO=grpB) %>% 
+  mutate(cellsInt=paste0(BRC, "_", LYMPHO)) %>% 
+  ungroup(.) %>% 
+  dplyr::select(intPair, cellsInt, cnt) %>% 
+  spread(., cellsInt, cnt)
+cntPairConsmat <- cntPairConsform %>% dplyr::select(-intPair) %>% 
+  as.matrix(.)
+rownames(cntPairConsmat) <- cntPairConsform$intPair
+cntPairConsmat[is.na(cntPairConsmat)] <- 0
+  
+annotation_col <- data.frame(BRC=gsub("_.*","",colnames(cntPairConsmat))) 
+rownames(annotation_col) <- colnames(cntPairConsmat)  
+ann_colors <- list(BRC=colBRC)
+
+## order
+lympGrps <- data.frame(lympho=c("naiveBcells", "GC Bcells","plasmaCells",
+                                "myeloid cells", "DCs", "Tfh"))
+BRCgrps <- data.frame(BRC=names(colBRC))
+ordCellsInt <- expand.grid(lympGrps$lympho, BRCgrps$BRC) %>% 
+  mutate(cellsInt = paste0(Var2, "_", Var1))
+cntPairConsmat <- cntPairConsmat[selIntSub$intPair, ordCellsInt$cellsInt]
+
+## gaps
+gapR <- table(selIntSub$target)[[1]]
+gapCdat <- data.frame(BRC=gsub("_.*","",colnames(cntPairConsmat))) %>% 
+  group_by(., BRC) %>% summarize(cnt=n()) %>% mutate(cumSum=cumsum(cnt))
+
+pheatmap(cntPairConsmat, scale="none" ,treeheight_row = 0, cluster_rows = T, 
+         cluster_cols = F,
+         color = c("#faf4f4", "#e0cccf", "#c2989e", "#7c2431"),
+         annotation_col = annotation_col, cellwidth=15, cellheight=10,
+         annotation_colors = ann_colors,
+         gaps_row = gapR, gaps_col = gapCdat$cumSum)
+
+
+```
+
+
+#### Receptor on LYMPHO
+
+```{r sel int across all receptor lympho, fig.height=14, fig.width=14}
+
+## only lympho to BRC
+selIntSub <- selIntOrd %>% filter(target == "LYMPHO")
+
+myeloids <- c("LYMPHO_infMacrophages", "LYMPHO_mdMacrophages",
+              "LYMPHO_trMacrophages")
+GCbcells <- c("LYMPHO_DZshmBcells", "LYMPHO_LZBcells", "LYMPHO_proDZ")
+
+## conservation of int
+signIntCons <- signIntDatOrd %>% 
+  filter(intPair %in% selIntSub$intPair) %>% 
+  dplyr::select(intPair, cellA, cellB, groupA, groupB) %>% 
+  group_by(intPair, cellA, cellB, groupA, groupB) %>%
+  summarise(cnt=n()) %>% 
+  ungroup() %>% 
+  mutate(grpB = ifelse(cellB %in% myeloids, "myeloid cells",
+                         ifelse(cellB %in% GCbcells, "GC Bcells",
+                                gsub("LYMPHO_" ,"" ,cellB)))) 
+           
+signIntConsGrp <- signIntCons %>% 
+  group_by(intPair, cellA, grpB) %>% summarise(cnt = max(cnt))
+         
+### heatmap with cnts sel int across grouped lympho subset
+cntPairConsform <- signIntConsGrp %>%
+  mutate(BRC=gsub(".*_", "", cellA)) %>% 
+  mutate(LYMPHO=grpB) %>% 
+  mutate(cellsInt=paste0(BRC, "_", LYMPHO)) %>% 
+  ungroup(.) %>% 
+  dplyr::select(intPair, cellsInt, cnt) %>% 
+  spread(., cellsInt, cnt)
+cntPairConsmat <- cntPairConsform %>% dplyr::select(-intPair) %>% 
+  as.matrix(.)
+rownames(cntPairConsmat) <- cntPairConsform$intPair
+cntPairConsmat[is.na(cntPairConsmat)] <- 0
+  
+annotation_col <- data.frame(BRC=gsub("_.*","",colnames(cntPairConsmat))) 
+rownames(annotation_col) <- colnames(cntPairConsmat)  
+ann_colors <- list(BRC=colBRC)
+
+## order
+lympGrps <- data.frame(lympho=c("naiveBcells", "GC Bcells","plasmaCells",
+                                "myeloid cells", "DCs", "Tfh"))
+BRCgrps <- data.frame(BRC=names(colBRC))
+ordCellsInt <- expand.grid(lympGrps$lympho, BRCgrps$BRC) %>% 
+  mutate(cellsInt = paste0(Var2, "_", Var1))
+cntPairConsmat <- cntPairConsmat[selIntSub$intPair, ordCellsInt$cellsInt]
+
+## gaps
+gapR <- table(selIntSub$target)[[1]]
+gapCdat <- data.frame(BRC=gsub("_.*","",colnames(cntPairConsmat))) %>% 
+  group_by(., BRC) %>% summarize(cnt=n()) %>% mutate(cumSum=cumsum(cnt))
+
+pheatmap(cntPairConsmat, scale="none" ,treeheight_row = 0, cluster_rows = T, 
+         cluster_cols = F,
+         color = c("#faf4f4", "#e0cccf", "#c2989e", "#7c2431"),
+         annotation_col = annotation_col, cellwidth=15, cellheight=10,
+         annotation_colors = ann_colors,
+         gaps_row = gapR, gaps_col = gapCdat$cumSum)
+
+
+```
+
+
+### Mean expression of sel genes {.tabset}
+
+#### dotplot mean expression on BRC
+```{r dotplot mean expression BRC, fig.height=9, fig.width=6}
+
+## load orig inout to get ENSIDS for mapping  
+meansMap <- read_tsv(paste0(basedir, "cellphonedb/outLNimm/means.txt")) %>% 
+  mutate(SymbolA=gsub("_.*$", "", interacting_pair)) %>% 
+  mutate(SymbolB=gsub("^.*_", "", interacting_pair)) 
+mapAll <- data.frame(cbind(symbol = c(meansMap$SymbolA, meansMap$SymbolB),
+                           EnsID = c(meansMap$gene_a, meansMap$gene_b)))
+# human / mouse
+ensemblH <- useMart("ensembl",dataset="hsapiens_gene_ensembl")
+ensemblM <- useMart("ensembl", dataset="mmusculus_gene_ensembl") 
+geneIDS_hum <- getLDS(attributes=c("ensembl_gene_id"),
+           filters="ensembl_gene_id", values=mapAll$EnsID, mart=ensemblH,
+           attributesL=c("ensembl_gene_id"), martL=ensemblM)
+colnames(geneIDS_hum) <- c("EnsID", "EnsMus")
+mapAll <- mapAll %>% left_join(., geneIDS_hum, by=c("EnsID"))
+
+selIntForm <- selIntOrd %>% mutate(geneBRC=gsub("_.*$", "", intPair)) %>% 
+  mutate(geneLympho=gsub("^.*_", "", intPair)) %>% 
+  left_join(., mapAll, by=c("geneBRC" = "symbol")) %>% 
+  left_join(., mapAll, by=c("geneLympho" = "symbol"))
+
+## genes where name doesn't match hgnc symbol..
+selIntForm$geneLympho[is.na(selIntForm$EnsID.y)]
+selIntForm$geneBRC[is.na(selIntForm$EnsID.x)]
+
+### only imm BRCs
+seurat <- readRDS(file=paste0(basedir, "folBRC_allSLO_seurat.rds"))
+seurat$clusterLabel <- factor(seurat$clusterLabel, 
+                              levels = ordBRC)
+seurat <- subset(seurat, cond == "immunized")
+Idents(seurat) <- seurat$clusterLabel
+genes <- data.frame(gene=rownames(seurat)) %>% 
+  mutate(EnsMus = gsub("\\..*", "", gene))
+selIntFormFin <- selIntForm %>%
+  left_join(., genes, by = c("EnsMus.x" = "EnsMus")) %>%
+  left_join(., genes, by = c("EnsMus.y" = "EnsMus")) 
+genePlot <- unique(selIntFormFin$gene.x[which(!is.na(selIntFormFin$gene.x))])
+geneLabel <- gsub(".*\\.", "", genePlot)
+  
+p <- DotPlot(seurat, features = genePlot,
+             cols = c("#e0cccf", "#7c2431"), scale = F) +
+  coord_flip() +
+  scale_x_discrete(breaks = genePlot, labels=geneLabel) +
+  labs(x = element_blank(), y = element_blank())
+p
+
+p <- DotPlot(seurat, features = genePlot,
+             cols = c("#e0cccf", "#7c2431"), scale = T) +
+  coord_flip() +
+  scale_x_discrete(breaks = genePlot, labels=geneLabel) +
+  labs(x = element_blank(), y = element_blank())
+p
+
+```
+
+
+#### vlnplot with mean expression on BRC
+```{r vlnPlot BRC}
+
+pList <- sapply(genePlot, function(x){
+  p <- VlnPlot(object = seurat, features = x,
+               group.by = "clusterLabel",
+               cols = colBRC, pt.size = 0
+               )
+  plot(p)
+})
+
+```
+
+
+
+#### dotplot mean expression on Lympho
+```{r dotplot mean expression Lympho, fig.height=9, fig.width=6}
+
+seurat <- readRDS(file = paste0(basedir, 
+                              "lympho/allSamples_mergedLab_seurat.rds"))
+selPopShort <- gsub("LYMPHO_", "", selPop)
+ordLymphShort <- gsub("LYMPHO_", "", ordLymph)
+seurat <- subset(seurat, clusterLabel %in% selPopShort, invert = T)
+seurat$clusterLabel <- factor(seurat$clusterLabel, 
+                              levels = ordLymphShort)
+Idents(seurat) <- seurat$clusterLabel
+
+genePlot <- unique(selIntFormFin$gene.y[which(!is.na(selIntFormFin$gene.y))])
+geneLabel <- gsub(".*\\.", "", genePlot)
+  
+p <- DotPlot(seurat, features = genePlot,
+             cols = c("#e0cccf", "#7c2431"), scale = F) +
+  coord_flip() +
+  scale_x_discrete(breaks = genePlot, labels=geneLabel) +
+  theme_bw() +
+  theme(panel.grid.minor = element_blank(),
+        panel.grid.major = element_blank(),
+        axis.text=element_text(size=10, colour = "black"),
+        axis.text.x = element_text(angle = 90, hjust = 1),
+        axis.title=element_blank(),
+        panel.border = element_rect(size = 0.7, linetype = "solid",
+                                    colour = "black"))
+p
+
+p <- DotPlot(seurat, features = genePlot,
+             cols = c("#e0cccf", "#7c2431"), scale = T) +
+  coord_flip() +
+  scale_x_discrete(breaks = genePlot, labels=geneLabel) +
+  theme_bw() +
+  theme(panel.grid.minor = element_blank(),
+        panel.grid.major = element_blank(),
+        axis.text=element_text(size=10, colour = "black"),
+        axis.text.x = element_text(angle = 90, hjust = 1),
+        axis.title=element_blank(),
+        panel.border = element_rect(size = 0.7, linetype = "solid",
+                                    colour = "black"))
+p
+
+
+
+
+```
+
+#### vlnplot with mean expression on Lympho
+```{r vlnPlot Lympho}
+
+pList <- sapply(genePlot, function(x){
+  p <- VlnPlot(object = seurat, features = x,
+               group.by = "clusterLabel",
+               cols = colLab, pt.size = 0
+               )
+  plot(p)
+})
+
+```
+
+
+### dotplot with selected subset specific int 
+
+```{r dotplot sel int subSpec, fig.height=7, fig.width=5}
+
+selIntSub <- selIntOrd %>% filter(plot != "all") %>% 
+  mutate(sel=paste0(intPair, "_", plot))
+
+selIntDat <- data.frame(do.call("rbind", intList))
+
+## reorder int to always BRC to LYMPHO and remove selPop 
+reordInt <- selIntDat %>% filter(groupA=="LYMPHO") %>% 
+  mutate(intA=gsub("_.*", "", intPair)) %>% 
+  mutate(intB=gsub(".*_", "", intPair))
+reordIntFin <- data.frame(intPair=paste0(reordInt$intB, "_", reordInt$intA),
+                          CellsInt=paste0(reordInt$cellB, "|", reordInt$cellA),
+                          mean=reordInt$mean,
+                          cellA=reordInt$cellB,
+                          cellB=reordInt$cellA,
+                          groupA=reordInt$groupB,
+                          groupB=reordInt$groupA,
+                          pVal=reordInt$pVal,
+                          SLO=reordInt$SLO,
+                          sign=reordInt$sign)
+
+selIntDatOrd <- rbind(selIntDat[which(selIntDat$groupA=="BRC"),],
+                       reordIntFin) %>% 
+  filter(!cellB %in% selPop)
+
+selIntDatOrd_mean <- selIntDatOrd %>%
+  filter(intPair %in% selIntSub$intPair) %>% 
+  group_by(intPair, CellsInt, cellA, cellB) %>% 
+  summarise(meanSLO=mean(mean), meanPval=mean(pVal)) %>% 
+  mutate(logPval=-log(meanPval)) %>% 
+  mutate(col=factor(gsub(".*_", "", cellA), levels = ordBRC)) %>% 
+  mutate(sel=paste0(intPair, "_", col)) %>% 
+  filter(sel %in% selIntSub$sel) %>% 
+  arrange(., col)
+
+selIntDatOrd_mean$logPval[which(selIntDatOrd_mean$logPval > 4)] <- 4
+
+## remove dupl intPairs
+dupPairSum <- selIntDatOrd_mean %>% group_by(intPair, cellA) %>% 
+  summarise(cnt=n())
+dupPair <- dupPairSum$intPair[duplicated(dupPairSum$intPair)]
+selIntDatOrd_mean <-  selIntDatOrd_mean %>% filter(!intPair %in% dupPair)
+                             
+p <- ggplot(selIntDatOrd_mean, aes(x=cellB,y=intPair)) +
+  geom_point(aes(size=logPval,color=col)) +
+  scale_color_manual(values=colBRC) +
+  scale_radius(range = c(0, 4)) +
+  scale_y_discrete(limits=unique(selIntDatOrd_mean$intPair)) +
+  scale_x_discrete(limits=ordLymph) +
+  theme_bw() +
+  theme(panel.grid.minor = element_blank(),
+        panel.grid.major = element_blank(),
+        axis.text=element_text(size=10, colour = "black"),
+        axis.text.x = element_text(angle = 90, hjust = 1),
+        axis.title=element_blank(),
+        panel.border = element_rect(size = 0.7, linetype = "solid",
+                                    colour = "black"))
+p
+
+
+```
+
+
+
+## session info
+```{r session info}
+sessionInfo()
+date()
+```
+
+

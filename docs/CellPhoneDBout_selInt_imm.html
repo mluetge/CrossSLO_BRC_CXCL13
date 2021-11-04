@@ -1,0 +1,1226 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>process cellPhone ouput imm BRC - LYMPHO</title>
+
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<link rel="icon" href="https://github.com/workflowr/workflowr-assets/raw/master/img/reproducible.png">
+<!-- Add a small amount of space between sections. -->
+<style type="text/css">
+div.section {
+  padding-top: 12px;
+}
+</style>
+
+
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">CrossSLO_BRC_CXCL13</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="about.html">About</a>
+</li>
+<li>
+  <a href="license.html">License</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">process cellPhone ouput imm BRC - LYMPHO</h1>
+<h4 class="author"></h4>
+
+</div>
+
+
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
+</button>
+</p>
+<div id="workflowr-report" class="collapse">
+<ul class="nav nav-tabs">
+<li class="active">
+<a data-toggle="tab" href="#summary">Summary</a>
+</li>
+<li>
+<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> </a>
+</li>
+<li>
+<a data-toggle="tab" href="#versions">Past versions</a>
+</li>
+</ul>
+<div class="tab-content">
+<div id="summary" class="tab-pane fade in active">
+<p>
+<strong>Last updated:</strong> 2021-11-04
+</p>
+<p>
+<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 1
+</p>
+<p>
+<strong>Knit directory:</strong> <code>CrossSLO_BRC_CXCL13/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
+</p>
+<p>
+This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis was created with <a
+  href="https://github.com/jdblischak/workflowr">workflowr</a> (version 1.6.2). The <em>Checks</em> tab describes the reproducibility checks that were applied when the results were created. The <em>Past versions</em> tab lists the development history.
+</p>
+<hr>
+</div>
+<div id="checks" class="tab-pane fade">
+<div id="workflowr-checks" class="panel-group">
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges"> <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted changes </a>
+</p>
+</div>
+<div id="strongRMarkdownfilestronguncommittedchanges" class="panel-collapse collapse">
+<div class="panel-body">
+<p>The R Markdown is untracked by Git. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongEnvironmentstrongempty"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Environment:</strong> empty </a>
+</p>
+</div>
+<div id="strongEnvironmentstrongempty" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! The global environment was empty. Objects defined in the global environment can affect the analysis in your R Markdown file in unknown ways. For reproduciblity it’s best to always run the code in an empty environment.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSeedstrongcodesetseed20210519code"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Seed:</strong> <code>set.seed(20210519)</code> </a>
+</p>
+</div>
+<div id="strongSeedstrongcodesetseed20210519code" class="panel-collapse collapse">
+<div class="panel-body">
+<p>The command <code>set.seed(20210519)</code> was run prior to running the code in the R Markdown file. Setting a seed ensures that any results that rely on randomness, e.g. subsampling or permutations, are reproducible.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSessioninformationstrongrecorded"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Session information:</strong> recorded </a>
+</p>
+</div>
+<div id="strongSessioninformationstrongrecorded" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Recording the operating system, R version, and package versions is critical for reproducibility.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongCachestrongnone"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Cache:</strong> none </a>
+</p>
+</div>
+<div id="strongCachestrongnone" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Nice! There were no cached chunks for this analysis, so you can be confident that you successfully produced the results during this run.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongFilepathsstrongrelative"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>File paths:</strong> relative </a>
+</p>
+</div>
+<div id="strongFilepathsstrongrelative" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Using relative paths to the files within your workflowr project makes it easier to run your code on other machines.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcommluetgeCrossSLOBRCCXCL13tree94961678506115e0ed4a809d24ad48c7f426416ftargetblank9496167a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/tree/94961678506115e0ed4a809d24ad48c7f426416f" target="_blank">9496167</a> </a>
+</p>
+</div>
+<div id="strongRepositoryversionstrongahrefhttpsgithubcommluetgeCrossSLOBRCCXCL13tree94961678506115e0ed4a809d24ad48c7f426416ftargetblank9496167a" class="panel-collapse collapse">
+<div class="panel-body">
+<p>
+Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
+</p>
+<p>
+The results in this page were generated with repository version <a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/tree/94961678506115e0ed4a809d24ad48c7f426416f" target="_blank">9496167</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+</p>
+<p>
+Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
+</p>
+<pre><code>
+Ignored files:
+    Ignored:    .Rhistory
+    Ignored:    .Rproj.user/
+    Ignored:    data/GSEA/
+    Ignored:    data/cellphonedb/
+    Ignored:    data/destiny/
+    Ignored:    data/lympho/
+    Ignored:    data/processedData/
+    Ignored:    data/processedDataLymphocytes/
+
+Untracked files:
+    Untracked:  analysis/CellPhoneDBout_selInt_imm.Rmd
+    Untracked:  analysis/analyseCPDBoutImm.Rmd
+
+Unstaged changes:
+    Modified:   analysis/analyseCPDBout.Rmd
+    Modified:   analysis/createCPDBinput_immOnly.Rmd
+
+</code></pre>
+<p>
+Note that any generated files, e.g. HTML, png, CSS, etc., are not included in this status report because it is ok for generated content to have uncommitted changes.
+</p>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</div>
+<div id="versions" class="tab-pane fade">
+<p>
+There are no past versions. Publish this analysis with <code>wflow_publish()</code> to start tracking its development.
+</p>
+<hr>
+</div>
+</div>
+</div>
+<div id="load-packages" class="section level2">
+<h2>Load packages</h2>
+<pre class="r"><code>suppressPackageStartupMessages({
+  library(tidyverse)
+  library(corrplot)
+  library(SummarizedExperiment)
+  library(RColorBrewer)
+  library(here)
+  library(ggsci)
+  library(pheatmap)
+  library(ggplot2)
+  library(reshape2)
+  library(viridis)
+  library(Seurat)
+  library(biomaRt)
+})</code></pre>
+</div>
+<div id="set-parameter" class="section level2">
+<h2>set parameter</h2>
+<pre class="r"><code>basedir &lt;- paste0(here(), &quot;/data/&quot;)
+
+colorSLO &lt;- c(viridis(3)[c(1,2)], brewer.pal(n=9, name=&quot;YlOrRd&quot;)[c(4)])
+names(colorSLO) &lt;- c(&quot;LN&quot;, &quot;PP&quot;, &quot;SP&quot;)
+
+colBRC &lt;- c(&quot;#87c5af&quot;, &quot;#94033b&quot;, &quot;#fc8f3b&quot;, &quot;#2580fe&quot;, &quot;#514e72&quot;)
+names(colBRC) &lt;- c(&quot;LZFDC&quot;, &quot;MRC&quot;, &quot;TBRC&quot;,&quot;DZFDC&quot;,&quot;PRC2&quot;)
+
+# ## load selected intPairs
+# selIntPairs &lt;- read_tsv(paste0(basedir, &quot;/cellphonedb/selIntPairs2.txt&quot;),
+#                         col_names = T)
+
+colLab &lt;- c(&quot;#a0b9c4&quot;, &quot;#78abb7&quot;, &quot;#567a83&quot;, &quot;#3c454a&quot;, &quot;#9eabb1&quot;,
+            &quot;#924440&quot;, &quot;#eab562&quot;,
+            &quot;#f1d75f&quot;, &quot;#b5a147&quot;, &quot;#786c30&quot;)
+
+
+names(colLab) &lt;- c(&quot;naiveBcells&quot;, &quot;LZBcells&quot;, &quot;DZshmBcells&quot;, &quot;proDZ&quot;,
+                   &quot;plasmaCells&quot;, 
+                   &quot;Tfh&quot;, &quot;DCs&quot;,
+                   &quot;mdMacrophages&quot;, &quot;trMacrophages&quot;, &quot;infMacrophages&quot;)
+
+
+ordLymph &lt;- c(&quot;LYMPHO_naiveBcells&quot;, &quot;LYMPHO_LZBcells&quot;, &quot;LYMPHO_DZshmBcells&quot;,
+              &quot;LYMPHO_proDZ&quot;, &quot;LYMPHO_plasmaCells&quot;,&quot;LYMPHO_trMacrophages&quot;,
+              &quot;LYMPHO_mdMacrophages&quot;, &quot;LYMPHO_infMacrophages&quot;,
+              &quot;LYMPHO_DCs&quot;, &quot;LYMPHO_Tfh&quot;)      
+
+ordBRC &lt;- c(&quot;LZFDC&quot;, &quot;DZFDC&quot;, &quot;MRC&quot;, &quot;TBRC&quot;, &quot;PRC2&quot;)</code></pre>
+</div>
+<div id="read-cellphonedb-out" class="section level2">
+<h2>read CellPhoneDB out</h2>
+<div id="format-data" class="section level3">
+<h3>format data</h3>
+<pre class="r"><code>sloVec &lt;- c(&quot;LN&quot;, &quot;PP&quot;, &quot;SP&quot;)
+
+intList &lt;- lapply(sloVec, function(slo){
+  means &lt;- read_tsv(paste0(basedir, &quot;cellphonedb/out&quot;, slo, &quot;imm/means.txt&quot;))
+  pVal &lt;- read_tsv(paste0(basedir, &quot;cellphonedb/out&quot;, slo, &quot;imm/pvalues.txt&quot;))
+
+  ### create intPairs
+  #### means
+  meansCut  &lt;- means %&gt;%
+    dplyr::select(-c(id_cp_interaction, partner_a, partner_b, gene_a, gene_b,
+              receptor_a, receptor_b, annotation_strategy, secreted, is_integrin,
+              interacting_pair))
+  rownames(meansCut) &lt;- means$interacting_pair
+
+  #### pVal
+  pValCut  &lt;- pVal %&gt;%
+    dplyr::select(-c(id_cp_interaction, partner_a, partner_b, gene_a, gene_b,
+              receptor_a, receptor_b, annotation_strategy, secreted, is_integrin,
+              interacting_pair))
+  rownames(pValCut) &lt;- pVal$interacting_pair
+  
+  #### cellA/cellB
+  CellNames &lt;- data.frame(CellsInt = as.character(colnames(meansCut))) %&gt;%
+    mutate(cellA=gsub(&quot;\\|.*&quot;,&quot;&quot; ,CellsInt)) %&gt;%
+    mutate(cellB=gsub(&quot;^.*\\|&quot;,&quot;&quot; ,CellsInt)) %&gt;% 
+    mutate(groupA=gsub(&quot;_.*&quot;,&quot;&quot; ,CellsInt)) %&gt;% 
+    mutate(groupB=gsub(&quot;_.*&quot;,&quot;&quot;,gsub(&quot;^.*\\|&quot;,&quot;&quot; ,CellsInt))) 
+
+
+  ### summarize mean
+  meansCut_long &lt;- meansCut %&gt;% rownames_to_column(var=&quot;intPair&quot;) %&gt;%
+    melt(., id.vars=c(&quot;intPair&quot;), measure.vars=colnames(meansCut),
+         variable.name=&quot;CellsInt&quot;, value.name=&quot;mean&quot;) %&gt;% 
+    left_join(., CellNames, by=&quot;CellsInt&quot;) %&gt;% 
+    filter(!groupA == groupB)
+
+  ### summarize pVal
+  pValCut_long &lt;- pValCut %&gt;% rownames_to_column(var=&quot;intPair&quot;) %&gt;%
+    melt(., id.vars=c(&quot;intPair&quot;), measure.vars=colnames(meansCut),
+         variable.name=&quot;CellsInt&quot;, value.name=&quot;pVal&quot;) %&gt;% 
+    left_join(., CellNames, by=&quot;CellsInt&quot;) %&gt;% 
+    filter(!groupA == groupB)
+
+  allSum &lt;- meansCut_long %&gt;% mutate(pVal=pValCut_long$pVal) %&gt;%
+    mutate(SLO = slo) %&gt;% 
+    mutate(sign=ifelse(pVal&lt;0.05, &quot;p &lt; 0.05&quot;, &quot;p &gt; 0.05&quot;))
+
+})
+names(intList) &lt;- sloVec</code></pre>
+</div>
+<div id="filter-and-order" class="section level3">
+<h3>filter and order</h3>
+<pre class="r"><code>## select lympho populations to exclude from downstream analysis
+selPop &lt;- c(&quot;LYMPHO_Cd8Tcells&quot;, &quot;LYMPHO_NKcells&quot;, &quot;LYMPHO_Th17&quot;,
+            &quot;LYMPHO_Th1Th2&quot;, &quot;LYMPHO_naiveCd4Tcells&quot;, &quot;LYMPHO_proCd4Tcells&quot;,
+            &quot;LYMPHO_Neutrophils&quot;)
+
+## filter for sign int
+signInt &lt;- lapply(intList, function(all){
+  allSig &lt;- all %&gt;% filter(pVal&lt;0.05) 
+})
+names(signInt) &lt;- sloVec
+
+signIntDat &lt;- data.frame(do.call(&quot;rbind&quot;, signInt))
+
+## reorder int to always BRC to LYMPHO and remove selPop 
+reordInt &lt;- signIntDat %&gt;% filter(groupA==&quot;LYMPHO&quot;) %&gt;% 
+  mutate(intA=gsub(&quot;_.*&quot;, &quot;&quot;, intPair)) %&gt;% 
+  mutate(intB=gsub(&quot;.*_&quot;, &quot;&quot;, intPair))
+reordIntFin &lt;- data.frame(intPair=paste0(reordInt$intB, &quot;_&quot;, reordInt$intA),
+                          CellsInt=paste0(reordInt$cellB, &quot;|&quot;, reordInt$cellA),
+                          mean=reordInt$mean,
+                          cellA=reordInt$cellB,
+                          cellB=reordInt$cellA,
+                          groupA=reordInt$groupB,
+                          groupB=reordInt$groupA,
+                          pVal=reordInt$pVal,
+                          SLO=reordInt$SLO,
+                          sign=reordInt$sign)
+
+signIntDatOrd &lt;- rbind(signIntDat[which(signIntDat$groupA==&quot;BRC&quot;),],
+                       reordIntFin) %&gt;% 
+  filter(!cellB %in% selPop)</code></pre>
+</div>
+</div>
+<div id="selected-int" class="section level2 tabset">
+<h2 class="tabset">selected int</h2>
+<pre class="r"><code>selInt &lt;- readxl::read_xlsx(paste0(basedir,
+                                  &quot;cellphonedb/selectedInt_Funct.xlsx&quot;))
+selIntOrd &lt;- selInt %&gt;% arrange(., target, functGrp)</code></pre>
+<div id="across-all" class="section level3 tabset">
+<h3 class="tabset">across all</h3>
+<div id="receptor-on-brc" class="section level4">
+<h4>Receptor on BRC</h4>
+<pre class="r"><code>## only BRC to lympho
+selIntSub &lt;- selIntOrd %&gt;% filter(target == &quot;BRC&quot;)
+
+myeloids &lt;- c(&quot;LYMPHO_infMacrophages&quot;, &quot;LYMPHO_mdMacrophages&quot;,
+              &quot;LYMPHO_trMacrophages&quot;)
+GCbcells &lt;- c(&quot;LYMPHO_DZshmBcells&quot;, &quot;LYMPHO_LZBcells&quot;, &quot;LYMPHO_proDZ&quot;)
+
+## conservation of int
+signIntCons &lt;- signIntDatOrd %&gt;% 
+  filter(intPair %in% selIntSub$intPair) %&gt;% 
+  dplyr::select(intPair, cellA, cellB, groupA, groupB) %&gt;% 
+  group_by(intPair, cellA, cellB, groupA, groupB) %&gt;%
+  summarise(cnt=n()) %&gt;% 
+  ungroup() %&gt;% 
+  mutate(grpB = ifelse(cellB %in% myeloids, &quot;myeloid cells&quot;,
+                         ifelse(cellB %in% GCbcells, &quot;GC Bcells&quot;,
+                                gsub(&quot;LYMPHO_&quot; ,&quot;&quot; ,cellB)))) 
+           
+signIntConsGrp &lt;- signIntCons %&gt;% 
+  group_by(intPair, cellA, grpB) %&gt;% summarise(cnt = max(cnt))
+         
+### heatmap with cnts sel int across grouped lympho subset
+cntPairConsform &lt;- signIntConsGrp %&gt;%
+  mutate(BRC=gsub(&quot;.*_&quot;, &quot;&quot;, cellA)) %&gt;% 
+  mutate(LYMPHO=grpB) %&gt;% 
+  mutate(cellsInt=paste0(BRC, &quot;_&quot;, LYMPHO)) %&gt;% 
+  ungroup(.) %&gt;% 
+  dplyr::select(intPair, cellsInt, cnt) %&gt;% 
+  spread(., cellsInt, cnt)
+cntPairConsmat &lt;- cntPairConsform %&gt;% dplyr::select(-intPair) %&gt;% 
+  as.matrix(.)
+rownames(cntPairConsmat) &lt;- cntPairConsform$intPair
+cntPairConsmat[is.na(cntPairConsmat)] &lt;- 0
+  
+annotation_col &lt;- data.frame(BRC=gsub(&quot;_.*&quot;,&quot;&quot;,colnames(cntPairConsmat))) 
+rownames(annotation_col) &lt;- colnames(cntPairConsmat)  
+ann_colors &lt;- list(BRC=colBRC)
+
+## order
+lympGrps &lt;- data.frame(lympho=c(&quot;naiveBcells&quot;, &quot;GC Bcells&quot;,&quot;plasmaCells&quot;,
+                                &quot;myeloid cells&quot;, &quot;DCs&quot;, &quot;Tfh&quot;))
+BRCgrps &lt;- data.frame(BRC=names(colBRC))
+ordCellsInt &lt;- expand.grid(lympGrps$lympho, BRCgrps$BRC) %&gt;% 
+  mutate(cellsInt = paste0(Var2, &quot;_&quot;, Var1))
+cntPairConsmat &lt;- cntPairConsmat[selIntSub$intPair, ordCellsInt$cellsInt]
+
+## gaps
+gapR &lt;- table(selIntSub$target)[[1]]
+gapCdat &lt;- data.frame(BRC=gsub(&quot;_.*&quot;,&quot;&quot;,colnames(cntPairConsmat))) %&gt;% 
+  group_by(., BRC) %&gt;% summarize(cnt=n()) %&gt;% mutate(cumSum=cumsum(cnt))
+
+pheatmap(cntPairConsmat, scale=&quot;none&quot; ,treeheight_row = 0, cluster_rows = T, 
+         cluster_cols = F,
+         color = c(&quot;#faf4f4&quot;, &quot;#e0cccf&quot;, &quot;#c2989e&quot;, &quot;#7c2431&quot;),
+         annotation_col = annotation_col, cellwidth=15, cellheight=10,
+         annotation_colors = ann_colors,
+         gaps_row = gapR, gaps_col = gapCdat$cumSum)</code></pre>
+<p><img src="figure/CellPhoneDBout_selInt_imm.Rmd/sel%20int%20across%20all%20receptor%20BRC-1.png" width="1344" style="display: block; margin: auto;" /></p>
+</div>
+<div id="receptor-on-lympho" class="section level4">
+<h4>Receptor on LYMPHO</h4>
+<pre class="r"><code>## only lympho to BRC
+selIntSub &lt;- selIntOrd %&gt;% filter(target == &quot;LYMPHO&quot;)
+
+myeloids &lt;- c(&quot;LYMPHO_infMacrophages&quot;, &quot;LYMPHO_mdMacrophages&quot;,
+              &quot;LYMPHO_trMacrophages&quot;)
+GCbcells &lt;- c(&quot;LYMPHO_DZshmBcells&quot;, &quot;LYMPHO_LZBcells&quot;, &quot;LYMPHO_proDZ&quot;)
+
+## conservation of int
+signIntCons &lt;- signIntDatOrd %&gt;% 
+  filter(intPair %in% selIntSub$intPair) %&gt;% 
+  dplyr::select(intPair, cellA, cellB, groupA, groupB) %&gt;% 
+  group_by(intPair, cellA, cellB, groupA, groupB) %&gt;%
+  summarise(cnt=n()) %&gt;% 
+  ungroup() %&gt;% 
+  mutate(grpB = ifelse(cellB %in% myeloids, &quot;myeloid cells&quot;,
+                         ifelse(cellB %in% GCbcells, &quot;GC Bcells&quot;,
+                                gsub(&quot;LYMPHO_&quot; ,&quot;&quot; ,cellB)))) 
+           
+signIntConsGrp &lt;- signIntCons %&gt;% 
+  group_by(intPair, cellA, grpB) %&gt;% summarise(cnt = max(cnt))
+         
+### heatmap with cnts sel int across grouped lympho subset
+cntPairConsform &lt;- signIntConsGrp %&gt;%
+  mutate(BRC=gsub(&quot;.*_&quot;, &quot;&quot;, cellA)) %&gt;% 
+  mutate(LYMPHO=grpB) %&gt;% 
+  mutate(cellsInt=paste0(BRC, &quot;_&quot;, LYMPHO)) %&gt;% 
+  ungroup(.) %&gt;% 
+  dplyr::select(intPair, cellsInt, cnt) %&gt;% 
+  spread(., cellsInt, cnt)
+cntPairConsmat &lt;- cntPairConsform %&gt;% dplyr::select(-intPair) %&gt;% 
+  as.matrix(.)
+rownames(cntPairConsmat) &lt;- cntPairConsform$intPair
+cntPairConsmat[is.na(cntPairConsmat)] &lt;- 0
+  
+annotation_col &lt;- data.frame(BRC=gsub(&quot;_.*&quot;,&quot;&quot;,colnames(cntPairConsmat))) 
+rownames(annotation_col) &lt;- colnames(cntPairConsmat)  
+ann_colors &lt;- list(BRC=colBRC)
+
+## order
+lympGrps &lt;- data.frame(lympho=c(&quot;naiveBcells&quot;, &quot;GC Bcells&quot;,&quot;plasmaCells&quot;,
+                                &quot;myeloid cells&quot;, &quot;DCs&quot;, &quot;Tfh&quot;))
+BRCgrps &lt;- data.frame(BRC=names(colBRC))
+ordCellsInt &lt;- expand.grid(lympGrps$lympho, BRCgrps$BRC) %&gt;% 
+  mutate(cellsInt = paste0(Var2, &quot;_&quot;, Var1))
+cntPairConsmat &lt;- cntPairConsmat[selIntSub$intPair, ordCellsInt$cellsInt]
+
+## gaps
+gapR &lt;- table(selIntSub$target)[[1]]
+gapCdat &lt;- data.frame(BRC=gsub(&quot;_.*&quot;,&quot;&quot;,colnames(cntPairConsmat))) %&gt;% 
+  group_by(., BRC) %&gt;% summarize(cnt=n()) %&gt;% mutate(cumSum=cumsum(cnt))
+
+pheatmap(cntPairConsmat, scale=&quot;none&quot; ,treeheight_row = 0, cluster_rows = T, 
+         cluster_cols = F,
+         color = c(&quot;#faf4f4&quot;, &quot;#e0cccf&quot;, &quot;#c2989e&quot;, &quot;#7c2431&quot;),
+         annotation_col = annotation_col, cellwidth=15, cellheight=10,
+         annotation_colors = ann_colors,
+         gaps_row = gapR, gaps_col = gapCdat$cumSum)</code></pre>
+<p><img src="figure/CellPhoneDBout_selInt_imm.Rmd/sel%20int%20across%20all%20receptor%20lympho-1.png" width="1344" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+<div id="mean-expression-of-sel-genes" class="section level3 tabset">
+<h3 class="tabset">Mean expression of sel genes</h3>
+<div id="dotplot-mean-expression-on-brc" class="section level4">
+<h4>dotplot mean expression on BRC</h4>
+<pre class="r"><code>## load orig inout to get ENSIDS for mapping  
+meansMap &lt;- read_tsv(paste0(basedir, &quot;cellphonedb/outLNimm/means.txt&quot;)) %&gt;% 
+  mutate(SymbolA=gsub(&quot;_.*$&quot;, &quot;&quot;, interacting_pair)) %&gt;% 
+  mutate(SymbolB=gsub(&quot;^.*_&quot;, &quot;&quot;, interacting_pair)) 
+mapAll &lt;- data.frame(cbind(symbol = c(meansMap$SymbolA, meansMap$SymbolB),
+                           EnsID = c(meansMap$gene_a, meansMap$gene_b)))
+# human / mouse
+ensemblH &lt;- useMart(&quot;ensembl&quot;,dataset=&quot;hsapiens_gene_ensembl&quot;)
+ensemblM &lt;- useMart(&quot;ensembl&quot;, dataset=&quot;mmusculus_gene_ensembl&quot;) 
+geneIDS_hum &lt;- getLDS(attributes=c(&quot;ensembl_gene_id&quot;),
+           filters=&quot;ensembl_gene_id&quot;, values=mapAll$EnsID, mart=ensemblH,
+           attributesL=c(&quot;ensembl_gene_id&quot;), martL=ensemblM)
+colnames(geneIDS_hum) &lt;- c(&quot;EnsID&quot;, &quot;EnsMus&quot;)
+mapAll &lt;- mapAll %&gt;% left_join(., geneIDS_hum, by=c(&quot;EnsID&quot;))
+
+selIntForm &lt;- selIntOrd %&gt;% mutate(geneBRC=gsub(&quot;_.*$&quot;, &quot;&quot;, intPair)) %&gt;% 
+  mutate(geneLympho=gsub(&quot;^.*_&quot;, &quot;&quot;, intPair)) %&gt;% 
+  left_join(., mapAll, by=c(&quot;geneBRC&quot; = &quot;symbol&quot;)) %&gt;% 
+  left_join(., mapAll, by=c(&quot;geneLympho&quot; = &quot;symbol&quot;))
+
+## genes where name doesn&#39;t match hgnc symbol..
+selIntForm$geneLympho[is.na(selIntForm$EnsID.y)]</code></pre>
+<pre><code> [1] &quot;IL6 receptor&quot; &quot;IL6 receptor&quot; &quot;aLb2 complex&quot; &quot;aLb2 complex&quot; &quot;aLb2 complex&quot; &quot;aLb2 complex&quot;
+ [7] &quot;a4b7 complex&quot; &quot;a4b7 complex&quot; &quot;a4b7 complex&quot; &quot;a4b7 complex&quot; &quot;a4b7 complex&quot; &quot;a4b7 complex&quot;
+[13] &quot;a4b7 complex&quot; &quot;a4b7 complex&quot; &quot;a4b7 complex&quot; &quot;a4b7 complex&quot; &quot;a4b7 complex&quot; &quot;a4b7 complex&quot;
+[19] &quot;a4b7 complex&quot; &quot;a4b7 complex&quot; &quot;a4b7 complex&quot; &quot;a4b7 complex&quot; &quot;a4b7 complex&quot; &quot;a4b7 complex&quot;
+[25] &quot;a4b7 complex&quot; &quot;a4b7 complex&quot; &quot;a4b7 complex&quot; &quot;a4b7 complex&quot; &quot;a4b7 complex&quot; &quot;a4b7 complex&quot;
+[31] &quot;a4b7 complex&quot; &quot;a4b7 complex&quot; &quot;a4b7 complex&quot; &quot;a4b1 complex&quot; &quot;a4b1 complex&quot; &quot;a4b1 complex&quot;
+[37] &quot;a4b1 complex&quot; &quot;a4b1 complex&quot; &quot;a4b1 complex&quot; &quot;a4b1 complex&quot; &quot;a4b1 complex&quot; &quot;a4b1 complex&quot;
+[43] &quot;a4b1 complex&quot; &quot;a4b1 complex&quot; &quot;a4b1 complex&quot; &quot;a6b1 complex&quot; &quot;a6b1 complex&quot; &quot;a4b7 complex&quot;
+[49] &quot;a4b7 complex&quot; &quot;a4b7 complex&quot;</code></pre>
+<pre class="r"><code>selIntForm$geneBRC[is.na(selIntForm$EnsID.x)]</code></pre>
+<pre><code> [1] &quot;LIFR&quot;          &quot;LIFR&quot;          &quot;LIFR&quot;          &quot;LIFR&quot;          &quot;OSMR&quot;          &quot;OSMR&quot;         
+ [7] &quot;a6b4 complex&quot;  &quot;a6b4 complex&quot;  &quot;a6b4 complex&quot;  &quot;a6b4 complex&quot;  &quot;IL13 receptor&quot; &quot;IL13 receptor&quot;
+[13] &quot;IL13 receptor&quot; &quot;IL13 receptor&quot; &quot;IL13 receptor&quot; &quot;IL13 receptor&quot; &quot;a1b1 complex&quot;  &quot;a1b1 complex&quot; 
+[19] &quot;a1b1 complex&quot;  &quot;a1b1 complex&quot;  &quot;a1b1 complex&quot;  &quot;a1b1 complex&quot;  &quot;a1b1 complex&quot;  &quot;a1b1 complex&quot; 
+[25] &quot;a1b1 complex&quot;  &quot;a1b1 complex&quot;  &quot;a1b1 complex&quot;  &quot;a1b1 complex&quot;  &quot;a1b1 complex&quot;  &quot;a1b1 complex&quot; 
+[31] &quot;a1b1 complex&quot;  &quot;a1b1 complex&quot;  &quot;a1b1 complex&quot;  &quot;a1b1 complex&quot;  &quot;a1b1 complex&quot;  &quot;a1b1 complex&quot; 
+[37] &quot;a1b1 complex&quot;  &quot;a1b1 complex&quot;  &quot;a1b1 complex&quot;  &quot;a1b1 complex&quot;  &quot;a1b1 complex&quot;  &quot;a1b1 complex&quot; 
+[43] &quot;a1b1 complex&quot;  &quot;a1b1 complex&quot;  &quot;a1b1 complex&quot;  &quot;a1b1 complex&quot;  &quot;a1b1 complex&quot;  &quot;a1b1 complex&quot; 
+[49] &quot;a1b1 complex&quot;  &quot;a1b1 complex&quot;  &quot;a1b1 complex&quot;  &quot;a1b1 complex&quot;  &quot;a1b1 complex&quot;  &quot;a1b1 complex&quot; 
+[55] &quot;a1b1 complex&quot;  &quot;a1b1 complex&quot;  &quot;a1b1 complex&quot;  &quot;a1b1 complex&quot;  &quot;a1b1 complex&quot;  &quot;a1b1 complex&quot; 
+[61] &quot;a1b1 complex&quot;  &quot;a1b1 complex&quot;  &quot;a1b1 complex&quot;  &quot;a1b1 complex&quot;  &quot;a1b1 complex&quot;  &quot;a1b1 complex&quot; 
+[67] &quot;a1b1 complex&quot;  &quot;a1b1 complex&quot;  &quot;a1b1 complex&quot;  &quot;a1b1 complex&quot;  &quot;a1b1 complex&quot;  &quot;a1b1 complex&quot; 
+[73] &quot;a1b1 complex&quot;  &quot;a1b1 complex&quot;  &quot;a1b1 complex&quot;  &quot;a1b1 complex&quot;  &quot;a1b1 complex&quot;  &quot;a1b1 complex&quot; </code></pre>
+<pre class="r"><code>### only imm BRCs
+seurat &lt;- readRDS(file=paste0(basedir, &quot;folBRC_allSLO_seurat.rds&quot;))
+seurat$clusterLabel &lt;- factor(seurat$clusterLabel, 
+                              levels = ordBRC)
+seurat &lt;- subset(seurat, cond == &quot;immunized&quot;)
+Idents(seurat) &lt;- seurat$clusterLabel
+genes &lt;- data.frame(gene=rownames(seurat)) %&gt;% 
+  mutate(EnsMus = gsub(&quot;\\..*&quot;, &quot;&quot;, gene))
+selIntFormFin &lt;- selIntForm %&gt;%
+  left_join(., genes, by = c(&quot;EnsMus.x&quot; = &quot;EnsMus&quot;)) %&gt;%
+  left_join(., genes, by = c(&quot;EnsMus.y&quot; = &quot;EnsMus&quot;)) 
+genePlot &lt;- unique(selIntFormFin$gene.x[which(!is.na(selIntFormFin$gene.x))])
+geneLabel &lt;- gsub(&quot;.*\\.&quot;, &quot;&quot;, genePlot)
+  
+p &lt;- DotPlot(seurat, features = genePlot,
+             cols = c(&quot;#e0cccf&quot;, &quot;#7c2431&quot;), scale = F) +
+  coord_flip() +
+  scale_x_discrete(breaks = genePlot, labels=geneLabel) +
+  labs(x = element_blank(), y = element_blank())
+p</code></pre>
+<p><img src="figure/CellPhoneDBout_selInt_imm.Rmd/dotplot%20mean%20expression%20BRC-1.png" width="576" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>p &lt;- DotPlot(seurat, features = genePlot,
+             cols = c(&quot;#e0cccf&quot;, &quot;#7c2431&quot;), scale = T) +
+  coord_flip() +
+  scale_x_discrete(breaks = genePlot, labels=geneLabel) +
+  labs(x = element_blank(), y = element_blank())
+p</code></pre>
+<p><img src="figure/CellPhoneDBout_selInt_imm.Rmd/dotplot%20mean%20expression%20BRC-2.png" width="576" style="display: block; margin: auto;" /></p>
+</div>
+<div id="vlnplot-with-mean-expression-on-brc" class="section level4">
+<h4>vlnplot with mean expression on BRC</h4>
+<pre class="r"><code>pList &lt;- sapply(genePlot, function(x){
+  p &lt;- VlnPlot(object = seurat, features = x,
+               group.by = &quot;clusterLabel&quot;,
+               cols = colBRC, pt.size = 0
+               )
+  plot(p)
+})</code></pre>
+<p><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20BRC-1.png" width="672" style="display: block; margin: auto;" /><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20BRC-2.png" width="672" style="display: block; margin: auto;" /><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20BRC-3.png" width="672" style="display: block; margin: auto;" /><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20BRC-4.png" width="672" style="display: block; margin: auto;" /><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20BRC-5.png" width="672" style="display: block; margin: auto;" /><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20BRC-6.png" width="672" style="display: block; margin: auto;" /><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20BRC-7.png" width="672" style="display: block; margin: auto;" /><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20BRC-8.png" width="672" style="display: block; margin: auto;" /><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20BRC-9.png" width="672" style="display: block; margin: auto;" /><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20BRC-10.png" width="672" style="display: block; margin: auto;" /><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20BRC-11.png" width="672" style="display: block; margin: auto;" /><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20BRC-12.png" width="672" style="display: block; margin: auto;" /><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20BRC-13.png" width="672" style="display: block; margin: auto;" /><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20BRC-14.png" width="672" style="display: block; margin: auto;" /><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20BRC-15.png" width="672" style="display: block; margin: auto;" /><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20BRC-16.png" width="672" style="display: block; margin: auto;" /><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20BRC-17.png" width="672" style="display: block; margin: auto;" /><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20BRC-18.png" width="672" style="display: block; margin: auto;" /><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20BRC-19.png" width="672" style="display: block; margin: auto;" /><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20BRC-20.png" width="672" style="display: block; margin: auto;" /><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20BRC-21.png" width="672" style="display: block; margin: auto;" /><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20BRC-22.png" width="672" style="display: block; margin: auto;" /><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20BRC-23.png" width="672" style="display: block; margin: auto;" /><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20BRC-24.png" width="672" style="display: block; margin: auto;" /><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20BRC-25.png" width="672" style="display: block; margin: auto;" /><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20BRC-26.png" width="672" style="display: block; margin: auto;" /><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20BRC-27.png" width="672" style="display: block; margin: auto;" /><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20BRC-28.png" width="672" style="display: block; margin: auto;" /><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20BRC-29.png" width="672" style="display: block; margin: auto;" /><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20BRC-30.png" width="672" style="display: block; margin: auto;" /><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20BRC-31.png" width="672" style="display: block; margin: auto;" /><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20BRC-32.png" width="672" style="display: block; margin: auto;" /><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20BRC-33.png" width="672" style="display: block; margin: auto;" /><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20BRC-34.png" width="672" style="display: block; margin: auto;" /><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20BRC-35.png" width="672" style="display: block; margin: auto;" /><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20BRC-36.png" width="672" style="display: block; margin: auto;" /><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20BRC-37.png" width="672" style="display: block; margin: auto;" /><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20BRC-38.png" width="672" style="display: block; margin: auto;" /><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20BRC-39.png" width="672" style="display: block; margin: auto;" /><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20BRC-40.png" width="672" style="display: block; margin: auto;" /><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20BRC-41.png" width="672" style="display: block; margin: auto;" /><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20BRC-42.png" width="672" style="display: block; margin: auto;" /><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20BRC-43.png" width="672" style="display: block; margin: auto;" /><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20BRC-44.png" width="672" style="display: block; margin: auto;" /><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20BRC-45.png" width="672" style="display: block; margin: auto;" /><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20BRC-46.png" width="672" style="display: block; margin: auto;" /><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20BRC-47.png" width="672" style="display: block; margin: auto;" /><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20BRC-48.png" width="672" style="display: block; margin: auto;" /><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20BRC-49.png" width="672" style="display: block; margin: auto;" /><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20BRC-50.png" width="672" style="display: block; margin: auto;" /><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20BRC-51.png" width="672" style="display: block; margin: auto;" /><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20BRC-52.png" width="672" style="display: block; margin: auto;" /><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20BRC-53.png" width="672" style="display: block; margin: auto;" /><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20BRC-54.png" width="672" style="display: block; margin: auto;" /><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20BRC-55.png" width="672" style="display: block; margin: auto;" /><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20BRC-56.png" width="672" style="display: block; margin: auto;" /><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20BRC-57.png" width="672" style="display: block; margin: auto;" /><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20BRC-58.png" width="672" style="display: block; margin: auto;" /><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20BRC-59.png" width="672" style="display: block; margin: auto;" /><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20BRC-60.png" width="672" style="display: block; margin: auto;" /><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20BRC-61.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="dotplot-mean-expression-on-lympho" class="section level4">
+<h4>dotplot mean expression on Lympho</h4>
+<pre class="r"><code>seurat &lt;- readRDS(file = paste0(basedir, 
+                              &quot;lympho/allSamples_mergedLab_seurat.rds&quot;))
+selPopShort &lt;- gsub(&quot;LYMPHO_&quot;, &quot;&quot;, selPop)
+ordLymphShort &lt;- gsub(&quot;LYMPHO_&quot;, &quot;&quot;, ordLymph)
+seurat &lt;- subset(seurat, clusterLabel %in% selPopShort, invert = T)
+seurat$clusterLabel &lt;- factor(seurat$clusterLabel, 
+                              levels = ordLymphShort)
+Idents(seurat) &lt;- seurat$clusterLabel
+
+genePlot &lt;- unique(selIntFormFin$gene.y[which(!is.na(selIntFormFin$gene.y))])
+geneLabel &lt;- gsub(&quot;.*\\.&quot;, &quot;&quot;, genePlot)
+  
+p &lt;- DotPlot(seurat, features = genePlot,
+             cols = c(&quot;#e0cccf&quot;, &quot;#7c2431&quot;), scale = F) +
+  coord_flip() +
+  scale_x_discrete(breaks = genePlot, labels=geneLabel) +
+  theme_bw() +
+  theme(panel.grid.minor = element_blank(),
+        panel.grid.major = element_blank(),
+        axis.text=element_text(size=10, colour = &quot;black&quot;),
+        axis.text.x = element_text(angle = 90, hjust = 1),
+        axis.title=element_blank(),
+        panel.border = element_rect(size = 0.7, linetype = &quot;solid&quot;,
+                                    colour = &quot;black&quot;))
+p</code></pre>
+<p><img src="figure/CellPhoneDBout_selInt_imm.Rmd/dotplot%20mean%20expression%20Lympho-1.png" width="576" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>p &lt;- DotPlot(seurat, features = genePlot,
+             cols = c(&quot;#e0cccf&quot;, &quot;#7c2431&quot;), scale = T) +
+  coord_flip() +
+  scale_x_discrete(breaks = genePlot, labels=geneLabel) +
+  theme_bw() +
+  theme(panel.grid.minor = element_blank(),
+        panel.grid.major = element_blank(),
+        axis.text=element_text(size=10, colour = &quot;black&quot;),
+        axis.text.x = element_text(angle = 90, hjust = 1),
+        axis.title=element_blank(),
+        panel.border = element_rect(size = 0.7, linetype = &quot;solid&quot;,
+                                    colour = &quot;black&quot;))
+p</code></pre>
+<p><img src="figure/CellPhoneDBout_selInt_imm.Rmd/dotplot%20mean%20expression%20Lympho-2.png" width="576" style="display: block; margin: auto;" /></p>
+</div>
+<div id="vlnplot-with-mean-expression-on-lympho" class="section level4">
+<h4>vlnplot with mean expression on Lympho</h4>
+<pre class="r"><code>pList &lt;- sapply(genePlot, function(x){
+  p &lt;- VlnPlot(object = seurat, features = x,
+               group.by = &quot;clusterLabel&quot;,
+               cols = colLab, pt.size = 0
+               )
+  plot(p)
+})</code></pre>
+<p><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20Lympho-1.png" width="672" style="display: block; margin: auto;" /><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20Lympho-2.png" width="672" style="display: block; margin: auto;" /><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20Lympho-3.png" width="672" style="display: block; margin: auto;" /><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20Lympho-4.png" width="672" style="display: block; margin: auto;" /><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20Lympho-5.png" width="672" style="display: block; margin: auto;" /><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20Lympho-6.png" width="672" style="display: block; margin: auto;" /><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20Lympho-7.png" width="672" style="display: block; margin: auto;" /><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20Lympho-8.png" width="672" style="display: block; margin: auto;" /><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20Lympho-9.png" width="672" style="display: block; margin: auto;" /><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20Lympho-10.png" width="672" style="display: block; margin: auto;" /><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20Lympho-11.png" width="672" style="display: block; margin: auto;" /><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20Lympho-12.png" width="672" style="display: block; margin: auto;" /><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20Lympho-13.png" width="672" style="display: block; margin: auto;" /><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20Lympho-14.png" width="672" style="display: block; margin: auto;" /><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20Lympho-15.png" width="672" style="display: block; margin: auto;" /><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20Lympho-16.png" width="672" style="display: block; margin: auto;" /><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20Lympho-17.png" width="672" style="display: block; margin: auto;" /><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20Lympho-18.png" width="672" style="display: block; margin: auto;" /><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20Lympho-19.png" width="672" style="display: block; margin: auto;" /><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20Lympho-20.png" width="672" style="display: block; margin: auto;" /><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20Lympho-21.png" width="672" style="display: block; margin: auto;" /><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20Lympho-22.png" width="672" style="display: block; margin: auto;" /><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20Lympho-23.png" width="672" style="display: block; margin: auto;" /><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20Lympho-24.png" width="672" style="display: block; margin: auto;" /><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20Lympho-25.png" width="672" style="display: block; margin: auto;" /><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20Lympho-26.png" width="672" style="display: block; margin: auto;" /><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20Lympho-27.png" width="672" style="display: block; margin: auto;" /><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20Lympho-28.png" width="672" style="display: block; margin: auto;" /><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20Lympho-29.png" width="672" style="display: block; margin: auto;" /><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20Lympho-30.png" width="672" style="display: block; margin: auto;" /><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20Lympho-31.png" width="672" style="display: block; margin: auto;" /><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20Lympho-32.png" width="672" style="display: block; margin: auto;" /><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20Lympho-33.png" width="672" style="display: block; margin: auto;" /><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20Lympho-34.png" width="672" style="display: block; margin: auto;" /><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20Lympho-35.png" width="672" style="display: block; margin: auto;" /><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20Lympho-36.png" width="672" style="display: block; margin: auto;" /><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20Lympho-37.png" width="672" style="display: block; margin: auto;" /><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20Lympho-38.png" width="672" style="display: block; margin: auto;" /><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20Lympho-39.png" width="672" style="display: block; margin: auto;" /><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20Lympho-40.png" width="672" style="display: block; margin: auto;" /><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20Lympho-41.png" width="672" style="display: block; margin: auto;" /><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20Lympho-42.png" width="672" style="display: block; margin: auto;" /><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20Lympho-43.png" width="672" style="display: block; margin: auto;" /><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20Lympho-44.png" width="672" style="display: block; margin: auto;" /><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20Lympho-45.png" width="672" style="display: block; margin: auto;" /><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20Lympho-46.png" width="672" style="display: block; margin: auto;" /><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20Lympho-47.png" width="672" style="display: block; margin: auto;" /><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20Lympho-48.png" width="672" style="display: block; margin: auto;" /><img src="figure/CellPhoneDBout_selInt_imm.Rmd/vlnPlot%20Lympho-49.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+<div id="dotplot-with-selected-subset-specific-int" class="section level3">
+<h3>dotplot with selected subset specific int</h3>
+<pre class="r"><code>selIntSub &lt;- selIntOrd %&gt;% filter(plot != &quot;all&quot;) %&gt;% 
+  mutate(sel=paste0(intPair, &quot;_&quot;, plot))
+
+selIntDat &lt;- data.frame(do.call(&quot;rbind&quot;, intList))
+
+## reorder int to always BRC to LYMPHO and remove selPop 
+reordInt &lt;- selIntDat %&gt;% filter(groupA==&quot;LYMPHO&quot;) %&gt;% 
+  mutate(intA=gsub(&quot;_.*&quot;, &quot;&quot;, intPair)) %&gt;% 
+  mutate(intB=gsub(&quot;.*_&quot;, &quot;&quot;, intPair))
+reordIntFin &lt;- data.frame(intPair=paste0(reordInt$intB, &quot;_&quot;, reordInt$intA),
+                          CellsInt=paste0(reordInt$cellB, &quot;|&quot;, reordInt$cellA),
+                          mean=reordInt$mean,
+                          cellA=reordInt$cellB,
+                          cellB=reordInt$cellA,
+                          groupA=reordInt$groupB,
+                          groupB=reordInt$groupA,
+                          pVal=reordInt$pVal,
+                          SLO=reordInt$SLO,
+                          sign=reordInt$sign)
+
+selIntDatOrd &lt;- rbind(selIntDat[which(selIntDat$groupA==&quot;BRC&quot;),],
+                       reordIntFin) %&gt;% 
+  filter(!cellB %in% selPop)
+
+selIntDatOrd_mean &lt;- selIntDatOrd %&gt;%
+  filter(intPair %in% selIntSub$intPair) %&gt;% 
+  group_by(intPair, CellsInt, cellA, cellB) %&gt;% 
+  summarise(meanSLO=mean(mean), meanPval=mean(pVal)) %&gt;% 
+  mutate(logPval=-log(meanPval)) %&gt;% 
+  mutate(col=factor(gsub(&quot;.*_&quot;, &quot;&quot;, cellA), levels = ordBRC)) %&gt;% 
+  mutate(sel=paste0(intPair, &quot;_&quot;, col)) %&gt;% 
+  filter(sel %in% selIntSub$sel) %&gt;% 
+  arrange(., col)
+
+selIntDatOrd_mean$logPval[which(selIntDatOrd_mean$logPval &gt; 4)] &lt;- 4
+
+## remove dupl intPairs
+dupPairSum &lt;- selIntDatOrd_mean %&gt;% group_by(intPair, cellA) %&gt;% 
+  summarise(cnt=n())
+dupPair &lt;- dupPairSum$intPair[duplicated(dupPairSum$intPair)]
+selIntDatOrd_mean &lt;-  selIntDatOrd_mean %&gt;% filter(!intPair %in% dupPair)
+                             
+p &lt;- ggplot(selIntDatOrd_mean, aes(x=cellB,y=intPair)) +
+  geom_point(aes(size=logPval,color=col)) +
+  scale_color_manual(values=colBRC) +
+  scale_radius(range = c(0, 4)) +
+  scale_y_discrete(limits=unique(selIntDatOrd_mean$intPair)) +
+  scale_x_discrete(limits=ordLymph) +
+  theme_bw() +
+  theme(panel.grid.minor = element_blank(),
+        panel.grid.major = element_blank(),
+        axis.text=element_text(size=10, colour = &quot;black&quot;),
+        axis.text.x = element_text(angle = 90, hjust = 1),
+        axis.title=element_blank(),
+        panel.border = element_rect(size = 0.7, linetype = &quot;solid&quot;,
+                                    colour = &quot;black&quot;))
+p</code></pre>
+<p><img src="figure/CellPhoneDBout_selInt_imm.Rmd/dotplot%20sel%20int%20subSpec-1.png" width="480" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+<div id="session-info" class="section level2">
+<h2>session info</h2>
+<pre class="r"><code>sessionInfo()</code></pre>
+<pre><code>R version 4.1.0 (2021-05-18)
+Platform: x86_64-apple-darwin17.0 (64-bit)
+Running under: macOS Catalina 10.15.7
+
+Matrix products: default
+BLAS:   /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRblas.dylib
+LAPACK: /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRlapack.dylib
+
+locale:
+[1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+
+attached base packages:
+[1] parallel  stats4    stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+ [1] biomaRt_2.48.3              SeuratObject_4.0.2          Seurat_4.0.5               
+ [4] viridis_0.6.2               viridisLite_0.4.0           reshape2_1.4.4             
+ [7] pheatmap_1.0.12             ggsci_2.9                   here_1.0.1                 
+[10] RColorBrewer_1.1-2          SummarizedExperiment_1.22.0 Biobase_2.52.0             
+[13] GenomicRanges_1.44.0        GenomeInfoDb_1.28.4         IRanges_2.26.0             
+[16] S4Vectors_0.30.2            BiocGenerics_0.38.0         MatrixGenerics_1.4.3       
+[19] matrixStats_0.61.0          corrplot_0.90               forcats_0.5.1              
+[22] stringr_1.4.0               dplyr_1.0.7                 purrr_0.3.4                
+[25] readr_2.0.2                 tidyr_1.1.4                 tibble_3.1.5               
+[28] ggplot2_3.3.5               tidyverse_1.3.1            
+
+loaded via a namespace (and not attached):
+  [1] utf8_1.2.2             reticulate_1.22        tidyselect_1.1.1       RSQLite_2.2.8         
+  [5] AnnotationDbi_1.54.1   htmlwidgets_1.5.4      grid_4.1.0             Rtsne_0.15            
+  [9] munsell_0.5.0          codetools_0.2-18       ica_1.0-2              future_1.22.1         
+ [13] miniUI_0.1.1.1         withr_2.4.2            colorspace_2.0-2       filelock_1.0.2        
+ [17] highr_0.9              knitr_1.36             rstudioapi_0.13        ROCR_1.0-11           
+ [21] tensor_1.5             listenv_0.8.0          labeling_0.4.2         git2r_0.28.0          
+ [25] GenomeInfoDbData_1.2.6 polyclip_1.10-0        farver_2.1.0           bit64_4.0.5           
+ [29] rprojroot_2.0.2        parallelly_1.28.1      vctrs_0.3.8            generics_0.1.1        
+ [33] xfun_0.27              BiocFileCache_2.0.0    R6_2.5.1               bitops_1.0-7          
+ [37] spatstat.utils_2.2-0   cachem_1.0.6           DelayedArray_0.18.0    assertthat_0.2.1      
+ [41] vroom_1.5.5            promises_1.2.0.1       scales_1.1.1           gtable_0.3.0          
+ [45] globals_0.14.0         goftest_1.2-3          workflowr_1.6.2        rlang_0.4.12          
+ [49] splines_4.1.0          lazyeval_0.2.2         spatstat.geom_2.3-0    broom_0.7.9           
+ [53] yaml_2.2.1             abind_1.4-5            modelr_0.1.8           backports_1.3.0       
+ [57] httpuv_1.6.3           tools_4.1.0            ellipsis_0.3.2         spatstat.core_2.3-0   
+ [61] jquerylib_0.1.4        ggridges_0.5.3         Rcpp_1.0.7             plyr_1.8.6            
+ [65] progress_1.2.2         zlibbioc_1.38.0        RCurl_1.98-1.5         prettyunits_1.1.1     
+ [69] rpart_4.1-15           deldir_1.0-6           pbapply_1.5-0          cowplot_1.1.1         
+ [73] zoo_1.8-9              haven_2.4.3            ggrepel_0.9.1          cluster_2.1.2         
+ [77] fs_1.5.0               magrittr_2.0.1         data.table_1.14.2      scattermore_0.7       
+ [81] lmtest_0.9-38          reprex_2.0.1           RANN_2.6.1             fitdistrplus_1.1-6    
+ [85] hms_1.1.1              patchwork_1.1.1        mime_0.12              evaluate_0.14         
+ [89] xtable_1.8-4           XML_3.99-0.8           readxl_1.3.1           gridExtra_2.3         
+ [93] compiler_4.1.0         KernSmooth_2.23-20     crayon_1.4.1           htmltools_0.5.2       
+ [97] mgcv_1.8-38            later_1.3.0            tzdb_0.1.2             lubridate_1.8.0       
+[101] DBI_1.1.1              dbplyr_2.1.1           rappdirs_0.3.3         MASS_7.3-54           
+[105] Matrix_1.3-4           cli_3.0.1              igraph_1.2.7           pkgconfig_2.0.3       
+[109] plotly_4.10.0          spatstat.sparse_2.0-0  xml2_1.3.2             bslib_0.3.1           
+[113] XVector_0.32.0         rvest_1.0.2            digest_0.6.28          sctransform_0.3.2     
+[117] RcppAnnoy_0.0.19       spatstat.data_2.1-0    Biostrings_2.60.2      rmarkdown_2.11        
+[121] cellranger_1.1.0       leiden_0.3.9           uwot_0.1.10            curl_4.3.2            
+[125] shiny_1.7.1            lifecycle_1.0.1        nlme_3.1-153           jsonlite_1.7.2        
+[129] fansi_0.5.0            pillar_1.6.4           lattice_0.20-45        KEGGREST_1.32.0       
+[133] fastmap_1.1.0          httr_1.4.2             survival_3.2-13        glue_1.4.2            
+[137] png_0.1-7              bit_4.0.4              stringi_1.7.5          sass_0.4.0            
+[141] blob_1.2.2             memoise_2.0.0          irlba_2.3.3            future.apply_1.8.1    </code></pre>
+<pre class="r"><code>date()</code></pre>
+<pre><code>[1] &quot;Thu Nov  4 11:34:53 2021&quot;</code></pre>
+<br>
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
+<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> Session information
+</button>
+</p>
+<div id="workflowr-sessioninfo" class="collapse">
+<pre class="r"><code>sessionInfo()</code></pre>
+<pre><code>R version 4.1.0 (2021-05-18)
+Platform: x86_64-apple-darwin17.0 (64-bit)
+Running under: macOS Catalina 10.15.7
+
+Matrix products: default
+BLAS:   /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRblas.dylib
+LAPACK: /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRlapack.dylib
+
+locale:
+[1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+
+attached base packages:
+[1] parallel  stats4    stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+ [1] biomaRt_2.48.3              SeuratObject_4.0.2          Seurat_4.0.5               
+ [4] viridis_0.6.2               viridisLite_0.4.0           reshape2_1.4.4             
+ [7] pheatmap_1.0.12             ggsci_2.9                   here_1.0.1                 
+[10] RColorBrewer_1.1-2          SummarizedExperiment_1.22.0 Biobase_2.52.0             
+[13] GenomicRanges_1.44.0        GenomeInfoDb_1.28.4         IRanges_2.26.0             
+[16] S4Vectors_0.30.2            BiocGenerics_0.38.0         MatrixGenerics_1.4.3       
+[19] matrixStats_0.61.0          corrplot_0.90               forcats_0.5.1              
+[22] stringr_1.4.0               dplyr_1.0.7                 purrr_0.3.4                
+[25] readr_2.0.2                 tidyr_1.1.4                 tibble_3.1.5               
+[28] ggplot2_3.3.5               tidyverse_1.3.1            
+
+loaded via a namespace (and not attached):
+  [1] utf8_1.2.2             reticulate_1.22        tidyselect_1.1.1       RSQLite_2.2.8         
+  [5] AnnotationDbi_1.54.1   htmlwidgets_1.5.4      grid_4.1.0             Rtsne_0.15            
+  [9] munsell_0.5.0          codetools_0.2-18       ica_1.0-2              future_1.22.1         
+ [13] miniUI_0.1.1.1         withr_2.4.2            colorspace_2.0-2       filelock_1.0.2        
+ [17] highr_0.9              knitr_1.36             rstudioapi_0.13        ROCR_1.0-11           
+ [21] tensor_1.5             listenv_0.8.0          labeling_0.4.2         git2r_0.28.0          
+ [25] GenomeInfoDbData_1.2.6 polyclip_1.10-0        farver_2.1.0           bit64_4.0.5           
+ [29] rprojroot_2.0.2        parallelly_1.28.1      vctrs_0.3.8            generics_0.1.1        
+ [33] xfun_0.27              BiocFileCache_2.0.0    R6_2.5.1               bitops_1.0-7          
+ [37] spatstat.utils_2.2-0   cachem_1.0.6           DelayedArray_0.18.0    assertthat_0.2.1      
+ [41] vroom_1.5.5            promises_1.2.0.1       scales_1.1.1           gtable_0.3.0          
+ [45] globals_0.14.0         goftest_1.2-3          workflowr_1.6.2        rlang_0.4.12          
+ [49] splines_4.1.0          lazyeval_0.2.2         spatstat.geom_2.3-0    broom_0.7.9           
+ [53] yaml_2.2.1             abind_1.4-5            modelr_0.1.8           backports_1.3.0       
+ [57] httpuv_1.6.3           tools_4.1.0            ellipsis_0.3.2         spatstat.core_2.3-0   
+ [61] jquerylib_0.1.4        ggridges_0.5.3         Rcpp_1.0.7             plyr_1.8.6            
+ [65] progress_1.2.2         zlibbioc_1.38.0        RCurl_1.98-1.5         prettyunits_1.1.1     
+ [69] rpart_4.1-15           deldir_1.0-6           pbapply_1.5-0          cowplot_1.1.1         
+ [73] zoo_1.8-9              haven_2.4.3            ggrepel_0.9.1          cluster_2.1.2         
+ [77] fs_1.5.0               magrittr_2.0.1         data.table_1.14.2      scattermore_0.7       
+ [81] lmtest_0.9-38          reprex_2.0.1           RANN_2.6.1             fitdistrplus_1.1-6    
+ [85] hms_1.1.1              patchwork_1.1.1        mime_0.12              evaluate_0.14         
+ [89] xtable_1.8-4           XML_3.99-0.8           readxl_1.3.1           gridExtra_2.3         
+ [93] compiler_4.1.0         KernSmooth_2.23-20     crayon_1.4.1           htmltools_0.5.2       
+ [97] mgcv_1.8-38            later_1.3.0            tzdb_0.1.2             lubridate_1.8.0       
+[101] DBI_1.1.1              dbplyr_2.1.1           rappdirs_0.3.3         MASS_7.3-54           
+[105] Matrix_1.3-4           cli_3.0.1              igraph_1.2.7           pkgconfig_2.0.3       
+[109] plotly_4.10.0          spatstat.sparse_2.0-0  xml2_1.3.2             bslib_0.3.1           
+[113] XVector_0.32.0         rvest_1.0.2            digest_0.6.28          sctransform_0.3.2     
+[117] RcppAnnoy_0.0.19       spatstat.data_2.1-0    Biostrings_2.60.2      rmarkdown_2.11        
+[121] cellranger_1.1.0       leiden_0.3.9           uwot_0.1.10            curl_4.3.2            
+[125] shiny_1.7.1            lifecycle_1.0.1        nlme_3.1-153           jsonlite_1.7.2        
+[129] fansi_0.5.0            pillar_1.6.4           lattice_0.20-45        KEGGREST_1.32.0       
+[133] fastmap_1.1.0          httr_1.4.2             survival_3.2-13        glue_1.4.2            
+[137] png_0.1-7              bit_4.0.4              stringi_1.7.5          sass_0.4.0            
+[141] blob_1.2.2             memoise_2.0.0          irlba_2.3.3            future.apply_1.8.1    </code></pre>
+</div>
+</div>
+
+
+<!-- Adjust MathJax settings so that all math formulae are shown using
+TeX fonts only; see
+http://docs.mathjax.org/en/latest/configuration.html.  This will make
+the presentation more consistent at the cost of the webpage sometimes
+taking slightly longer to load. Note that this only works because the
+footer is added to webpages before the MathJax javascript. -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": { availableFonts: ["TeX"] }
+  });
+</script>
+
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
