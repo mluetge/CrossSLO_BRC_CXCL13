@@ -1,0 +1,1255 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>create input files for cellphonedb</title>
+
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<link rel="icon" href="https://github.com/workflowr/workflowr-assets/raw/master/img/reproducible.png">
+<!-- Add a small amount of space between sections. -->
+<style type="text/css">
+div.section {
+  padding-top: 12px;
+}
+</style>
+
+
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">CrossSLO_BRC_CXCL13</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="about.html">About</a>
+</li>
+<li>
+  <a href="license.html">License</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">create input files for cellphonedb</h1>
+<h4 class="author"></h4>
+
+</div>
+
+
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
+</button>
+</p>
+<div id="workflowr-report" class="collapse">
+<ul class="nav nav-tabs">
+<li class="active">
+<a data-toggle="tab" href="#summary">Summary</a>
+</li>
+<li>
+<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> </a>
+</li>
+<li>
+<a data-toggle="tab" href="#versions">Past versions</a>
+</li>
+</ul>
+<div class="tab-content">
+<div id="summary" class="tab-pane fade in active">
+<p>
+<strong>Last updated:</strong> 2021-12-01
+</p>
+<p>
+<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 1
+</p>
+<p>
+<strong>Knit directory:</strong> <code>CrossSLO_BRC_CXCL13/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
+</p>
+<p>
+This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis was created with <a
+  href="https://github.com/jdblischak/workflowr">workflowr</a> (version 1.6.2). The <em>Checks</em> tab describes the reproducibility checks that were applied when the results were created. The <em>Past versions</em> tab lists the development history.
+</p>
+<hr>
+</div>
+<div id="checks" class="tab-pane fade">
+<div id="workflowr-checks" class="panel-group">
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges"> <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted changes </a>
+</p>
+</div>
+<div id="strongRMarkdownfilestronguncommittedchanges" class="panel-collapse collapse">
+<div class="panel-body">
+<p>The R Markdown is untracked by Git. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongEnvironmentstrongempty"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Environment:</strong> empty </a>
+</p>
+</div>
+<div id="strongEnvironmentstrongempty" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! The global environment was empty. Objects defined in the global environment can affect the analysis in your R Markdown file in unknown ways. For reproduciblity it’s best to always run the code in an empty environment.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSeedstrongcodesetseed20210519code"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Seed:</strong> <code>set.seed(20210519)</code> </a>
+</p>
+</div>
+<div id="strongSeedstrongcodesetseed20210519code" class="panel-collapse collapse">
+<div class="panel-body">
+<p>The command <code>set.seed(20210519)</code> was run prior to running the code in the R Markdown file. Setting a seed ensures that any results that rely on randomness, e.g. subsampling or permutations, are reproducible.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSessioninformationstrongrecorded"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Session information:</strong> recorded </a>
+</p>
+</div>
+<div id="strongSessioninformationstrongrecorded" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Recording the operating system, R version, and package versions is critical for reproducibility.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongCachestrongnone"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Cache:</strong> none </a>
+</p>
+</div>
+<div id="strongCachestrongnone" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Nice! There were no cached chunks for this analysis, so you can be confident that you successfully produced the results during this run.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongFilepathsstrongrelative"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>File paths:</strong> relative </a>
+</p>
+</div>
+<div id="strongFilepathsstrongrelative" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Using relative paths to the files within your workflowr project makes it easier to run your code on other machines.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcommluetgeCrossSLOBRCCXCL13tree525b9f61d4976a8e83ac84bd63f17780d5cd2405targetblank525b9f6a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/tree/525b9f61d4976a8e83ac84bd63f17780d5cd2405" target="_blank">525b9f6</a> </a>
+</p>
+</div>
+<div id="strongRepositoryversionstrongahrefhttpsgithubcommluetgeCrossSLOBRCCXCL13tree525b9f61d4976a8e83ac84bd63f17780d5cd2405targetblank525b9f6a" class="panel-collapse collapse">
+<div class="panel-body">
+<p>
+Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
+</p>
+<p>
+The results in this page were generated with repository version <a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/tree/525b9f61d4976a8e83ac84bd63f17780d5cd2405" target="_blank">525b9f6</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+</p>
+<p>
+Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
+</p>
+<pre><code>
+Ignored files:
+    Ignored:    .Rhistory
+    Ignored:    .Rproj.user/
+    Ignored:    data/GSEA/
+    Ignored:    data/cellphonedb/
+    Ignored:    data/destiny/
+    Ignored:    data/lympho/
+    Ignored:    data/processedData/
+    Ignored:    data/processedDataLymphocytes/
+    Ignored:    figure/.DS_Store
+    Ignored:    figure/plotSubsetSpecificSignatures.Rmd/.DS_Store
+
+Untracked files:
+    Untracked:  analysis/CharacterizeLymphoSubgrps.Rmd
+    Untracked:  analysis/SubsetSpecificGeneSignatures2.Rmd
+    Untracked:  analysis/SubsetSpecificGeneSignaturesSignaling.Rmd
+    Untracked:  analysis/analyseCPDBoutImmGrp.Rmd
+    Untracked:  analysis/plotSubsetSpecificSignatures2.Rmd
+    Untracked:  analysis/plotSubsetSpecificSignaturesSignaling.Rmd
+    Untracked:  analysis/visSelIntHeatmap.Rmd
+    Untracked:  analysis/visSelIntHeatmapSignaling.Rmd
+    Untracked:  figure/plotSubsetSpecificSignatures2.Rmd/
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/
+
+Unstaged changes:
+    Modified:   analysis/SubsetSpecificGeneSignatures.Rmd
+    Modified:   analysis/analyseCPDBoutImm.Rmd
+    Modified:   analysis/createCPDBinput_immOnly.Rmd
+    Modified:   analysis/index.Rmd
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr Antigen capture and presentation_LZFDC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr Antigen capture and presentation_LZFDC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr Antigen capture and presentation_MRC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr Antigen capture and presentation_MRC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr Costimulatory and inhibitory molecules_LZFDC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr Costimulatory and inhibitory molecules_LZFDC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr Cytokines and chemokines_MRC   -1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr Cytokines and chemokines_MRC   -1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr Cytokines and chemokines_MRC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr Cytokines and chemokines_MRC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr Cytokines and chemokines_TBRC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr Cytokines and chemokines_TBRC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Antigen capture and presentation_LZFDC cut 2-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Antigen capture and presentation_LZFDC cut 2-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Antigen capture and presentation_LZFDC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Antigen capture and presentation_LZFDC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Antigen capture and presentation_MRC cut 2-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Antigen capture and presentation_MRC cut 2-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Antigen capture and presentation_MRC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Antigen capture and presentation_MRC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Costimulatory and inhibitory molecules_LZFDC cut 2-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Costimulatory and inhibitory molecules_LZFDC cut 2-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Costimulatory and inhibitory molecules_LZFDC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Costimulatory and inhibitory molecules_LZFDC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Cytokines and chemokines_MRC cut 2-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Cytokines and chemokines_MRC cut 2-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Cytokines and chemokines_MRC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Cytokines and chemokines_MRC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Cytokines and chemokines_TBRC cut 2-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Cytokines and chemokines_TBRC cut 2-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Cytokines and chemokines_TBRC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Cytokines and chemokines_TBRC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Metabolite transporter_LZFDC cut 2-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Metabolite transporter_LZFDC cut 2-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Metabolite transporter_LZFDC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Metabolite transporter_LZFDC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Stemness_PRC2 cut 2-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Stemness_PRC2 cut 2-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Stemness_PRC2-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Stemness_PRC2-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Tnf superfamily factors_LZFDC cut 2-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Tnf superfamily factors_LZFDC cut 2-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Tnf superfamily factors_LZFDC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Tnf superfamily factors_LZFDC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Tnf superfamily factors_MRC cut 2-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Tnf superfamily factors_MRC cut 2-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Tnf superfamily factors_MRC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Tnf superfamily factors_MRC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM adhesion molecules_DZFDC cut 2-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM adhesion molecules_DZFDC cut 2-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM adhesion molecules_DZFDC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM adhesion molecules_DZFDC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM adhesion molecules_LZFDC cut 2-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM adhesion molecules_LZFDC cut 2-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM adhesion molecules_LZFDC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM adhesion molecules_LZFDC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM adhesion molecules_MRC cut 2-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM adhesion molecules_MRC cut 2-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM adhesion molecules_MRC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM adhesion molecules_MRC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM adhesion molecules_PRC2 cut 2-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM adhesion molecules_PRC2 cut 2-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM adhesion molecules_PRC2-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM adhesion molecules_PRC2-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM adhesion molecules_TBRC cut 2-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM adhesion molecules_TBRC cut 2-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM adhesion molecules_TBRC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM adhesion molecules_TBRC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM growth and survival factors_DZFDC cut 2-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM growth and survival factors_DZFDC cut 2-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM growth and survival factors_DZFDC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM growth and survival factors_DZFDC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM growth and survival factors_LZFDC cut 2-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM growth and survival factors_LZFDC cut 2-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM growth and survival factors_LZFDC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM growth and survival factors_LZFDC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM growth and survival factors_PRC2 cut 2-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM growth and survival factors_PRC2 cut 2-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM growth and survival factors_PRC2-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM growth and survival factors_PRC2-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM growth and survival factors_TBRC cut 2-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM growth and survival factors_TBRC cut 2-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM growth and survival factors_TBRC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM growth and survival factors_TBRC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM network formation_DZFDC cut 2-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM network formation_DZFDC cut 2-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM network formation_DZFDC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM network formation_DZFDC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM network formation_LZFDC cut 2-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM network formation_LZFDC cut 2-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM network formation_LZFDC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM network formation_LZFDC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM network formation_MRC cut 2-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM network formation_MRC cut 2-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM network formation_MRC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM network formation_MRC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM network formation_PRC2 cut 2-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM network formation_PRC2 cut 2-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM network formation_PRC2-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM network formation_PRC2-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM network formation_TBRC cut 2-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM network formation_TBRC cut 2-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM network formation_TBRC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM network formation_TBRC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr Metabolite transporter_LZFDC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr Metabolite transporter_LZFDC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr Stemness_PRC2-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr Stemness_PRC2-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr Tnf superfamily factors_LZFDC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr Tnf superfamily factors_LZFDC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr Tnf superfamily factors_MRC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr Tnf superfamily factors_MRC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr adhesion molecules_DZFDC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr adhesion molecules_DZFDC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr adhesion molecules_LZFDC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr adhesion molecules_LZFDC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr adhesion molecules_MRC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr adhesion molecules_MRC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr adhesion molecules_PRC2-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr adhesion molecules_PRC2-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr adhesion molecules_TBRC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr adhesion molecules_TBRC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr growth and survival factor_DZFDC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr growth and survival factor_DZFDC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr growth and survival factors_DZFDC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr growth and survival factors_DZFDC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr growth and survival factors_LZFDC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr growth and survival factors_LZFDC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr growth and survival factors_PRC2-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr growth and survival factors_PRC2-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr growth and survival factors_TBRC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr growth and survival factors_TBRC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr network formation_DZFDC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr network formation_DZFDC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr network formation_LZFDC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr network formation_LZFDC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr network formation_MRC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr network formation_MRC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr network formation_PRC2 -1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr network formation_PRC2 -1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr network formation_PRC2-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr network formation_PRC2-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr network formation_TBRC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr network formation_TBRC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm Antigen capture and presentation_LZFDC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm Antigen capture and presentation_LZFDC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm Antigen capture and presentation_MRC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm Antigen capture and presentation_MRC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm Costimulatory and inhibitory molecules_LZFDC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm Costimulatory and inhibitory molecules_LZFDC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm Cytokines and chemokines_MRC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm Cytokines and chemokines_MRC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm Cytokines and chemokines_TBRC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm Cytokines and chemokines_TBRC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm Metabolite transporter_LZFDC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm Metabolite transporter_LZFDC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm Stemness_PRC2-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm Stemness_PRC2-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm Tnf superfamily factors_LZFDC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm Tnf superfamily factors_LZFDC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm Tnf superfamily factors_MRC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm Tnf superfamily factors_MRC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm adhesion molecules_DZFDC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm adhesion molecules_DZFDC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm adhesion molecules_LZFDC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm adhesion molecules_LZFDC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm adhesion molecules_MRC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm adhesion molecules_MRC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm adhesion molecules_PRC2-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm adhesion molecules_PRC2-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm adhesion molecules_TBRC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm adhesion molecules_TBRC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm growth and survival factors_DZFDC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm growth and survival factors_DZFDC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm growth and survival factors_LZFDC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm growth and survival factors_LZFDC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm growth and survival factors_PRC2-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm growth and survival factors_PRC2-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm growth and survival factors_TBRC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm growth and survival factors_TBRC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm network formation_DZFDC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm network formation_DZFDC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm network formation_LZFDC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm network formation_LZFDC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm network formation_MRC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm network formation_MRC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm network formation_PRC2-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm network formation_PRC2-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm network formation_TBRC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm network formation_TBRC-1.png
+
+</code></pre>
+<p>
+Note that any generated files, e.g. HTML, png, CSS, etc., are not included in this status report because it is ok for generated content to have uncommitted changes.
+</p>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</div>
+<div id="versions" class="tab-pane fade">
+<p>
+There are no past versions. Publish this analysis with <code>wflow_publish()</code> to start tracking its development.
+</p>
+<hr>
+</div>
+</div>
+</div>
+<div id="load-packages" class="section level2">
+<h2>Load packages</h2>
+<pre class="r"><code>suppressPackageStartupMessages({
+  library(scater)
+  library(dplyr)
+  library(reshape2)
+  library(Matrix)
+  library(purrr)
+  library(scran)
+  library(Seurat)
+  library(mclust)
+  library(tidyverse)
+  library(here)
+  library(viridis)
+  library(RColorBrewer)
+  library(pheatmap)
+})</code></pre>
+</div>
+<div id="set-color-vectors" class="section level2">
+<h2>set color Vectors</h2>
+<pre class="r"><code>colBRC &lt;- c(&quot;#87c5af&quot;, &quot;#94033b&quot;, &quot;#fc8f3b&quot;, &quot;#2580fe&quot;, &quot;#514e72&quot;)
+names(colBRC) &lt;- c(&quot;LZFDC&quot;, &quot;MRC&quot;, &quot;TBRC&quot;,&quot;DZFDC&quot;,&quot;PRC2&quot;)
+
+
+colorSLO &lt;- c(viridis(3)[c(1,2)], brewer.pal(n=9, name=&quot;YlOrRd&quot;)[c(4)])
+colorCond &lt;- brewer.pal(n=3, name=&quot;Paired&quot;)[c(1,2)]
+colorSLOCond &lt;- c(&quot;#440154FF&quot;,&quot;#807DBA&quot;, &quot;#FEB24C&quot;, &quot;#F16913&quot;, &quot;#21908CFF&quot;)
+
+names(colorSLO) &lt;- c(&quot;LN&quot;, &quot;PP&quot;, &quot;Spleen&quot;)
+names(colorCond) &lt;- c(&quot;naive&quot;, &quot;immunized&quot;)
+names(colorSLOCond) &lt;- c(&quot;LN_immunized&quot;,&quot;LN_naive&quot;, &quot;Spleen_naive&quot;,
+                         &quot;Spleen_immunized&quot;, &quot;PP_immunized&quot;)
+
+
+colLYM &lt;- c(&quot;#a0b9c4&quot;, &quot;#78abb7&quot;, &quot;#567a83&quot;, &quot;#3c454a&quot;, &quot;#9eabb1&quot;,
+            &quot;#924440&quot;, &quot;#eab562&quot;,
+            &quot;#f1d75f&quot;, &quot;#b5a147&quot;, &quot;#786c30&quot;)
+
+
+names(colLYM) &lt;- c(&quot;naiveBcells&quot;, &quot;LZBcells&quot;, &quot;DZshmBcells&quot;, &quot;proDZ&quot;,
+                   &quot;plasmaCells&quot;, 
+                   &quot;Tfh&quot;, &quot;DCs&quot;,
+                   &quot;mdMacrophages&quot;, &quot;trMacrophages&quot;, &quot;infMacrophages&quot;)
+
+colLYM2 &lt;- c(&quot;#a0b9c4&quot;, &quot;#567a83&quot;, &quot;#9eabb1&quot;,
+            &quot;#924440&quot;, &quot;#eab562&quot;,
+            &quot;#b5a147&quot;)
+
+
+names(colLYM2) &lt;- c(&quot;naiveBcells&quot;, &quot;GCBcells&quot;,
+                   &quot;plasmaCells&quot;, 
+                   &quot;Tfh&quot;, &quot;DCs&quot;,
+                   &quot;Myeloids&quot;)</code></pre>
+</div>
+<div id="load-input-data" class="section level2">
+<h2>load input data</h2>
+<pre class="r"><code>basedir &lt;- here()
+seuratLY &lt;- readRDS(file = paste0(basedir, 
+                              &quot;/data/lympho/allSamples_mergedLab_seurat.rds&quot;))
+seuratLY &lt;- subset(seuratLY, clusterLabel %in% names(colLYM))
+
+GCBs &lt;- c(&quot;LZBcells&quot;, &quot;DZshmBcells&quot;, &quot;proDZ&quot;)
+Myel &lt;- c(&quot;mdMacrophages&quot;, &quot;trMacrophages&quot;, &quot;infMacrophages&quot;)
+seuratLY$clusterLabel2 &lt;- seuratLY$clusterLabel
+seuratLY$clusterLabel2[which(seuratLY$clusterLabel %in% GCBs)] &lt;- &quot;GCBcells&quot;
+seuratLY$clusterLabel2[which(seuratLY$clusterLabel %in% Myel)] &lt;- &quot;Myeloids&quot;
+
+seuratBRC &lt;- readRDS(file=paste0(basedir, &quot;/data/folBRC_allSLO_seurat.rds&quot;))
+
+## Each SLO individually
+seuratLY$label_plus_SLO &lt;- paste0(seuratLY$clusterLabel2, &quot;_&quot;, seuratLY$SLO)
+seuratBRC$label_plus_SLO &lt;- paste0(seuratBRC$clusterLabel, &quot;_&quot;, seuratBRC$SLO)
+
+
+## plot input data
+Idents(seuratLY) &lt;- seuratLY$clusterLabel2
+DimPlot(seuratLY, reduction = &quot;umap&quot;, cols = colLYM2)+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab(&quot;UMAP1&quot;) +
+  ylab(&quot;UMAP2&quot;)</code></pre>
+<p><img src="figure/visSelIntHeatmapSignaling.Rmd/input%20data-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>Idents(seuratBRC) &lt;- seuratBRC$clusterLabel
+DimPlot(seuratBRC, reduction = &quot;umap&quot;, cols = colBRC)+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab(&quot;UMAP1&quot;) +
+  ylab(&quot;UMAP2&quot;)</code></pre>
+<p><img src="figure/visSelIntHeatmapSignaling.Rmd/input%20data-2.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="assign-groups" class="section level2">
+<h2>assign groups</h2>
+<pre class="r"><code>seuratBRC$group &lt;- &quot;BRC&quot;
+seuratLY$group &lt;- &quot;LYMPHO&quot;
+
+Idents(seuratLY) &lt;- seuratLY$label_plus_SLO
+Idents(seuratBRC) &lt;- seuratBRC$label_plus_SLO</code></pre>
+</div>
+<div id="read-sel-genes" class="section level2">
+<h2>read sel genes</h2>
+<pre class="r"><code>genes &lt;- data.frame(gene=rownames(seuratBRC)) %&gt;% 
+  mutate(geneID=gsub(&quot;.*\\.&quot;, &quot;&quot;, gene))
+selGenes &lt;- read_tsv(file=paste0(basedir, 
+                                 &quot;/data/GSEA/subsetSpecificFunctGenes&quot;, 
+                                 &quot;InteractionSignaling.txt&quot;)) %&gt;% 
+  left_join(., genes, by=&quot;geneID&quot;)
+
+genesBRC &lt;- selGenes %&gt;% filter(group==&quot;BRC&quot;)
+genesLym &lt;- selGenes %&gt;% filter(group==&quot;lympho&quot;)</code></pre>
+</div>
+<div id="plot-heatmap-sel-genes" class="section level2 tabset">
+<h2 class="tabset">plot heatmap sel genes</h2>
+<pre class="r"><code>avgHeatmap &lt;- function(seurat, selGenes, scaleDim = &quot;row&quot;, colVecIdent, 
+                       colVecCond=NULL,
+                       ordVec=NULL, gapVecR=NULL, gapVecC=NULL,cc=FALSE,
+                       cr=FALSE, condCol=FALSE){
+  
+  ## format gene names (depends on how gene list is inputed)
+  selGenes &lt;- selGenes %&gt;% 
+      mutate(geneID = (str_split(gene, &#39;\\.&#39;, simplify = T)[,2]))
+  #selGenes &lt;- selGenes$labelNam
+  
+  ## assay data
+  clusterAssigned &lt;- as.data.frame(Idents(seurat)) %&gt;%
+  dplyr::mutate(cell=rownames(.))
+  colnames(clusterAssigned)[1] &lt;- &quot;ident&quot;
+  seuratDat &lt;- GetAssayData(seurat)
+  
+  ## genes of interest
+  genes &lt;- data.frame(gene=rownames(seurat)) %&gt;% 
+    mutate(geneID=gsub(&quot;^.*\\.&quot;, &quot;&quot;, gene)) %&gt;%
+    filter(geneID %in% selGenes$geneID)
+
+  ## matrix with averaged cnts per ident
+  logNormExpres &lt;- as.data.frame(t(as.matrix(
+    seuratDat[which(rownames(seuratDat) %in% genes$gene),])))
+  logNormExpres &lt;- logNormExpres %&gt;% dplyr::mutate(cell=rownames(.)) %&gt;%
+    dplyr::left_join(.,clusterAssigned, by=c(&quot;cell&quot;)) %&gt;%
+    dplyr::select(-cell) %&gt;% dplyr::group_by(ident) %&gt;%
+    dplyr::summarise_all(mean)
+  logNormExpresMa &lt;- logNormExpres %&gt;% dplyr::select(-ident) %&gt;% as.matrix()
+  rownames(logNormExpresMa) &lt;- logNormExpres$ident
+  logNormExpresMa &lt;- t(logNormExpresMa)
+  rownames(logNormExpresMa) &lt;- gsub(&quot;^.*?\\.&quot;,&quot;&quot;,rownames(logNormExpresMa))
+  
+  ## remove genes if they are all the same in all groups
+  ind &lt;- apply(logNormExpresMa, 1, sd) == 0
+  logNormExpresMa &lt;- logNormExpresMa[!ind,]
+  genes &lt;- genes[!ind,]
+
+  ## color columns according to cluster
+  annotation_col &lt;- as.data.frame(gsub(&quot;(^.*?_)&quot;,&quot;&quot;,
+                                       colnames(logNormExpresMa)))%&gt;%
+    dplyr::mutate(celltype=gsub(&quot;(_.*$)&quot;,&quot;&quot;,colnames(logNormExpresMa)))
+  colnames(annotation_col)[1] &lt;- &quot;col1&quot;
+  annotation_col &lt;- annotation_col %&gt;%
+    dplyr::mutate(cond = gsub(&quot;(^[0-9]_?)&quot;,&quot;&quot;,col1)) %&gt;%
+    dplyr::select(cond, celltype)
+  rownames(annotation_col) &lt;- colnames(logNormExpresMa) 
+
+  ann_colors = list(
+      cond = colVecCond,
+      celltype=colVecIdent)
+  if(is.null(ann_colors$cond)){
+    annotation_col$cond &lt;- NULL
+  }
+  
+  ## adjust order
+  logNormExpresMa &lt;- logNormExpresMa[selGenes$geneID,]
+  if(is.null(ordVec)){
+    ordVec &lt;- levels(seurat)
+  }
+  logNormExpresMa &lt;- logNormExpresMa[,ordVec]
+
+  ## scaled row-wise
+  pheatmap(logNormExpresMa, scale=scaleDim ,treeheight_row = 0, cluster_rows = cr, 
+         cluster_cols = cc, breaks = seq(from=-2, to=2,by=0.1),
+         color = colorRampPalette(c(&quot;#111320&quot;, &quot;#4d5374&quot;, &quot;#899bff&quot;))(40),
+         annotation_col = annotation_col, cellwidth=15, cellheight=10,
+         annotation_colors = ann_colors, gaps_row = gapVecR, gaps_col = gapVecC)
+}</code></pre>
+<div id="brcs" class="section level3">
+<h3>BRCs</h3>
+<pre class="r"><code>gapC &lt;- seq(from = 3, to = length(levels(seuratBRC)), by = 3)
+grpCnt &lt;- genesBRC %&gt;% group_by(functGrp) %&gt;% summarise(cnt=n())
+gapR &lt;- data.frame(functGrp=unique(genesBRC$functGrp)) %&gt;% 
+  left_join(.,grpCnt, by=&quot;functGrp&quot;) %&gt;% mutate(cumSum=cumsum(cnt)) 
+
+
+ordBRC &lt;- c(&quot;LZFDC&quot;, &quot;DZFDC&quot;, &quot;MRC&quot;, &quot;TBRC&quot;, &quot;PRC2&quot;)
+ordSLO &lt;- c(&quot;LN&quot;, &quot;Spleen&quot;, &quot;PP&quot;)
+ordDat &lt;- expand.grid(SLO = ordSLO, BRC = ordBRC) %&gt;% 
+  mutate(ordVec=paste0(BRC, &quot;_&quot;, SLO))
+
+# pHeat &lt;- lapply(unique(genesBRC$functGrp), function(grp){
+#   selGenesFunct &lt;- genesBRC %&gt;% filter(functGrp == grp)
+#   pOut &lt;- avgHeatmap(seurat = seuratBRC, selGenes = selGenesFunct,
+#                   colVecIdent = colBRC, 
+#                   ordVec=ordDat$ordVec,
+#                   gapVecC=gapC,cc=F, cr=F,
+#                   condCol=T, colVecCond = colorSLO)
+# })
+
+
+pOut &lt;- avgHeatmap(seurat = seuratBRC, selGenes = genesBRC,
+                  colVecIdent = colBRC, 
+                  ordVec=ordDat$ordVec,
+                  gapVecC=gapC,cc=F,
+                  gapVecR=gapR$cumSum, cr=F,
+                  condCol=T, colVecCond = colorSLO)</code></pre>
+<p><img src="figure/visSelIntHeatmapSignaling.Rmd/heatmap%20BRCs-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="immune-cells" class="section level3">
+<h3>immune cells</h3>
+<pre class="r"><code>gapC &lt;- seq(from = 3, to = length(levels(seuratLY)), by = 3)
+grpCnt &lt;- genesLym %&gt;% group_by(functGrp) %&gt;% summarise(cnt=n())
+gapR &lt;- data.frame(functGrp=unique(genesLym$functGrp)) %&gt;% 
+  left_join(.,grpCnt, by=&quot;functGrp&quot;) %&gt;% mutate(cumSum=cumsum(cnt)) 
+
+
+ordLYM &lt;- c(&quot;naiveBcells&quot;, &quot;GCBcells&quot;, &quot;plasmaCells&quot;, 
+                   &quot;Myeloids&quot;,
+                   &quot;DCs&quot;, &quot;Tfh&quot;)
+ordSLO &lt;- c(&quot;LN&quot;, &quot;Spleen&quot;, &quot;PP&quot;)
+ordDat &lt;- expand.grid(SLO = ordSLO, LYM = ordLYM) %&gt;% 
+  mutate(ordVec=paste0(LYM, &quot;_&quot;, SLO))
+
+# pHeat &lt;- lapply(unique(genesLym$functGrp), function(grp){
+#   selGenesFunct &lt;- genesLym %&gt;% filter(functGrp == grp)
+#   pOut &lt;- avgHeatmap(seurat = seuratLY, selGenes = selGenesFunct,
+#                   colVecIdent = colLYM2, 
+#                   ordVec=ordDat$ordVec,
+#                   gapVecC=gapC,cc=F, cr=F,
+#                   condCol=T, colVecCond = colorSLO)
+# })
+
+
+pOut &lt;- avgHeatmap(seurat = seuratLY, selGenes = genesLym,
+                  colVecIdent = colLYM2, 
+                  ordVec=ordDat$ordVec,
+                  gapVecC=gapC,cc=F,
+                  gapVecR=gapR$cumSum, cr=F,
+                  condCol=T, colVecCond = colorSLO)</code></pre>
+<p><img src="figure/visSelIntHeatmapSignaling.Rmd/heatmap%20ImmuneCells-1.png" width="768" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+<div id="violin-plot-sel-genes" class="section level2 tabset">
+<h2 class="tabset">violin plot sel genes</h2>
+<div id="brc" class="section level3">
+<h3>BRC</h3>
+<pre class="r"><code>pList &lt;- sapply(genesBRC$gene, function(x){
+  p &lt;- VlnPlot(object = seuratBRC, features = x,
+               group.by = &quot;clusterLabel&quot;,
+               cols = colBRC, pt.size = 0
+               )
+  plot(p)
+})</code></pre>
+<p><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20BRC-1.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20BRC-2.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20BRC-3.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20BRC-4.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20BRC-5.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20BRC-6.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20BRC-7.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20BRC-8.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20BRC-9.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20BRC-10.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20BRC-11.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20BRC-12.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20BRC-13.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20BRC-14.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20BRC-15.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20BRC-16.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20BRC-17.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20BRC-18.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20BRC-19.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20BRC-20.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20BRC-21.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20BRC-22.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20BRC-23.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20BRC-24.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="immune-cells-1" class="section level3">
+<h3>Immune cells</h3>
+<pre class="r"><code>pList &lt;- sapply(genesLym$gene, function(x){
+  p &lt;- VlnPlot(object = seuratLY, features = x,
+               group.by = &quot;clusterLabel2&quot;,
+               cols = colLYM2, pt.size = 0
+               )
+  plot(p)
+})</code></pre>
+<p><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20ImmCells-1.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20ImmCells-2.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20ImmCells-3.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20ImmCells-4.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20ImmCells-5.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20ImmCells-6.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20ImmCells-7.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20ImmCells-8.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20ImmCells-9.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20ImmCells-10.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20ImmCells-11.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20ImmCells-12.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20ImmCells-13.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20ImmCells-14.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20ImmCells-15.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20ImmCells-16.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20ImmCells-17.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20ImmCells-18.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20ImmCells-19.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20ImmCells-20.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20ImmCells-21.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20ImmCells-22.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20ImmCells-23.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20ImmCells-24.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+<div id="session-info" class="section level2">
+<h2>session info</h2>
+<pre class="r"><code>sessionInfo()</code></pre>
+<pre><code>R version 4.1.0 (2021-05-18)
+Platform: x86_64-apple-darwin17.0 (64-bit)
+Running under: macOS Catalina 10.15.7
+
+Matrix products: default
+BLAS:   /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRblas.dylib
+LAPACK: /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRlapack.dylib
+
+locale:
+[1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+
+attached base packages:
+[1] parallel  stats4    stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+ [1] pheatmap_1.0.12             RColorBrewer_1.1-2          viridis_0.6.2              
+ [4] viridisLite_0.4.0           here_1.0.1                  forcats_0.5.1              
+ [7] stringr_1.4.0               readr_2.0.2                 tidyr_1.1.4                
+[10] tibble_3.1.6                tidyverse_1.3.1             mclust_5.4.8               
+[13] SeuratObject_4.0.2          Seurat_4.0.5                scran_1.20.1               
+[16] purrr_0.3.4                 Matrix_1.3-4                reshape2_1.4.4             
+[19] dplyr_1.0.7                 scater_1.20.1               ggplot2_3.3.5              
+[22] scuttle_1.2.1               SingleCellExperiment_1.14.1 SummarizedExperiment_1.22.0
+[25] Biobase_2.52.0              GenomicRanges_1.44.0        GenomeInfoDb_1.28.4        
+[28] IRanges_2.26.0              S4Vectors_0.30.2            BiocGenerics_0.38.0        
+[31] MatrixGenerics_1.4.3        matrixStats_0.61.0         
+
+loaded via a namespace (and not attached):
+  [1] utf8_1.2.2                reticulate_1.22           tidyselect_1.1.1         
+  [4] htmlwidgets_1.5.4         grid_4.1.0                BiocParallel_1.26.2      
+  [7] Rtsne_0.15                munsell_0.5.0             ScaledMatrix_1.0.0       
+ [10] codetools_0.2-18          ica_1.0-2                 statmod_1.4.36           
+ [13] future_1.23.0             miniUI_0.1.1.1            withr_2.4.2              
+ [16] colorspace_2.0-2          highr_0.9                 knitr_1.36               
+ [19] rstudioapi_0.13           ROCR_1.0-11               tensor_1.5               
+ [22] listenv_0.8.0             labeling_0.4.2            git2r_0.28.0             
+ [25] GenomeInfoDbData_1.2.6    polyclip_1.10-0           bit64_4.0.5              
+ [28] farver_2.1.0              rprojroot_2.0.2           parallelly_1.28.1        
+ [31] vctrs_0.3.8               generics_0.1.1            xfun_0.28                
+ [34] R6_2.5.1                  ggbeeswarm_0.6.0          rsvd_1.0.5               
+ [37] locfit_1.5-9.4            bitops_1.0-7              spatstat.utils_2.2-0     
+ [40] DelayedArray_0.18.0       assertthat_0.2.1          vroom_1.5.5              
+ [43] promises_1.2.0.1          scales_1.1.1              beeswarm_0.4.0           
+ [46] gtable_0.3.0              beachmat_2.8.1            globals_0.14.0           
+ [49] goftest_1.2-3             workflowr_1.6.2           rlang_0.4.12             
+ [52] splines_4.1.0             lazyeval_0.2.2            spatstat.geom_2.3-0      
+ [55] broom_0.7.10              yaml_2.2.1                abind_1.4-5              
+ [58] modelr_0.1.8              backports_1.3.0           httpuv_1.6.3             
+ [61] tools_4.1.0               ellipsis_0.3.2            spatstat.core_2.3-1      
+ [64] jquerylib_0.1.4           ggridges_0.5.3            Rcpp_1.0.7               
+ [67] plyr_1.8.6                sparseMatrixStats_1.4.2   zlibbioc_1.38.0          
+ [70] RCurl_1.98-1.5            rpart_4.1-15              deldir_1.0-6             
+ [73] pbapply_1.5-0             cowplot_1.1.1             zoo_1.8-9                
+ [76] haven_2.4.3               ggrepel_0.9.1             cluster_2.1.2            
+ [79] fs_1.5.0                  magrittr_2.0.1            data.table_1.14.2        
+ [82] scattermore_0.7           reprex_2.0.1              lmtest_0.9-39            
+ [85] RANN_2.6.1                fitdistrplus_1.1-6        hms_1.1.1                
+ [88] patchwork_1.1.1           mime_0.12                 evaluate_0.14            
+ [91] xtable_1.8-4              readxl_1.3.1              gridExtra_2.3            
+ [94] compiler_4.1.0            KernSmooth_2.23-20        crayon_1.4.2             
+ [97] htmltools_0.5.2           mgcv_1.8-38               later_1.3.0              
+[100] tzdb_0.2.0                lubridate_1.8.0           DBI_1.1.1                
+[103] dbplyr_2.1.1              MASS_7.3-54               cli_3.1.0                
+[106] metapod_1.0.0             igraph_1.2.8              pkgconfig_2.0.3          
+[109] plotly_4.10.0             spatstat.sparse_2.0-0     xml2_1.3.2               
+[112] vipor_0.4.5               bslib_0.3.1               dqrng_0.3.0              
+[115] XVector_0.32.0            rvest_1.0.2               digest_0.6.28            
+[118] sctransform_0.3.2         RcppAnnoy_0.0.19          spatstat.data_2.1-0      
+[121] rmarkdown_2.11            cellranger_1.1.0          leiden_0.3.9             
+[124] uwot_0.1.10               edgeR_3.34.1              DelayedMatrixStats_1.14.3
+[127] shiny_1.7.1               lifecycle_1.0.1           nlme_3.1-153             
+[130] jsonlite_1.7.2            BiocNeighbors_1.10.0      limma_3.48.3             
+[133] fansi_0.5.0               pillar_1.6.4              lattice_0.20-45          
+[136] fastmap_1.1.0             httr_1.4.2                survival_3.2-13          
+[139] glue_1.5.0                png_0.1-7                 bit_4.0.4                
+[142] bluster_1.2.1             stringi_1.7.5             sass_0.4.0               
+[145] BiocSingular_1.8.1        irlba_2.3.3               future.apply_1.8.1       </code></pre>
+<pre class="r"><code>date()</code></pre>
+<pre><code>[1] &quot;Wed Dec  1 13:14:16 2021&quot;</code></pre>
+<br>
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
+<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> Session information
+</button>
+</p>
+<div id="workflowr-sessioninfo" class="collapse">
+<pre class="r"><code>sessionInfo()</code></pre>
+<pre><code>R version 4.1.0 (2021-05-18)
+Platform: x86_64-apple-darwin17.0 (64-bit)
+Running under: macOS Catalina 10.15.7
+
+Matrix products: default
+BLAS:   /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRblas.dylib
+LAPACK: /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRlapack.dylib
+
+locale:
+[1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+
+attached base packages:
+[1] parallel  stats4    stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+ [1] pheatmap_1.0.12             RColorBrewer_1.1-2          viridis_0.6.2              
+ [4] viridisLite_0.4.0           here_1.0.1                  forcats_0.5.1              
+ [7] stringr_1.4.0               readr_2.0.2                 tidyr_1.1.4                
+[10] tibble_3.1.6                tidyverse_1.3.1             mclust_5.4.8               
+[13] SeuratObject_4.0.2          Seurat_4.0.5                scran_1.20.1               
+[16] purrr_0.3.4                 Matrix_1.3-4                reshape2_1.4.4             
+[19] dplyr_1.0.7                 scater_1.20.1               ggplot2_3.3.5              
+[22] scuttle_1.2.1               SingleCellExperiment_1.14.1 SummarizedExperiment_1.22.0
+[25] Biobase_2.52.0              GenomicRanges_1.44.0        GenomeInfoDb_1.28.4        
+[28] IRanges_2.26.0              S4Vectors_0.30.2            BiocGenerics_0.38.0        
+[31] MatrixGenerics_1.4.3        matrixStats_0.61.0         
+
+loaded via a namespace (and not attached):
+  [1] utf8_1.2.2                reticulate_1.22           tidyselect_1.1.1         
+  [4] htmlwidgets_1.5.4         grid_4.1.0                BiocParallel_1.26.2      
+  [7] Rtsne_0.15                munsell_0.5.0             ScaledMatrix_1.0.0       
+ [10] codetools_0.2-18          ica_1.0-2                 statmod_1.4.36           
+ [13] future_1.23.0             miniUI_0.1.1.1            withr_2.4.2              
+ [16] colorspace_2.0-2          highr_0.9                 knitr_1.36               
+ [19] rstudioapi_0.13           ROCR_1.0-11               tensor_1.5               
+ [22] listenv_0.8.0             labeling_0.4.2            git2r_0.28.0             
+ [25] GenomeInfoDbData_1.2.6    polyclip_1.10-0           bit64_4.0.5              
+ [28] farver_2.1.0              rprojroot_2.0.2           parallelly_1.28.1        
+ [31] vctrs_0.3.8               generics_0.1.1            xfun_0.28                
+ [34] R6_2.5.1                  ggbeeswarm_0.6.0          rsvd_1.0.5               
+ [37] locfit_1.5-9.4            bitops_1.0-7              spatstat.utils_2.2-0     
+ [40] DelayedArray_0.18.0       assertthat_0.2.1          vroom_1.5.5              
+ [43] promises_1.2.0.1          scales_1.1.1              beeswarm_0.4.0           
+ [46] gtable_0.3.0              beachmat_2.8.1            globals_0.14.0           
+ [49] goftest_1.2-3             workflowr_1.6.2           rlang_0.4.12             
+ [52] splines_4.1.0             lazyeval_0.2.2            spatstat.geom_2.3-0      
+ [55] broom_0.7.10              yaml_2.2.1                abind_1.4-5              
+ [58] modelr_0.1.8              backports_1.3.0           httpuv_1.6.3             
+ [61] tools_4.1.0               ellipsis_0.3.2            spatstat.core_2.3-1      
+ [64] jquerylib_0.1.4           ggridges_0.5.3            Rcpp_1.0.7               
+ [67] plyr_1.8.6                sparseMatrixStats_1.4.2   zlibbioc_1.38.0          
+ [70] RCurl_1.98-1.5            rpart_4.1-15              deldir_1.0-6             
+ [73] pbapply_1.5-0             cowplot_1.1.1             zoo_1.8-9                
+ [76] haven_2.4.3               ggrepel_0.9.1             cluster_2.1.2            
+ [79] fs_1.5.0                  magrittr_2.0.1            data.table_1.14.2        
+ [82] scattermore_0.7           reprex_2.0.1              lmtest_0.9-39            
+ [85] RANN_2.6.1                fitdistrplus_1.1-6        hms_1.1.1                
+ [88] patchwork_1.1.1           mime_0.12                 evaluate_0.14            
+ [91] xtable_1.8-4              readxl_1.3.1              gridExtra_2.3            
+ [94] compiler_4.1.0            KernSmooth_2.23-20        crayon_1.4.2             
+ [97] htmltools_0.5.2           mgcv_1.8-38               later_1.3.0              
+[100] tzdb_0.2.0                lubridate_1.8.0           DBI_1.1.1                
+[103] dbplyr_2.1.1              MASS_7.3-54               cli_3.1.0                
+[106] metapod_1.0.0             igraph_1.2.8              pkgconfig_2.0.3          
+[109] plotly_4.10.0             spatstat.sparse_2.0-0     xml2_1.3.2               
+[112] vipor_0.4.5               bslib_0.3.1               dqrng_0.3.0              
+[115] XVector_0.32.0            rvest_1.0.2               digest_0.6.28            
+[118] sctransform_0.3.2         RcppAnnoy_0.0.19          spatstat.data_2.1-0      
+[121] rmarkdown_2.11            cellranger_1.1.0          leiden_0.3.9             
+[124] uwot_0.1.10               edgeR_3.34.1              DelayedMatrixStats_1.14.3
+[127] shiny_1.7.1               lifecycle_1.0.1           nlme_3.1-153             
+[130] jsonlite_1.7.2            BiocNeighbors_1.10.0      limma_3.48.3             
+[133] fansi_0.5.0               pillar_1.6.4              lattice_0.20-45          
+[136] fastmap_1.1.0             httr_1.4.2                survival_3.2-13          
+[139] glue_1.5.0                png_0.1-7                 bit_4.0.4                
+[142] bluster_1.2.1             stringi_1.7.5             sass_0.4.0               
+[145] BiocSingular_1.8.1        irlba_2.3.3               future.apply_1.8.1       </code></pre>
+</div>
+</div>
+
+
+<!-- Adjust MathJax settings so that all math formulae are shown using
+TeX fonts only; see
+http://docs.mathjax.org/en/latest/configuration.html.  This will make
+the presentation more consistent at the cost of the webpage sometimes
+taking slightly longer to load. Note that this only works because the
+footer is added to webpages before the MathJax javascript. -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": { availableFonts: ["TeX"] }
+  });
+</script>
+
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

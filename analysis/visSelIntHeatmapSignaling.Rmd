@@ -1,0 +1,334 @@
+---
+title: "create input files for cellphonedb"
+author: ""
+date: ""
+output: 
+  html_document:
+    keep_md: true
+    toc: true
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, echo = FALSE}
+options(width = 100)
+knitr::opts_chunk$set(warning = FALSE, message = FALSE, dev = c("png", "pdf"))
+seed <- 1234
+```
+
+## Load packages
+
+```{r load-packages, warning = FALSE}
+suppressPackageStartupMessages({
+  library(scater)
+  library(dplyr)
+  library(reshape2)
+  library(Matrix)
+  library(purrr)
+  library(scran)
+  library(Seurat)
+  library(mclust)
+  library(tidyverse)
+  library(here)
+  library(viridis)
+  library(RColorBrewer)
+  library(pheatmap)
+})
+```
+
+
+## set color Vectors
+```{r color vectors}
+
+colBRC <- c("#87c5af", "#94033b", "#fc8f3b", "#2580fe", "#514e72")
+names(colBRC) <- c("LZFDC", "MRC", "TBRC","DZFDC","PRC2")
+
+
+colorSLO <- c(viridis(3)[c(1,2)], brewer.pal(n=9, name="YlOrRd")[c(4)])
+colorCond <- brewer.pal(n=3, name="Paired")[c(1,2)]
+colorSLOCond <- c("#440154FF","#807DBA", "#FEB24C", "#F16913", "#21908CFF")
+
+names(colorSLO) <- c("LN", "PP", "Spleen")
+names(colorCond) <- c("naive", "immunized")
+names(colorSLOCond) <- c("LN_immunized","LN_naive", "Spleen_naive",
+                         "Spleen_immunized", "PP_immunized")
+
+
+colLYM <- c("#a0b9c4", "#78abb7", "#567a83", "#3c454a", "#9eabb1",
+            "#924440", "#eab562",
+            "#f1d75f", "#b5a147", "#786c30")
+
+
+names(colLYM) <- c("naiveBcells", "LZBcells", "DZshmBcells", "proDZ",
+                   "plasmaCells", 
+                   "Tfh", "DCs",
+                   "mdMacrophages", "trMacrophages", "infMacrophages")
+
+colLYM2 <- c("#a0b9c4", "#567a83", "#9eabb1",
+            "#924440", "#eab562",
+            "#b5a147")
+
+
+names(colLYM2) <- c("naiveBcells", "GCBcells",
+                   "plasmaCells", 
+                   "Tfh", "DCs",
+                   "Myeloids")
+
+```
+
+
+## load input data
+```{r input data}
+basedir <- here()
+seuratLY <- readRDS(file = paste0(basedir, 
+                              "/data/lympho/allSamples_mergedLab_seurat.rds"))
+seuratLY <- subset(seuratLY, clusterLabel %in% names(colLYM))
+
+GCBs <- c("LZBcells", "DZshmBcells", "proDZ")
+Myel <- c("mdMacrophages", "trMacrophages", "infMacrophages")
+seuratLY$clusterLabel2 <- seuratLY$clusterLabel
+seuratLY$clusterLabel2[which(seuratLY$clusterLabel %in% GCBs)] <- "GCBcells"
+seuratLY$clusterLabel2[which(seuratLY$clusterLabel %in% Myel)] <- "Myeloids"
+
+seuratBRC <- readRDS(file=paste0(basedir, "/data/folBRC_allSLO_seurat.rds"))
+
+## Each SLO individually
+seuratLY$label_plus_SLO <- paste0(seuratLY$clusterLabel2, "_", seuratLY$SLO)
+seuratBRC$label_plus_SLO <- paste0(seuratBRC$clusterLabel, "_", seuratBRC$SLO)
+
+
+## plot input data
+Idents(seuratLY) <- seuratLY$clusterLabel2
+DimPlot(seuratLY, reduction = "umap", cols = colLYM2)+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+Idents(seuratBRC) <- seuratBRC$clusterLabel
+DimPlot(seuratBRC, reduction = "umap", cols = colBRC)+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+
+```
+
+## assign groups
+```{r assign groups}
+
+seuratBRC$group <- "BRC"
+seuratLY$group <- "LYMPHO"
+
+Idents(seuratLY) <- seuratLY$label_plus_SLO
+Idents(seuratBRC) <- seuratBRC$label_plus_SLO
+
+```
+
+
+## read sel genes
+```{r read sel genes}
+
+genes <- data.frame(gene=rownames(seuratBRC)) %>% 
+  mutate(geneID=gsub(".*\\.", "", gene))
+selGenes <- read_tsv(file=paste0(basedir, 
+                                 "/data/GSEA/subsetSpecificFunctGenes", 
+                                 "InteractionSignaling.txt")) %>% 
+  left_join(., genes, by="geneID")
+
+genesBRC <- selGenes %>% filter(group=="BRC")
+genesLym <- selGenes %>% filter(group=="lympho")
+
+```
+
+
+## plot heatmap sel genes {.tabset}
+
+```{r avg heatmap funct}
+
+avgHeatmap <- function(seurat, selGenes, scaleDim = "row", colVecIdent, 
+                       colVecCond=NULL,
+                       ordVec=NULL, gapVecR=NULL, gapVecC=NULL,cc=FALSE,
+                       cr=FALSE, condCol=FALSE){
+  
+  ## format gene names (depends on how gene list is inputed)
+  selGenes <- selGenes %>% 
+      mutate(geneID = (str_split(gene, '\\.', simplify = T)[,2]))
+  #selGenes <- selGenes$labelNam
+  
+  ## assay data
+  clusterAssigned <- as.data.frame(Idents(seurat)) %>%
+  dplyr::mutate(cell=rownames(.))
+  colnames(clusterAssigned)[1] <- "ident"
+  seuratDat <- GetAssayData(seurat)
+  
+  ## genes of interest
+  genes <- data.frame(gene=rownames(seurat)) %>% 
+    mutate(geneID=gsub("^.*\\.", "", gene)) %>%
+    filter(geneID %in% selGenes$geneID)
+
+  ## matrix with averaged cnts per ident
+  logNormExpres <- as.data.frame(t(as.matrix(
+    seuratDat[which(rownames(seuratDat) %in% genes$gene),])))
+  logNormExpres <- logNormExpres %>% dplyr::mutate(cell=rownames(.)) %>%
+    dplyr::left_join(.,clusterAssigned, by=c("cell")) %>%
+    dplyr::select(-cell) %>% dplyr::group_by(ident) %>%
+    dplyr::summarise_all(mean)
+  logNormExpresMa <- logNormExpres %>% dplyr::select(-ident) %>% as.matrix()
+  rownames(logNormExpresMa) <- logNormExpres$ident
+  logNormExpresMa <- t(logNormExpresMa)
+  rownames(logNormExpresMa) <- gsub("^.*?\\.","",rownames(logNormExpresMa))
+  
+  ## remove genes if they are all the same in all groups
+  ind <- apply(logNormExpresMa, 1, sd) == 0
+  logNormExpresMa <- logNormExpresMa[!ind,]
+  genes <- genes[!ind,]
+
+  ## color columns according to cluster
+  annotation_col <- as.data.frame(gsub("(^.*?_)","",
+                                       colnames(logNormExpresMa)))%>%
+    dplyr::mutate(celltype=gsub("(_.*$)","",colnames(logNormExpresMa)))
+  colnames(annotation_col)[1] <- "col1"
+  annotation_col <- annotation_col %>%
+    dplyr::mutate(cond = gsub("(^[0-9]_?)","",col1)) %>%
+    dplyr::select(cond, celltype)
+  rownames(annotation_col) <- colnames(logNormExpresMa) 
+
+  ann_colors = list(
+      cond = colVecCond,
+      celltype=colVecIdent)
+  if(is.null(ann_colors$cond)){
+    annotation_col$cond <- NULL
+  }
+  
+  ## adjust order
+  logNormExpresMa <- logNormExpresMa[selGenes$geneID,]
+  if(is.null(ordVec)){
+    ordVec <- levels(seurat)
+  }
+  logNormExpresMa <- logNormExpresMa[,ordVec]
+
+  ## scaled row-wise
+  pheatmap(logNormExpresMa, scale=scaleDim ,treeheight_row = 0, cluster_rows = cr, 
+         cluster_cols = cc, breaks = seq(from=-2, to=2,by=0.1),
+         color = colorRampPalette(c("#111320", "#4d5374", "#899bff"))(40),
+         annotation_col = annotation_col, cellwidth=15, cellheight=10,
+         annotation_colors = ann_colors, gaps_row = gapVecR, gaps_col = gapVecC)
+}
+
+
+
+```
+
+
+
+### BRCs
+```{r heatmap BRCs, fig.height=9, fig.width=7}
+
+gapC <- seq(from = 3, to = length(levels(seuratBRC)), by = 3)
+grpCnt <- genesBRC %>% group_by(functGrp) %>% summarise(cnt=n())
+gapR <- data.frame(functGrp=unique(genesBRC$functGrp)) %>% 
+  left_join(.,grpCnt, by="functGrp") %>% mutate(cumSum=cumsum(cnt)) 
+
+
+ordBRC <- c("LZFDC", "DZFDC", "MRC", "TBRC", "PRC2")
+ordSLO <- c("LN", "Spleen", "PP")
+ordDat <- expand.grid(SLO = ordSLO, BRC = ordBRC) %>% 
+  mutate(ordVec=paste0(BRC, "_", SLO))
+
+# pHeat <- lapply(unique(genesBRC$functGrp), function(grp){
+#   selGenesFunct <- genesBRC %>% filter(functGrp == grp)
+#   pOut <- avgHeatmap(seurat = seuratBRC, selGenes = selGenesFunct,
+#                   colVecIdent = colBRC, 
+#                   ordVec=ordDat$ordVec,
+#                   gapVecC=gapC,cc=F, cr=F,
+#                   condCol=T, colVecCond = colorSLO)
+# })
+
+
+pOut <- avgHeatmap(seurat = seuratBRC, selGenes = genesBRC,
+                  colVecIdent = colBRC, 
+                  ordVec=ordDat$ordVec,
+                  gapVecC=gapC,cc=F,
+                  gapVecR=gapR$cumSum, cr=F,
+                  condCol=T, colVecCond = colorSLO)
+
+
+```
+
+
+### immune cells
+```{r heatmap ImmuneCells, fig.height=8, fig.width=8}
+
+gapC <- seq(from = 3, to = length(levels(seuratLY)), by = 3)
+grpCnt <- genesLym %>% group_by(functGrp) %>% summarise(cnt=n())
+gapR <- data.frame(functGrp=unique(genesLym$functGrp)) %>% 
+  left_join(.,grpCnt, by="functGrp") %>% mutate(cumSum=cumsum(cnt)) 
+
+
+ordLYM <- c("naiveBcells", "GCBcells", "plasmaCells", 
+                   "Myeloids",
+                   "DCs", "Tfh")
+ordSLO <- c("LN", "Spleen", "PP")
+ordDat <- expand.grid(SLO = ordSLO, LYM = ordLYM) %>% 
+  mutate(ordVec=paste0(LYM, "_", SLO))
+
+# pHeat <- lapply(unique(genesLym$functGrp), function(grp){
+#   selGenesFunct <- genesLym %>% filter(functGrp == grp)
+#   pOut <- avgHeatmap(seurat = seuratLY, selGenes = selGenesFunct,
+#                   colVecIdent = colLYM2, 
+#                   ordVec=ordDat$ordVec,
+#                   gapVecC=gapC,cc=F, cr=F,
+#                   condCol=T, colVecCond = colorSLO)
+# })
+
+
+pOut <- avgHeatmap(seurat = seuratLY, selGenes = genesLym,
+                  colVecIdent = colLYM2, 
+                  ordVec=ordDat$ordVec,
+                  gapVecC=gapC,cc=F,
+                  gapVecR=gapR$cumSum, cr=F,
+                  condCol=T, colVecCond = colorSLO)
+
+
+```
+
+## violin plot sel genes {.tabset}
+### BRC
+```{r violin sel genes BRC}
+
+
+pList <- sapply(genesBRC$gene, function(x){
+  p <- VlnPlot(object = seuratBRC, features = x,
+               group.by = "clusterLabel",
+               cols = colBRC, pt.size = 0
+               )
+  plot(p)
+})
+
+```
+
+### Immune cells
+```{r violin sel genes ImmCells}
+
+
+pList <- sapply(genesLym$gene, function(x){
+  p <- VlnPlot(object = seuratLY, features = x,
+               group.by = "clusterLabel2",
+               cols = colLYM2, pt.size = 0
+               )
+  plot(p)
+})
+
+```
+
+
+## session info
+```{r session info}
+sessionInfo()
+date()
+```
+

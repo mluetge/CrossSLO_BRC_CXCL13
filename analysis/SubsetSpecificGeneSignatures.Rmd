@@ -340,7 +340,7 @@ names(GOcons) <- clVec
 
 
 ### vis summary all
-```{r vis summary, fig.height=9, fig.width=12}
+```{r vis summary, fig.height=6, fig.width=7}
 
 ## table to select pathways
 GOconsDat <- do.call("rbind", GOcons)
@@ -348,16 +348,16 @@ GOconsDat <- do.call("rbind", GOcons)
 #            file = paste0(basedir, "/data/GSEA/SubsetSpecificGO.txt"))
 	
 
-selGO <- c("LZFDC.GO:0006898","LZFDC.GO:0007249","LZFDC.GO:0022407",
-           "LZFDC.GO:0019884","LZFDC.GO:0008593", "LZFDC.GO:0032606",
-           "LZFDC.GO:0071559",
-           "DZFDC.GO:0097529", "DZFDC.GO:0001516", "DZFDC.GO:0071621",
-           "MRC.GO:0097529", "MRC.GO:0071774",
-           "MRC.GO:0007229", 
+selGO <- c("LZFDC.GO:0006644","LZFDC.GO:0007249", "LZFDC.GO:0071559",
+           "LZFDC.GO:0019882","LZFDC.GO:0008593", "LZFDC.GO:0002697",
+           "DZFDC.GO:0097529", "DZFDC.GO:0001516", "DZFDC.GO:0006631",
+           "DZFDC.GO:0042063", "DZFDC.GO:0001819",
+           "MRC.GO:0044344", "MRC.GO:0060326",
+           "MRC.GO:0007229", "MRC.GO:0048771",
            "TBRC.GO:0002407", "TBRC.GO:0002548", "TBRC.GO:0031295",
-           "TBRC.GO:0032612","TBRC.GO:0006959", "TBRC.GO:0002460",
+           "TBRC.GO:0019221",
            "PRC2.GO:0030198", "PRC2.GO:0061448", "PRC2.GO:0045765",
-           "PRC2.GO:0090287", "PRC2.GO:0048762")
+           "PRC2.GO:0022604")
 
 
 GOconsDat <- do.call("rbind", GOcons) %>% rownames_to_column(., var="IDlab") %>% 
@@ -393,7 +393,7 @@ ggplot(GOconsDat, aes(x=factor(Description, level= level_order), y=geneRatio)) +
 ```
 
 
-```{r fig.height=8, fig.width=18}
+```{r fig.height=8, fig.width=14}
 
 GOconsDat <- GOconsDat %>% mutate(qscore=-log(p.adjust, base=10)) %>% 
   mutate(DescriptionLab = paste0(subset, ": ", Description))

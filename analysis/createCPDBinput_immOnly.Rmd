@@ -45,13 +45,25 @@ seuratLY <- readRDS(file = paste0(basedir,
 seuratBRC <- readRDS(file=paste0(basedir, "/data/folBRC_allSLO_seurat.rds"))
 
 ## Each SLO individually
-seuratLY$label_plus_SLO <- paste0(seuratLY$clusterLabel, "_", seuratLY$SLO)
+selLab <- c("naiveBcells", "LZBcells", "DZshmBcells", "proDZ",
+                   "plasmaCells", 
+                   "Tfh", "DCs",
+                   "mdMacrophages", "trMacrophages", "infMacrophages")
+seuratLY <- subset(seuratLY, clusterLabel %in% selLab)
+GCBs <- c("LZBcells", "DZshmBcells", "proDZ")
+Myel <- c("mdMacrophages", "trMacrophages", "infMacrophages")
+seuratLY$clusterLabel2 <- seuratLY$clusterLabel
+seuratLY$clusterLabel2[which(seuratLY$clusterLabel %in% GCBs)] <- "GCBcells"
+seuratLY$clusterLabel2[which(seuratLY$clusterLabel %in% Myel)] <- "Myeloids"
+
+seuratLY$label_plus_SLO <- paste0(seuratLY$clusterLabel2, "_", seuratLY$SLO)
+seuratLY$clusterLabel <- seuratLY$clusterLabel2
 
 ### only imm BRCs
 seuratBRC <- subset(seuratBRC, cond == "immunized")
 
 ## plot input data
-Idents(seuratLY) <- seuratLY$clusterLabel
+Idents(seuratLY) <- seuratLY$clusterLabel2
 DimPlot(seuratLY, reduction = "umap")+
   theme_bw() +
   theme(axis.text = element_blank(), axis.ticks = element_blank(), 
@@ -165,7 +177,7 @@ lapply(unique(sceMerge$SLO), function(slo){
   colnames(cellPhoneSLO)[1] <- "gene"
   write.table(cellPhoneSLO, 
               file = paste0(basedir,
-                            "/data/cellphonedb/folBRCimm_LYMsub_",slo,
+                            "/data/cellphonedb/folBRCimm_LYMGrpsub_",slo,
                             "_countMatrix.txt"),
               row.names = FALSE, col.names = TRUE, quote = FALSE, sep = "\t")
 
@@ -174,7 +186,7 @@ lapply(unique(sceMerge$SLO), function(slo){
   colnames(metaDatSLO) <- c("Cell", "cell_type")
   write.table(metaDatSLO, 
               file = paste0(basedir,
-                            "/data/cellphonedb/folBRCimm_LYMsub_",slo,
+                            "/data/cellphonedb/folBRCimm_LYMGrpsub_",slo,
                             "_metaData.txt"),
               row.names = FALSE, col.names = TRUE, quote = FALSE, sep = "\t")
 
@@ -204,17 +216,17 @@ cellphonedb database generate --user-interactions custom_interaction_file.csv
 
 ##run statistical analysis
 ## subsampling in R script.. 
-cellphonedb method statistical_analysis /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/folBRCimm_LYMsub_LN_metaData.txt /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/folBRCimm_LYMsub_LN_countMatrix.txt --output-path /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/outLNimm/ --database /Users/mechthildluetge/Projects/scRNAseq/ILC_Hungwei/data/cellphonedb/out/cellphonedb_user_2021-10-05-09_17.db --debug-seed 3 --iterations 100
+cellphonedb method statistical_analysis /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/folBRCimm_LYMGrpsub_LN_metaData.txt /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/folBRCimm_LYMGrpsub_LN_countMatrix.txt --output-path /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/outLNimmGrp/ --database /Users/mechthildluetge/Projects/scRNAseq/ILC_Hungwei/data/cellphonedb/out/cellphonedb_user_2021-10-05-09_17.db --debug-seed 3 --iterations 100
 
-cellphonedb method statistical_analysis /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/folBRCimm_LYMsub_PP_metaData.txt /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/folBRCimm_LYMsub_PP_countMatrix.txt --output-path /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/outPPimm/ --database /Users/mechthildluetge/Projects/scRNAseq/ILC_Hungwei/data/cellphonedb/out/cellphonedb_user_2021-10-05-09_17.db --debug-seed 3 --iterations 100
+cellphonedb method statistical_analysis /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/folBRCimm_LYMGrpsub_PP_metaData.txt /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/folBRCimm_LYMGrpsub_PP_countMatrix.txt --output-path /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/outPPimmGrp/ --database /Users/mechthildluetge/Projects/scRNAseq/ILC_Hungwei/data/cellphonedb/out/cellphonedb_user_2021-10-05-09_17.db --debug-seed 3 --iterations 100
 
-cellphonedb method statistical_analysis /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/folBRCimm_LYMsub_Spleen_metaData.txt /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/folBRCimm_LYMsub_Spleen_countMatrix.txt --output-path /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/outSPimm/ --database /Users/mechthildluetge/Projects/scRNAseq/ILC_Hungwei/data/cellphonedb/out/cellphonedb_user_2021-10-05-09_17.db --debug-seed 3 --iterations 100
+cellphonedb method statistical_analysis /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/folBRCimm_LYMGrpsub_Spleen_metaData.txt /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/folBRCimm_LYMGrpsub_Spleen_countMatrix.txt --output-path /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/outSPimmGrp/ --database /Users/mechthildluetge/Projects/scRNAseq/ILC_Hungwei/data/cellphonedb/out/cellphonedb_user_2021-10-05-09_17.db --debug-seed 3 --iterations 100
 
 
 Count network interactions:
-cellphonedb plot heatmap_plot /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/folBRCimm_LYMsub_LN_metaData.txt --pvalues-path /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/outLNimm/pvalues.txt --output-path /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/outLNimm
-cellphonedb plot heatmap_plot /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/folBRCimm_LYMsub_PP_metaData.txt --pvalues-path /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/outPPimm/pvalues.txt --output-path /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/outPPimm
-cellphonedb plot heatmap_plot /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/folBRCimm_LYMsub_Spleen_metaData.txt --pvalues-path /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/outSPimm/pvalues.txt --output-path /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/outSPimm
+cellphonedb plot heatmap_plot /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/folBRCimm_LYMGrpsub_LN_metaData.txt --pvalues-path /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/outLNimmGrp/pvalues.txt --output-path /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/outLNimmGrp
+cellphonedb plot heatmap_plot /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/folBRCimm_LYMGrpsub_PP_metaData.txt --pvalues-path /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/outPPimmGrp/pvalues.txt --output-path /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/outPPimmGrp
+cellphonedb plot heatmap_plot /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/folBRCimm_LYMGrpsub_Spleen_metaData.txt --pvalues-path /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/outSPimmGrp/pvalues.txt --output-path /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/outSPimmGrp
 
 We use CellPhoneDB as tool to predict cellular communication between SILT FRCs and ILC populations in our dataset. In brief, pairs of known interacting ligands and receptors are derived from public databases and cell types are analysed for enriched receptor–ligand interactions based on expression of a receptor by one cell type and a ligand by another cell type. 
 

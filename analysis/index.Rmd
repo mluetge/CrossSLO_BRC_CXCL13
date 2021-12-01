@@ -17,7 +17,8 @@ Characterization Spleen: [link](CharacterizeSpleen_CXCL13seurat.html)
 Integrate all CXCL13 pos across SLOs: [link](IntegrateAcrossSLOs.html)  
 visualize shared subsets individual SLOs: [link](visFolBRC_individualSLOs.html)  
 Organ specific gene signature: [link](SLOspecific_signature.html)  
-Subset specific gene signature: [link](SubsetSpecificGeneSignatures.html)  
+Subset specific pathways: [link](SubsetSpecificGeneSignatures.html)  
+Subset specific signature plots: [link](plotSubsetSpecificSignatures2.html)  
 
 ## Cross SLO mouse Lymphocytes
 Merge lymphocyte data: [link](mergeData_lympho.html)  
@@ -27,3 +28,5 @@ Characterization lymphocyte data: [link](CharacterizeLympho.html)
 create CellPhoneDB input: [link](createCPDBinput_immOnly.html)  
 visualize CellPhoneDB out: [link](analyseCPDBoutImm.html)  
 visualize sel int: [link](CellPhoneDBout_selInt_imm.html)  
+Heatmap expression of selected int: [link](visSelIntHeatmap.html)  
+

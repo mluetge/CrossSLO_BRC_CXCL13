@@ -374,7 +374,7 @@ div.tocify {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2021-10-22
+<strong>Last updated:</strong> 2021-11-23
 </p>
 <p>
 <strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 1
@@ -398,7 +398,7 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 </div>
 <div id="strongRMarkdownfilestronguncommittedchanges" class="panel-collapse collapse">
 <div class="panel-body">
-<p>The R Markdown is untracked by Git. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
+<p>The R Markdown file has unstaged changes. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
 </div>
 </div>
 </div>
@@ -465,16 +465,16 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcommluetgeCrossSLOBRCCXCL13treee71d77eda19ead98ddc3d5490ca1bb6addc09ba2targetblanke71d77ea"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/tree/e71d77eda19ead98ddc3d5490ca1bb6addc09ba2" target="_blank">e71d77e</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcommluetgeCrossSLOBRCCXCL13tree525b9f61d4976a8e83ac84bd63f17780d5cd2405targetblank525b9f6a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/tree/525b9f61d4976a8e83ac84bd63f17780d5cd2405" target="_blank">525b9f6</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcommluetgeCrossSLOBRCCXCL13treee71d77eda19ead98ddc3d5490ca1bb6addc09ba2targetblanke71d77ea" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcommluetgeCrossSLOBRCCXCL13tree525b9f61d4976a8e83ac84bd63f17780d5cd2405targetblank525b9f6a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/tree/e71d77eda19ead98ddc3d5490ca1bb6addc09ba2" target="_blank">e71d77e</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/tree/525b9f61d4976a8e83ac84bd63f17780d5cd2405" target="_blank">525b9f6</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -489,12 +489,210 @@ Ignored files:
     Ignored:    data/lympho/
     Ignored:    data/processedData/
     Ignored:    data/processedDataLymphocytes/
+    Ignored:    figure/.DS_Store
+    Ignored:    figure/plotSubsetSpecificSignatures.Rmd/.DS_Store
 
 Untracked files:
-    Untracked:  analysis/createCPDBinput_immOnly.Rmd
+    Untracked:  analysis/CharacterizeLymphoSubgrps.Rmd
+    Untracked:  analysis/SubsetSpecificGeneSignatures2.Rmd
+    Untracked:  analysis/plotSubsetSpecificSignatures2.Rmd
+    Untracked:  analysis/visSelIntHeatmap.Rmd
+    Untracked:  figure/plotSubsetSpecificSignatures2.Rmd/
 
 Unstaged changes:
-    Modified:   analysis/analyseCPDBout.Rmd
+    Modified:   analysis/SubsetSpecificGeneSignatures.Rmd
+    Modified:   analysis/createCPDBinput_immOnly.Rmd
+    Modified:   analysis/index.Rmd
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr Antigen capture and presentation_LZFDC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr Antigen capture and presentation_LZFDC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr Antigen capture and presentation_MRC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr Antigen capture and presentation_MRC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr Costimulatory and inhibitory molecules_LZFDC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr Costimulatory and inhibitory molecules_LZFDC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr Cytokines and chemokines_MRC   -1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr Cytokines and chemokines_MRC   -1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr Cytokines and chemokines_MRC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr Cytokines and chemokines_MRC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr Cytokines and chemokines_TBRC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr Cytokines and chemokines_TBRC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Antigen capture and presentation_LZFDC cut 2-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Antigen capture and presentation_LZFDC cut 2-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Antigen capture and presentation_LZFDC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Antigen capture and presentation_LZFDC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Antigen capture and presentation_MRC cut 2-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Antigen capture and presentation_MRC cut 2-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Antigen capture and presentation_MRC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Antigen capture and presentation_MRC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Costimulatory and inhibitory molecules_LZFDC cut 2-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Costimulatory and inhibitory molecules_LZFDC cut 2-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Costimulatory and inhibitory molecules_LZFDC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Costimulatory and inhibitory molecules_LZFDC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Cytokines and chemokines_MRC cut 2-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Cytokines and chemokines_MRC cut 2-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Cytokines and chemokines_MRC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Cytokines and chemokines_MRC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Cytokines and chemokines_TBRC cut 2-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Cytokines and chemokines_TBRC cut 2-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Cytokines and chemokines_TBRC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Cytokines and chemokines_TBRC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Metabolite transporter_LZFDC cut 2-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Metabolite transporter_LZFDC cut 2-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Metabolite transporter_LZFDC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Metabolite transporter_LZFDC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Stemness_PRC2 cut 2-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Stemness_PRC2 cut 2-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Stemness_PRC2-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Stemness_PRC2-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Tnf superfamily factors_LZFDC cut 2-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Tnf superfamily factors_LZFDC cut 2-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Tnf superfamily factors_LZFDC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Tnf superfamily factors_LZFDC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Tnf superfamily factors_MRC cut 2-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Tnf superfamily factors_MRC cut 2-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Tnf superfamily factors_MRC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Tnf superfamily factors_MRC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM adhesion molecules_DZFDC cut 2-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM adhesion molecules_DZFDC cut 2-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM adhesion molecules_DZFDC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM adhesion molecules_DZFDC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM adhesion molecules_LZFDC cut 2-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM adhesion molecules_LZFDC cut 2-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM adhesion molecules_LZFDC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM adhesion molecules_LZFDC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM adhesion molecules_MRC cut 2-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM adhesion molecules_MRC cut 2-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM adhesion molecules_MRC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM adhesion molecules_MRC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM adhesion molecules_PRC2 cut 2-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM adhesion molecules_PRC2 cut 2-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM adhesion molecules_PRC2-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM adhesion molecules_PRC2-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM adhesion molecules_TBRC cut 2-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM adhesion molecules_TBRC cut 2-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM adhesion molecules_TBRC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM adhesion molecules_TBRC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM growth and survival factors_DZFDC cut 2-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM growth and survival factors_DZFDC cut 2-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM growth and survival factors_DZFDC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM growth and survival factors_DZFDC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM growth and survival factors_LZFDC cut 2-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM growth and survival factors_LZFDC cut 2-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM growth and survival factors_LZFDC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM growth and survival factors_LZFDC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM growth and survival factors_PRC2 cut 2-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM growth and survival factors_PRC2 cut 2-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM growth and survival factors_PRC2-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM growth and survival factors_PRC2-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM growth and survival factors_TBRC cut 2-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM growth and survival factors_TBRC cut 2-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM growth and survival factors_TBRC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM growth and survival factors_TBRC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM network formation_DZFDC cut 2-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM network formation_DZFDC cut 2-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM network formation_DZFDC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM network formation_DZFDC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM network formation_LZFDC cut 2-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM network formation_LZFDC cut 2-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM network formation_LZFDC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM network formation_LZFDC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM network formation_MRC cut 2-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM network formation_MRC cut 2-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM network formation_MRC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM network formation_MRC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM network formation_PRC2 cut 2-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM network formation_PRC2 cut 2-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM network formation_PRC2-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM network formation_PRC2-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM network formation_TBRC cut 2-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM network formation_TBRC cut 2-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM network formation_TBRC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM network formation_TBRC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr Metabolite transporter_LZFDC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr Metabolite transporter_LZFDC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr Stemness_PRC2-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr Stemness_PRC2-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr Tnf superfamily factors_LZFDC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr Tnf superfamily factors_LZFDC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr Tnf superfamily factors_MRC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr Tnf superfamily factors_MRC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr adhesion molecules_DZFDC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr adhesion molecules_DZFDC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr adhesion molecules_LZFDC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr adhesion molecules_LZFDC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr adhesion molecules_MRC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr adhesion molecules_MRC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr adhesion molecules_PRC2-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr adhesion molecules_PRC2-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr adhesion molecules_TBRC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr adhesion molecules_TBRC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr growth and survival factor_DZFDC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr growth and survival factor_DZFDC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr growth and survival factors_DZFDC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr growth and survival factors_DZFDC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr growth and survival factors_LZFDC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr growth and survival factors_LZFDC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr growth and survival factors_PRC2-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr growth and survival factors_PRC2-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr growth and survival factors_TBRC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr growth and survival factors_TBRC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr network formation_DZFDC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr network formation_DZFDC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr network formation_LZFDC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr network formation_LZFDC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr network formation_MRC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr network formation_MRC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr network formation_PRC2 -1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr network formation_PRC2 -1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr network formation_PRC2-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr network formation_PRC2-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr network formation_TBRC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr network formation_TBRC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm Antigen capture and presentation_LZFDC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm Antigen capture and presentation_LZFDC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm Antigen capture and presentation_MRC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm Antigen capture and presentation_MRC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm Costimulatory and inhibitory molecules_LZFDC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm Costimulatory and inhibitory molecules_LZFDC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm Cytokines and chemokines_MRC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm Cytokines and chemokines_MRC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm Cytokines and chemokines_TBRC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm Cytokines and chemokines_TBRC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm Metabolite transporter_LZFDC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm Metabolite transporter_LZFDC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm Stemness_PRC2-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm Stemness_PRC2-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm Tnf superfamily factors_LZFDC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm Tnf superfamily factors_LZFDC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm Tnf superfamily factors_MRC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm Tnf superfamily factors_MRC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm adhesion molecules_DZFDC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm adhesion molecules_DZFDC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm adhesion molecules_LZFDC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm adhesion molecules_LZFDC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm adhesion molecules_MRC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm adhesion molecules_MRC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm adhesion molecules_PRC2-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm adhesion molecules_PRC2-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm adhesion molecules_TBRC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm adhesion molecules_TBRC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm growth and survival factors_DZFDC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm growth and survival factors_DZFDC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm growth and survival factors_LZFDC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm growth and survival factors_LZFDC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm growth and survival factors_PRC2-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm growth and survival factors_PRC2-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm growth and survival factors_TBRC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm growth and survival factors_TBRC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm network formation_DZFDC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm network formation_DZFDC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm network formation_LZFDC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm network formation_LZFDC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm network formation_MRC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm network formation_MRC-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm network formation_PRC2-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm network formation_PRC2-1.png
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm network formation_TBRC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm network formation_TBRC-1.png
 
 </code></pre>
 <p>
@@ -507,9 +705,86 @@ Note that any generated files, e.g. HTML, png, CSS, etc., are not included in t
 <hr>
 </div>
 <div id="versions" class="tab-pane fade">
+
 <p>
-There are no past versions. Publish this analysis with <code>wflow_publish()</code> to start tracking its development.
+These are the previous versions of the repository in which changes were made to the R Markdown (<code>analysis/createCPDBinput_immOnly.Rmd</code>) and HTML (<code>docs/createCPDBinput_immOnly.html</code>) files. If you’ve configured a remote Git repository (see <code>?wflow_git_remote</code>), click on the hyperlinks in the table below to view the files as they were in that past version.
 </p>
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+File
+</th>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+<th>
+Message
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/525b9f61d4976a8e83ac84bd63f17780d5cd2405/analysis/createCPDBinput_immOnly.Rmd" target="_blank">525b9f6</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-11-04
+</td>
+<td>
+cellphone imm only
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/94961678506115e0ed4a809d24ad48c7f426416f/analysis/createCPDBinput_immOnly.Rmd" target="_blank">9496167</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-10-22
+</td>
+<td>
+add DCs to int analysis
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/mluetge/CrossSLO_BRC_CXCL13/94961678506115e0ed4a809d24ad48c7f426416f/docs/createCPDBinput_immOnly.html" target="_blank">9496167</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-10-22
+</td>
+<td>
+add DCs to int analysis
+</td>
+</tr>
+</tbody>
+</table>
+</div>
 <hr>
 </div>
 </div>
@@ -539,13 +814,25 @@ seuratLY &lt;- readRDS(file = paste0(basedir,
 seuratBRC &lt;- readRDS(file=paste0(basedir, &quot;/data/folBRC_allSLO_seurat.rds&quot;))
 
 ## Each SLO individually
-seuratLY$label_plus_SLO &lt;- paste0(seuratLY$clusterLabel, &quot;_&quot;, seuratLY$SLO)
+selLab &lt;- c(&quot;naiveBcells&quot;, &quot;LZBcells&quot;, &quot;DZshmBcells&quot;, &quot;proDZ&quot;,
+                   &quot;plasmaCells&quot;, 
+                   &quot;Tfh&quot;, &quot;DCs&quot;,
+                   &quot;mdMacrophages&quot;, &quot;trMacrophages&quot;, &quot;infMacrophages&quot;)
+seuratLY &lt;- subset(seuratLY, clusterLabel %in% selLab)
+GCBs &lt;- c(&quot;LZBcells&quot;, &quot;DZshmBcells&quot;, &quot;proDZ&quot;)
+Myel &lt;- c(&quot;mdMacrophages&quot;, &quot;trMacrophages&quot;, &quot;infMacrophages&quot;)
+seuratLY$clusterLabel2 &lt;- seuratLY$clusterLabel
+seuratLY$clusterLabel2[which(seuratLY$clusterLabel %in% GCBs)] &lt;- &quot;GCBcells&quot;
+seuratLY$clusterLabel2[which(seuratLY$clusterLabel %in% Myel)] &lt;- &quot;Myeloids&quot;
+
+seuratLY$label_plus_SLO &lt;- paste0(seuratLY$clusterLabel2, &quot;_&quot;, seuratLY$SLO)
+seuratLY$clusterLabel &lt;- seuratLY$clusterLabel2
 
 ### only imm BRCs
 seuratBRC &lt;- subset(seuratBRC, cond == &quot;immunized&quot;)
 
 ## plot input data
-Idents(seuratLY) &lt;- seuratLY$clusterLabel
+Idents(seuratLY) &lt;- seuratLY$clusterLabel2
 DimPlot(seuratLY, reduction = &quot;umap&quot;)+
   theme_bw() +
   theme(axis.text = element_blank(), axis.ticks = element_blank(), 
@@ -553,6 +840,43 @@ DimPlot(seuratLY, reduction = &quot;umap&quot;)+
   xlab(&quot;UMAP1&quot;) +
   ylab(&quot;UMAP2&quot;)</code></pre>
 <p><img src="figure/createCPDBinput_immOnly.Rmd/input%20data-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-input-data-1">
+Past versions of “input data-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-input-data-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/94961678506115e0ed4a809d24ad48c7f426416f/docs/figure/createCPDBinput_immOnly.Rmd/input data-1.png" target="_blank">9496167</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-10-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>Idents(seuratBRC) &lt;- seuratBRC$clusterLabel
 DimPlot(seuratBRC, reduction = &quot;umap&quot;)+
   theme_bw() +
@@ -561,6 +885,43 @@ DimPlot(seuratBRC, reduction = &quot;umap&quot;)+
   xlab(&quot;UMAP1&quot;) +
   ylab(&quot;UMAP2&quot;)</code></pre>
 <p><img src="figure/createCPDBinput_immOnly.Rmd/input%20data-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-input-data-2">
+Past versions of “input data-2.png”
+</button>
+</p>
+<div id="fig-no-spaces-input-data-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/94961678506115e0ed4a809d24ad48c7f426416f/docs/figure/createCPDBinput_immOnly.Rmd/input data-2.png" target="_blank">9496167</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-10-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 </div>
 <div id="filter-cells-and-assign-cluster" class="section level1">
@@ -618,24 +979,18 @@ sceMerge &lt;- as.SingleCellExperiment(seuratMerge)
 (table(sceMerge@colData$group))</code></pre>
 <pre><code>
    BRC LYMPHO 
-  1883   8032 </code></pre>
+  1883   3423 </code></pre>
 <pre class="r"><code>## assign celltype
 colData(sceMerge)$clusterFinal &lt;- paste0(colData(sceMerge)$group, &quot;_&quot;, 
                                          colData(sceMerge)$clusterLabel)
 (table(sceMerge@colData$clusterFinal))</code></pre>
 <pre><code>
-            BRC_DZFDC             BRC_LZFDC               BRC_MRC              BRC_PRC2 
-                  263                   494                   202                   324 
-             BRC_TBRC      LYMPHO_Cd8Tcells            LYMPHO_DCs    LYMPHO_DZshmBcells 
-                  600                   507                   455                   600 
-LYMPHO_infMacrophages       LYMPHO_LZBcells  LYMPHO_mdMacrophages    LYMPHO_naiveBcells 
-                  295                   600                   441                   600 
-LYMPHO_naiveCd4Tcells    LYMPHO_Neutrophils        LYMPHO_NKcells    LYMPHO_plasmaCells 
-                  534                   231                   331                   591 
-  LYMPHO_proCd4Tcells          LYMPHO_proDZ            LYMPHO_Tfh           LYMPHO_Th17 
-                  475                   600                   600                   262 
-        LYMPHO_Th1Th2  LYMPHO_trMacrophages 
-                  600                   310 </code></pre>
+         BRC_DZFDC          BRC_LZFDC            BRC_MRC           BRC_PRC2           BRC_TBRC 
+               263                494                202                324                600 
+        LYMPHO_DCs    LYMPHO_GCBcells    LYMPHO_Myeloids LYMPHO_naiveBcells LYMPHO_plasmaCells 
+               455                600                577                600                591 
+        LYMPHO_Tfh 
+               600 </code></pre>
 </div>
 <div id="create-count-matrix-for-cellphonedb" class="section level1">
 <h1>create count matrix for cellphonedb</h1>
@@ -658,10 +1013,10 @@ geneIDsMatch$Gene.stable.ID.1[
 geneIDsMatch &lt;- geneIDsMatch[!duplicated(geneIDsMatch$ensIDs),]
 rowData(sceMerge)$humGene &lt;- geneIDsMatch$Gene.stable.ID.1
 dim(sceMerge)</code></pre>
-<pre><code>[1] 31474  9915</code></pre>
+<pre><code>[1] 31474  5306</code></pre>
 <pre class="r"><code>sceMerge &lt;- sceMerge[which(rowData(sceMerge)$humGene != &quot;unknown&quot;),] 
 dim(sceMerge)</code></pre>
-<pre><code>[1] 16695  9915</code></pre>
+<pre><code>[1] 16695  5306</code></pre>
 <pre class="r"><code>## filter for SLO and write cnt mat plus metadat
 lapply(unique(sceMerge$SLO), function(slo){
   sceSLO &lt;- sceMerge[,which(sceMerge@colData$SLO == slo)]
@@ -669,7 +1024,7 @@ lapply(unique(sceMerge$SLO), function(slo){
   colnames(cellPhoneSLO)[1] &lt;- &quot;gene&quot;
   write.table(cellPhoneSLO, 
               file = paste0(basedir,
-                            &quot;/data/cellphonedb/folBRCimm_LYMsub_&quot;,slo,
+                            &quot;/data/cellphonedb/folBRCimm_LYMGrpsub_&quot;,slo,
                             &quot;_countMatrix.txt&quot;),
               row.names = FALSE, col.names = TRUE, quote = FALSE, sep = &quot;\t&quot;)
 
@@ -678,7 +1033,7 @@ lapply(unique(sceMerge$SLO), function(slo){
   colnames(metaDatSLO) &lt;- c(&quot;Cell&quot;, &quot;cell_type&quot;)
   write.table(metaDatSLO, 
               file = paste0(basedir,
-                            &quot;/data/cellphonedb/folBRCimm_LYMsub_&quot;,slo,
+                            &quot;/data/cellphonedb/folBRCimm_LYMGrpsub_&quot;,slo,
                             &quot;_metaData.txt&quot;),
               row.names = FALSE, col.names = TRUE, quote = FALSE, sep = &quot;\t&quot;)
 
@@ -712,77 +1067,77 @@ attached base packages:
 other attached packages:
  [1] here_1.0.1                  biomaRt_2.48.3              forcats_0.5.1              
  [4] stringr_1.4.0               readr_2.0.2                 tidyr_1.1.4                
- [7] tibble_3.1.4                tidyverse_1.3.1             mclust_5.4.7               
-[10] SeuratObject_4.0.2          Seurat_4.0.4                scran_1.20.1               
+ [7] tibble_3.1.6                tidyverse_1.3.1             mclust_5.4.8               
+[10] SeuratObject_4.0.2          Seurat_4.0.5                scran_1.20.1               
 [13] purrr_0.3.4                 org.Mm.eg.db_3.13.0         Matrix_1.3-4               
 [16] reshape2_1.4.4              dplyr_1.0.7                 ensembldb_2.16.4           
 [19] AnnotationFilter_1.16.0     GenomicFeatures_1.44.2      AnnotationDbi_1.54.1       
 [22] scater_1.20.1               ggplot2_3.3.5               scuttle_1.2.1              
 [25] SingleCellExperiment_1.14.1 SummarizedExperiment_1.22.0 Biobase_2.52.0             
 [28] GenomicRanges_1.44.0        GenomeInfoDb_1.28.4         IRanges_2.26.0             
-[31] S4Vectors_0.30.1            BiocGenerics_0.38.0         MatrixGenerics_1.4.3       
+[31] S4Vectors_0.30.2            BiocGenerics_0.38.0         MatrixGenerics_1.4.3       
 [34] matrixStats_0.61.0         
 
 loaded via a namespace (and not attached):
   [1] rappdirs_0.3.3            rtracklayer_1.52.1        scattermore_0.7          
-  [4] bit64_4.0.5               knitr_1.34                irlba_2.3.3              
+  [4] bit64_4.0.5               knitr_1.36                irlba_2.3.3              
   [7] DelayedArray_0.18.0       data.table_1.14.2         rpart_4.1-15             
- [10] KEGGREST_1.32.0           RCurl_1.98-1.5            generics_0.1.0           
+ [10] KEGGREST_1.32.0           RCurl_1.98-1.5            generics_0.1.1           
  [13] ScaledMatrix_1.0.0        cowplot_1.1.1             RSQLite_2.2.8            
- [16] RANN_2.6.1                future_1.22.1             bit_4.0.4                
- [19] tzdb_0.1.2                spatstat.data_2.1-0       xml2_1.3.2               
- [22] lubridate_1.7.10          httpuv_1.6.3              assertthat_0.2.1         
- [25] viridis_0.6.1             xfun_0.26                 hms_1.1.1                
+ [16] RANN_2.6.1                future_1.23.0             bit_4.0.4                
+ [19] tzdb_0.2.0                spatstat.data_2.1-0       xml2_1.3.2               
+ [22] lubridate_1.8.0           httpuv_1.6.3              assertthat_0.2.1         
+ [25] viridis_0.6.2             xfun_0.28                 hms_1.1.1                
  [28] jquerylib_0.1.4           evaluate_0.14             promises_1.2.0.1         
  [31] fansi_0.5.0               restfulr_0.0.13           progress_1.2.2           
- [34] dbplyr_2.1.1              readxl_1.3.1              igraph_1.2.6             
- [37] DBI_1.1.1                 htmlwidgets_1.5.4         spatstat.geom_2.2-2      
- [40] ellipsis_0.3.2            backports_1.2.1           deldir_0.2-10            
+ [34] dbplyr_2.1.1              readxl_1.3.1              igraph_1.2.8             
+ [37] DBI_1.1.1                 htmlwidgets_1.5.4         spatstat.geom_2.3-0      
+ [40] ellipsis_0.3.2            backports_1.3.0           deldir_1.0-6             
  [43] sparseMatrixStats_1.4.2   vctrs_0.3.8               ROCR_1.0-11              
  [46] abind_1.4-5               cachem_1.0.6              withr_2.4.2              
  [49] sctransform_0.3.2         GenomicAlignments_1.28.0  prettyunits_1.1.1        
- [52] goftest_1.2-2             cluster_2.1.2             lazyeval_0.2.2           
- [55] crayon_1.4.1              labeling_0.4.2            edgeR_3.34.1             
+ [52] goftest_1.2-3             cluster_2.1.2             lazyeval_0.2.2           
+ [55] crayon_1.4.2              labeling_0.4.2            edgeR_3.34.1             
  [58] pkgconfig_2.0.3           nlme_3.1-153              vipor_0.4.5              
- [61] ProtGenerics_1.24.0       rlang_0.4.11              globals_0.14.0           
+ [61] ProtGenerics_1.24.0       rlang_0.4.12              globals_0.14.0           
  [64] lifecycle_1.0.1           miniUI_0.1.1.1            filelock_1.0.2           
  [67] BiocFileCache_2.0.0       modelr_0.1.8              rsvd_1.0.5               
  [70] cellranger_1.1.0          rprojroot_2.0.2           polyclip_1.10-0          
- [73] lmtest_0.9-38             zoo_1.8-9                 reprex_2.0.1             
- [76] beeswarm_0.4.0            ggridges_0.5.3            png_0.1-7                
- [79] viridisLite_0.4.0         rjson_0.2.20              bitops_1.0-7             
- [82] KernSmooth_2.23-20        Biostrings_2.60.2         blob_1.2.2               
- [85] DelayedMatrixStats_1.14.3 workflowr_1.6.2           parallelly_1.28.1        
- [88] beachmat_2.8.1            scales_1.1.1              memoise_2.0.0            
- [91] magrittr_2.0.1            plyr_1.8.6                ica_1.0-2                
- [94] zlibbioc_1.38.0           compiler_4.1.0            dqrng_0.3.0              
- [97] BiocIO_1.2.0              RColorBrewer_1.1-2        fitdistrplus_1.1-5       
-[100] Rsamtools_2.8.0           cli_3.0.1                 XVector_0.32.0           
-[103] listenv_0.8.0             patchwork_1.1.1           pbapply_1.5-0            
-[106] MASS_7.3-54               mgcv_1.8-37               tidyselect_1.1.1         
-[109] stringi_1.7.4             highr_0.9                 yaml_2.2.1               
-[112] BiocSingular_1.8.1        locfit_1.5-9.4            ggrepel_0.9.1            
-[115] grid_4.1.0                sass_0.4.0                tools_4.1.0              
-[118] future.apply_1.8.1        rstudioapi_0.13           bluster_1.2.1            
-[121] git2r_0.28.0              metapod_1.0.0             gridExtra_2.3            
-[124] farver_2.1.0              Rtsne_0.15                digest_0.6.28            
-[127] shiny_1.7.0               Rcpp_1.0.7                broom_0.7.9              
-[130] later_1.3.0               RcppAnnoy_0.0.19          httr_1.4.2               
-[133] colorspace_2.0-2          rvest_1.0.1               XML_3.99-0.8             
-[136] fs_1.5.0                  tensor_1.5                reticulate_1.22          
-[139] splines_4.1.0             uwot_0.1.10               statmod_1.4.36           
-[142] spatstat.utils_2.2-0      plotly_4.9.4.1            xtable_1.8-4             
-[145] jsonlite_1.7.2            R6_2.5.1                  pillar_1.6.3             
-[148] htmltools_0.5.2           mime_0.12                 glue_1.4.2               
-[151] fastmap_1.1.0             BiocParallel_1.26.2       BiocNeighbors_1.10.0     
-[154] codetools_0.2-18          utf8_1.2.2                lattice_0.20-45          
-[157] bslib_0.3.0               spatstat.sparse_2.0-0     curl_4.3.2               
-[160] ggbeeswarm_0.6.0          leiden_0.3.9              survival_3.2-13          
-[163] limma_3.48.3              rmarkdown_2.11            munsell_0.5.0            
-[166] GenomeInfoDbData_1.2.6    haven_2.4.3               gtable_0.3.0             
-[169] spatstat.core_2.3-0      </code></pre>
+ [73] lmtest_0.9-39             zoo_1.8-9                 reprex_2.0.1             
+ [76] beeswarm_0.4.0            whisker_0.4               ggridges_0.5.3           
+ [79] png_0.1-7                 viridisLite_0.4.0         rjson_0.2.20             
+ [82] bitops_1.0-7              KernSmooth_2.23-20        Biostrings_2.60.2        
+ [85] blob_1.2.2                DelayedMatrixStats_1.14.3 workflowr_1.6.2          
+ [88] parallelly_1.28.1         beachmat_2.8.1            scales_1.1.1             
+ [91] memoise_2.0.0             magrittr_2.0.1            plyr_1.8.6               
+ [94] ica_1.0-2                 zlibbioc_1.38.0           compiler_4.1.0           
+ [97] dqrng_0.3.0               BiocIO_1.2.0              RColorBrewer_1.1-2       
+[100] fitdistrplus_1.1-6        cli_3.1.0                 Rsamtools_2.8.0          
+[103] XVector_0.32.0            listenv_0.8.0             patchwork_1.1.1          
+[106] pbapply_1.5-0             MASS_7.3-54               mgcv_1.8-38              
+[109] tidyselect_1.1.1          stringi_1.7.5             highr_0.9                
+[112] yaml_2.2.1                BiocSingular_1.8.1        locfit_1.5-9.4           
+[115] ggrepel_0.9.1             grid_4.1.0                sass_0.4.0               
+[118] tools_4.1.0               future.apply_1.8.1        rstudioapi_0.13          
+[121] bluster_1.2.1             git2r_0.28.0              metapod_1.0.0            
+[124] gridExtra_2.3             farver_2.1.0              Rtsne_0.15               
+[127] digest_0.6.28             shiny_1.7.1               Rcpp_1.0.7               
+[130] broom_0.7.10              later_1.3.0               RcppAnnoy_0.0.19         
+[133] httr_1.4.2                colorspace_2.0-2          rvest_1.0.2              
+[136] XML_3.99-0.8              fs_1.5.0                  tensor_1.5               
+[139] reticulate_1.22           splines_4.1.0             uwot_0.1.10              
+[142] statmod_1.4.36            spatstat.utils_2.2-0      plotly_4.10.0            
+[145] xtable_1.8-4              jsonlite_1.7.2            R6_2.5.1                 
+[148] pillar_1.6.4              htmltools_0.5.2           mime_0.12                
+[151] glue_1.5.0                fastmap_1.1.0             BiocParallel_1.26.2      
+[154] BiocNeighbors_1.10.0      codetools_0.2-18          utf8_1.2.2               
+[157] lattice_0.20-45           bslib_0.3.1               spatstat.sparse_2.0-0    
+[160] curl_4.3.2                ggbeeswarm_0.6.0          leiden_0.3.9             
+[163] survival_3.2-13           limma_3.48.3              rmarkdown_2.11           
+[166] munsell_0.5.0             GenomeInfoDbData_1.2.6    haven_2.4.3              
+[169] gtable_0.3.0              spatstat.core_2.3-1      </code></pre>
 <pre class="r"><code>date()</code></pre>
-<pre><code>[1] &quot;Fri Oct 22 15:41:32 2021&quot;</code></pre>
+<pre><code>[1] &quot;Tue Nov 23 09:54:41 2021&quot;</code></pre>
 <p>cd /Users/mechthildluetge/Projects/scRNAseq/ILC_Hungwei/data/cellphonedb eval “<span class="math inline">\((pyenv init -)&quot; eval &quot;\)</span>(pyenv virtualenv-init -)”</p>
 </div>
 <div id="run-cellphonedb" class="section level2">
@@ -790,10 +1145,10 @@ loaded via a namespace (and not attached):
 <div id="build-database" class="section level3">
 <h3>build database</h3>
 <p>cellphonedb database generate –user-interactions custom_interaction_file.csv</p>
-<p>##run statistical analysis ## subsampling in R script.. cellphonedb method statistical_analysis /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/folBRC_LYMsub_LN_metaData.txt /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/folBRC_LYMsub_LN_countMatrix.txt –output-path /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/outLN/ –database /Users/mechthildluetge/Projects/scRNAseq/ILC_Hungwei/data/cellphonedb/out/cellphonedb_user_2021-10-05-09_17.db –debug-seed 3 –iterations 100</p>
-<p>cellphonedb method statistical_analysis /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/folBRC_LYMsub_PP_metaData.txt /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/folBRC_LYMsub_PP_countMatrix.txt –output-path /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/outPP/ –database /Users/mechthildluetge/Projects/scRNAseq/ILC_Hungwei/data/cellphonedb/out/cellphonedb_user_2021-10-05-09_17.db –debug-seed 3 –iterations 100</p>
-<p>cellphonedb method statistical_analysis /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/folBRC_LYMsub_Spleen_metaData.txt /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/folBRC_LYMsub_Spleen_countMatrix.txt –output-path /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/outSP/ –database /Users/mechthildluetge/Projects/scRNAseq/ILC_Hungwei/data/cellphonedb/out/cellphonedb_user_2021-10-05-09_17.db –debug-seed 3 –iterations 100</p>
-<p>Count network interactions: cellphonedb plot heatmap_plot /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/folBRC_LYMsub_LN_metaData.txt –pvalues-path /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/outLN/pvalues.txt –output-path /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/outLN cellphonedb plot heatmap_plot /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/folBRC_LYMsub_PP_metaData.txt –pvalues-path /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/outPP/pvalues.txt –output-path /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/outPP cellphonedb plot heatmap_plot /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/folBRC_LYMsub_Spleen_metaData.txt –pvalues-path /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/outSP/pvalues.txt –output-path /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/outSP</p>
+<p>##run statistical analysis ## subsampling in R script.. cellphonedb method statistical_analysis /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/folBRCimm_LYMsub_LN_metaData.txt /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/folBRCimm_LYMsub_LN_countMatrix.txt –output-path /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/outLNimm/ –database /Users/mechthildluetge/Projects/scRNAseq/ILC_Hungwei/data/cellphonedb/out/cellphonedb_user_2021-10-05-09_17.db –debug-seed 3 –iterations 100</p>
+<p>cellphonedb method statistical_analysis /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/folBRCimm_LYMsub_PP_metaData.txt /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/folBRCimm_LYMsub_PP_countMatrix.txt –output-path /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/outPPimm/ –database /Users/mechthildluetge/Projects/scRNAseq/ILC_Hungwei/data/cellphonedb/out/cellphonedb_user_2021-10-05-09_17.db –debug-seed 3 –iterations 100</p>
+<p>cellphonedb method statistical_analysis /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/folBRCimm_LYMsub_Spleen_metaData.txt /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/folBRCimm_LYMsub_Spleen_countMatrix.txt –output-path /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/outSPimm/ –database /Users/mechthildluetge/Projects/scRNAseq/ILC_Hungwei/data/cellphonedb/out/cellphonedb_user_2021-10-05-09_17.db –debug-seed 3 –iterations 100</p>
+<p>Count network interactions: cellphonedb plot heatmap_plot /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/folBRCimm_LYMsub_LN_metaData.txt –pvalues-path /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/outLNimm/pvalues.txt –output-path /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/outLNimm cellphonedb plot heatmap_plot /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/folBRCimm_LYMsub_PP_metaData.txt –pvalues-path /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/outPPimm/pvalues.txt –output-path /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/outPPimm cellphonedb plot heatmap_plot /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/folBRCimm_LYMsub_Spleen_metaData.txt –pvalues-path /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/outSPimm/pvalues.txt –output-path /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/outSPimm</p>
 <p>We use CellPhoneDB as tool to predict cellular communication between SILT FRCs and ILC populations in our dataset. In brief, pairs of known interacting ligands and receptors are derived from public databases and cell types are analysed for enriched receptor–ligand interactions based on expression of a receptor by one cell type and a ligand by another cell type.</p>
 <p>deactivate</p>
 <br>
@@ -821,75 +1176,75 @@ attached base packages:
 other attached packages:
  [1] here_1.0.1                  biomaRt_2.48.3              forcats_0.5.1              
  [4] stringr_1.4.0               readr_2.0.2                 tidyr_1.1.4                
- [7] tibble_3.1.4                tidyverse_1.3.1             mclust_5.4.7               
-[10] SeuratObject_4.0.2          Seurat_4.0.4                scran_1.20.1               
+ [7] tibble_3.1.6                tidyverse_1.3.1             mclust_5.4.8               
+[10] SeuratObject_4.0.2          Seurat_4.0.5                scran_1.20.1               
 [13] purrr_0.3.4                 org.Mm.eg.db_3.13.0         Matrix_1.3-4               
 [16] reshape2_1.4.4              dplyr_1.0.7                 ensembldb_2.16.4           
 [19] AnnotationFilter_1.16.0     GenomicFeatures_1.44.2      AnnotationDbi_1.54.1       
 [22] scater_1.20.1               ggplot2_3.3.5               scuttle_1.2.1              
 [25] SingleCellExperiment_1.14.1 SummarizedExperiment_1.22.0 Biobase_2.52.0             
 [28] GenomicRanges_1.44.0        GenomeInfoDb_1.28.4         IRanges_2.26.0             
-[31] S4Vectors_0.30.1            BiocGenerics_0.38.0         MatrixGenerics_1.4.3       
+[31] S4Vectors_0.30.2            BiocGenerics_0.38.0         MatrixGenerics_1.4.3       
 [34] matrixStats_0.61.0         
 
 loaded via a namespace (and not attached):
   [1] rappdirs_0.3.3            rtracklayer_1.52.1        scattermore_0.7          
-  [4] bit64_4.0.5               knitr_1.34                irlba_2.3.3              
+  [4] bit64_4.0.5               knitr_1.36                irlba_2.3.3              
   [7] DelayedArray_0.18.0       data.table_1.14.2         rpart_4.1-15             
- [10] KEGGREST_1.32.0           RCurl_1.98-1.5            generics_0.1.0           
+ [10] KEGGREST_1.32.0           RCurl_1.98-1.5            generics_0.1.1           
  [13] ScaledMatrix_1.0.0        cowplot_1.1.1             RSQLite_2.2.8            
- [16] RANN_2.6.1                future_1.22.1             bit_4.0.4                
- [19] tzdb_0.1.2                spatstat.data_2.1-0       xml2_1.3.2               
- [22] lubridate_1.7.10          httpuv_1.6.3              assertthat_0.2.1         
- [25] viridis_0.6.1             xfun_0.26                 hms_1.1.1                
+ [16] RANN_2.6.1                future_1.23.0             bit_4.0.4                
+ [19] tzdb_0.2.0                spatstat.data_2.1-0       xml2_1.3.2               
+ [22] lubridate_1.8.0           httpuv_1.6.3              assertthat_0.2.1         
+ [25] viridis_0.6.2             xfun_0.28                 hms_1.1.1                
  [28] jquerylib_0.1.4           evaluate_0.14             promises_1.2.0.1         
  [31] fansi_0.5.0               restfulr_0.0.13           progress_1.2.2           
- [34] dbplyr_2.1.1              readxl_1.3.1              igraph_1.2.6             
- [37] DBI_1.1.1                 htmlwidgets_1.5.4         spatstat.geom_2.2-2      
- [40] ellipsis_0.3.2            backports_1.2.1           deldir_0.2-10            
+ [34] dbplyr_2.1.1              readxl_1.3.1              igraph_1.2.8             
+ [37] DBI_1.1.1                 htmlwidgets_1.5.4         spatstat.geom_2.3-0      
+ [40] ellipsis_0.3.2            backports_1.3.0           deldir_1.0-6             
  [43] sparseMatrixStats_1.4.2   vctrs_0.3.8               ROCR_1.0-11              
  [46] abind_1.4-5               cachem_1.0.6              withr_2.4.2              
  [49] sctransform_0.3.2         GenomicAlignments_1.28.0  prettyunits_1.1.1        
- [52] goftest_1.2-2             cluster_2.1.2             lazyeval_0.2.2           
- [55] crayon_1.4.1              labeling_0.4.2            edgeR_3.34.1             
+ [52] goftest_1.2-3             cluster_2.1.2             lazyeval_0.2.2           
+ [55] crayon_1.4.2              labeling_0.4.2            edgeR_3.34.1             
  [58] pkgconfig_2.0.3           nlme_3.1-153              vipor_0.4.5              
- [61] ProtGenerics_1.24.0       rlang_0.4.11              globals_0.14.0           
+ [61] ProtGenerics_1.24.0       rlang_0.4.12              globals_0.14.0           
  [64] lifecycle_1.0.1           miniUI_0.1.1.1            filelock_1.0.2           
  [67] BiocFileCache_2.0.0       modelr_0.1.8              rsvd_1.0.5               
  [70] cellranger_1.1.0          rprojroot_2.0.2           polyclip_1.10-0          
- [73] lmtest_0.9-38             zoo_1.8-9                 reprex_2.0.1             
- [76] beeswarm_0.4.0            ggridges_0.5.3            png_0.1-7                
- [79] viridisLite_0.4.0         rjson_0.2.20              bitops_1.0-7             
- [82] KernSmooth_2.23-20        Biostrings_2.60.2         blob_1.2.2               
- [85] DelayedMatrixStats_1.14.3 workflowr_1.6.2           parallelly_1.28.1        
- [88] beachmat_2.8.1            scales_1.1.1              memoise_2.0.0            
- [91] magrittr_2.0.1            plyr_1.8.6                ica_1.0-2                
- [94] zlibbioc_1.38.0           compiler_4.1.0            dqrng_0.3.0              
- [97] BiocIO_1.2.0              RColorBrewer_1.1-2        fitdistrplus_1.1-5       
-[100] Rsamtools_2.8.0           cli_3.0.1                 XVector_0.32.0           
-[103] listenv_0.8.0             patchwork_1.1.1           pbapply_1.5-0            
-[106] MASS_7.3-54               mgcv_1.8-37               tidyselect_1.1.1         
-[109] stringi_1.7.4             highr_0.9                 yaml_2.2.1               
-[112] BiocSingular_1.8.1        locfit_1.5-9.4            ggrepel_0.9.1            
-[115] grid_4.1.0                sass_0.4.0                tools_4.1.0              
-[118] future.apply_1.8.1        rstudioapi_0.13           bluster_1.2.1            
-[121] git2r_0.28.0              metapod_1.0.0             gridExtra_2.3            
-[124] farver_2.1.0              Rtsne_0.15                digest_0.6.28            
-[127] shiny_1.7.0               Rcpp_1.0.7                broom_0.7.9              
-[130] later_1.3.0               RcppAnnoy_0.0.19          httr_1.4.2               
-[133] colorspace_2.0-2          rvest_1.0.1               XML_3.99-0.8             
-[136] fs_1.5.0                  tensor_1.5                reticulate_1.22          
-[139] splines_4.1.0             uwot_0.1.10               statmod_1.4.36           
-[142] spatstat.utils_2.2-0      plotly_4.9.4.1            xtable_1.8-4             
-[145] jsonlite_1.7.2            R6_2.5.1                  pillar_1.6.3             
-[148] htmltools_0.5.2           mime_0.12                 glue_1.4.2               
-[151] fastmap_1.1.0             BiocParallel_1.26.2       BiocNeighbors_1.10.0     
-[154] codetools_0.2-18          utf8_1.2.2                lattice_0.20-45          
-[157] bslib_0.3.0               spatstat.sparse_2.0-0     curl_4.3.2               
-[160] ggbeeswarm_0.6.0          leiden_0.3.9              survival_3.2-13          
-[163] limma_3.48.3              rmarkdown_2.11            munsell_0.5.0            
-[166] GenomeInfoDbData_1.2.6    haven_2.4.3               gtable_0.3.0             
-[169] spatstat.core_2.3-0      </code></pre>
+ [73] lmtest_0.9-39             zoo_1.8-9                 reprex_2.0.1             
+ [76] beeswarm_0.4.0            whisker_0.4               ggridges_0.5.3           
+ [79] png_0.1-7                 viridisLite_0.4.0         rjson_0.2.20             
+ [82] bitops_1.0-7              KernSmooth_2.23-20        Biostrings_2.60.2        
+ [85] blob_1.2.2                DelayedMatrixStats_1.14.3 workflowr_1.6.2          
+ [88] parallelly_1.28.1         beachmat_2.8.1            scales_1.1.1             
+ [91] memoise_2.0.0             magrittr_2.0.1            plyr_1.8.6               
+ [94] ica_1.0-2                 zlibbioc_1.38.0           compiler_4.1.0           
+ [97] dqrng_0.3.0               BiocIO_1.2.0              RColorBrewer_1.1-2       
+[100] fitdistrplus_1.1-6        cli_3.1.0                 Rsamtools_2.8.0          
+[103] XVector_0.32.0            listenv_0.8.0             patchwork_1.1.1          
+[106] pbapply_1.5-0             MASS_7.3-54               mgcv_1.8-38              
+[109] tidyselect_1.1.1          stringi_1.7.5             highr_0.9                
+[112] yaml_2.2.1                BiocSingular_1.8.1        locfit_1.5-9.4           
+[115] ggrepel_0.9.1             grid_4.1.0                sass_0.4.0               
+[118] tools_4.1.0               future.apply_1.8.1        rstudioapi_0.13          
+[121] bluster_1.2.1             git2r_0.28.0              metapod_1.0.0            
+[124] gridExtra_2.3             farver_2.1.0              Rtsne_0.15               
+[127] digest_0.6.28             shiny_1.7.1               Rcpp_1.0.7               
+[130] broom_0.7.10              later_1.3.0               RcppAnnoy_0.0.19         
+[133] httr_1.4.2                colorspace_2.0-2          rvest_1.0.2              
+[136] XML_3.99-0.8              fs_1.5.0                  tensor_1.5               
+[139] reticulate_1.22           splines_4.1.0             uwot_0.1.10              
+[142] statmod_1.4.36            spatstat.utils_2.2-0      plotly_4.10.0            
+[145] xtable_1.8-4              jsonlite_1.7.2            R6_2.5.1                 
+[148] pillar_1.6.4              htmltools_0.5.2           mime_0.12                
+[151] glue_1.5.0                fastmap_1.1.0             BiocParallel_1.26.2      
+[154] BiocNeighbors_1.10.0      codetools_0.2-18          utf8_1.2.2               
+[157] lattice_0.20-45           bslib_0.3.1               spatstat.sparse_2.0-0    
+[160] curl_4.3.2                ggbeeswarm_0.6.0          leiden_0.3.9             
+[163] survival_3.2-13           limma_3.48.3              rmarkdown_2.11           
+[166] munsell_0.5.0             GenomeInfoDbData_1.2.6    haven_2.4.3              
+[169] gtable_0.3.0              spatstat.core_2.3-1      </code></pre>
 </div>
 </div>
 </div>
