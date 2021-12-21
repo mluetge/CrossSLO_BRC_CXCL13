@@ -297,7 +297,7 @@ $(document).ready(function () {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2021-11-12
+<strong>Last updated:</strong> 2021-12-01
 </p>
 <p>
 <strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 1 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 1
@@ -328,16 +328,16 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcommluetgeCrossSLOBRCCXCL13tree525b9f61d4976a8e83ac84bd63f17780d5cd2405targetblank525b9f6a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/tree/525b9f61d4976a8e83ac84bd63f17780d5cd2405" target="_blank">525b9f6</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcommluetgeCrossSLOBRCCXCL13treed202c26a3d47b21ce7a146a8a175c19cd9d5c2e8targetblankd202c26a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/tree/d202c26a3d47b21ce7a146a8a175c19cd9d5c2e8" target="_blank">d202c26</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcommluetgeCrossSLOBRCCXCL13tree525b9f61d4976a8e83ac84bd63f17780d5cd2405targetblank525b9f6a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcommluetgeCrossSLOBRCCXCL13treed202c26a3d47b21ce7a146a8a175c19cd9d5c2e8targetblankd202c26a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/tree/525b9f61d4976a8e83ac84bd63f17780d5cd2405" target="_blank">525b9f6</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/tree/d202c26a3d47b21ce7a146a8a175c19cd9d5c2e8" target="_blank">d202c26</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -353,14 +353,17 @@ Ignored files:
     Ignored:    data/processedData/
     Ignored:    data/processedDataLymphocytes/
     Ignored:    figure/.DS_Store
+    Ignored:    figure/plotSubsetSpecificSignatures.Rmd/
+    Ignored:    figure/plotSubsetSpecificSignatures2.Rmd/.DS_Store
 
 Untracked files:
-    Untracked:  analysis/plotSubsetSpecificSignatures2.Rmd
-    Untracked:  analysis/visSelIntHeatmap.Rmd
+    Untracked:  analysis/plotSubsetSLOSignatures.Rmd
+    Untracked:  figure/plotSubsetSLOSignatures.Rmd/
 
 Unstaged changes:
-    Modified:   analysis/SubsetSpecificGeneSignatures.Rmd
+    Modified:   analysis/SLOspecific_signature.Rmd
     Modified:   analysis/index.Rmd
+    Modified:   analysis/visSelIntHeatmapSignaling.Rmd
 
 </code></pre>
 <p>
@@ -399,6 +402,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/d202c26a3d47b21ce7a146a8a175c19cd9d5c2e8/analysis/index.Rmd" target="_blank">d202c26</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-12-01
+</td>
+<td>
+add signaling analysis
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/mluetge/CrossSLO_BRC_CXCL13/d202c26a3d47b21ce7a146a8a175c19cd9d5c2e8/docs/index.html" target="_blank">d202c26</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-12-01
+</td>
+<td>
+add signaling analysis
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -670,10 +707,19 @@ Characterization Spleen: <a href="CharacterizeSpleen_CXCL13seurat.html">link</a>
 <div id="comparative-analysis-across-slos" class="section level2">
 <h2>Comparative analysis across SLOs</h2>
 <p>Integrate all CXCL13 pos across SLOs: <a href="IntegrateAcrossSLOs.html">link</a><br />
-visualize shared subsets individual SLOs: <a href="visFolBRC_individualSLOs.html">link</a><br />
-Organ specific gene signature: <a href="SLOspecific_signature.html">link</a><br />
-Subset specific pathways: <a href="SubsetSpecificGeneSignatures.html">link</a><br />
-Subset specific signature plots: <a href="plotSubsetSpecificSignatures2.html">link</a></p>
+visualize shared subsets individual SLOs: <a href="visFolBRC_individualSLOs.html">link</a></p>
+<div id="slo-specific-signatures" class="section level3">
+<h3>SLO specific signatures</h3>
+<p>Organ specific genes and GO: <a href="SLOspecific_signature.html">link</a><br />
+Organ specific signature plots: <a href="plotSubsetSLOSignatures.html">link</a></p>
+</div>
+<div id="subset-specific-pattern" class="section level3">
+<h3>Subset specific pattern</h3>
+<p>Subset specific pathways niche factors: <a href="SubsetSpecificGeneSignatures2.html">link</a><br />
+Subset specific pathways signaling PW: <a href="SubsetSpecificGeneSignaturesSignaling.html">link</a><br />
+Subset specific signature plots niche factors: <a href="plotSubsetSpecificSignatures2.html">link</a><br />
+Subset specific signature plots signaling PW: <a href="plotSubsetSpecificSignaturesSignaling.html">link</a></p>
+</div>
 </div>
 <div id="cross-slo-mouse-lymphocytes" class="section level2">
 <h2>Cross SLO mouse Lymphocytes</h2>
@@ -685,7 +731,8 @@ Characterization lymphocyte data: <a href="CharacterizeLympho.html">link</a></p>
 <p>create CellPhoneDB input: <a href="createCPDBinput_immOnly.html">link</a><br />
 visualize CellPhoneDB out: <a href="analyseCPDBoutImm.html">link</a><br />
 visualize sel int: <a href="CellPhoneDBout_selInt_imm.html">link</a><br />
-Heatmap expression of selected int: <a href="visSelIntHeatmap.html">link</a></p>
+Expression of selected niche factor interactions: <a href="visSelIntHeatmap.html">link</a><br />
+Expression of selected signaling PW interactions: <a href="visSelIntHeatmapSignaling.html">link</a></p>
 </div>
 
 

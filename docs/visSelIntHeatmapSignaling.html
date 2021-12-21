@@ -374,7 +374,7 @@ div.tocify {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2021-12-01
+<strong>Last updated:</strong> 2021-12-08
 </p>
 <p>
 <strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 1
@@ -398,7 +398,7 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 </div>
 <div id="strongRMarkdownfilestronguncommittedchanges" class="panel-collapse collapse">
 <div class="panel-body">
-<p>The R Markdown is untracked by Git. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
+<p>The R Markdown file has unstaged changes. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
 </div>
 </div>
 </div>
@@ -465,16 +465,16 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcommluetgeCrossSLOBRCCXCL13tree525b9f61d4976a8e83ac84bd63f17780d5cd2405targetblank525b9f6a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/tree/525b9f61d4976a8e83ac84bd63f17780d5cd2405" target="_blank">525b9f6</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcommluetgeCrossSLOBRCCXCL13treed202c26a3d47b21ce7a146a8a175c19cd9d5c2e8targetblankd202c26a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/tree/d202c26a3d47b21ce7a146a8a175c19cd9d5c2e8" target="_blank">d202c26</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcommluetgeCrossSLOBRCCXCL13tree525b9f61d4976a8e83ac84bd63f17780d5cd2405targetblank525b9f6a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcommluetgeCrossSLOBRCCXCL13treed202c26a3d47b21ce7a146a8a175c19cd9d5c2e8targetblankd202c26a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/tree/525b9f61d4976a8e83ac84bd63f17780d5cd2405" target="_blank">525b9f6</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/tree/d202c26a3d47b21ce7a146a8a175c19cd9d5c2e8" target="_blank">d202c26</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -490,215 +490,183 @@ Ignored files:
     Ignored:    data/processedData/
     Ignored:    data/processedDataLymphocytes/
     Ignored:    figure/.DS_Store
-    Ignored:    figure/plotSubsetSpecificSignatures.Rmd/.DS_Store
+    Ignored:    figure/plotSubsetSpecificSignatures.Rmd/
+    Ignored:    figure/plotSubsetSpecificSignatures2.Rmd/.DS_Store
 
 Untracked files:
-    Untracked:  analysis/CharacterizeLymphoSubgrps.Rmd
-    Untracked:  analysis/SubsetSpecificGeneSignatures2.Rmd
-    Untracked:  analysis/SubsetSpecificGeneSignaturesSignaling.Rmd
-    Untracked:  analysis/analyseCPDBoutImmGrp.Rmd
-    Untracked:  analysis/plotSubsetSpecificSignatures2.Rmd
-    Untracked:  analysis/plotSubsetSpecificSignaturesSignaling.Rmd
-    Untracked:  analysis/visSelIntHeatmap.Rmd
-    Untracked:  analysis/visSelIntHeatmapSignaling.Rmd
-    Untracked:  figure/plotSubsetSpecificSignatures2.Rmd/
-    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/
+    Untracked:  analysis/plotSubsetSLOSignatures.Rmd
+    Untracked:  figure/plotSubsetSLOSignatures.Rmd/
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut1 I-kappaB kinase/
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut1 cellular response to fibroblast growth factor stimulus_MRC cut 1-1.pdf
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut1 cellular response to fibroblast growth factor stimulus_MRC cut 1-1.png
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut1 chondrocyte differentiation_LZFDC cut 1-1.pdf
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut1 chondrocyte differentiation_LZFDC cut 1-1.png
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut1 fatty acid metabolic process_DZFDC cut 1-1.pdf
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut1 fatty acid metabolic process_DZFDC cut 1-1.png
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut1 gliogenesis_DZFDC cut 1-1.pdf
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut1 gliogenesis_DZFDC cut 1-1.png
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut1 organ growth_PRC cut 1-1.pdf
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut1 organ growth_PRC cut 1-1.png
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut1 regulation of angiogenesis_PRC cut 1-1.pdf
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut1 regulation of angiogenesis_PRC cut 1-1.png
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut1 regulation of angiogenesis_TBRC cut 1-1.pdf
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut1 regulation of angiogenesis_TBRC cut 1-1.png
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut1 regulation of lipid biosynthetic process_LZFDC cut 1-1.pdf
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut1 regulation of lipid biosynthetic process_LZFDC cut 1-1.png
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut1 response to interferon-alpha_TBRC cut 1-1.pdf
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut1 response to interferon-alpha_TBRC cut 1-1.png
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut1 response to transforming growth factor beta_LZFDC cut 1-1.pdf
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut1 response to transforming growth factor beta_LZFDC cut 1-1.png
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut15 I-kappaB kinase/
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut15 cellular response to fibroblast growth factor stimulus_MRC cut 15-1.pdf
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut15 cellular response to fibroblast growth factor stimulus_MRC cut 15-1.png
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut15 chondrocyte differentiation_LZFDC cut 15-1.pdf
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut15 chondrocyte differentiation_LZFDC cut 15-1.png
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut15 fatty acid metabolic process_DZFDC cut 15-1.pdf
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut15 fatty acid metabolic process_DZFDC cut 15-1.png
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut15 gliogenesis_DZFDC cut 15-1.pdf
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut15 gliogenesis_DZFDC cut 15-1.png
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut15 organ growth_PRC cut 15-1.pdf
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut15 organ growth_PRC cut 15-1.png
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut15 regulation of angiogenesis_PRC cut 15-1.pdf
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut15 regulation of angiogenesis_PRC cut 15-1.png
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut15 regulation of angiogenesis_TBRC cut 15-1.pdf
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut15 regulation of angiogenesis_TBRC cut 15-1.png
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut15 regulation of lipid biosynthetic process_LZFDC cut 15-1.pdf
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut15 regulation of lipid biosynthetic process_LZFDC cut 15-1.png
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut15 response to interferon-alpha_TBRC cut 15-1.pdf
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut15 response to interferon-alpha_TBRC cut 15-1.png
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut15 response to transforming growth factor beta_LZFDC cut 15-1.pdf
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut15 response to transforming growth factor beta_LZFDC cut 15-1.png
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut2 chondrocyte differentiation_LZFDC cut 2-1.pdf
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut2 chondrocyte differentiation_LZFDC cut 2-1.png
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut25 I-kappaB kinase/
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut25 cellular response to fibroblast growth factor stimulus_MRC-1.pdf
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut25 cellular response to fibroblast growth factor stimulus_MRC-1.png
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut25 chondrocyte differentiation_LZFDC-1.pdf
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut25 chondrocyte differentiation_LZFDC-1.png
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut25 fatty acid metabolic process_DZFDC-1.pdf
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut25 fatty acid metabolic process_DZFDC-1.png
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut25 gliogenesis_DZFDC-1.pdf
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut25 gliogenesis_DZFDC-1.png
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut25 organ growth_PRC-1.pdf
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut25 organ growth_PRC-1.png
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut25 regulation of angiogenesis_PRC-1.pdf
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut25 regulation of angiogenesis_PRC-1.png
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut25 regulation of angiogenesis_TBRC-1.pdf
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut25 regulation of angiogenesis_TBRC-1.png
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut25 regulation of lipid biosynthetic process_LZFDC-1.pdf
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut25 regulation of lipid biosynthetic process_LZFDC-1.png
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut25 response to interferon-alpha_TBRC-1.pdf
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut25 response to interferon-alpha_TBRC-1.png
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut25 response to transforming growth factor beta_LZFDC-1.pdf
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut25 response to transforming growth factor beta_LZFDC-1.png
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr cut25 I-kappaB kinase/
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr cut25 cellular response to fibroblast growth factor stimulus_MRC-1.pdf
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr cut25 cellular response to fibroblast growth factor stimulus_MRC-1.png
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr cut25 chondrocyte differentiation_LZFDC-1.pdf
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr cut25 chondrocyte differentiation_LZFDC-1.png
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr cut25 fatty acid metabolic process_DZFDC-1.pdf
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr cut25 fatty acid metabolic process_DZFDC-1.png
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr cut25 gliogenesis_DZFDC-1.pdf
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr cut25 gliogenesis_DZFDC-1.png
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr cut25 organ growth_PRC-1.pdf
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr cut25 organ growth_PRC-1.png
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr cut25 regulation of angiogenesis_PRC-1.pdf
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr cut25 regulation of angiogenesis_PRC-1.png
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr cut25 regulation of angiogenesis_TBRC-1.pdf
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr cut25 regulation of angiogenesis_TBRC-1.png
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr cut25 regulation of lipid biosynthetic process_LZFDC-1.pdf
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr cut25 regulation of lipid biosynthetic process_LZFDC-1.png
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr cut25 response to interferon-alpha_TBRC-1.pdf
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr cut25 response to interferon-alpha_TBRC-1.png
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr cut25 response to transforming growth factor beta_LZFDC-1.pdf
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr cut25 response to transforming growth factor beta_LZFDC-1.png
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig hm chondrocyte differentiation_LZFDC-1.pdf
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig hm chondrocyte differentiation_LZFDC-1.png
+    Untracked:  figure/visSelIntHeatmapSignaling.Rmd/
 
 Unstaged changes:
-    Modified:   analysis/SubsetSpecificGeneSignatures.Rmd
-    Modified:   analysis/analyseCPDBoutImm.Rmd
-    Modified:   analysis/createCPDBinput_immOnly.Rmd
+    Modified:   analysis/SLOspecific_signature.Rmd
+    Modified:   analysis/SubsetSpecificGeneSignaturesSignaling.Rmd
     Modified:   analysis/index.Rmd
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr Antigen capture and presentation_LZFDC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr Antigen capture and presentation_LZFDC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr Antigen capture and presentation_MRC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr Antigen capture and presentation_MRC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr Costimulatory and inhibitory molecules_LZFDC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr Costimulatory and inhibitory molecules_LZFDC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr Cytokines and chemokines_MRC   -1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr Cytokines and chemokines_MRC   -1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr Cytokines and chemokines_MRC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr Cytokines and chemokines_MRC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr Cytokines and chemokines_TBRC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr Cytokines and chemokines_TBRC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Antigen capture and presentation_LZFDC cut 2-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Antigen capture and presentation_LZFDC cut 2-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Antigen capture and presentation_LZFDC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Antigen capture and presentation_LZFDC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Antigen capture and presentation_MRC cut 2-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Antigen capture and presentation_MRC cut 2-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Antigen capture and presentation_MRC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Antigen capture and presentation_MRC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Costimulatory and inhibitory molecules_LZFDC cut 2-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Costimulatory and inhibitory molecules_LZFDC cut 2-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Costimulatory and inhibitory molecules_LZFDC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Costimulatory and inhibitory molecules_LZFDC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Cytokines and chemokines_MRC cut 2-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Cytokines and chemokines_MRC cut 2-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Cytokines and chemokines_MRC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Cytokines and chemokines_MRC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Cytokines and chemokines_TBRC cut 2-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Cytokines and chemokines_TBRC cut 2-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Cytokines and chemokines_TBRC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Cytokines and chemokines_TBRC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Metabolite transporter_LZFDC cut 2-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Metabolite transporter_LZFDC cut 2-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Metabolite transporter_LZFDC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Metabolite transporter_LZFDC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Stemness_PRC2 cut 2-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Stemness_PRC2 cut 2-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Stemness_PRC2-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Stemness_PRC2-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Tnf superfamily factors_LZFDC cut 2-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Tnf superfamily factors_LZFDC cut 2-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Tnf superfamily factors_LZFDC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Tnf superfamily factors_LZFDC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Tnf superfamily factors_MRC cut 2-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Tnf superfamily factors_MRC cut 2-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Tnf superfamily factors_MRC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Tnf superfamily factors_MRC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM adhesion molecules_DZFDC cut 2-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM adhesion molecules_DZFDC cut 2-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM adhesion molecules_DZFDC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM adhesion molecules_DZFDC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM adhesion molecules_LZFDC cut 2-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM adhesion molecules_LZFDC cut 2-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM adhesion molecules_LZFDC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM adhesion molecules_LZFDC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM adhesion molecules_MRC cut 2-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM adhesion molecules_MRC cut 2-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM adhesion molecules_MRC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM adhesion molecules_MRC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM adhesion molecules_PRC2 cut 2-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM adhesion molecules_PRC2 cut 2-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM adhesion molecules_PRC2-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM adhesion molecules_PRC2-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM adhesion molecules_TBRC cut 2-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM adhesion molecules_TBRC cut 2-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM adhesion molecules_TBRC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM adhesion molecules_TBRC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM growth and survival factors_DZFDC cut 2-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM growth and survival factors_DZFDC cut 2-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM growth and survival factors_DZFDC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM growth and survival factors_DZFDC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM growth and survival factors_LZFDC cut 2-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM growth and survival factors_LZFDC cut 2-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM growth and survival factors_LZFDC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM growth and survival factors_LZFDC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM growth and survival factors_PRC2 cut 2-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM growth and survival factors_PRC2 cut 2-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM growth and survival factors_PRC2-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM growth and survival factors_PRC2-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM growth and survival factors_TBRC cut 2-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM growth and survival factors_TBRC cut 2-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM growth and survival factors_TBRC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM growth and survival factors_TBRC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM network formation_DZFDC cut 2-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM network formation_DZFDC cut 2-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM network formation_DZFDC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM network formation_DZFDC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM network formation_LZFDC cut 2-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM network formation_LZFDC cut 2-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM network formation_LZFDC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM network formation_LZFDC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM network formation_MRC cut 2-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM network formation_MRC cut 2-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM network formation_MRC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM network formation_MRC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM network formation_PRC2 cut 2-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM network formation_PRC2 cut 2-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM network formation_PRC2-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM network formation_PRC2-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM network formation_TBRC cut 2-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM network formation_TBRC cut 2-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM network formation_TBRC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM network formation_TBRC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr Metabolite transporter_LZFDC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr Metabolite transporter_LZFDC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr Stemness_PRC2-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr Stemness_PRC2-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr Tnf superfamily factors_LZFDC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr Tnf superfamily factors_LZFDC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr Tnf superfamily factors_MRC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr Tnf superfamily factors_MRC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr adhesion molecules_DZFDC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr adhesion molecules_DZFDC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr adhesion molecules_LZFDC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr adhesion molecules_LZFDC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr adhesion molecules_MRC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr adhesion molecules_MRC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr adhesion molecules_PRC2-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr adhesion molecules_PRC2-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr adhesion molecules_TBRC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr adhesion molecules_TBRC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr growth and survival factor_DZFDC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr growth and survival factor_DZFDC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr growth and survival factors_DZFDC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr growth and survival factors_DZFDC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr growth and survival factors_LZFDC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr growth and survival factors_LZFDC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr growth and survival factors_PRC2-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr growth and survival factors_PRC2-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr growth and survival factors_TBRC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr growth and survival factors_TBRC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr network formation_DZFDC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr network formation_DZFDC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr network formation_LZFDC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr network formation_LZFDC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr network formation_MRC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr network formation_MRC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr network formation_PRC2 -1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr network formation_PRC2 -1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr network formation_PRC2-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr network formation_PRC2-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr network formation_TBRC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr network formation_TBRC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm Antigen capture and presentation_LZFDC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm Antigen capture and presentation_LZFDC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm Antigen capture and presentation_MRC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm Antigen capture and presentation_MRC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm Costimulatory and inhibitory molecules_LZFDC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm Costimulatory and inhibitory molecules_LZFDC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm Cytokines and chemokines_MRC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm Cytokines and chemokines_MRC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm Cytokines and chemokines_TBRC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm Cytokines and chemokines_TBRC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm Metabolite transporter_LZFDC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm Metabolite transporter_LZFDC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm Stemness_PRC2-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm Stemness_PRC2-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm Tnf superfamily factors_LZFDC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm Tnf superfamily factors_LZFDC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm Tnf superfamily factors_MRC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm Tnf superfamily factors_MRC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm adhesion molecules_DZFDC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm adhesion molecules_DZFDC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm adhesion molecules_LZFDC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm adhesion molecules_LZFDC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm adhesion molecules_MRC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm adhesion molecules_MRC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm adhesion molecules_PRC2-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm adhesion molecules_PRC2-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm adhesion molecules_TBRC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm adhesion molecules_TBRC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm growth and survival factors_DZFDC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm growth and survival factors_DZFDC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm growth and survival factors_LZFDC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm growth and survival factors_LZFDC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm growth and survival factors_PRC2-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm growth and survival factors_PRC2-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm growth and survival factors_TBRC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm growth and survival factors_TBRC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm network formation_DZFDC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm network formation_DZFDC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm network formation_LZFDC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm network formation_LZFDC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm network formation_MRC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm network formation_MRC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm network formation_PRC2-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm network formation_PRC2-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm network formation_TBRC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm network formation_TBRC-1.png
+    Modified:   analysis/plotSubsetSpecificSignaturesSignaling.Rmd
+    Modified:   analysis/visSelIntHeatmapSignaling.Rmd
+    Modified:   figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut2 I-kappaB kinase/NF-kappaB signaling_LZFDC cut 2-1.pdf
+    Modified:   figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut2 cellular response to fibroblast growth factor stimulus_MRC cut 2-1.pdf
+    Modified:   figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut2 cellular response to fibroblast growth factor stimulus_MRC cut 2-1.png
+    Modified:   figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut2 fatty acid metabolic process_DZFDC cut 2-1.pdf
+    Modified:   figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut2 gliogenesis_DZFDC cut 2-1.pdf
+    Modified:   figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut2 gliogenesis_DZFDC cut 2-1.png
+    Modified:   figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut2 organ growth_PRC cut 2-1.pdf
+    Modified:   figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut2 regulation of angiogenesis_PRC cut 2-1.pdf
+    Modified:   figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut2 regulation of angiogenesis_TBRC cut 2-1.pdf
+    Modified:   figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut2 regulation of angiogenesis_TBRC cut 2-1.png
+    Modified:   figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut2 regulation of lipid biosynthetic process_LZFDC cut 2-1.pdf
+    Modified:   figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut2 response to interferon-alpha_TBRC cut 2-1.pdf
+    Modified:   figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut2 response to interferon-alpha_TBRC cut 2-1.png
+    Modified:   figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut2 response to transforming growth factor beta_LZFDC cut 2-1.pdf
+    Modified:   figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut2 response to transforming growth factor beta_LZFDC cut 2-1.png
+    Deleted:    figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut3 I-kappaB kinase/NF-kappaB signaling_LZFDC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut3 I-kappaB kinase/NF-kappaB signaling_LZFDC-1.png
+    Deleted:    figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut3 cellular response to fibroblast growth factor stimulus_MRC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut3 cellular response to fibroblast growth factor stimulus_MRC-1.png
+    Deleted:    figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut3 fatty acid metabolic process_DZFDC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut3 fatty acid metabolic process_DZFDC-1.png
+    Deleted:    figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut3 gliogenesis_DZFDC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut3 gliogenesis_DZFDC-1.png
+    Deleted:    figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut3 organ growth_PRC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut3 organ growth_PRC-1.png
+    Deleted:    figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut3 regulation of angiogenesis_PRC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut3 regulation of angiogenesis_PRC-1.png
+    Deleted:    figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut3 regulation of angiogenesis_TBRC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut3 regulation of angiogenesis_TBRC-1.png
+    Deleted:    figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut3 regulation of lipid biosynthetic process_LZFDC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut3 regulation of lipid biosynthetic process_LZFDC-1.png
+    Deleted:    figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut3 response to interferon-alpha_TBRC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut3 response to interferon-alpha_TBRC-1.png
+    Deleted:    figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut3 response to transforming growth factor beta_LZFDC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut3 response to transforming growth factor beta_LZFDC-1.png
+    Deleted:    figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr cut3 I-kappaB kinase/NF-kappaB signaling_LZFDC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr cut3 I-kappaB kinase/NF-kappaB signaling_LZFDC-1.png
+    Deleted:    figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr cut3 cellular response to fibroblast growth factor stimulus_MRC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr cut3 cellular response to fibroblast growth factor stimulus_MRC-1.png
+    Deleted:    figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr cut3 fatty acid metabolic process_DZFDC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr cut3 fatty acid metabolic process_DZFDC-1.png
+    Deleted:    figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr cut3 gliogenesis_DZFDC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr cut3 gliogenesis_DZFDC-1.png
+    Deleted:    figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr cut3 organ growth_PRC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr cut3 organ growth_PRC-1.png
+    Deleted:    figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr cut3 regulation of angiogenesis_PRC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr cut3 regulation of angiogenesis_PRC-1.png
+    Deleted:    figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr cut3 regulation of angiogenesis_TBRC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr cut3 regulation of angiogenesis_TBRC-1.png
+    Deleted:    figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr cut3 regulation of lipid biosynthetic process_LZFDC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr cut3 regulation of lipid biosynthetic process_LZFDC-1.png
+    Deleted:    figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr cut3 response to interferon-alpha_TBRC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr cut3 response to interferon-alpha_TBRC-1.png
+    Deleted:    figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr cut3 response to transforming growth factor beta_LZFDC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr cut3 response to transforming growth factor beta_LZFDC-1.png
+    Modified:   figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig hm I-kappaB kinase/NF-kappaB signaling_LZFDC-1.pdf
+    Modified:   figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig hm I-kappaB kinase/NF-kappaB signaling_LZFDC-1.png
+    Modified:   figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig hm cellular response to fibroblast growth factor stimulus_MRC-1.pdf
+    Modified:   figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig hm cellular response to fibroblast growth factor stimulus_MRC-1.png
+    Modified:   figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig hm fatty acid metabolic process_DZFDC-1.pdf
+    Modified:   figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig hm fatty acid metabolic process_DZFDC-1.png
+    Modified:   figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig hm gliogenesis_DZFDC-1.pdf
+    Modified:   figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig hm gliogenesis_DZFDC-1.png
+    Modified:   figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig hm organ growth_PRC-1.pdf
+    Modified:   figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig hm organ growth_PRC-1.png
+    Modified:   figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig hm regulation of angiogenesis_PRC-1.pdf
+    Modified:   figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig hm regulation of angiogenesis_PRC-1.png
+    Modified:   figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig hm regulation of angiogenesis_TBRC-1.pdf
+    Modified:   figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig hm regulation of angiogenesis_TBRC-1.png
+    Modified:   figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig hm regulation of lipid biosynthetic process_LZFDC-1.pdf
+    Modified:   figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig hm regulation of lipid biosynthetic process_LZFDC-1.png
+    Modified:   figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig hm response to interferon-alpha_TBRC-1.pdf
+    Modified:   figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig hm response to interferon-alpha_TBRC-1.png
+    Modified:   figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig hm response to transforming growth factor beta_LZFDC-1.pdf
+    Modified:   figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig hm response to transforming growth factor beta_LZFDC-1.png
 
 </code></pre>
 <p>
@@ -711,9 +679,69 @@ Note that any generated files, e.g. HTML, png, CSS, etc., are not included in t
 <hr>
 </div>
 <div id="versions" class="tab-pane fade">
+
 <p>
-There are no past versions. Publish this analysis with <code>wflow_publish()</code> to start tracking its development.
+These are the previous versions of the repository in which changes were made to the R Markdown (<code>analysis/visSelIntHeatmapSignaling.Rmd</code>) and HTML (<code>docs/visSelIntHeatmapSignaling.html</code>) files. If you’ve configured a remote Git repository (see <code>?wflow_git_remote</code>), click on the hyperlinks in the table below to view the files as they were in that past version.
 </p>
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+File
+</th>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+<th>
+Message
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/d202c26a3d47b21ce7a146a8a175c19cd9d5c2e8/analysis/visSelIntHeatmapSignaling.Rmd" target="_blank">d202c26</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-12-01
+</td>
+<td>
+add signaling analysis
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/mluetge/CrossSLO_BRC_CXCL13/d202c26a3d47b21ce7a146a8a175c19cd9d5c2e8/docs/visSelIntHeatmapSignaling.html" target="_blank">d202c26</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-12-01
+</td>
+<td>
+add signaling analysis
+</td>
+</tr>
+</tbody>
+</table>
+</div>
 <hr>
 </div>
 </div>
@@ -752,7 +780,7 @@ names(colorSLOCond) &lt;- c(&quot;LN_immunized&quot;,&quot;LN_naive&quot;, &quot
                          &quot;Spleen_immunized&quot;, &quot;PP_immunized&quot;)
 
 
-colLYM &lt;- c(&quot;#a0b9c4&quot;, &quot;#78abb7&quot;, &quot;#567a83&quot;, &quot;#3c454a&quot;, &quot;#9eabb1&quot;,
+colLYM &lt;- c(&quot;#a0b9c4&quot;, &quot;#78abb7&quot;, &quot;#567a83&quot;, &quot;#3c454a&quot;, &quot;#0C3C52&quot;,
             &quot;#924440&quot;, &quot;#eab562&quot;,
             &quot;#f1d75f&quot;, &quot;#b5a147&quot;, &quot;#786c30&quot;)
 
@@ -762,7 +790,7 @@ names(colLYM) &lt;- c(&quot;naiveBcells&quot;, &quot;LZBcells&quot;, &quot;DZshm
                    &quot;Tfh&quot;, &quot;DCs&quot;,
                    &quot;mdMacrophages&quot;, &quot;trMacrophages&quot;, &quot;infMacrophages&quot;)
 
-colLYM2 &lt;- c(&quot;#a0b9c4&quot;, &quot;#567a83&quot;, &quot;#9eabb1&quot;,
+colLYM2 &lt;- c(&quot;#a0b9c4&quot;, &quot;#567a83&quot;, &quot;#0C3C52&quot;,
             &quot;#924440&quot;, &quot;#eab562&quot;,
             &quot;#b5a147&quot;)
 
@@ -801,6 +829,43 @@ DimPlot(seuratLY, reduction = &quot;umap&quot;, cols = colLYM2)+
   xlab(&quot;UMAP1&quot;) +
   ylab(&quot;UMAP2&quot;)</code></pre>
 <p><img src="figure/visSelIntHeatmapSignaling.Rmd/input%20data-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-input-data-1">
+Past versions of “input data-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-input-data-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/d202c26a3d47b21ce7a146a8a175c19cd9d5c2e8/docs/figure/visSelIntHeatmapSignaling.Rmd/input data-1.png" target="_blank">d202c26</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-12-01
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>Idents(seuratBRC) &lt;- seuratBRC$clusterLabel
 DimPlot(seuratBRC, reduction = &quot;umap&quot;, cols = colBRC)+
   theme_bw() +
@@ -809,6 +874,43 @@ DimPlot(seuratBRC, reduction = &quot;umap&quot;, cols = colBRC)+
   xlab(&quot;UMAP1&quot;) +
   ylab(&quot;UMAP2&quot;)</code></pre>
 <p><img src="figure/visSelIntHeatmapSignaling.Rmd/input%20data-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-input-data-2">
+Past versions of “input data-2.png”
+</button>
+</p>
+<div id="fig-no-spaces-input-data-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/d202c26a3d47b21ce7a146a8a175c19cd9d5c2e8/docs/figure/visSelIntHeatmapSignaling.Rmd/input data-2.png" target="_blank">d202c26</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-12-01
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="assign-groups" class="section level2">
 <h2>assign groups</h2>
@@ -931,6 +1033,51 @@ pOut &lt;- avgHeatmap(seurat = seuratBRC, selGenes = genesBRC,
                   gapVecR=gapR$cumSum, cr=F,
                   condCol=T, colVecCond = colorSLO)</code></pre>
 <p><img src="figure/visSelIntHeatmapSignaling.Rmd/heatmap%20BRCs-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-heatmap-BRCs-1">
+Past versions of “heatmap BRCs-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-heatmap-BRCs-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/d202c26a3d47b21ce7a146a8a175c19cd9d5c2e8/docs/figure/visSelIntHeatmapSignaling.Rmd/heatmap BRCs-1.png" target="_blank">d202c26</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-12-01
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<pre class="r"><code>Idents(seuratBRC) &lt;- seuratBRC$clusterLabel
+pOut &lt;- avgHeatmap(seurat = seuratBRC, selGenes = genesBRC,
+                  colVecIdent = colBRC, 
+                  ordVec=ordBRC,
+                  gapVecC=NULL,cc=F,
+                  gapVecR=gapR$cumSum, cr=F,
+                  condCol=F)</code></pre>
+<p><img src="figure/visSelIntHeatmapSignaling.Rmd/heatmap%20BRCs-2.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="immune-cells" class="section level3">
 <h3>immune cells</h3>
@@ -941,8 +1088,7 @@ gapR &lt;- data.frame(functGrp=unique(genesLym$functGrp)) %&gt;%
 
 
 ordLYM &lt;- c(&quot;naiveBcells&quot;, &quot;GCBcells&quot;, &quot;plasmaCells&quot;, 
-                   &quot;Myeloids&quot;,
-                   &quot;DCs&quot;, &quot;Tfh&quot;)
+                   &quot;Tfh&quot;, &quot;Myeloids&quot;, &quot;DCs&quot;)
 ordSLO &lt;- c(&quot;LN&quot;, &quot;Spleen&quot;, &quot;PP&quot;)
 ordDat &lt;- expand.grid(SLO = ordSLO, LYM = ordLYM) %&gt;% 
   mutate(ordVec=paste0(LYM, &quot;_&quot;, SLO))
@@ -964,31 +1110,1465 @@ pOut &lt;- avgHeatmap(seurat = seuratLY, selGenes = genesLym,
                   gapVecR=gapR$cumSum, cr=F,
                   condCol=T, colVecCond = colorSLO)</code></pre>
 <p><img src="figure/visSelIntHeatmapSignaling.Rmd/heatmap%20ImmuneCells-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-heatmap-ImmuneCells-1">
+Past versions of “heatmap ImmuneCells-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-heatmap-ImmuneCells-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/d202c26a3d47b21ce7a146a8a175c19cd9d5c2e8/docs/figure/visSelIntHeatmapSignaling.Rmd/heatmap ImmuneCells-1.png" target="_blank">d202c26</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-12-01
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<pre class="r"><code>Idents(seuratLY) &lt;- seuratLY$clusterLabel2
+pOut &lt;- avgHeatmap(seurat = seuratLY, selGenes = genesLym,
+                  colVecIdent = colLYM2, 
+                  ordVec=ordLYM,
+                  gapVecC=NULL,cc=F,
+                  gapVecR=gapR$cumSum, cr=F,
+                  condCol=F)</code></pre>
+<p><img src="figure/visSelIntHeatmapSignaling.Rmd/heatmap%20ImmuneCells-2.png" width="768" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="violin-plot-sel-genes" class="section level2 tabset">
 <h2 class="tabset">violin plot sel genes</h2>
 <div id="brc" class="section level3">
 <h3>BRC</h3>
-<pre class="r"><code>pList &lt;- sapply(genesBRC$gene, function(x){
+<pre class="r"><code>seuratBRC$clusterLabel &lt;- factor(seuratBRC$clusterLabel, levels = ordBRC)
+pList &lt;- sapply(genesBRC$gene, function(x){
   p &lt;- VlnPlot(object = seuratBRC, features = x,
                group.by = &quot;clusterLabel&quot;,
                cols = colBRC, pt.size = 0
                )
   plot(p)
 })</code></pre>
-<p><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20BRC-1.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20BRC-2.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20BRC-3.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20BRC-4.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20BRC-5.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20BRC-6.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20BRC-7.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20BRC-8.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20BRC-9.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20BRC-10.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20BRC-11.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20BRC-12.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20BRC-13.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20BRC-14.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20BRC-15.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20BRC-16.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20BRC-17.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20BRC-18.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20BRC-19.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20BRC-20.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20BRC-21.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20BRC-22.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20BRC-23.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20BRC-24.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20BRC-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-violin-sel-genes-BRC-1">
+Past versions of “violin sel genes BRC-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-violin-sel-genes-BRC-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/d202c26a3d47b21ce7a146a8a175c19cd9d5c2e8/docs/figure/visSelIntHeatmapSignaling.Rmd/violin sel genes BRC-1.png" target="_blank">d202c26</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-12-01
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20BRC-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-violin-sel-genes-BRC-2">
+Past versions of “violin sel genes BRC-2.png”
+</button>
+</p>
+<div id="fig-no-spaces-violin-sel-genes-BRC-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/d202c26a3d47b21ce7a146a8a175c19cd9d5c2e8/docs/figure/visSelIntHeatmapSignaling.Rmd/violin sel genes BRC-2.png" target="_blank">d202c26</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-12-01
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20BRC-3.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-violin-sel-genes-BRC-3">
+Past versions of “violin sel genes BRC-3.png”
+</button>
+</p>
+<div id="fig-no-spaces-violin-sel-genes-BRC-3" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/d202c26a3d47b21ce7a146a8a175c19cd9d5c2e8/docs/figure/visSelIntHeatmapSignaling.Rmd/violin sel genes BRC-3.png" target="_blank">d202c26</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-12-01
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20BRC-4.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-violin-sel-genes-BRC-4">
+Past versions of “violin sel genes BRC-4.png”
+</button>
+</p>
+<div id="fig-no-spaces-violin-sel-genes-BRC-4" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/d202c26a3d47b21ce7a146a8a175c19cd9d5c2e8/docs/figure/visSelIntHeatmapSignaling.Rmd/violin sel genes BRC-4.png" target="_blank">d202c26</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-12-01
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20BRC-5.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-violin-sel-genes-BRC-5">
+Past versions of “violin sel genes BRC-5.png”
+</button>
+</p>
+<div id="fig-no-spaces-violin-sel-genes-BRC-5" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/d202c26a3d47b21ce7a146a8a175c19cd9d5c2e8/docs/figure/visSelIntHeatmapSignaling.Rmd/violin sel genes BRC-5.png" target="_blank">d202c26</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-12-01
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20BRC-6.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-violin-sel-genes-BRC-6">
+Past versions of “violin sel genes BRC-6.png”
+</button>
+</p>
+<div id="fig-no-spaces-violin-sel-genes-BRC-6" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/d202c26a3d47b21ce7a146a8a175c19cd9d5c2e8/docs/figure/visSelIntHeatmapSignaling.Rmd/violin sel genes BRC-6.png" target="_blank">d202c26</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-12-01
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20BRC-7.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-violin-sel-genes-BRC-7">
+Past versions of “violin sel genes BRC-7.png”
+</button>
+</p>
+<div id="fig-no-spaces-violin-sel-genes-BRC-7" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/d202c26a3d47b21ce7a146a8a175c19cd9d5c2e8/docs/figure/visSelIntHeatmapSignaling.Rmd/violin sel genes BRC-7.png" target="_blank">d202c26</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-12-01
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20BRC-8.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-violin-sel-genes-BRC-8">
+Past versions of “violin sel genes BRC-8.png”
+</button>
+</p>
+<div id="fig-no-spaces-violin-sel-genes-BRC-8" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/d202c26a3d47b21ce7a146a8a175c19cd9d5c2e8/docs/figure/visSelIntHeatmapSignaling.Rmd/violin sel genes BRC-8.png" target="_blank">d202c26</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-12-01
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20BRC-9.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-violin-sel-genes-BRC-9">
+Past versions of “violin sel genes BRC-9.png”
+</button>
+</p>
+<div id="fig-no-spaces-violin-sel-genes-BRC-9" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/d202c26a3d47b21ce7a146a8a175c19cd9d5c2e8/docs/figure/visSelIntHeatmapSignaling.Rmd/violin sel genes BRC-9.png" target="_blank">d202c26</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-12-01
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20BRC-10.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-violin-sel-genes-BRC-10">
+Past versions of “violin sel genes BRC-10.png”
+</button>
+</p>
+<div id="fig-no-spaces-violin-sel-genes-BRC-10" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/d202c26a3d47b21ce7a146a8a175c19cd9d5c2e8/docs/figure/visSelIntHeatmapSignaling.Rmd/violin sel genes BRC-10.png" target="_blank">d202c26</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-12-01
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20BRC-11.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-violin-sel-genes-BRC-11">
+Past versions of “violin sel genes BRC-11.png”
+</button>
+</p>
+<div id="fig-no-spaces-violin-sel-genes-BRC-11" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/d202c26a3d47b21ce7a146a8a175c19cd9d5c2e8/docs/figure/visSelIntHeatmapSignaling.Rmd/violin sel genes BRC-11.png" target="_blank">d202c26</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-12-01
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20BRC-12.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-violin-sel-genes-BRC-12">
+Past versions of “violin sel genes BRC-12.png”
+</button>
+</p>
+<div id="fig-no-spaces-violin-sel-genes-BRC-12" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/d202c26a3d47b21ce7a146a8a175c19cd9d5c2e8/docs/figure/visSelIntHeatmapSignaling.Rmd/violin sel genes BRC-12.png" target="_blank">d202c26</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-12-01
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20BRC-13.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-violin-sel-genes-BRC-13">
+Past versions of “violin sel genes BRC-13.png”
+</button>
+</p>
+<div id="fig-no-spaces-violin-sel-genes-BRC-13" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/d202c26a3d47b21ce7a146a8a175c19cd9d5c2e8/docs/figure/visSelIntHeatmapSignaling.Rmd/violin sel genes BRC-13.png" target="_blank">d202c26</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-12-01
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20BRC-14.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-violin-sel-genes-BRC-14">
+Past versions of “violin sel genes BRC-14.png”
+</button>
+</p>
+<div id="fig-no-spaces-violin-sel-genes-BRC-14" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/d202c26a3d47b21ce7a146a8a175c19cd9d5c2e8/docs/figure/visSelIntHeatmapSignaling.Rmd/violin sel genes BRC-14.png" target="_blank">d202c26</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-12-01
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20BRC-15.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-violin-sel-genes-BRC-15">
+Past versions of “violin sel genes BRC-15.png”
+</button>
+</p>
+<div id="fig-no-spaces-violin-sel-genes-BRC-15" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/d202c26a3d47b21ce7a146a8a175c19cd9d5c2e8/docs/figure/visSelIntHeatmapSignaling.Rmd/violin sel genes BRC-15.png" target="_blank">d202c26</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-12-01
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="immune-cells-1" class="section level3">
 <h3>Immune cells</h3>
-<pre class="r"><code>pList &lt;- sapply(genesLym$gene, function(x){
+<pre class="r"><code>seuratLY$clusterLabel2 &lt;- factor(seuratLY$clusterLabel2, levels = ordLYM)
+pList &lt;- sapply(genesLym$gene, function(x){
   p &lt;- VlnPlot(object = seuratLY, features = x,
                group.by = &quot;clusterLabel2&quot;,
                cols = colLYM2, pt.size = 0
                )
   plot(p)
 })</code></pre>
-<p><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20ImmCells-1.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20ImmCells-2.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20ImmCells-3.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20ImmCells-4.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20ImmCells-5.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20ImmCells-6.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20ImmCells-7.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20ImmCells-8.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20ImmCells-9.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20ImmCells-10.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20ImmCells-11.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20ImmCells-12.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20ImmCells-13.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20ImmCells-14.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20ImmCells-15.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20ImmCells-16.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20ImmCells-17.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20ImmCells-18.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20ImmCells-19.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20ImmCells-20.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20ImmCells-21.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20ImmCells-22.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20ImmCells-23.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20ImmCells-24.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20ImmCells-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-violin-sel-genes-ImmCells-1">
+Past versions of “violin sel genes ImmCells-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-violin-sel-genes-ImmCells-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/d202c26a3d47b21ce7a146a8a175c19cd9d5c2e8/docs/figure/visSelIntHeatmapSignaling.Rmd/violin sel genes ImmCells-1.png" target="_blank">d202c26</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-12-01
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20ImmCells-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-violin-sel-genes-ImmCells-2">
+Past versions of “violin sel genes ImmCells-2.png”
+</button>
+</p>
+<div id="fig-no-spaces-violin-sel-genes-ImmCells-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/d202c26a3d47b21ce7a146a8a175c19cd9d5c2e8/docs/figure/visSelIntHeatmapSignaling.Rmd/violin sel genes ImmCells-2.png" target="_blank">d202c26</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-12-01
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20ImmCells-3.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-violin-sel-genes-ImmCells-3">
+Past versions of “violin sel genes ImmCells-3.png”
+</button>
+</p>
+<div id="fig-no-spaces-violin-sel-genes-ImmCells-3" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/d202c26a3d47b21ce7a146a8a175c19cd9d5c2e8/docs/figure/visSelIntHeatmapSignaling.Rmd/violin sel genes ImmCells-3.png" target="_blank">d202c26</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-12-01
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20ImmCells-4.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-violin-sel-genes-ImmCells-4">
+Past versions of “violin sel genes ImmCells-4.png”
+</button>
+</p>
+<div id="fig-no-spaces-violin-sel-genes-ImmCells-4" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/d202c26a3d47b21ce7a146a8a175c19cd9d5c2e8/docs/figure/visSelIntHeatmapSignaling.Rmd/violin sel genes ImmCells-4.png" target="_blank">d202c26</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-12-01
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20ImmCells-5.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-violin-sel-genes-ImmCells-5">
+Past versions of “violin sel genes ImmCells-5.png”
+</button>
+</p>
+<div id="fig-no-spaces-violin-sel-genes-ImmCells-5" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/d202c26a3d47b21ce7a146a8a175c19cd9d5c2e8/docs/figure/visSelIntHeatmapSignaling.Rmd/violin sel genes ImmCells-5.png" target="_blank">d202c26</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-12-01
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20ImmCells-6.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-violin-sel-genes-ImmCells-6">
+Past versions of “violin sel genes ImmCells-6.png”
+</button>
+</p>
+<div id="fig-no-spaces-violin-sel-genes-ImmCells-6" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/d202c26a3d47b21ce7a146a8a175c19cd9d5c2e8/docs/figure/visSelIntHeatmapSignaling.Rmd/violin sel genes ImmCells-6.png" target="_blank">d202c26</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-12-01
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20ImmCells-7.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-violin-sel-genes-ImmCells-7">
+Past versions of “violin sel genes ImmCells-7.png”
+</button>
+</p>
+<div id="fig-no-spaces-violin-sel-genes-ImmCells-7" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/d202c26a3d47b21ce7a146a8a175c19cd9d5c2e8/docs/figure/visSelIntHeatmapSignaling.Rmd/violin sel genes ImmCells-7.png" target="_blank">d202c26</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-12-01
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20ImmCells-8.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-violin-sel-genes-ImmCells-8">
+Past versions of “violin sel genes ImmCells-8.png”
+</button>
+</p>
+<div id="fig-no-spaces-violin-sel-genes-ImmCells-8" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/d202c26a3d47b21ce7a146a8a175c19cd9d5c2e8/docs/figure/visSelIntHeatmapSignaling.Rmd/violin sel genes ImmCells-8.png" target="_blank">d202c26</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-12-01
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20ImmCells-9.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-violin-sel-genes-ImmCells-9">
+Past versions of “violin sel genes ImmCells-9.png”
+</button>
+</p>
+<div id="fig-no-spaces-violin-sel-genes-ImmCells-9" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/d202c26a3d47b21ce7a146a8a175c19cd9d5c2e8/docs/figure/visSelIntHeatmapSignaling.Rmd/violin sel genes ImmCells-9.png" target="_blank">d202c26</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-12-01
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20ImmCells-10.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-violin-sel-genes-ImmCells-10">
+Past versions of “violin sel genes ImmCells-10.png”
+</button>
+</p>
+<div id="fig-no-spaces-violin-sel-genes-ImmCells-10" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/d202c26a3d47b21ce7a146a8a175c19cd9d5c2e8/docs/figure/visSelIntHeatmapSignaling.Rmd/violin sel genes ImmCells-10.png" target="_blank">d202c26</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-12-01
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20ImmCells-11.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-violin-sel-genes-ImmCells-11">
+Past versions of “violin sel genes ImmCells-11.png”
+</button>
+</p>
+<div id="fig-no-spaces-violin-sel-genes-ImmCells-11" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/d202c26a3d47b21ce7a146a8a175c19cd9d5c2e8/docs/figure/visSelIntHeatmapSignaling.Rmd/violin sel genes ImmCells-11.png" target="_blank">d202c26</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-12-01
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20ImmCells-12.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-violin-sel-genes-ImmCells-12">
+Past versions of “violin sel genes ImmCells-12.png”
+</button>
+</p>
+<div id="fig-no-spaces-violin-sel-genes-ImmCells-12" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/d202c26a3d47b21ce7a146a8a175c19cd9d5c2e8/docs/figure/visSelIntHeatmapSignaling.Rmd/violin sel genes ImmCells-12.png" target="_blank">d202c26</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-12-01
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20ImmCells-13.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-violin-sel-genes-ImmCells-13">
+Past versions of “violin sel genes ImmCells-13.png”
+</button>
+</p>
+<div id="fig-no-spaces-violin-sel-genes-ImmCells-13" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/d202c26a3d47b21ce7a146a8a175c19cd9d5c2e8/docs/figure/visSelIntHeatmapSignaling.Rmd/violin sel genes ImmCells-13.png" target="_blank">d202c26</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-12-01
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20ImmCells-14.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-violin-sel-genes-ImmCells-14">
+Past versions of “violin sel genes ImmCells-14.png”
+</button>
+</p>
+<div id="fig-no-spaces-violin-sel-genes-ImmCells-14" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/d202c26a3d47b21ce7a146a8a175c19cd9d5c2e8/docs/figure/visSelIntHeatmapSignaling.Rmd/violin sel genes ImmCells-14.png" target="_blank">d202c26</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-12-01
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20ImmCells-15.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-violin-sel-genes-ImmCells-15">
+Past versions of “violin sel genes ImmCells-15.png”
+</button>
+</p>
+<div id="fig-no-spaces-violin-sel-genes-ImmCells-15" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/d202c26a3d47b21ce7a146a8a175c19cd9d5c2e8/docs/figure/visSelIntHeatmapSignaling.Rmd/violin sel genes ImmCells-15.png" target="_blank">d202c26</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-12-01
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20ImmCells-16.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-violin-sel-genes-ImmCells-16">
+Past versions of “violin sel genes ImmCells-16.png”
+</button>
+</p>
+<div id="fig-no-spaces-violin-sel-genes-ImmCells-16" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/d202c26a3d47b21ce7a146a8a175c19cd9d5c2e8/docs/figure/visSelIntHeatmapSignaling.Rmd/violin sel genes ImmCells-16.png" target="_blank">d202c26</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-12-01
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20ImmCells-17.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-violin-sel-genes-ImmCells-17">
+Past versions of “violin sel genes ImmCells-17.png”
+</button>
+</p>
+<div id="fig-no-spaces-violin-sel-genes-ImmCells-17" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/d202c26a3d47b21ce7a146a8a175c19cd9d5c2e8/docs/figure/visSelIntHeatmapSignaling.Rmd/violin sel genes ImmCells-17.png" target="_blank">d202c26</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-12-01
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/visSelIntHeatmapSignaling.Rmd/violin%20sel%20genes%20ImmCells-18.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-violin-sel-genes-ImmCells-18">
+Past versions of “violin sel genes ImmCells-18.png”
+</button>
+</p>
+<div id="fig-no-spaces-violin-sel-genes-ImmCells-18" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/d202c26a3d47b21ce7a146a8a175c19cd9d5c2e8/docs/figure/visSelIntHeatmapSignaling.Rmd/violin sel genes ImmCells-18.png" target="_blank">d202c26</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-12-01
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div id="downstream-signaling" class="section level2">
+<h2>downstream signaling</h2>
+<pre class="r"><code>genes &lt;- data.frame(gene=rownames(seuratBRC)) %&gt;% 
+  mutate(geneID=gsub(&quot;.*\\.&quot;, &quot;&quot;, gene))
+selGenes &lt;- read_tsv(file=paste0(basedir, 
+                            &quot;/data/cellphonedb/downstreamSignalingPW.txt&quot;)) %&gt;% 
+  left_join(., genes, by=&quot;geneID&quot;) </code></pre>
+<div id="vlnplots" class="section level3 tabset">
+<h3 class="tabset">vlnPlots</h3>
+<pre class="r"><code>allSign &lt;- unique(selGenes$signaling)
+template_vp &lt;- c(
+    &quot;#### {{sig}}\n&quot;,
+    &quot;```{r down vp {{sig}}}\n&quot;,
+    &quot;sign &lt;- as.character(&#39;{{sig}}&#39;)&quot;,
+    &quot;signGenes &lt;- selGenes %&gt;% dplyr::filter(signaling == sign)&quot;,
+    &quot;pList &lt;- sapply(signGenes$gene, function(x){
+        p &lt;- VlnPlot(object = seuratBRC, features = x,
+               group.by = &#39;clusterLabel&#39;,
+               cols = colBRC, pt.size = 0
+               )
+        plot(p)
+        })&quot;,
+    &quot;```\n&quot;,
+    &quot;\n&quot;
+)
+    
+plots_vp &lt;- lapply(allSign, 
+  function(sig) knitr::knit_expand(text = template_vp)
+)</code></pre>
+<div id="tgfbdown" class="section level4">
+<h4>tgfbDown</h4>
+<pre class="r"><code>sign &lt;- as.character(&#39;tgfbDown&#39;)
+signGenes &lt;- selGenes %&gt;% dplyr::filter(signaling == sign)
+pList &lt;- sapply(signGenes$gene, function(x){
+        p &lt;- VlnPlot(object = seuratBRC, features = x,
+               group.by = &#39;clusterLabel&#39;,
+               cols = colBRC, pt.size = 0
+               )
+        plot(p)
+        })</code></pre>
+<p><img src="figure/visSelIntHeatmapSignaling.Rmd/down vp tgfbDown-1.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/down vp tgfbDown-2.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/down vp tgfbDown-3.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/down vp tgfbDown-4.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/down vp tgfbDown-5.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/down vp tgfbDown-6.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/down vp tgfbDown-7.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/down vp tgfbDown-8.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/down vp tgfbDown-9.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/down vp tgfbDown-10.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/down vp tgfbDown-11.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/down vp tgfbDown-12.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="tgfb" class="section level4">
+<h4>tgfb</h4>
+<pre class="r"><code>sign &lt;- as.character(&#39;tgfb&#39;)
+signGenes &lt;- selGenes %&gt;% dplyr::filter(signaling == sign)
+pList &lt;- sapply(signGenes$gene, function(x){
+        p &lt;- VlnPlot(object = seuratBRC, features = x,
+               group.by = &#39;clusterLabel&#39;,
+               cols = colBRC, pt.size = 0
+               )
+        plot(p)
+        })</code></pre>
+<p><img src="figure/visSelIntHeatmapSignaling.Rmd/down vp tgfb-1.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/down vp tgfb-2.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/down vp tgfb-3.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/down vp tgfb-4.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/down vp tgfb-5.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/down vp tgfb-6.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/down vp tgfb-7.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/down vp tgfb-8.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/down vp tgfb-9.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/down vp tgfb-10.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/down vp tgfb-11.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/down vp tgfb-12.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="nctgfbpi3k" class="section level4">
+<h4>ncTgfbPI3K</h4>
+<pre class="r"><code>sign &lt;- as.character(&#39;ncTgfbPI3K&#39;)
+signGenes &lt;- selGenes %&gt;% dplyr::filter(signaling == sign)
+pList &lt;- sapply(signGenes$gene, function(x){
+        p &lt;- VlnPlot(object = seuratBRC, features = x,
+               group.by = &#39;clusterLabel&#39;,
+               cols = colBRC, pt.size = 0
+               )
+        plot(p)
+        })</code></pre>
+<p><img src="figure/visSelIntHeatmapSignaling.Rmd/down vp ncTgfbPI3K-1.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/down vp ncTgfbPI3K-2.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/down vp ncTgfbPI3K-3.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/down vp ncTgfbPI3K-4.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/down vp ncTgfbPI3K-5.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/down vp ncTgfbPI3K-6.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="nctgfbnfkb" class="section level4">
+<h4>ncTgfbNFKB</h4>
+<pre class="r"><code>sign &lt;- as.character(&#39;ncTgfbNFKB&#39;)
+signGenes &lt;- selGenes %&gt;% dplyr::filter(signaling == sign)
+pList &lt;- sapply(signGenes$gene, function(x){
+        p &lt;- VlnPlot(object = seuratBRC, features = x,
+               group.by = &#39;clusterLabel&#39;,
+               cols = colBRC, pt.size = 0
+               )
+        plot(p)
+        })</code></pre>
+<p><img src="figure/visSelIntHeatmapSignaling.Rmd/down vp ncTgfbNFKB-1.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/down vp ncTgfbNFKB-2.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/down vp ncTgfbNFKB-3.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/down vp ncTgfbNFKB-4.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/down vp ncTgfbNFKB-5.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/down vp ncTgfbNFKB-6.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="nctgfbras" class="section level4">
+<h4>ncTgfbRas</h4>
+<pre class="r"><code>sign &lt;- as.character(&#39;ncTgfbRas&#39;)
+signGenes &lt;- selGenes %&gt;% dplyr::filter(signaling == sign)
+pList &lt;- sapply(signGenes$gene, function(x){
+        p &lt;- VlnPlot(object = seuratBRC, features = x,
+               group.by = &#39;clusterLabel&#39;,
+               cols = colBRC, pt.size = 0
+               )
+        plot(p)
+        })</code></pre>
+<p><img src="figure/visSelIntHeatmapSignaling.Rmd/down vp ncTgfbRas-1.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/down vp ncTgfbRas-2.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/down vp ncTgfbRas-3.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/down vp ncTgfbRas-4.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/down vp ncTgfbRas-5.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/down vp ncTgfbRas-6.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="nctgfbmapk" class="section level4">
+<h4>ncTgfbMAPK</h4>
+<pre class="r"><code>sign &lt;- as.character(&#39;ncTgfbMAPK&#39;)
+signGenes &lt;- selGenes %&gt;% dplyr::filter(signaling == sign)
+pList &lt;- sapply(signGenes$gene, function(x){
+        p &lt;- VlnPlot(object = seuratBRC, features = x,
+               group.by = &#39;clusterLabel&#39;,
+               cols = colBRC, pt.size = 0
+               )
+        plot(p)
+        })</code></pre>
+<p><img src="figure/visSelIntHeatmapSignaling.Rmd/down vp ncTgfbMAPK-1.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/down vp ncTgfbMAPK-2.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/down vp ncTgfbMAPK-3.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/down vp ncTgfbMAPK-4.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/down vp ncTgfbMAPK-5.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="nctgfbrhoa" class="section level4">
+<h4>ncTgfbRhoa</h4>
+<pre class="r"><code>sign &lt;- as.character(&#39;ncTgfbRhoa&#39;)
+signGenes &lt;- selGenes %&gt;% dplyr::filter(signaling == sign)
+pList &lt;- sapply(signGenes$gene, function(x){
+        p &lt;- VlnPlot(object = seuratBRC, features = x,
+               group.by = &#39;clusterLabel&#39;,
+               cols = colBRC, pt.size = 0
+               )
+        plot(p)
+        })</code></pre>
+<p><img src="figure/visSelIntHeatmapSignaling.Rmd/down vp ncTgfbRhoa-1.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/down vp ncTgfbRhoa-2.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/down vp ncTgfbRhoa-3.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="il4" class="section level4">
+<h4>Il4</h4>
+<pre class="r"><code>sign &lt;- as.character(&#39;Il4&#39;)
+signGenes &lt;- selGenes %&gt;% dplyr::filter(signaling == sign)
+pList &lt;- sapply(signGenes$gene, function(x){
+        p &lt;- VlnPlot(object = seuratBRC, features = x,
+               group.by = &#39;clusterLabel&#39;,
+               cols = colBRC, pt.size = 0
+               )
+        plot(p)
+        })</code></pre>
+<p><img src="figure/visSelIntHeatmapSignaling.Rmd/down vp Il4-1.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/down vp Il4-2.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/down vp Il4-3.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/down vp Il4-4.png" width="672" style="display: block; margin: auto;" /><img src="figure/visSelIntHeatmapSignaling.Rmd/down vp Il4-5.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
 </div>
 </div>
 <div id="session-info" class="section level2">
@@ -1050,29 +2630,30 @@ loaded via a namespace (and not attached):
  [76] haven_2.4.3               ggrepel_0.9.1             cluster_2.1.2            
  [79] fs_1.5.0                  magrittr_2.0.1            data.table_1.14.2        
  [82] scattermore_0.7           reprex_2.0.1              lmtest_0.9-39            
- [85] RANN_2.6.1                fitdistrplus_1.1-6        hms_1.1.1                
- [88] patchwork_1.1.1           mime_0.12                 evaluate_0.14            
- [91] xtable_1.8-4              readxl_1.3.1              gridExtra_2.3            
- [94] compiler_4.1.0            KernSmooth_2.23-20        crayon_1.4.2             
- [97] htmltools_0.5.2           mgcv_1.8-38               later_1.3.0              
-[100] tzdb_0.2.0                lubridate_1.8.0           DBI_1.1.1                
-[103] dbplyr_2.1.1              MASS_7.3-54               cli_3.1.0                
-[106] metapod_1.0.0             igraph_1.2.8              pkgconfig_2.0.3          
-[109] plotly_4.10.0             spatstat.sparse_2.0-0     xml2_1.3.2               
-[112] vipor_0.4.5               bslib_0.3.1               dqrng_0.3.0              
-[115] XVector_0.32.0            rvest_1.0.2               digest_0.6.28            
-[118] sctransform_0.3.2         RcppAnnoy_0.0.19          spatstat.data_2.1-0      
-[121] rmarkdown_2.11            cellranger_1.1.0          leiden_0.3.9             
-[124] uwot_0.1.10               edgeR_3.34.1              DelayedMatrixStats_1.14.3
-[127] shiny_1.7.1               lifecycle_1.0.1           nlme_3.1-153             
-[130] jsonlite_1.7.2            BiocNeighbors_1.10.0      limma_3.48.3             
-[133] fansi_0.5.0               pillar_1.6.4              lattice_0.20-45          
-[136] fastmap_1.1.0             httr_1.4.2                survival_3.2-13          
-[139] glue_1.5.0                png_0.1-7                 bit_4.0.4                
-[142] bluster_1.2.1             stringi_1.7.5             sass_0.4.0               
-[145] BiocSingular_1.8.1        irlba_2.3.3               future.apply_1.8.1       </code></pre>
+ [85] RANN_2.6.1                whisker_0.4               fitdistrplus_1.1-6       
+ [88] hms_1.1.1                 patchwork_1.1.1           mime_0.12                
+ [91] evaluate_0.14             xtable_1.8-4              readxl_1.3.1             
+ [94] gridExtra_2.3             compiler_4.1.0            KernSmooth_2.23-20       
+ [97] crayon_1.4.2              htmltools_0.5.2           mgcv_1.8-38              
+[100] later_1.3.0               tzdb_0.2.0                lubridate_1.8.0          
+[103] DBI_1.1.1                 dbplyr_2.1.1              MASS_7.3-54              
+[106] cli_3.1.0                 metapod_1.0.0             igraph_1.2.8             
+[109] pkgconfig_2.0.3           plotly_4.10.0             spatstat.sparse_2.0-0    
+[112] xml2_1.3.2                vipor_0.4.5               bslib_0.3.1              
+[115] dqrng_0.3.0               XVector_0.32.0            rvest_1.0.2              
+[118] digest_0.6.28             sctransform_0.3.2         RcppAnnoy_0.0.19         
+[121] spatstat.data_2.1-0       rmarkdown_2.11            cellranger_1.1.0         
+[124] leiden_0.3.9              uwot_0.1.10               edgeR_3.34.1             
+[127] DelayedMatrixStats_1.14.3 shiny_1.7.1               lifecycle_1.0.1          
+[130] nlme_3.1-153              jsonlite_1.7.2            BiocNeighbors_1.10.0     
+[133] limma_3.48.3              fansi_0.5.0               pillar_1.6.4             
+[136] lattice_0.20-45           fastmap_1.1.0             httr_1.4.2               
+[139] survival_3.2-13           glue_1.5.0                png_0.1-7                
+[142] bit_4.0.4                 bluster_1.2.1             stringi_1.7.5            
+[145] sass_0.4.0                BiocSingular_1.8.1        irlba_2.3.3              
+[148] future.apply_1.8.1       </code></pre>
 <pre class="r"><code>date()</code></pre>
-<pre><code>[1] &quot;Wed Dec  1 13:14:16 2021&quot;</code></pre>
+<pre><code>[1] &quot;Wed Dec  8 10:46:08 2021&quot;</code></pre>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
@@ -1137,27 +2718,28 @@ loaded via a namespace (and not attached):
  [76] haven_2.4.3               ggrepel_0.9.1             cluster_2.1.2            
  [79] fs_1.5.0                  magrittr_2.0.1            data.table_1.14.2        
  [82] scattermore_0.7           reprex_2.0.1              lmtest_0.9-39            
- [85] RANN_2.6.1                fitdistrplus_1.1-6        hms_1.1.1                
- [88] patchwork_1.1.1           mime_0.12                 evaluate_0.14            
- [91] xtable_1.8-4              readxl_1.3.1              gridExtra_2.3            
- [94] compiler_4.1.0            KernSmooth_2.23-20        crayon_1.4.2             
- [97] htmltools_0.5.2           mgcv_1.8-38               later_1.3.0              
-[100] tzdb_0.2.0                lubridate_1.8.0           DBI_1.1.1                
-[103] dbplyr_2.1.1              MASS_7.3-54               cli_3.1.0                
-[106] metapod_1.0.0             igraph_1.2.8              pkgconfig_2.0.3          
-[109] plotly_4.10.0             spatstat.sparse_2.0-0     xml2_1.3.2               
-[112] vipor_0.4.5               bslib_0.3.1               dqrng_0.3.0              
-[115] XVector_0.32.0            rvest_1.0.2               digest_0.6.28            
-[118] sctransform_0.3.2         RcppAnnoy_0.0.19          spatstat.data_2.1-0      
-[121] rmarkdown_2.11            cellranger_1.1.0          leiden_0.3.9             
-[124] uwot_0.1.10               edgeR_3.34.1              DelayedMatrixStats_1.14.3
-[127] shiny_1.7.1               lifecycle_1.0.1           nlme_3.1-153             
-[130] jsonlite_1.7.2            BiocNeighbors_1.10.0      limma_3.48.3             
-[133] fansi_0.5.0               pillar_1.6.4              lattice_0.20-45          
-[136] fastmap_1.1.0             httr_1.4.2                survival_3.2-13          
-[139] glue_1.5.0                png_0.1-7                 bit_4.0.4                
-[142] bluster_1.2.1             stringi_1.7.5             sass_0.4.0               
-[145] BiocSingular_1.8.1        irlba_2.3.3               future.apply_1.8.1       </code></pre>
+ [85] RANN_2.6.1                whisker_0.4               fitdistrplus_1.1-6       
+ [88] hms_1.1.1                 patchwork_1.1.1           mime_0.12                
+ [91] evaluate_0.14             xtable_1.8-4              readxl_1.3.1             
+ [94] gridExtra_2.3             compiler_4.1.0            KernSmooth_2.23-20       
+ [97] crayon_1.4.2              htmltools_0.5.2           mgcv_1.8-38              
+[100] later_1.3.0               tzdb_0.2.0                lubridate_1.8.0          
+[103] DBI_1.1.1                 dbplyr_2.1.1              MASS_7.3-54              
+[106] cli_3.1.0                 metapod_1.0.0             igraph_1.2.8             
+[109] pkgconfig_2.0.3           plotly_4.10.0             spatstat.sparse_2.0-0    
+[112] xml2_1.3.2                vipor_0.4.5               bslib_0.3.1              
+[115] dqrng_0.3.0               XVector_0.32.0            rvest_1.0.2              
+[118] digest_0.6.28             sctransform_0.3.2         RcppAnnoy_0.0.19         
+[121] spatstat.data_2.1-0       rmarkdown_2.11            cellranger_1.1.0         
+[124] leiden_0.3.9              uwot_0.1.10               edgeR_3.34.1             
+[127] DelayedMatrixStats_1.14.3 shiny_1.7.1               lifecycle_1.0.1          
+[130] nlme_3.1-153              jsonlite_1.7.2            BiocNeighbors_1.10.0     
+[133] limma_3.48.3              fansi_0.5.0               pillar_1.6.4             
+[136] lattice_0.20-45           fastmap_1.1.0             httr_1.4.2               
+[139] survival_3.2-13           glue_1.5.0                png_0.1-7                
+[142] bit_4.0.4                 bluster_1.2.1             stringi_1.7.5            
+[145] sass_0.4.0                BiocSingular_1.8.1        irlba_2.3.3              
+[148] future.apply_1.8.1       </code></pre>
 </div>
 </div>
 

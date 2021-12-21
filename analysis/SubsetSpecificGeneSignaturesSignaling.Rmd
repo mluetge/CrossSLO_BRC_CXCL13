@@ -341,7 +341,7 @@ names(GOcons) <- clVec
 
 
 ### vis summary sel
-```{r vis summary sel, fig.height=6, fig.width=12}
+```{r vis summary sel, fig.height=6, fig.width=9}
 
 ## table to select pathways
 GOconsDat <- do.call("rbind", GOcons)
@@ -350,10 +350,11 @@ GOconsDat <- do.call("rbind", GOcons)
 	
 
 selGO <- c("LZFDC.GO:0046890", "LZFDC.GO:0007179", "LZFDC.GO:0007249",
+           "LZFDC.GO:0002062",
            "DZFDC.GO:0006631", "DZFDC.GO:0042063",
            "MRC.GO:0044344", 
            "TBRC.GO:0045765", "TBRC.GO:0035455",
-           "PRC2.GO:0045765", "PRC2.GO:0035265")
+           "PRC2.GO:0045765", "PRC2.GO:0071772")
 
 
 GOconsDat <- do.call("rbind", GOcons) %>% rownames_to_column(., var="IDlab") %>% 

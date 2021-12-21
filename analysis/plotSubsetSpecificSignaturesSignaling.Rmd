@@ -119,7 +119,7 @@ avgHeatmap <- function(seurat, selGenes, colVecIdent, colVecCond=NULL,
   logNormExpresMa <- logNormExpresMa[,ordVec]
 
   ## scaled row-wise
-  pheatmap(logNormExpresMa, scale="row" ,treeheight_row = 0, cluster_rows = cr, 
+  pheatmap(logNormExpresMa, scale="none" ,treeheight_row = 0, cluster_rows = cr, 
          cluster_cols = cc,
          color = colorRampPalette(c("#45628f", "#F7F7F7", "#de425b"))(50),
          annotation_col = annotation_col, cellwidth=15, cellheight=10,
@@ -309,20 +309,20 @@ signDat <- signDat %>% left_join(.,genes, by="gene")
 ```
 
 
-### project sign umap cut 3 {.tabset}
-```{r project sign cut3}
+### project sign umap cut 2.5 {.tabset}
+```{r project sign cut25}
 
 allSign <- unique(signDat$signSubset)
 sce <- as.SingleCellExperiment(seurat)
 
-cutOff <- 3
+cutOff <- 2.5
 pal = colorRampPalette(c("#053061", "#2166ac", "#f7f7f7",
                          "#f4a582", "#b2183c", "#85122d"))(100)
 sc <- scale_colour_gradientn(colours = pal, limits=c(0, cutOff))
 
 template_gs <- c(
-    "#### {{sig}} cut3\n",
-    "```{r sig expr cut3 {{sig}}, fig.height=6, fig.width=8}\n",
+    "#### {{sig}} cut25\n",
+    "```{r sig expr cut25 {{sig}}, fig.height=6, fig.width=8}\n",
     "sign <- as.character('{{sig}}')",
     "signGenes <- signDat %>% dplyr::filter(signSubset == sign)",
     "sceSub <- sce[which(rownames(sce) %in% signGenes$geneID),]",
@@ -352,8 +352,8 @@ plots_gs <- lapply(allSign,
 
 `r knitr::knit(text = unlist(plots_gs))`
 
-### project sign DM cut 3{.tabset}
-```{r project sign DM cut3, fig.height=6, fig.width=8}
+### project sign DM cut 2.5{.tabset}
+```{r project sign DM cut25, fig.height=6, fig.width=8}
 
 seurat <- readRDS(file=paste0(basedir, 
                               "/data/folBRC_allSLO_seurat.rds"))
@@ -378,8 +378,8 @@ p <- visGroup_adapt(sce, 'clusterLabel', dim_red = 'DiffusionMap') +
 p
 
 template_gs <- c(
-    "#### {{sig}} cut3\n",
-    "```{r sig expr DM cut3 {{sig}}, fig.height=6, fig.width=8}\n",
+    "#### {{sig}} cut25\n",
+    "```{r sig expr DM cut25 {{sig}}, fig.height=6, fig.width=8}\n",
     "sign <- as.character('{{sig}}')",
     "signGenes <- signDat %>% dplyr::filter(signSubset == sign)",
     "sceSub <- sce[which(rownames(sce) %in% signGenes$geneID),]",
@@ -449,6 +449,86 @@ plots_gs <- lapply(allSign,
 
 `r knitr::knit(text = unlist(plots_gs))`
 
+
+### project sign DM cut 15 {.tabset}
+```{r project sign DM cut 15, fig.height=6, fig.width=8}
+
+cutOff <- 1.5
+pal = colorRampPalette(c("#053061", "#2166ac","#f7f7f7",
+                         "#f4a582", "#b2183c", "#85122d"))(100)
+sc <- scale_colour_gradientn(colours = pal, limits=c(0, cutOff))
+
+template_gs <- c(
+    "#### {{sig}} cut15\n",
+    "```{r sig expr DM cut15 {{sig}} cut 15, fig.height=6, fig.width=8}\n",
+    "sign <- as.character('{{sig}}')",
+    "signGenes <- signDat %>% dplyr::filter(signSubset == sign)",
+    "sceSub <- sce[which(rownames(sce) %in% signGenes$geneID),]",
+    "cntMat <- rowSums(t(as.matrix(
+    sceSub@assays@data$logcounts)))/nrow(signGenes)",
+    "sceSub$sign <- cntMat",
+    "sceSub$sign[which(sceSub$sign > cutOff)] <- cutOff",
+    "p <- visGroup_adapt(sceSub, 'sign', dim_red = 'DiffusionMap') +
+    sc +
+    guides(colour = guide_colourbar(title = '')) +
+    ggtitle(paste0(sign, ' signature')) +
+    theme_classic() + 
+    theme(axis.text = element_blank(),
+          axis.ticks = element_blank()) +
+    labs(x='Dimension 1', y='Dimension 2')",
+    "p\n",
+    "```\n",
+    "\n"
+)
+    
+plots_gs <- lapply(allSign, 
+  function(sig) knitr::knit_expand(text = template_gs)
+)
+
+```
+
+
+`r knitr::knit(text = unlist(plots_gs))`
+
+### project sign DM cut 1 {.tabset}
+```{r project sign DM cut 1, fig.height=6, fig.width=8}
+
+cutOff <- 1
+pal = colorRampPalette(c("#053061", "#2166ac","#f7f7f7",
+                         "#f4a582", "#b2183c", "#85122d"))(100)
+sc <- scale_colour_gradientn(colours = pal, limits=c(0, cutOff))
+
+template_gs <- c(
+    "#### {{sig}} cut1\n",
+    "```{r sig expr DM cut1 {{sig}} cut 1, fig.height=6, fig.width=8}\n",
+    "sign <- as.character('{{sig}}')",
+    "signGenes <- signDat %>% dplyr::filter(signSubset == sign)",
+    "sceSub <- sce[which(rownames(sce) %in% signGenes$geneID),]",
+    "cntMat <- rowSums(t(as.matrix(
+    sceSub@assays@data$logcounts)))/nrow(signGenes)",
+    "sceSub$sign <- cntMat",
+    "sceSub$sign[which(sceSub$sign > cutOff)] <- cutOff",
+    "p <- visGroup_adapt(sceSub, 'sign', dim_red = 'DiffusionMap') +
+    sc +
+    guides(colour = guide_colourbar(title = '')) +
+    ggtitle(paste0(sign, ' signature')) +
+    theme_classic() + 
+    theme(axis.text = element_blank(),
+          axis.ticks = element_blank()) +
+    labs(x='Dimension 1', y='Dimension 2')",
+    "p\n",
+    "```\n",
+    "\n"
+)
+    
+plots_gs <- lapply(allSign, 
+  function(sig) knitr::knit_expand(text = template_gs)
+)
+
+```
+
+
+`r knitr::knit(text = unlist(plots_gs))`
 
 
 ### plot heatmap signatures {.tabset}

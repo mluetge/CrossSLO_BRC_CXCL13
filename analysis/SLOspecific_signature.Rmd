@@ -475,6 +475,17 @@ treeplot(egoSP2)
 dotplot(egoSP, showCategory=30)
 
 ```
+```{r save GO}
+egoLNdat <- egoLN@result %>% mutate(SLO="LN")
+egoPPdat <- egoPP@result %>% mutate(SLO="PP")
+egoSPdat <- egoSP@result %>% mutate(SLO="Spleen")
+
+egoResAll <- rbind(egoLNdat, egoPPdat, egoSPdat) 
+
+write.table(egoResAll, quote=F, row.names = T, col.names = T, sep= "\t",
+            file = paste0(basedir, "/data/GSEA/SLOSpecificGO.txt"))
+
+```
 
 
 ### vis summary all {.tabset}
@@ -537,10 +548,10 @@ ggplot(selPW_all, aes(x=factor(Description, level= level_order), y=geneRatio)) +
 
 #### Network 
 ```{r network}
-selGOLN <- c("GO:0009611", "GO:0003002", "GO:0010464", "GO:1901342")
-selGOPP <- c("GO:0042573","GO:0006694", "GO:0030510", "GO:0048562")
-selGOSP <- c("GO:0019882", "GO:1903522", "GO:0055072", "GO:0048536")
-selGOall <- c(selGOLN, selGOPP, selGOSP)
+selGOLN <- c("GO:0007389", "GO:0003002", "GO:0010464", "GO:1901342")
+selGOPP <- c("GO:0042573","GO:0006066", "GO:0003002", "GO:0048562") 
+selGOSP <- c("GO:0060537", "GO:1903522", "GO:0055072", "GO:0048536") 
+selGOall <- c(selGOLN, selGOSP, selGOPP)
   
 egoLN@result <- egoLN@result %>% filter(ID %in% selGOLN) %>% mutate(SLO = "LN")
 cnetplot(egoLN, node_label="all", 
@@ -567,13 +578,17 @@ cnetplot(egoSP, node_label="all",
 #### barplot
 ```{r}
 
-egoResAll <- rbind(egoLN@result, egoPP@result, egoSP@result) %>%
-  mutate(qscore=-log(p.adjust, base=10)) 
-p <- ggbarplot(egoResAll, x = "Description", y = "qscore",
+egoResAll <- rbind(egoPP@result, egoSP@result, egoLN@result) %>%
+  mutate(qscore=-log(p.adjust, base=10)) %>% 
+  mutate(DescriptionGrp = paste0(SLO, "_", Description)) %>% 
+  group_by(SLO) %>% 
+  arrange(., qscore, decreasing = FALSE, .by_group = TRUE) %>% 
+  arrange(match(SLO, c("PP", "Spleen", "LN")))
+p <- ggbarplot(egoResAll, x = "DescriptionGrp", y = "qscore",
           fill = "SLO",               
           color = "SLO",            
           palette = colorSLO,            
-          sort.val = "asc",           
+          #sort.val = "asc",           
           sort.by.groups = TRUE      
           #x.text.angle = 90           
           ) + 

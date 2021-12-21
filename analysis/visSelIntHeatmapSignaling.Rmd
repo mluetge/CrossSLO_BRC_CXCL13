@@ -54,7 +54,7 @@ names(colorSLOCond) <- c("LN_immunized","LN_naive", "Spleen_naive",
                          "Spleen_immunized", "PP_immunized")
 
 
-colLYM <- c("#a0b9c4", "#78abb7", "#567a83", "#3c454a", "#9eabb1",
+colLYM <- c("#a0b9c4", "#78abb7", "#567a83", "#3c454a", "#0C3C52",
             "#924440", "#eab562",
             "#f1d75f", "#b5a147", "#786c30")
 
@@ -64,7 +64,7 @@ names(colLYM) <- c("naiveBcells", "LZBcells", "DZshmBcells", "proDZ",
                    "Tfh", "DCs",
                    "mdMacrophages", "trMacrophages", "infMacrophages")
 
-colLYM2 <- c("#a0b9c4", "#567a83", "#9eabb1",
+colLYM2 <- c("#a0b9c4", "#567a83", "#0C3C52",
             "#924440", "#eab562",
             "#b5a147")
 
@@ -256,6 +256,13 @@ pOut <- avgHeatmap(seurat = seuratBRC, selGenes = genesBRC,
                   gapVecR=gapR$cumSum, cr=F,
                   condCol=T, colVecCond = colorSLO)
 
+Idents(seuratBRC) <- seuratBRC$clusterLabel
+pOut <- avgHeatmap(seurat = seuratBRC, selGenes = genesBRC,
+                  colVecIdent = colBRC, 
+                  ordVec=ordBRC,
+                  gapVecC=NULL,cc=F,
+                  gapVecR=gapR$cumSum, cr=F,
+                  condCol=F)
 
 ```
 
@@ -270,8 +277,7 @@ gapR <- data.frame(functGrp=unique(genesLym$functGrp)) %>%
 
 
 ordLYM <- c("naiveBcells", "GCBcells", "plasmaCells", 
-                   "Myeloids",
-                   "DCs", "Tfh")
+                   "Tfh", "Myeloids", "DCs")
 ordSLO <- c("LN", "Spleen", "PP")
 ordDat <- expand.grid(SLO = ordSLO, LYM = ordLYM) %>% 
   mutate(ordVec=paste0(LYM, "_", SLO))
@@ -294,13 +300,21 @@ pOut <- avgHeatmap(seurat = seuratLY, selGenes = genesLym,
                   condCol=T, colVecCond = colorSLO)
 
 
+Idents(seuratLY) <- seuratLY$clusterLabel2
+pOut <- avgHeatmap(seurat = seuratLY, selGenes = genesLym,
+                  colVecIdent = colLYM2, 
+                  ordVec=ordLYM,
+                  gapVecC=NULL,cc=F,
+                  gapVecR=gapR$cumSum, cr=F,
+                  condCol=F)
+
 ```
 
 ## violin plot sel genes {.tabset}
 ### BRC
 ```{r violin sel genes BRC}
 
-
+seuratBRC$clusterLabel <- factor(seuratBRC$clusterLabel, levels = ordBRC)
 pList <- sapply(genesBRC$gene, function(x){
   p <- VlnPlot(object = seuratBRC, features = x,
                group.by = "clusterLabel",
@@ -314,7 +328,7 @@ pList <- sapply(genesBRC$gene, function(x){
 ### Immune cells
 ```{r violin sel genes ImmCells}
 
-
+seuratLY$clusterLabel2 <- factor(seuratLY$clusterLabel2, levels = ordLYM)
 pList <- sapply(genesLym$gene, function(x){
   p <- VlnPlot(object = seuratLY, features = x,
                group.by = "clusterLabel2",
@@ -324,6 +338,45 @@ pList <- sapply(genesLym$gene, function(x){
 })
 
 ```
+
+
+## downstream signaling
+```{r}
+genes <- data.frame(gene=rownames(seuratBRC)) %>% 
+  mutate(geneID=gsub(".*\\.", "", gene))
+selGenes <- read_tsv(file=paste0(basedir, 
+                            "/data/cellphonedb/downstreamSignalingPW.txt")) %>% 
+  left_join(., genes, by="geneID") 
+
+```
+
+### vlnPlots {.tabset}
+```{r plot vlnPlots dowstream pw}
+
+allSign <- unique(selGenes$signaling)
+template_vp <- c(
+    "#### {{sig}}\n",
+    "```{r down vp {{sig}}}\n",
+    "sign <- as.character('{{sig}}')",
+    "signGenes <- selGenes %>% dplyr::filter(signaling == sign)",
+    "pList <- sapply(signGenes$gene, function(x){
+        p <- VlnPlot(object = seuratBRC, features = x,
+               group.by = 'clusterLabel',
+               cols = colBRC, pt.size = 0
+               )
+        plot(p)
+        })",
+    "```\n",
+    "\n"
+)
+    
+plots_vp <- lapply(allSign, 
+  function(sig) knitr::knit_expand(text = template_vp)
+)
+
+```
+
+`r knitr::knit(text = unlist(plots_vp))`
 
 
 ## session info

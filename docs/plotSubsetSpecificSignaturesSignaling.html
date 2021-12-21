@@ -377,7 +377,7 @@ div.tocify {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2021-11-25
+<strong>Last updated:</strong> 2021-12-06
 </p>
 <p>
 <strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 1
@@ -401,7 +401,7 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 </div>
 <div id="strongRMarkdownfilestronguncommittedchanges" class="panel-collapse collapse">
 <div class="panel-body">
-<p>The R Markdown is untracked by Git. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
+<p>The R Markdown file has unstaged changes. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
 </div>
 </div>
 </div>
@@ -468,16 +468,16 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcommluetgeCrossSLOBRCCXCL13tree525b9f61d4976a8e83ac84bd63f17780d5cd2405targetblank525b9f6a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/tree/525b9f61d4976a8e83ac84bd63f17780d5cd2405" target="_blank">525b9f6</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcommluetgeCrossSLOBRCCXCL13treed202c26a3d47b21ce7a146a8a175c19cd9d5c2e8targetblankd202c26a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/tree/d202c26a3d47b21ce7a146a8a175c19cd9d5c2e8" target="_blank">d202c26</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcommluetgeCrossSLOBRCCXCL13tree525b9f61d4976a8e83ac84bd63f17780d5cd2405targetblank525b9f6a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcommluetgeCrossSLOBRCCXCL13treed202c26a3d47b21ce7a146a8a175c19cd9d5c2e8targetblankd202c26a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/tree/525b9f61d4976a8e83ac84bd63f17780d5cd2405" target="_blank">525b9f6</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/tree/d202c26a3d47b21ce7a146a8a175c19cd9d5c2e8" target="_blank">d202c26</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -493,213 +493,186 @@ Ignored files:
     Ignored:    data/processedData/
     Ignored:    data/processedDataLymphocytes/
     Ignored:    figure/.DS_Store
-    Ignored:    figure/plotSubsetSpecificSignatures.Rmd/.DS_Store
+    Ignored:    figure/plotSubsetSpecificSignatures.Rmd/
+    Ignored:    figure/plotSubsetSpecificSignatures2.Rmd/.DS_Store
 
 Untracked files:
-    Untracked:  analysis/CharacterizeLymphoSubgrps.Rmd
-    Untracked:  analysis/SubsetSpecificGeneSignatures2.Rmd
-    Untracked:  analysis/SubsetSpecificGeneSignaturesSignaling.Rmd
-    Untracked:  analysis/analyseCPDBoutImmGrp.Rmd
-    Untracked:  analysis/plotSubsetSpecificSignatures2.Rmd
-    Untracked:  analysis/plotSubsetSpecificSignaturesSignaling.Rmd
-    Untracked:  analysis/visSelIntHeatmap.Rmd
-    Untracked:  figure/plotSubsetSpecificSignatures2.Rmd/
+    Untracked:  analysis/plotSubsetSLOSignatures.Rmd
+    Untracked:  figure/plotSubsetSLOSignatures.Rmd/
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut1 I-kappaB kinase/
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut1 cellular response to fibroblast growth factor stimulus_MRC cut 1-1.pdf
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut1 cellular response to fibroblast growth factor stimulus_MRC cut 1-1.png
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut1 chondrocyte differentiation_LZFDC cut 1-1.pdf
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut1 chondrocyte differentiation_LZFDC cut 1-1.png
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut1 fatty acid metabolic process_DZFDC cut 1-1.pdf
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut1 fatty acid metabolic process_DZFDC cut 1-1.png
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut1 gliogenesis_DZFDC cut 1-1.pdf
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut1 gliogenesis_DZFDC cut 1-1.png
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut1 organ growth_PRC cut 1-1.pdf
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut1 organ growth_PRC cut 1-1.png
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut1 regulation of angiogenesis_PRC cut 1-1.pdf
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut1 regulation of angiogenesis_PRC cut 1-1.png
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut1 regulation of angiogenesis_TBRC cut 1-1.pdf
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut1 regulation of angiogenesis_TBRC cut 1-1.png
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut1 regulation of lipid biosynthetic process_LZFDC cut 1-1.pdf
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut1 regulation of lipid biosynthetic process_LZFDC cut 1-1.png
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut1 response to interferon-alpha_TBRC cut 1-1.pdf
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut1 response to interferon-alpha_TBRC cut 1-1.png
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut1 response to transforming growth factor beta_LZFDC cut 1-1.pdf
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut1 response to transforming growth factor beta_LZFDC cut 1-1.png
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut15 I-kappaB kinase/
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut15 cellular response to fibroblast growth factor stimulus_MRC cut 15-1.pdf
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut15 cellular response to fibroblast growth factor stimulus_MRC cut 15-1.png
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut15 chondrocyte differentiation_LZFDC cut 15-1.pdf
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut15 chondrocyte differentiation_LZFDC cut 15-1.png
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut15 fatty acid metabolic process_DZFDC cut 15-1.pdf
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut15 fatty acid metabolic process_DZFDC cut 15-1.png
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut15 gliogenesis_DZFDC cut 15-1.pdf
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut15 gliogenesis_DZFDC cut 15-1.png
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut15 organ growth_PRC cut 15-1.pdf
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut15 organ growth_PRC cut 15-1.png
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut15 regulation of angiogenesis_PRC cut 15-1.pdf
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut15 regulation of angiogenesis_PRC cut 15-1.png
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut15 regulation of angiogenesis_TBRC cut 15-1.pdf
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut15 regulation of angiogenesis_TBRC cut 15-1.png
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut15 regulation of lipid biosynthetic process_LZFDC cut 15-1.pdf
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut15 regulation of lipid biosynthetic process_LZFDC cut 15-1.png
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut15 response to interferon-alpha_TBRC cut 15-1.pdf
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut15 response to interferon-alpha_TBRC cut 15-1.png
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut15 response to transforming growth factor beta_LZFDC cut 15-1.pdf
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut15 response to transforming growth factor beta_LZFDC cut 15-1.png
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut25 I-kappaB kinase/
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut25 cellular response to fibroblast growth factor stimulus_MRC-1.pdf
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut25 cellular response to fibroblast growth factor stimulus_MRC-1.png
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut25 chondrocyte differentiation_LZFDC-1.pdf
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut25 chondrocyte differentiation_LZFDC-1.png
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut25 fatty acid metabolic process_DZFDC-1.pdf
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut25 fatty acid metabolic process_DZFDC-1.png
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut25 gliogenesis_DZFDC-1.pdf
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut25 gliogenesis_DZFDC-1.png
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut25 organ growth_PRC-1.pdf
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut25 organ growth_PRC-1.png
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut25 regulation of angiogenesis_PRC-1.pdf
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut25 regulation of angiogenesis_PRC-1.png
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut25 regulation of angiogenesis_TBRC-1.pdf
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut25 regulation of angiogenesis_TBRC-1.png
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut25 regulation of lipid biosynthetic process_LZFDC-1.pdf
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut25 regulation of lipid biosynthetic process_LZFDC-1.png
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut25 response to interferon-alpha_TBRC-1.pdf
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut25 response to interferon-alpha_TBRC-1.png
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut25 response to transforming growth factor beta_LZFDC-1.pdf
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut25 response to transforming growth factor beta_LZFDC-1.png
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr cut25 I-kappaB kinase/
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr cut25 cellular response to fibroblast growth factor stimulus_MRC-1.pdf
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr cut25 cellular response to fibroblast growth factor stimulus_MRC-1.png
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr cut25 chondrocyte differentiation_LZFDC-1.pdf
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr cut25 chondrocyte differentiation_LZFDC-1.png
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr cut25 fatty acid metabolic process_DZFDC-1.pdf
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr cut25 fatty acid metabolic process_DZFDC-1.png
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr cut25 gliogenesis_DZFDC-1.pdf
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr cut25 gliogenesis_DZFDC-1.png
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr cut25 organ growth_PRC-1.pdf
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr cut25 organ growth_PRC-1.png
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr cut25 regulation of angiogenesis_PRC-1.pdf
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr cut25 regulation of angiogenesis_PRC-1.png
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr cut25 regulation of angiogenesis_TBRC-1.pdf
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr cut25 regulation of angiogenesis_TBRC-1.png
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr cut25 regulation of lipid biosynthetic process_LZFDC-1.pdf
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr cut25 regulation of lipid biosynthetic process_LZFDC-1.png
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr cut25 response to interferon-alpha_TBRC-1.pdf
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr cut25 response to interferon-alpha_TBRC-1.png
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr cut25 response to transforming growth factor beta_LZFDC-1.pdf
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr cut25 response to transforming growth factor beta_LZFDC-1.png
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig hm chondrocyte differentiation_LZFDC-1.pdf
+    Untracked:  figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig hm chondrocyte differentiation_LZFDC-1.png
+    Untracked:  figure/visSelIntHeatmapSignaling.Rmd/
 
 Unstaged changes:
-    Modified:   analysis/SubsetSpecificGeneSignatures.Rmd
-    Modified:   analysis/analyseCPDBoutImm.Rmd
-    Modified:   analysis/createCPDBinput_immOnly.Rmd
+    Modified:   analysis/SLOspecific_signature.Rmd
+    Modified:   analysis/SubsetSpecificGeneSignaturesSignaling.Rmd
     Modified:   analysis/index.Rmd
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr Antigen capture and presentation_LZFDC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr Antigen capture and presentation_LZFDC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr Antigen capture and presentation_MRC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr Antigen capture and presentation_MRC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr Costimulatory and inhibitory molecules_LZFDC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr Costimulatory and inhibitory molecules_LZFDC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr Cytokines and chemokines_MRC   -1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr Cytokines and chemokines_MRC   -1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr Cytokines and chemokines_MRC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr Cytokines and chemokines_MRC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr Cytokines and chemokines_TBRC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr Cytokines and chemokines_TBRC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Antigen capture and presentation_LZFDC cut 2-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Antigen capture and presentation_LZFDC cut 2-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Antigen capture and presentation_LZFDC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Antigen capture and presentation_LZFDC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Antigen capture and presentation_MRC cut 2-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Antigen capture and presentation_MRC cut 2-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Antigen capture and presentation_MRC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Antigen capture and presentation_MRC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Costimulatory and inhibitory molecules_LZFDC cut 2-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Costimulatory and inhibitory molecules_LZFDC cut 2-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Costimulatory and inhibitory molecules_LZFDC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Costimulatory and inhibitory molecules_LZFDC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Cytokines and chemokines_MRC cut 2-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Cytokines and chemokines_MRC cut 2-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Cytokines and chemokines_MRC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Cytokines and chemokines_MRC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Cytokines and chemokines_TBRC cut 2-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Cytokines and chemokines_TBRC cut 2-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Cytokines and chemokines_TBRC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Cytokines and chemokines_TBRC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Metabolite transporter_LZFDC cut 2-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Metabolite transporter_LZFDC cut 2-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Metabolite transporter_LZFDC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Metabolite transporter_LZFDC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Stemness_PRC2 cut 2-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Stemness_PRC2 cut 2-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Stemness_PRC2-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Stemness_PRC2-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Tnf superfamily factors_LZFDC cut 2-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Tnf superfamily factors_LZFDC cut 2-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Tnf superfamily factors_LZFDC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Tnf superfamily factors_LZFDC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Tnf superfamily factors_MRC cut 2-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Tnf superfamily factors_MRC cut 2-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Tnf superfamily factors_MRC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM Tnf superfamily factors_MRC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM adhesion molecules_DZFDC cut 2-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM adhesion molecules_DZFDC cut 2-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM adhesion molecules_DZFDC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM adhesion molecules_DZFDC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM adhesion molecules_LZFDC cut 2-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM adhesion molecules_LZFDC cut 2-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM adhesion molecules_LZFDC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM adhesion molecules_LZFDC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM adhesion molecules_MRC cut 2-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM adhesion molecules_MRC cut 2-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM adhesion molecules_MRC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM adhesion molecules_MRC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM adhesion molecules_PRC2 cut 2-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM adhesion molecules_PRC2 cut 2-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM adhesion molecules_PRC2-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM adhesion molecules_PRC2-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM adhesion molecules_TBRC cut 2-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM adhesion molecules_TBRC cut 2-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM adhesion molecules_TBRC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM adhesion molecules_TBRC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM growth and survival factors_DZFDC cut 2-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM growth and survival factors_DZFDC cut 2-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM growth and survival factors_DZFDC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM growth and survival factors_DZFDC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM growth and survival factors_LZFDC cut 2-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM growth and survival factors_LZFDC cut 2-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM growth and survival factors_LZFDC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM growth and survival factors_LZFDC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM growth and survival factors_PRC2 cut 2-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM growth and survival factors_PRC2 cut 2-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM growth and survival factors_PRC2-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM growth and survival factors_PRC2-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM growth and survival factors_TBRC cut 2-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM growth and survival factors_TBRC cut 2-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM growth and survival factors_TBRC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM growth and survival factors_TBRC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM network formation_DZFDC cut 2-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM network formation_DZFDC cut 2-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM network formation_DZFDC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM network formation_DZFDC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM network formation_LZFDC cut 2-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM network formation_LZFDC cut 2-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM network formation_LZFDC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM network formation_LZFDC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM network formation_MRC cut 2-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM network formation_MRC cut 2-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM network formation_MRC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM network formation_MRC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM network formation_PRC2 cut 2-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM network formation_PRC2 cut 2-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM network formation_PRC2-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM network formation_PRC2-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM network formation_TBRC cut 2-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM network formation_TBRC cut 2-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM network formation_TBRC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr DM network formation_TBRC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr Metabolite transporter_LZFDC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr Metabolite transporter_LZFDC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr Stemness_PRC2-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr Stemness_PRC2-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr Tnf superfamily factors_LZFDC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr Tnf superfamily factors_LZFDC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr Tnf superfamily factors_MRC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr Tnf superfamily factors_MRC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr adhesion molecules_DZFDC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr adhesion molecules_DZFDC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr adhesion molecules_LZFDC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr adhesion molecules_LZFDC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr adhesion molecules_MRC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr adhesion molecules_MRC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr adhesion molecules_PRC2-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr adhesion molecules_PRC2-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr adhesion molecules_TBRC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr adhesion molecules_TBRC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr growth and survival factor_DZFDC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr growth and survival factor_DZFDC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr growth and survival factors_DZFDC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr growth and survival factors_DZFDC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr growth and survival factors_LZFDC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr growth and survival factors_LZFDC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr growth and survival factors_PRC2-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr growth and survival factors_PRC2-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr growth and survival factors_TBRC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr growth and survival factors_TBRC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr network formation_DZFDC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr network formation_DZFDC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr network formation_LZFDC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr network formation_LZFDC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr network formation_MRC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr network formation_MRC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr network formation_PRC2 -1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr network formation_PRC2 -1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr network formation_PRC2-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr network formation_PRC2-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr network formation_TBRC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig expr network formation_TBRC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm Antigen capture and presentation_LZFDC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm Antigen capture and presentation_LZFDC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm Antigen capture and presentation_MRC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm Antigen capture and presentation_MRC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm Costimulatory and inhibitory molecules_LZFDC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm Costimulatory and inhibitory molecules_LZFDC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm Cytokines and chemokines_MRC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm Cytokines and chemokines_MRC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm Cytokines and chemokines_TBRC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm Cytokines and chemokines_TBRC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm Metabolite transporter_LZFDC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm Metabolite transporter_LZFDC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm Stemness_PRC2-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm Stemness_PRC2-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm Tnf superfamily factors_LZFDC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm Tnf superfamily factors_LZFDC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm Tnf superfamily factors_MRC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm Tnf superfamily factors_MRC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm adhesion molecules_DZFDC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm adhesion molecules_DZFDC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm adhesion molecules_LZFDC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm adhesion molecules_LZFDC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm adhesion molecules_MRC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm adhesion molecules_MRC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm adhesion molecules_PRC2-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm adhesion molecules_PRC2-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm adhesion molecules_TBRC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm adhesion molecules_TBRC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm growth and survival factors_DZFDC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm growth and survival factors_DZFDC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm growth and survival factors_LZFDC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm growth and survival factors_LZFDC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm growth and survival factors_PRC2-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm growth and survival factors_PRC2-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm growth and survival factors_TBRC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm growth and survival factors_TBRC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm network formation_DZFDC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm network formation_DZFDC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm network formation_LZFDC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm network formation_LZFDC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm network formation_MRC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm network formation_MRC-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm network formation_PRC2-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm network formation_PRC2-1.png
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm network formation_TBRC-1.pdf
-    Deleted:    figure/plotSubsetSpecificSignatures.Rmd/sig hm network formation_TBRC-1.png
+    Modified:   analysis/plotSubsetSpecificSignaturesSignaling.Rmd
+    Modified:   analysis/visSelIntHeatmapSignaling.Rmd
+    Deleted:    figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut2 I-kappaB kinase/NF-kappaB signaling_LZFDC cut 2-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut2 I-kappaB kinase/NF-kappaB signaling_LZFDC cut 2-1.png
+    Deleted:    figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut2 cellular response to fibroblast growth factor stimulus_MRC cut 2-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut2 cellular response to fibroblast growth factor stimulus_MRC cut 2-1.png
+    Deleted:    figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut2 fatty acid metabolic process_DZFDC cut 2-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut2 fatty acid metabolic process_DZFDC cut 2-1.png
+    Deleted:    figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut2 gliogenesis_DZFDC cut 2-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut2 gliogenesis_DZFDC cut 2-1.png
+    Deleted:    figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut2 organ growth_PRC cut 2-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut2 organ growth_PRC cut 2-1.png
+    Deleted:    figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut2 regulation of angiogenesis_PRC cut 2-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut2 regulation of angiogenesis_PRC cut 2-1.png
+    Deleted:    figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut2 regulation of angiogenesis_TBRC cut 2-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut2 regulation of angiogenesis_TBRC cut 2-1.png
+    Deleted:    figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut2 regulation of lipid biosynthetic process_LZFDC cut 2-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut2 regulation of lipid biosynthetic process_LZFDC cut 2-1.png
+    Deleted:    figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut2 response to interferon-alpha_TBRC cut 2-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut2 response to interferon-alpha_TBRC cut 2-1.png
+    Deleted:    figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut2 response to transforming growth factor beta_LZFDC cut 2-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut2 response to transforming growth factor beta_LZFDC cut 2-1.png
+    Deleted:    figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut3 I-kappaB kinase/NF-kappaB signaling_LZFDC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut3 I-kappaB kinase/NF-kappaB signaling_LZFDC-1.png
+    Deleted:    figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut3 cellular response to fibroblast growth factor stimulus_MRC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut3 cellular response to fibroblast growth factor stimulus_MRC-1.png
+    Deleted:    figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut3 fatty acid metabolic process_DZFDC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut3 fatty acid metabolic process_DZFDC-1.png
+    Deleted:    figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut3 gliogenesis_DZFDC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut3 gliogenesis_DZFDC-1.png
+    Deleted:    figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut3 organ growth_PRC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut3 organ growth_PRC-1.png
+    Deleted:    figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut3 regulation of angiogenesis_PRC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut3 regulation of angiogenesis_PRC-1.png
+    Deleted:    figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut3 regulation of angiogenesis_TBRC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut3 regulation of angiogenesis_TBRC-1.png
+    Deleted:    figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut3 regulation of lipid biosynthetic process_LZFDC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut3 regulation of lipid biosynthetic process_LZFDC-1.png
+    Deleted:    figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut3 response to interferon-alpha_TBRC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut3 response to interferon-alpha_TBRC-1.png
+    Deleted:    figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut3 response to transforming growth factor beta_LZFDC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut3 response to transforming growth factor beta_LZFDC-1.png
+    Deleted:    figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr cut3 I-kappaB kinase/NF-kappaB signaling_LZFDC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr cut3 I-kappaB kinase/NF-kappaB signaling_LZFDC-1.png
+    Deleted:    figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr cut3 cellular response to fibroblast growth factor stimulus_MRC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr cut3 cellular response to fibroblast growth factor stimulus_MRC-1.png
+    Deleted:    figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr cut3 fatty acid metabolic process_DZFDC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr cut3 fatty acid metabolic process_DZFDC-1.png
+    Deleted:    figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr cut3 gliogenesis_DZFDC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr cut3 gliogenesis_DZFDC-1.png
+    Deleted:    figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr cut3 organ growth_PRC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr cut3 organ growth_PRC-1.png
+    Deleted:    figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr cut3 regulation of angiogenesis_PRC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr cut3 regulation of angiogenesis_PRC-1.png
+    Deleted:    figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr cut3 regulation of angiogenesis_TBRC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr cut3 regulation of angiogenesis_TBRC-1.png
+    Deleted:    figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr cut3 regulation of lipid biosynthetic process_LZFDC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr cut3 regulation of lipid biosynthetic process_LZFDC-1.png
+    Deleted:    figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr cut3 response to interferon-alpha_TBRC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr cut3 response to interferon-alpha_TBRC-1.png
+    Deleted:    figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr cut3 response to transforming growth factor beta_LZFDC-1.pdf
+    Deleted:    figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr cut3 response to transforming growth factor beta_LZFDC-1.png
+    Modified:   figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig hm I-kappaB kinase/NF-kappaB signaling_LZFDC-1.pdf
+    Modified:   figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig hm I-kappaB kinase/NF-kappaB signaling_LZFDC-1.png
+    Modified:   figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig hm cellular response to fibroblast growth factor stimulus_MRC-1.pdf
+    Modified:   figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig hm cellular response to fibroblast growth factor stimulus_MRC-1.png
+    Modified:   figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig hm fatty acid metabolic process_DZFDC-1.pdf
+    Modified:   figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig hm fatty acid metabolic process_DZFDC-1.png
+    Modified:   figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig hm gliogenesis_DZFDC-1.pdf
+    Modified:   figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig hm gliogenesis_DZFDC-1.png
+    Modified:   figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig hm organ growth_PRC-1.pdf
+    Modified:   figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig hm organ growth_PRC-1.png
+    Modified:   figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig hm regulation of angiogenesis_PRC-1.pdf
+    Modified:   figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig hm regulation of angiogenesis_PRC-1.png
+    Modified:   figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig hm regulation of angiogenesis_TBRC-1.pdf
+    Modified:   figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig hm regulation of angiogenesis_TBRC-1.png
+    Modified:   figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig hm regulation of lipid biosynthetic process_LZFDC-1.pdf
+    Modified:   figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig hm regulation of lipid biosynthetic process_LZFDC-1.png
+    Modified:   figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig hm response to interferon-alpha_TBRC-1.pdf
+    Modified:   figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig hm response to interferon-alpha_TBRC-1.png
+    Modified:   figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig hm response to transforming growth factor beta_LZFDC-1.pdf
+    Modified:   figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig hm response to transforming growth factor beta_LZFDC-1.png
 
 </code></pre>
 <p>
@@ -712,9 +685,69 @@ Note that any generated files, e.g. HTML, png, CSS, etc., are not included in t
 <hr>
 </div>
 <div id="versions" class="tab-pane fade">
+
 <p>
-There are no past versions. Publish this analysis with <code>wflow_publish()</code> to start tracking its development.
+These are the previous versions of the repository in which changes were made to the R Markdown (<code>analysis/plotSubsetSpecificSignaturesSignaling.Rmd</code>) and HTML (<code>docs/plotSubsetSpecificSignaturesSignaling.html</code>) files. If you’ve configured a remote Git repository (see <code>?wflow_git_remote</code>), click on the hyperlinks in the table below to view the files as they were in that past version.
 </p>
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+File
+</th>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+<th>
+Message
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/d202c26a3d47b21ce7a146a8a175c19cd9d5c2e8/analysis/plotSubsetSpecificSignaturesSignaling.Rmd" target="_blank">d202c26</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-12-01
+</td>
+<td>
+add signaling analysis
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/mluetge/CrossSLO_BRC_CXCL13/d202c26a3d47b21ce7a146a8a175c19cd9d5c2e8/docs/plotSubsetSpecificSignaturesSignaling.html" target="_blank">d202c26</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-12-01
+</td>
+<td>
+add signaling analysis
+</td>
+</tr>
+</tbody>
+</table>
+</div>
 <hr>
 </div>
 </div>
@@ -813,7 +846,7 @@ There are no past versions. Publish this analysis with <code>wflow_publish()</co
   logNormExpresMa &lt;- logNormExpresMa[,ordVec]
 
   ## scaled row-wise
-  pheatmap(logNormExpresMa, scale=&quot;row&quot; ,treeheight_row = 0, cluster_rows = cr, 
+  pheatmap(logNormExpresMa, scale=&quot;none&quot; ,treeheight_row = 0, cluster_rows = cr, 
          cluster_cols = cc,
          color = colorRampPalette(c(&quot;#45628f&quot;, &quot;#F7F7F7&quot;, &quot;#de425b&quot;))(50),
          annotation_col = annotation_col, cellwidth=15, cellheight=10,
@@ -909,10 +942,84 @@ names(colorSLOCond) &lt;- c(&quot;LN_immunized&quot;,&quot;LN_naive&quot;, &quot
   xlab(&quot;UMAP1&quot;) +
   ylab(&quot;UMAP2&quot;)</code></pre>
 <p><img src="figure/plotSubsetSpecificSignaturesSignaling.Rmd/clustering-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-clustering-1">
+Past versions of clustering-1.png
+</button>
+</p>
+<div id="fig-clustering-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/d202c26a3d47b21ce7a146a8a175c19cd9d5c2e8/docs/figure/plotSubsetSpecificSignaturesSignaling.Rmd/clustering-1.png" target="_blank">d202c26</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-12-01
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>DimPlot(seurat, reduction = &quot;umap&quot;, cols=colPal, group.by = &quot;clusterLabel&quot;,
         pt.size=0.6)+
   theme_void()</code></pre>
 <p><img src="figure/plotSubsetSpecificSignaturesSignaling.Rmd/clustering-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-clustering-2">
+Past versions of clustering-2.png
+</button>
+</p>
+<div id="fig-clustering-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/d202c26a3d47b21ce7a146a8a175c19cd9d5c2e8/docs/figure/plotSubsetSpecificSignaturesSignaling.Rmd/clustering-2.png" target="_blank">d202c26</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-12-01
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="slo" class="section level3">
 <h3>SLO</h3>
@@ -923,10 +1030,84 @@ names(colorSLOCond) &lt;- c(&quot;LN_immunized&quot;,&quot;LN_naive&quot;, &quot
   xlab(&quot;UMAP1&quot;) +
   ylab(&quot;UMAP2&quot;)</code></pre>
 <p><img src="figure/plotSubsetSpecificSignaturesSignaling.Rmd/SLO-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-SLO-1">
+Past versions of SLO-1.png
+</button>
+</p>
+<div id="fig-SLO-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/d202c26a3d47b21ce7a146a8a175c19cd9d5c2e8/docs/figure/plotSubsetSpecificSignaturesSignaling.Rmd/SLO-1.png" target="_blank">d202c26</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-12-01
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>DimPlot(seurat, reduction = &quot;umap&quot;, cols=colorSLO, group.by = &quot;SLO&quot;,
         pt.size=0.6)+
   theme_void()</code></pre>
 <p><img src="figure/plotSubsetSpecificSignaturesSignaling.Rmd/SLO-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-SLO-2">
+Past versions of SLO-2.png
+</button>
+</p>
+<div id="fig-SLO-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/d202c26a3d47b21ce7a146a8a175c19cd9d5c2e8/docs/figure/plotSubsetSpecificSignaturesSignaling.Rmd/SLO-2.png" target="_blank">d202c26</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-12-01
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="batch" class="section level3">
 <h3>Batch</h3>
@@ -937,6 +1118,43 @@ names(colorSLOCond) &lt;- c(&quot;LN_immunized&quot;,&quot;LN_naive&quot;, &quot
   xlab(&quot;UMAP1&quot;) +
   ylab(&quot;UMAP2&quot;)</code></pre>
 <p><img src="figure/plotSubsetSpecificSignaturesSignaling.Rmd/Batch-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-Batch-1">
+Past versions of Batch-1.png
+</button>
+</p>
+<div id="fig-Batch-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/d202c26a3d47b21ce7a146a8a175c19cd9d5c2e8/docs/figure/plotSubsetSpecificSignaturesSignaling.Rmd/Batch-1.png" target="_blank">d202c26</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-12-01
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="cond" class="section level3">
 <h3>Cond</h3>
@@ -947,6 +1165,43 @@ names(colorSLOCond) &lt;- c(&quot;LN_immunized&quot;,&quot;LN_naive&quot;, &quot
   xlab(&quot;UMAP1&quot;) +
   ylab(&quot;UMAP2&quot;)</code></pre>
 <p><img src="figure/plotSubsetSpecificSignaturesSignaling.Rmd/Cond-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-Cond-1">
+Past versions of Cond-1.png
+</button>
+</p>
+<div id="fig-Cond-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/d202c26a3d47b21ce7a146a8a175c19cd9d5c2e8/docs/figure/plotSubsetSpecificSignaturesSignaling.Rmd/Cond-1.png" target="_blank">d202c26</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-12-01
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="slo-plus-cond" class="section level3">
 <h3>SLO plus cond</h3>
@@ -957,10 +1212,84 @@ names(colorSLOCond) &lt;- c(&quot;LN_immunized&quot;,&quot;LN_naive&quot;, &quot
   xlab(&quot;UMAP1&quot;) +
   ylab(&quot;UMAP2&quot;)</code></pre>
 <p><img src="figure/plotSubsetSpecificSignaturesSignaling.Rmd/SLO%20plus%20cond-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-SLO-plus-cond-1">
+Past versions of “SLO plus cond-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-SLO-plus-cond-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/d202c26a3d47b21ce7a146a8a175c19cd9d5c2e8/docs/figure/plotSubsetSpecificSignaturesSignaling.Rmd/SLO plus cond-1.png" target="_blank">d202c26</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-12-01
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>DimPlot(seurat, reduction = &quot;umap&quot;,cols=colorSLOCond,group.by = &quot;SLO_plus_cond&quot;,
         pt.size=0.6)+
   theme_void()</code></pre>
 <p><img src="figure/plotSubsetSpecificSignaturesSignaling.Rmd/SLO%20plus%20cond-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-SLO-plus-cond-2">
+Past versions of “SLO plus cond-2.png”
+</button>
+</p>
+<div id="fig-no-spaces-SLO-plus-cond-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/d202c26a3d47b21ce7a146a8a175c19cd9d5c2e8/docs/figure/plotSubsetSpecificSignaturesSignaling.Rmd/SLO plus cond-2.png" target="_blank">d202c26</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-12-01
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 </div>
 <div id="vis-subset-specific-gene-signatures" class="section level2">
@@ -975,19 +1304,19 @@ genes &lt;- data.frame(geneID=rownames(seurat)) %&gt;%
   mutate(gene=gsub(&quot;^.*\\.&quot;, &quot;&quot;, geneID))
 signDat &lt;- signDat %&gt;% left_join(.,genes, by=&quot;gene&quot;)</code></pre>
 </div>
-<div id="project-sign-umap-cut-3" class="section level3 tabset">
-<h3 class="tabset">project sign umap cut 3</h3>
+<div id="project-sign-umap-cut-2.5" class="section level3 tabset">
+<h3 class="tabset">project sign umap cut 2.5</h3>
 <pre class="r"><code>allSign &lt;- unique(signDat$signSubset)
 sce &lt;- as.SingleCellExperiment(seurat)
 
-cutOff &lt;- 3
+cutOff &lt;- 2.5
 pal = colorRampPalette(c(&quot;#053061&quot;, &quot;#2166ac&quot;, &quot;#f7f7f7&quot;,
                          &quot;#f4a582&quot;, &quot;#b2183c&quot;, &quot;#85122d&quot;))(100)
 sc &lt;- scale_colour_gradientn(colours = pal, limits=c(0, cutOff))
 
 template_gs &lt;- c(
-    &quot;#### {{sig}} cut3\n&quot;,
-    &quot;```{r sig expr cut3 {{sig}}, fig.height=6, fig.width=8}\n&quot;,
+    &quot;#### {{sig}} cut25\n&quot;,
+    &quot;```{r sig expr cut25 {{sig}}, fig.height=6, fig.width=8}\n&quot;,
     &quot;sign &lt;- as.character(&#39;{{sig}}&#39;)&quot;,
     &quot;signGenes &lt;- signDat %&gt;% dplyr::filter(signSubset == sign)&quot;,
     &quot;sceSub &lt;- sce[which(rownames(sce) %in% signGenes$geneID),]&quot;,
@@ -1011,8 +1340,8 @@ template_gs &lt;- c(
 plots_gs &lt;- lapply(allSign, 
   function(sig) knitr::knit_expand(text = template_gs)
 )</code></pre>
-<div id="regulation-of-lipid-biosynthetic-process_lzfdc-cut3" class="section level4">
-<h4>regulation of lipid biosynthetic process_LZFDC cut3</h4>
+<div id="regulation-of-lipid-biosynthetic-process_lzfdc-cut25" class="section level4">
+<h4>regulation of lipid biosynthetic process_LZFDC cut25</h4>
 <pre class="r"><code>sign &lt;- as.character(&#39;regulation of lipid biosynthetic process_LZFDC&#39;)
 signGenes &lt;- signDat %&gt;% dplyr::filter(signSubset == sign)
 sceSub &lt;- sce[which(rownames(sce) %in% signGenes$geneID),]
@@ -1029,10 +1358,10 @@ p &lt;- visGroup_adapt(sceSub, &#39;sign&#39;, dim_red = &#39;UMAP&#39;) +
           axis.ticks = element_blank()) +
     labs(x=&#39;Dimension 1&#39;, y=&#39;Dimension 2&#39;)
 p</code></pre>
-<p><img src="figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr cut3 regulation of lipid biosynthetic process_LZFDC-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p><img src="figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr cut25 regulation of lipid biosynthetic process_LZFDC-1.png" width="768" style="display: block; margin: auto;" /></p>
 </div>
-<div id="i-kappab-kinasenf-kappab-signaling_lzfdc-cut3" class="section level4">
-<h4>I-kappaB kinase/NF-kappaB signaling_LZFDC cut3</h4>
+<div id="i-kappab-kinasenf-kappab-signaling_lzfdc-cut25" class="section level4">
+<h4>I-kappaB kinase/NF-kappaB signaling_LZFDC cut25</h4>
 <pre class="r"><code>sign &lt;- as.character(&#39;I-kappaB kinase/NF-kappaB signaling_LZFDC&#39;)
 signGenes &lt;- signDat %&gt;% dplyr::filter(signSubset == sign)
 sceSub &lt;- sce[which(rownames(sce) %in% signGenes$geneID),]
@@ -1049,10 +1378,10 @@ p &lt;- visGroup_adapt(sceSub, &#39;sign&#39;, dim_red = &#39;UMAP&#39;) +
           axis.ticks = element_blank()) +
     labs(x=&#39;Dimension 1&#39;, y=&#39;Dimension 2&#39;)
 p</code></pre>
-<p><img src="figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr cut3 I-kappaB kinase/NF-kappaB signaling_LZFDC-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p><img src="figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr cut25 I-kappaB kinase/NF-kappaB signaling_LZFDC-1.png" width="768" style="display: block; margin: auto;" /></p>
 </div>
-<div id="response-to-transforming-growth-factor-beta_lzfdc-cut3" class="section level4">
-<h4>response to transforming growth factor beta_LZFDC cut3</h4>
+<div id="response-to-transforming-growth-factor-beta_lzfdc-cut25" class="section level4">
+<h4>response to transforming growth factor beta_LZFDC cut25</h4>
 <pre class="r"><code>sign &lt;- as.character(&#39;response to transforming growth factor beta_LZFDC&#39;)
 signGenes &lt;- signDat %&gt;% dplyr::filter(signSubset == sign)
 sceSub &lt;- sce[which(rownames(sce) %in% signGenes$geneID),]
@@ -1069,10 +1398,30 @@ p &lt;- visGroup_adapt(sceSub, &#39;sign&#39;, dim_red = &#39;UMAP&#39;) +
           axis.ticks = element_blank()) +
     labs(x=&#39;Dimension 1&#39;, y=&#39;Dimension 2&#39;)
 p</code></pre>
-<p><img src="figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr cut3 response to transforming growth factor beta_LZFDC-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p><img src="figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr cut25 response to transforming growth factor beta_LZFDC-1.png" width="768" style="display: block; margin: auto;" /></p>
 </div>
-<div id="fatty-acid-metabolic-process_dzfdc-cut3" class="section level4">
-<h4>fatty acid metabolic process_DZFDC cut3</h4>
+<div id="chondrocyte-differentiation_lzfdc-cut25" class="section level4">
+<h4>chondrocyte differentiation_LZFDC cut25</h4>
+<pre class="r"><code>sign &lt;- as.character(&#39;chondrocyte differentiation_LZFDC&#39;)
+signGenes &lt;- signDat %&gt;% dplyr::filter(signSubset == sign)
+sceSub &lt;- sce[which(rownames(sce) %in% signGenes$geneID),]
+cntMat &lt;- rowSums(t(as.matrix(
+    sceSub@assays@data$logcounts)))/nrow(signGenes)
+sceSub$sign &lt;- cntMat
+sceSub$sign[which(sceSub$sign &gt; cutOff)] &lt;- cutOff
+p &lt;- visGroup_adapt(sceSub, &#39;sign&#39;, dim_red = &#39;UMAP&#39;) +
+    sc +
+    guides(colour = guide_colourbar(title = &#39;&#39;)) +
+    ggtitle(paste0(sign, &#39; signature&#39;)) +
+    theme_classic() + 
+    theme(axis.text = element_blank(),
+          axis.ticks = element_blank()) +
+    labs(x=&#39;Dimension 1&#39;, y=&#39;Dimension 2&#39;)
+p</code></pre>
+<p><img src="figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr cut25 chondrocyte differentiation_LZFDC-1.png" width="768" style="display: block; margin: auto;" /></p>
+</div>
+<div id="fatty-acid-metabolic-process_dzfdc-cut25" class="section level4">
+<h4>fatty acid metabolic process_DZFDC cut25</h4>
 <pre class="r"><code>sign &lt;- as.character(&#39;fatty acid metabolic process_DZFDC&#39;)
 signGenes &lt;- signDat %&gt;% dplyr::filter(signSubset == sign)
 sceSub &lt;- sce[which(rownames(sce) %in% signGenes$geneID),]
@@ -1089,10 +1438,10 @@ p &lt;- visGroup_adapt(sceSub, &#39;sign&#39;, dim_red = &#39;UMAP&#39;) +
           axis.ticks = element_blank()) +
     labs(x=&#39;Dimension 1&#39;, y=&#39;Dimension 2&#39;)
 p</code></pre>
-<p><img src="figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr cut3 fatty acid metabolic process_DZFDC-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p><img src="figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr cut25 fatty acid metabolic process_DZFDC-1.png" width="768" style="display: block; margin: auto;" /></p>
 </div>
-<div id="gliogenesis_dzfdc-cut3" class="section level4">
-<h4>gliogenesis_DZFDC cut3</h4>
+<div id="gliogenesis_dzfdc-cut25" class="section level4">
+<h4>gliogenesis_DZFDC cut25</h4>
 <pre class="r"><code>sign &lt;- as.character(&#39;gliogenesis_DZFDC&#39;)
 signGenes &lt;- signDat %&gt;% dplyr::filter(signSubset == sign)
 sceSub &lt;- sce[which(rownames(sce) %in% signGenes$geneID),]
@@ -1109,10 +1458,10 @@ p &lt;- visGroup_adapt(sceSub, &#39;sign&#39;, dim_red = &#39;UMAP&#39;) +
           axis.ticks = element_blank()) +
     labs(x=&#39;Dimension 1&#39;, y=&#39;Dimension 2&#39;)
 p</code></pre>
-<p><img src="figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr cut3 gliogenesis_DZFDC-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p><img src="figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr cut25 gliogenesis_DZFDC-1.png" width="768" style="display: block; margin: auto;" /></p>
 </div>
-<div id="cellular-response-to-fibroblast-growth-factor-stimulus_mrc-cut3" class="section level4">
-<h4>cellular response to fibroblast growth factor stimulus_MRC cut3</h4>
+<div id="cellular-response-to-fibroblast-growth-factor-stimulus_mrc-cut25" class="section level4">
+<h4>cellular response to fibroblast growth factor stimulus_MRC cut25</h4>
 <pre class="r"><code>sign &lt;- as.character(&#39;cellular response to fibroblast growth factor stimulus_MRC&#39;)
 signGenes &lt;- signDat %&gt;% dplyr::filter(signSubset == sign)
 sceSub &lt;- sce[which(rownames(sce) %in% signGenes$geneID),]
@@ -1129,10 +1478,10 @@ p &lt;- visGroup_adapt(sceSub, &#39;sign&#39;, dim_red = &#39;UMAP&#39;) +
           axis.ticks = element_blank()) +
     labs(x=&#39;Dimension 1&#39;, y=&#39;Dimension 2&#39;)
 p</code></pre>
-<p><img src="figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr cut3 cellular response to fibroblast growth factor stimulus_MRC-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p><img src="figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr cut25 cellular response to fibroblast growth factor stimulus_MRC-1.png" width="768" style="display: block; margin: auto;" /></p>
 </div>
-<div id="regulation-of-angiogenesis_tbrc-cut3" class="section level4">
-<h4>regulation of angiogenesis_TBRC cut3</h4>
+<div id="regulation-of-angiogenesis_tbrc-cut25" class="section level4">
+<h4>regulation of angiogenesis_TBRC cut25</h4>
 <pre class="r"><code>sign &lt;- as.character(&#39;regulation of angiogenesis_TBRC&#39;)
 signGenes &lt;- signDat %&gt;% dplyr::filter(signSubset == sign)
 sceSub &lt;- sce[which(rownames(sce) %in% signGenes$geneID),]
@@ -1149,10 +1498,10 @@ p &lt;- visGroup_adapt(sceSub, &#39;sign&#39;, dim_red = &#39;UMAP&#39;) +
           axis.ticks = element_blank()) +
     labs(x=&#39;Dimension 1&#39;, y=&#39;Dimension 2&#39;)
 p</code></pre>
-<p><img src="figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr cut3 regulation of angiogenesis_TBRC-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p><img src="figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr cut25 regulation of angiogenesis_TBRC-1.png" width="768" style="display: block; margin: auto;" /></p>
 </div>
-<div id="response-to-interferon-alpha_tbrc-cut3" class="section level4">
-<h4>response to interferon-alpha_TBRC cut3</h4>
+<div id="response-to-interferon-alpha_tbrc-cut25" class="section level4">
+<h4>response to interferon-alpha_TBRC cut25</h4>
 <pre class="r"><code>sign &lt;- as.character(&#39;response to interferon-alpha_TBRC&#39;)
 signGenes &lt;- signDat %&gt;% dplyr::filter(signSubset == sign)
 sceSub &lt;- sce[which(rownames(sce) %in% signGenes$geneID),]
@@ -1169,10 +1518,10 @@ p &lt;- visGroup_adapt(sceSub, &#39;sign&#39;, dim_red = &#39;UMAP&#39;) +
           axis.ticks = element_blank()) +
     labs(x=&#39;Dimension 1&#39;, y=&#39;Dimension 2&#39;)
 p</code></pre>
-<p><img src="figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr cut3 response to interferon-alpha_TBRC-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p><img src="figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr cut25 response to interferon-alpha_TBRC-1.png" width="768" style="display: block; margin: auto;" /></p>
 </div>
-<div id="organ-growth_prc-cut3" class="section level4">
-<h4>organ growth_PRC cut3</h4>
+<div id="organ-growth_prc-cut25" class="section level4">
+<h4>organ growth_PRC cut25</h4>
 <pre class="r"><code>sign &lt;- as.character(&#39;organ growth_PRC&#39;)
 signGenes &lt;- signDat %&gt;% dplyr::filter(signSubset == sign)
 sceSub &lt;- sce[which(rownames(sce) %in% signGenes$geneID),]
@@ -1189,10 +1538,10 @@ p &lt;- visGroup_adapt(sceSub, &#39;sign&#39;, dim_red = &#39;UMAP&#39;) +
           axis.ticks = element_blank()) +
     labs(x=&#39;Dimension 1&#39;, y=&#39;Dimension 2&#39;)
 p</code></pre>
-<p><img src="figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr cut3 organ growth_PRC-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p><img src="figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr cut25 organ growth_PRC-1.png" width="768" style="display: block; margin: auto;" /></p>
 </div>
-<div id="regulation-of-angiogenesis_prc-cut3" class="section level4">
-<h4>regulation of angiogenesis_PRC cut3</h4>
+<div id="regulation-of-angiogenesis_prc-cut25" class="section level4">
+<h4>regulation of angiogenesis_PRC cut25</h4>
 <pre class="r"><code>sign &lt;- as.character(&#39;regulation of angiogenesis_PRC&#39;)
 signGenes &lt;- signDat %&gt;% dplyr::filter(signSubset == sign)
 sceSub &lt;- sce[which(rownames(sce) %in% signGenes$geneID),]
@@ -1209,11 +1558,11 @@ p &lt;- visGroup_adapt(sceSub, &#39;sign&#39;, dim_red = &#39;UMAP&#39;) +
           axis.ticks = element_blank()) +
     labs(x=&#39;Dimension 1&#39;, y=&#39;Dimension 2&#39;)
 p</code></pre>
-<p><img src="figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr cut3 regulation of angiogenesis_PRC-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p><img src="figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr cut25 regulation of angiogenesis_PRC-1.png" width="768" style="display: block; margin: auto;" /></p>
 </div>
 </div>
-<div id="project-sign-dm-cut-3" class="section level3 tabset">
-<h3 class="tabset">project sign DM cut 3</h3>
+<div id="project-sign-dm-cut-2.5" class="section level3 tabset">
+<h3 class="tabset">project sign DM cut 2.5</h3>
 <pre class="r"><code>seurat &lt;- readRDS(file=paste0(basedir, 
                               &quot;/data/folBRC_allSLO_seurat.rds&quot;))
 
@@ -1227,7 +1576,7 @@ p &lt;- visGroup_adapt(sce, &#39;SLO&#39;, dim_red = &#39;DiffusionMap&#39;) +
           axis.ticks = element_blank()) +
     labs(x=&#39;Dimension 1&#39;, y=&#39;Dimension 2&#39;)
 p</code></pre>
-<p><img src="figure/plotSubsetSpecificSignaturesSignaling.Rmd/project%20sign%20DM%20cut3-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p><img src="figure/plotSubsetSpecificSignaturesSignaling.Rmd/project%20sign%20DM%20cut25-1.png" width="768" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>p &lt;- visGroup_adapt(sce, &#39;clusterLabel&#39;, dim_red = &#39;DiffusionMap&#39;) +
     scale_colour_manual(values = colPal) +
     theme_classic() + 
@@ -1235,10 +1584,10 @@ p</code></pre>
           axis.ticks = element_blank()) +
     labs(x=&#39;Dimension 1&#39;, y=&#39;Dimension 2&#39;)
 p</code></pre>
-<p><img src="figure/plotSubsetSpecificSignaturesSignaling.Rmd/project%20sign%20DM%20cut3-2.png" width="768" style="display: block; margin: auto;" /></p>
+<p><img src="figure/plotSubsetSpecificSignaturesSignaling.Rmd/project%20sign%20DM%20cut25-2.png" width="768" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>template_gs &lt;- c(
-    &quot;#### {{sig}} cut3\n&quot;,
-    &quot;```{r sig expr DM cut3 {{sig}}, fig.height=6, fig.width=8}\n&quot;,
+    &quot;#### {{sig}} cut25\n&quot;,
+    &quot;```{r sig expr DM cut25 {{sig}}, fig.height=6, fig.width=8}\n&quot;,
     &quot;sign &lt;- as.character(&#39;{{sig}}&#39;)&quot;,
     &quot;signGenes &lt;- signDat %&gt;% dplyr::filter(signSubset == sign)&quot;,
     &quot;sceSub &lt;- sce[which(rownames(sce) %in% signGenes$geneID),]&quot;,
@@ -1262,8 +1611,8 @@ p</code></pre>
 plots_gs &lt;- lapply(allSign, 
   function(sig) knitr::knit_expand(text = template_gs)
 )</code></pre>
-<div id="regulation-of-lipid-biosynthetic-process_lzfdc-cut3-1" class="section level4">
-<h4>regulation of lipid biosynthetic process_LZFDC cut3</h4>
+<div id="regulation-of-lipid-biosynthetic-process_lzfdc-cut25-1" class="section level4">
+<h4>regulation of lipid biosynthetic process_LZFDC cut25</h4>
 <pre class="r"><code>sign &lt;- as.character(&#39;regulation of lipid biosynthetic process_LZFDC&#39;)
 signGenes &lt;- signDat %&gt;% dplyr::filter(signSubset == sign)
 sceSub &lt;- sce[which(rownames(sce) %in% signGenes$geneID),]
@@ -1280,10 +1629,10 @@ p &lt;- visGroup_adapt(sceSub, &#39;sign&#39;, dim_red = &#39;DiffusionMap&#39;)
           axis.ticks = element_blank()) +
     labs(x=&#39;Dimension 1&#39;, y=&#39;Dimension 2&#39;)
 p</code></pre>
-<p><img src="figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut3 regulation of lipid biosynthetic process_LZFDC-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p><img src="figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut25 regulation of lipid biosynthetic process_LZFDC-1.png" width="768" style="display: block; margin: auto;" /></p>
 </div>
-<div id="i-kappab-kinasenf-kappab-signaling_lzfdc-cut3-1" class="section level4">
-<h4>I-kappaB kinase/NF-kappaB signaling_LZFDC cut3</h4>
+<div id="i-kappab-kinasenf-kappab-signaling_lzfdc-cut25-1" class="section level4">
+<h4>I-kappaB kinase/NF-kappaB signaling_LZFDC cut25</h4>
 <pre class="r"><code>sign &lt;- as.character(&#39;I-kappaB kinase/NF-kappaB signaling_LZFDC&#39;)
 signGenes &lt;- signDat %&gt;% dplyr::filter(signSubset == sign)
 sceSub &lt;- sce[which(rownames(sce) %in% signGenes$geneID),]
@@ -1300,10 +1649,10 @@ p &lt;- visGroup_adapt(sceSub, &#39;sign&#39;, dim_red = &#39;DiffusionMap&#39;)
           axis.ticks = element_blank()) +
     labs(x=&#39;Dimension 1&#39;, y=&#39;Dimension 2&#39;)
 p</code></pre>
-<p><img src="figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut3 I-kappaB kinase/NF-kappaB signaling_LZFDC-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p><img src="figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut25 I-kappaB kinase/NF-kappaB signaling_LZFDC-1.png" width="768" style="display: block; margin: auto;" /></p>
 </div>
-<div id="response-to-transforming-growth-factor-beta_lzfdc-cut3-1" class="section level4">
-<h4>response to transforming growth factor beta_LZFDC cut3</h4>
+<div id="response-to-transforming-growth-factor-beta_lzfdc-cut25-1" class="section level4">
+<h4>response to transforming growth factor beta_LZFDC cut25</h4>
 <pre class="r"><code>sign &lt;- as.character(&#39;response to transforming growth factor beta_LZFDC&#39;)
 signGenes &lt;- signDat %&gt;% dplyr::filter(signSubset == sign)
 sceSub &lt;- sce[which(rownames(sce) %in% signGenes$geneID),]
@@ -1320,10 +1669,30 @@ p &lt;- visGroup_adapt(sceSub, &#39;sign&#39;, dim_red = &#39;DiffusionMap&#39;)
           axis.ticks = element_blank()) +
     labs(x=&#39;Dimension 1&#39;, y=&#39;Dimension 2&#39;)
 p</code></pre>
-<p><img src="figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut3 response to transforming growth factor beta_LZFDC-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p><img src="figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut25 response to transforming growth factor beta_LZFDC-1.png" width="768" style="display: block; margin: auto;" /></p>
 </div>
-<div id="fatty-acid-metabolic-process_dzfdc-cut3-1" class="section level4">
-<h4>fatty acid metabolic process_DZFDC cut3</h4>
+<div id="chondrocyte-differentiation_lzfdc-cut25-1" class="section level4">
+<h4>chondrocyte differentiation_LZFDC cut25</h4>
+<pre class="r"><code>sign &lt;- as.character(&#39;chondrocyte differentiation_LZFDC&#39;)
+signGenes &lt;- signDat %&gt;% dplyr::filter(signSubset == sign)
+sceSub &lt;- sce[which(rownames(sce) %in% signGenes$geneID),]
+cntMat &lt;- rowSums(t(as.matrix(
+    sceSub@assays@data$logcounts)))/nrow(signGenes)
+sceSub$sign &lt;- cntMat
+sceSub$sign[which(sceSub$sign &gt; cutOff)] &lt;- cutOff
+p &lt;- visGroup_adapt(sceSub, &#39;sign&#39;, dim_red = &#39;DiffusionMap&#39;) +
+    sc +
+    guides(colour = guide_colourbar(title = &#39;&#39;)) +
+    ggtitle(paste0(sign, &#39; signature&#39;)) +
+    theme_classic() + 
+    theme(axis.text = element_blank(),
+          axis.ticks = element_blank()) +
+    labs(x=&#39;Dimension 1&#39;, y=&#39;Dimension 2&#39;)
+p</code></pre>
+<p><img src="figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut25 chondrocyte differentiation_LZFDC-1.png" width="768" style="display: block; margin: auto;" /></p>
+</div>
+<div id="fatty-acid-metabolic-process_dzfdc-cut25-1" class="section level4">
+<h4>fatty acid metabolic process_DZFDC cut25</h4>
 <pre class="r"><code>sign &lt;- as.character(&#39;fatty acid metabolic process_DZFDC&#39;)
 signGenes &lt;- signDat %&gt;% dplyr::filter(signSubset == sign)
 sceSub &lt;- sce[which(rownames(sce) %in% signGenes$geneID),]
@@ -1340,10 +1709,10 @@ p &lt;- visGroup_adapt(sceSub, &#39;sign&#39;, dim_red = &#39;DiffusionMap&#39;)
           axis.ticks = element_blank()) +
     labs(x=&#39;Dimension 1&#39;, y=&#39;Dimension 2&#39;)
 p</code></pre>
-<p><img src="figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut3 fatty acid metabolic process_DZFDC-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p><img src="figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut25 fatty acid metabolic process_DZFDC-1.png" width="768" style="display: block; margin: auto;" /></p>
 </div>
-<div id="gliogenesis_dzfdc-cut3-1" class="section level4">
-<h4>gliogenesis_DZFDC cut3</h4>
+<div id="gliogenesis_dzfdc-cut25-1" class="section level4">
+<h4>gliogenesis_DZFDC cut25</h4>
 <pre class="r"><code>sign &lt;- as.character(&#39;gliogenesis_DZFDC&#39;)
 signGenes &lt;- signDat %&gt;% dplyr::filter(signSubset == sign)
 sceSub &lt;- sce[which(rownames(sce) %in% signGenes$geneID),]
@@ -1360,10 +1729,10 @@ p &lt;- visGroup_adapt(sceSub, &#39;sign&#39;, dim_red = &#39;DiffusionMap&#39;)
           axis.ticks = element_blank()) +
     labs(x=&#39;Dimension 1&#39;, y=&#39;Dimension 2&#39;)
 p</code></pre>
-<p><img src="figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut3 gliogenesis_DZFDC-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p><img src="figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut25 gliogenesis_DZFDC-1.png" width="768" style="display: block; margin: auto;" /></p>
 </div>
-<div id="cellular-response-to-fibroblast-growth-factor-stimulus_mrc-cut3-1" class="section level4">
-<h4>cellular response to fibroblast growth factor stimulus_MRC cut3</h4>
+<div id="cellular-response-to-fibroblast-growth-factor-stimulus_mrc-cut25-1" class="section level4">
+<h4>cellular response to fibroblast growth factor stimulus_MRC cut25</h4>
 <pre class="r"><code>sign &lt;- as.character(&#39;cellular response to fibroblast growth factor stimulus_MRC&#39;)
 signGenes &lt;- signDat %&gt;% dplyr::filter(signSubset == sign)
 sceSub &lt;- sce[which(rownames(sce) %in% signGenes$geneID),]
@@ -1380,10 +1749,10 @@ p &lt;- visGroup_adapt(sceSub, &#39;sign&#39;, dim_red = &#39;DiffusionMap&#39;)
           axis.ticks = element_blank()) +
     labs(x=&#39;Dimension 1&#39;, y=&#39;Dimension 2&#39;)
 p</code></pre>
-<p><img src="figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut3 cellular response to fibroblast growth factor stimulus_MRC-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p><img src="figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut25 cellular response to fibroblast growth factor stimulus_MRC-1.png" width="768" style="display: block; margin: auto;" /></p>
 </div>
-<div id="regulation-of-angiogenesis_tbrc-cut3-1" class="section level4">
-<h4>regulation of angiogenesis_TBRC cut3</h4>
+<div id="regulation-of-angiogenesis_tbrc-cut25-1" class="section level4">
+<h4>regulation of angiogenesis_TBRC cut25</h4>
 <pre class="r"><code>sign &lt;- as.character(&#39;regulation of angiogenesis_TBRC&#39;)
 signGenes &lt;- signDat %&gt;% dplyr::filter(signSubset == sign)
 sceSub &lt;- sce[which(rownames(sce) %in% signGenes$geneID),]
@@ -1400,10 +1769,10 @@ p &lt;- visGroup_adapt(sceSub, &#39;sign&#39;, dim_red = &#39;DiffusionMap&#39;)
           axis.ticks = element_blank()) +
     labs(x=&#39;Dimension 1&#39;, y=&#39;Dimension 2&#39;)
 p</code></pre>
-<p><img src="figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut3 regulation of angiogenesis_TBRC-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p><img src="figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut25 regulation of angiogenesis_TBRC-1.png" width="768" style="display: block; margin: auto;" /></p>
 </div>
-<div id="response-to-interferon-alpha_tbrc-cut3-1" class="section level4">
-<h4>response to interferon-alpha_TBRC cut3</h4>
+<div id="response-to-interferon-alpha_tbrc-cut25-1" class="section level4">
+<h4>response to interferon-alpha_TBRC cut25</h4>
 <pre class="r"><code>sign &lt;- as.character(&#39;response to interferon-alpha_TBRC&#39;)
 signGenes &lt;- signDat %&gt;% dplyr::filter(signSubset == sign)
 sceSub &lt;- sce[which(rownames(sce) %in% signGenes$geneID),]
@@ -1420,10 +1789,10 @@ p &lt;- visGroup_adapt(sceSub, &#39;sign&#39;, dim_red = &#39;DiffusionMap&#39;)
           axis.ticks = element_blank()) +
     labs(x=&#39;Dimension 1&#39;, y=&#39;Dimension 2&#39;)
 p</code></pre>
-<p><img src="figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut3 response to interferon-alpha_TBRC-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p><img src="figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut25 response to interferon-alpha_TBRC-1.png" width="768" style="display: block; margin: auto;" /></p>
 </div>
-<div id="organ-growth_prc-cut3-1" class="section level4">
-<h4>organ growth_PRC cut3</h4>
+<div id="organ-growth_prc-cut25-1" class="section level4">
+<h4>organ growth_PRC cut25</h4>
 <pre class="r"><code>sign &lt;- as.character(&#39;organ growth_PRC&#39;)
 signGenes &lt;- signDat %&gt;% dplyr::filter(signSubset == sign)
 sceSub &lt;- sce[which(rownames(sce) %in% signGenes$geneID),]
@@ -1440,10 +1809,10 @@ p &lt;- visGroup_adapt(sceSub, &#39;sign&#39;, dim_red = &#39;DiffusionMap&#39;)
           axis.ticks = element_blank()) +
     labs(x=&#39;Dimension 1&#39;, y=&#39;Dimension 2&#39;)
 p</code></pre>
-<p><img src="figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut3 organ growth_PRC-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p><img src="figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut25 organ growth_PRC-1.png" width="768" style="display: block; margin: auto;" /></p>
 </div>
-<div id="regulation-of-angiogenesis_prc-cut3-1" class="section level4">
-<h4>regulation of angiogenesis_PRC cut3</h4>
+<div id="regulation-of-angiogenesis_prc-cut25-1" class="section level4">
+<h4>regulation of angiogenesis_PRC cut25</h4>
 <pre class="r"><code>sign &lt;- as.character(&#39;regulation of angiogenesis_PRC&#39;)
 signGenes &lt;- signDat %&gt;% dplyr::filter(signSubset == sign)
 sceSub &lt;- sce[which(rownames(sce) %in% signGenes$geneID),]
@@ -1460,7 +1829,7 @@ p &lt;- visGroup_adapt(sceSub, &#39;sign&#39;, dim_red = &#39;DiffusionMap&#39;)
           axis.ticks = element_blank()) +
     labs(x=&#39;Dimension 1&#39;, y=&#39;Dimension 2&#39;)
 p</code></pre>
-<p><img src="figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut3 regulation of angiogenesis_PRC-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p><img src="figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut25 regulation of angiogenesis_PRC-1.png" width="768" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="project-sign-dm-cut-2" class="section level3 tabset">
@@ -1515,6 +1884,43 @@ p &lt;- visGroup_adapt(sceSub, &#39;sign&#39;, dim_red = &#39;DiffusionMap&#39;)
     labs(x=&#39;Dimension 1&#39;, y=&#39;Dimension 2&#39;)
 p</code></pre>
 <p><img src="figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut2 regulation of lipid biosynthetic process_LZFDC cut 2-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-sig-expr-DM-cut2-regulation-of-lipid-biosynthetic-process_LZFDC-cut-2-1">
+Past versions of “sig expr DM cut2 regulation of lipid biosynthetic process_LZFDC cut 2-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-sig-expr-DM-cut2-regulation-of-lipid-biosynthetic-process_LZFDC-cut-2-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/d202c26a3d47b21ce7a146a8a175c19cd9d5c2e8/figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut2 regulation of lipid biosynthetic process_LZFDC cut 2-1.png" target="_blank">d202c26</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-12-01
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="i-kappab-kinasenf-kappab-signaling_lzfdc-cut2" class="section level4">
 <h4>I-kappaB kinase/NF-kappaB signaling_LZFDC cut2</h4>
@@ -1535,6 +1941,43 @@ p &lt;- visGroup_adapt(sceSub, &#39;sign&#39;, dim_red = &#39;DiffusionMap&#39;)
     labs(x=&#39;Dimension 1&#39;, y=&#39;Dimension 2&#39;)
 p</code></pre>
 <p><img src="figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut2 I-kappaB kinase/NF-kappaB signaling_LZFDC cut 2-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-NF-kappaB-signaling_LZFDC-cut-2-1">
+Past versions of “NF-kappaB signaling_LZFDC cut 2-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-NF-kappaB-signaling_LZFDC-cut-2-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/d202c26a3d47b21ce7a146a8a175c19cd9d5c2e8/figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut2 I-kappaB kinase/NF-kappaB signaling_LZFDC cut 2-1.png" target="_blank">d202c26</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-12-01
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="response-to-transforming-growth-factor-beta_lzfdc-cut2" class="section level4">
 <h4>response to transforming growth factor beta_LZFDC cut2</h4>
@@ -1555,6 +1998,63 @@ p &lt;- visGroup_adapt(sceSub, &#39;sign&#39;, dim_red = &#39;DiffusionMap&#39;)
     labs(x=&#39;Dimension 1&#39;, y=&#39;Dimension 2&#39;)
 p</code></pre>
 <p><img src="figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut2 response to transforming growth factor beta_LZFDC cut 2-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-sig-expr-DM-cut2-response-to-transforming-growth-factor-beta_LZFDC-cut-2-1">
+Past versions of “sig expr DM cut2 response to transforming growth factor beta_LZFDC cut 2-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-sig-expr-DM-cut2-response-to-transforming-growth-factor-beta_LZFDC-cut-2-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/d202c26a3d47b21ce7a146a8a175c19cd9d5c2e8/figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut2 response to transforming growth factor beta_LZFDC cut 2-1.png" target="_blank">d202c26</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-12-01
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="chondrocyte-differentiation_lzfdc-cut2" class="section level4">
+<h4>chondrocyte differentiation_LZFDC cut2</h4>
+<pre class="r"><code>sign &lt;- as.character(&#39;chondrocyte differentiation_LZFDC&#39;)
+signGenes &lt;- signDat %&gt;% dplyr::filter(signSubset == sign)
+sceSub &lt;- sce[which(rownames(sce) %in% signGenes$geneID),]
+cntMat &lt;- rowSums(t(as.matrix(
+    sceSub@assays@data$logcounts)))/nrow(signGenes)
+sceSub$sign &lt;- cntMat
+sceSub$sign[which(sceSub$sign &gt; cutOff)] &lt;- cutOff
+p &lt;- visGroup_adapt(sceSub, &#39;sign&#39;, dim_red = &#39;DiffusionMap&#39;) +
+    sc +
+    guides(colour = guide_colourbar(title = &#39;&#39;)) +
+    ggtitle(paste0(sign, &#39; signature&#39;)) +
+    theme_classic() + 
+    theme(axis.text = element_blank(),
+          axis.ticks = element_blank()) +
+    labs(x=&#39;Dimension 1&#39;, y=&#39;Dimension 2&#39;)
+p</code></pre>
+<p><img src="figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut2 chondrocyte differentiation_LZFDC cut 2-1.png" width="768" style="display: block; margin: auto;" /></p>
 </div>
 <div id="fatty-acid-metabolic-process_dzfdc-cut2" class="section level4">
 <h4>fatty acid metabolic process_DZFDC cut2</h4>
@@ -1575,6 +2075,43 @@ p &lt;- visGroup_adapt(sceSub, &#39;sign&#39;, dim_red = &#39;DiffusionMap&#39;)
     labs(x=&#39;Dimension 1&#39;, y=&#39;Dimension 2&#39;)
 p</code></pre>
 <p><img src="figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut2 fatty acid metabolic process_DZFDC cut 2-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-sig-expr-DM-cut2-fatty-acid-metabolic-process_DZFDC-cut-2-1">
+Past versions of “sig expr DM cut2 fatty acid metabolic process_DZFDC cut 2-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-sig-expr-DM-cut2-fatty-acid-metabolic-process_DZFDC-cut-2-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/d202c26a3d47b21ce7a146a8a175c19cd9d5c2e8/figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut2 fatty acid metabolic process_DZFDC cut 2-1.png" target="_blank">d202c26</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-12-01
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="gliogenesis_dzfdc-cut2" class="section level4">
 <h4>gliogenesis_DZFDC cut2</h4>
@@ -1595,6 +2132,43 @@ p &lt;- visGroup_adapt(sceSub, &#39;sign&#39;, dim_red = &#39;DiffusionMap&#39;)
     labs(x=&#39;Dimension 1&#39;, y=&#39;Dimension 2&#39;)
 p</code></pre>
 <p><img src="figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut2 gliogenesis_DZFDC cut 2-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-sig-expr-DM-cut2-gliogenesis_DZFDC-cut-2-1">
+Past versions of “sig expr DM cut2 gliogenesis_DZFDC cut 2-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-sig-expr-DM-cut2-gliogenesis_DZFDC-cut-2-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/d202c26a3d47b21ce7a146a8a175c19cd9d5c2e8/figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut2 gliogenesis_DZFDC cut 2-1.png" target="_blank">d202c26</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-12-01
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="cellular-response-to-fibroblast-growth-factor-stimulus_mrc-cut2" class="section level4">
 <h4>cellular response to fibroblast growth factor stimulus_MRC cut2</h4>
@@ -1615,6 +2189,43 @@ p &lt;- visGroup_adapt(sceSub, &#39;sign&#39;, dim_red = &#39;DiffusionMap&#39;)
     labs(x=&#39;Dimension 1&#39;, y=&#39;Dimension 2&#39;)
 p</code></pre>
 <p><img src="figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut2 cellular response to fibroblast growth factor stimulus_MRC cut 2-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-sig-expr-DM-cut2-cellular-response-to-fibroblast-growth-factor-stimulus_MRC-cut-2-1">
+Past versions of “sig expr DM cut2 cellular response to fibroblast growth factor stimulus_MRC cut 2-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-sig-expr-DM-cut2-cellular-response-to-fibroblast-growth-factor-stimulus_MRC-cut-2-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/d202c26a3d47b21ce7a146a8a175c19cd9d5c2e8/figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut2 cellular response to fibroblast growth factor stimulus_MRC cut 2-1.png" target="_blank">d202c26</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-12-01
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="regulation-of-angiogenesis_tbrc-cut2" class="section level4">
 <h4>regulation of angiogenesis_TBRC cut2</h4>
@@ -1635,6 +2246,43 @@ p &lt;- visGroup_adapt(sceSub, &#39;sign&#39;, dim_red = &#39;DiffusionMap&#39;)
     labs(x=&#39;Dimension 1&#39;, y=&#39;Dimension 2&#39;)
 p</code></pre>
 <p><img src="figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut2 regulation of angiogenesis_TBRC cut 2-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-sig-expr-DM-cut2-regulation-of-angiogenesis_TBRC-cut-2-1">
+Past versions of “sig expr DM cut2 regulation of angiogenesis_TBRC cut 2-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-sig-expr-DM-cut2-regulation-of-angiogenesis_TBRC-cut-2-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/d202c26a3d47b21ce7a146a8a175c19cd9d5c2e8/figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut2 regulation of angiogenesis_TBRC cut 2-1.png" target="_blank">d202c26</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-12-01
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="response-to-interferon-alpha_tbrc-cut2" class="section level4">
 <h4>response to interferon-alpha_TBRC cut2</h4>
@@ -1655,6 +2303,43 @@ p &lt;- visGroup_adapt(sceSub, &#39;sign&#39;, dim_red = &#39;DiffusionMap&#39;)
     labs(x=&#39;Dimension 1&#39;, y=&#39;Dimension 2&#39;)
 p</code></pre>
 <p><img src="figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut2 response to interferon-alpha_TBRC cut 2-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-sig-expr-DM-cut2-response-to-interferon-alpha_TBRC-cut-2-1">
+Past versions of “sig expr DM cut2 response to interferon-alpha_TBRC cut 2-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-sig-expr-DM-cut2-response-to-interferon-alpha_TBRC-cut-2-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/d202c26a3d47b21ce7a146a8a175c19cd9d5c2e8/figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut2 response to interferon-alpha_TBRC cut 2-1.png" target="_blank">d202c26</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-12-01
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="organ-growth_prc-cut2" class="section level4">
 <h4>organ growth_PRC cut2</h4>
@@ -1675,6 +2360,43 @@ p &lt;- visGroup_adapt(sceSub, &#39;sign&#39;, dim_red = &#39;DiffusionMap&#39;)
     labs(x=&#39;Dimension 1&#39;, y=&#39;Dimension 2&#39;)
 p</code></pre>
 <p><img src="figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut2 organ growth_PRC cut 2-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-sig-expr-DM-cut2-organ-growth_PRC-cut-2-1">
+Past versions of “sig expr DM cut2 organ growth_PRC cut 2-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-sig-expr-DM-cut2-organ-growth_PRC-cut-2-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/d202c26a3d47b21ce7a146a8a175c19cd9d5c2e8/figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut2 organ growth_PRC cut 2-1.png" target="_blank">d202c26</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-12-01
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="regulation-of-angiogenesis_prc-cut2" class="section level4">
 <h4>regulation of angiogenesis_PRC cut2</h4>
@@ -1695,6 +2417,551 @@ p &lt;- visGroup_adapt(sceSub, &#39;sign&#39;, dim_red = &#39;DiffusionMap&#39;)
     labs(x=&#39;Dimension 1&#39;, y=&#39;Dimension 2&#39;)
 p</code></pre>
 <p><img src="figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut2 regulation of angiogenesis_PRC cut 2-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-sig-expr-DM-cut2-regulation-of-angiogenesis_PRC-cut-2-1">
+Past versions of “sig expr DM cut2 regulation of angiogenesis_PRC cut 2-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-sig-expr-DM-cut2-regulation-of-angiogenesis_PRC-cut-2-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/d202c26a3d47b21ce7a146a8a175c19cd9d5c2e8/figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut2 regulation of angiogenesis_PRC cut 2-1.png" target="_blank">d202c26</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-12-01
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div id="project-sign-dm-cut-15" class="section level3 tabset">
+<h3 class="tabset">project sign DM cut 15</h3>
+<pre class="r"><code>cutOff &lt;- 1.5
+pal = colorRampPalette(c(&quot;#053061&quot;, &quot;#2166ac&quot;,&quot;#f7f7f7&quot;,
+                         &quot;#f4a582&quot;, &quot;#b2183c&quot;, &quot;#85122d&quot;))(100)
+sc &lt;- scale_colour_gradientn(colours = pal, limits=c(0, cutOff))
+
+template_gs &lt;- c(
+    &quot;#### {{sig}} cut15\n&quot;,
+    &quot;```{r sig expr DM cut15 {{sig}} cut 15, fig.height=6, fig.width=8}\n&quot;,
+    &quot;sign &lt;- as.character(&#39;{{sig}}&#39;)&quot;,
+    &quot;signGenes &lt;- signDat %&gt;% dplyr::filter(signSubset == sign)&quot;,
+    &quot;sceSub &lt;- sce[which(rownames(sce) %in% signGenes$geneID),]&quot;,
+    &quot;cntMat &lt;- rowSums(t(as.matrix(
+    sceSub@assays@data$logcounts)))/nrow(signGenes)&quot;,
+    &quot;sceSub$sign &lt;- cntMat&quot;,
+    &quot;sceSub$sign[which(sceSub$sign &gt; cutOff)] &lt;- cutOff&quot;,
+    &quot;p &lt;- visGroup_adapt(sceSub, &#39;sign&#39;, dim_red = &#39;DiffusionMap&#39;) +
+    sc +
+    guides(colour = guide_colourbar(title = &#39;&#39;)) +
+    ggtitle(paste0(sign, &#39; signature&#39;)) +
+    theme_classic() + 
+    theme(axis.text = element_blank(),
+          axis.ticks = element_blank()) +
+    labs(x=&#39;Dimension 1&#39;, y=&#39;Dimension 2&#39;)&quot;,
+    &quot;p\n&quot;,
+    &quot;```\n&quot;,
+    &quot;\n&quot;
+)
+    
+plots_gs &lt;- lapply(allSign, 
+  function(sig) knitr::knit_expand(text = template_gs)
+)</code></pre>
+<div id="regulation-of-lipid-biosynthetic-process_lzfdc-cut15" class="section level4">
+<h4>regulation of lipid biosynthetic process_LZFDC cut15</h4>
+<pre class="r"><code>sign &lt;- as.character(&#39;regulation of lipid biosynthetic process_LZFDC&#39;)
+signGenes &lt;- signDat %&gt;% dplyr::filter(signSubset == sign)
+sceSub &lt;- sce[which(rownames(sce) %in% signGenes$geneID),]
+cntMat &lt;- rowSums(t(as.matrix(
+    sceSub@assays@data$logcounts)))/nrow(signGenes)
+sceSub$sign &lt;- cntMat
+sceSub$sign[which(sceSub$sign &gt; cutOff)] &lt;- cutOff
+p &lt;- visGroup_adapt(sceSub, &#39;sign&#39;, dim_red = &#39;DiffusionMap&#39;) +
+    sc +
+    guides(colour = guide_colourbar(title = &#39;&#39;)) +
+    ggtitle(paste0(sign, &#39; signature&#39;)) +
+    theme_classic() + 
+    theme(axis.text = element_blank(),
+          axis.ticks = element_blank()) +
+    labs(x=&#39;Dimension 1&#39;, y=&#39;Dimension 2&#39;)
+p</code></pre>
+<p><img src="figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut15 regulation of lipid biosynthetic process_LZFDC cut 15-1.png" width="768" style="display: block; margin: auto;" /></p>
+</div>
+<div id="i-kappab-kinasenf-kappab-signaling_lzfdc-cut15" class="section level4">
+<h4>I-kappaB kinase/NF-kappaB signaling_LZFDC cut15</h4>
+<pre class="r"><code>sign &lt;- as.character(&#39;I-kappaB kinase/NF-kappaB signaling_LZFDC&#39;)
+signGenes &lt;- signDat %&gt;% dplyr::filter(signSubset == sign)
+sceSub &lt;- sce[which(rownames(sce) %in% signGenes$geneID),]
+cntMat &lt;- rowSums(t(as.matrix(
+    sceSub@assays@data$logcounts)))/nrow(signGenes)
+sceSub$sign &lt;- cntMat
+sceSub$sign[which(sceSub$sign &gt; cutOff)] &lt;- cutOff
+p &lt;- visGroup_adapt(sceSub, &#39;sign&#39;, dim_red = &#39;DiffusionMap&#39;) +
+    sc +
+    guides(colour = guide_colourbar(title = &#39;&#39;)) +
+    ggtitle(paste0(sign, &#39; signature&#39;)) +
+    theme_classic() + 
+    theme(axis.text = element_blank(),
+          axis.ticks = element_blank()) +
+    labs(x=&#39;Dimension 1&#39;, y=&#39;Dimension 2&#39;)
+p</code></pre>
+<p><img src="figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut15 I-kappaB kinase/NF-kappaB signaling_LZFDC cut 15-1.png" width="768" style="display: block; margin: auto;" /></p>
+</div>
+<div id="response-to-transforming-growth-factor-beta_lzfdc-cut15" class="section level4">
+<h4>response to transforming growth factor beta_LZFDC cut15</h4>
+<pre class="r"><code>sign &lt;- as.character(&#39;response to transforming growth factor beta_LZFDC&#39;)
+signGenes &lt;- signDat %&gt;% dplyr::filter(signSubset == sign)
+sceSub &lt;- sce[which(rownames(sce) %in% signGenes$geneID),]
+cntMat &lt;- rowSums(t(as.matrix(
+    sceSub@assays@data$logcounts)))/nrow(signGenes)
+sceSub$sign &lt;- cntMat
+sceSub$sign[which(sceSub$sign &gt; cutOff)] &lt;- cutOff
+p &lt;- visGroup_adapt(sceSub, &#39;sign&#39;, dim_red = &#39;DiffusionMap&#39;) +
+    sc +
+    guides(colour = guide_colourbar(title = &#39;&#39;)) +
+    ggtitle(paste0(sign, &#39; signature&#39;)) +
+    theme_classic() + 
+    theme(axis.text = element_blank(),
+          axis.ticks = element_blank()) +
+    labs(x=&#39;Dimension 1&#39;, y=&#39;Dimension 2&#39;)
+p</code></pre>
+<p><img src="figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut15 response to transforming growth factor beta_LZFDC cut 15-1.png" width="768" style="display: block; margin: auto;" /></p>
+</div>
+<div id="chondrocyte-differentiation_lzfdc-cut15" class="section level4">
+<h4>chondrocyte differentiation_LZFDC cut15</h4>
+<pre class="r"><code>sign &lt;- as.character(&#39;chondrocyte differentiation_LZFDC&#39;)
+signGenes &lt;- signDat %&gt;% dplyr::filter(signSubset == sign)
+sceSub &lt;- sce[which(rownames(sce) %in% signGenes$geneID),]
+cntMat &lt;- rowSums(t(as.matrix(
+    sceSub@assays@data$logcounts)))/nrow(signGenes)
+sceSub$sign &lt;- cntMat
+sceSub$sign[which(sceSub$sign &gt; cutOff)] &lt;- cutOff
+p &lt;- visGroup_adapt(sceSub, &#39;sign&#39;, dim_red = &#39;DiffusionMap&#39;) +
+    sc +
+    guides(colour = guide_colourbar(title = &#39;&#39;)) +
+    ggtitle(paste0(sign, &#39; signature&#39;)) +
+    theme_classic() + 
+    theme(axis.text = element_blank(),
+          axis.ticks = element_blank()) +
+    labs(x=&#39;Dimension 1&#39;, y=&#39;Dimension 2&#39;)
+p</code></pre>
+<p><img src="figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut15 chondrocyte differentiation_LZFDC cut 15-1.png" width="768" style="display: block; margin: auto;" /></p>
+</div>
+<div id="fatty-acid-metabolic-process_dzfdc-cut15" class="section level4">
+<h4>fatty acid metabolic process_DZFDC cut15</h4>
+<pre class="r"><code>sign &lt;- as.character(&#39;fatty acid metabolic process_DZFDC&#39;)
+signGenes &lt;- signDat %&gt;% dplyr::filter(signSubset == sign)
+sceSub &lt;- sce[which(rownames(sce) %in% signGenes$geneID),]
+cntMat &lt;- rowSums(t(as.matrix(
+    sceSub@assays@data$logcounts)))/nrow(signGenes)
+sceSub$sign &lt;- cntMat
+sceSub$sign[which(sceSub$sign &gt; cutOff)] &lt;- cutOff
+p &lt;- visGroup_adapt(sceSub, &#39;sign&#39;, dim_red = &#39;DiffusionMap&#39;) +
+    sc +
+    guides(colour = guide_colourbar(title = &#39;&#39;)) +
+    ggtitle(paste0(sign, &#39; signature&#39;)) +
+    theme_classic() + 
+    theme(axis.text = element_blank(),
+          axis.ticks = element_blank()) +
+    labs(x=&#39;Dimension 1&#39;, y=&#39;Dimension 2&#39;)
+p</code></pre>
+<p><img src="figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut15 fatty acid metabolic process_DZFDC cut 15-1.png" width="768" style="display: block; margin: auto;" /></p>
+</div>
+<div id="gliogenesis_dzfdc-cut15" class="section level4">
+<h4>gliogenesis_DZFDC cut15</h4>
+<pre class="r"><code>sign &lt;- as.character(&#39;gliogenesis_DZFDC&#39;)
+signGenes &lt;- signDat %&gt;% dplyr::filter(signSubset == sign)
+sceSub &lt;- sce[which(rownames(sce) %in% signGenes$geneID),]
+cntMat &lt;- rowSums(t(as.matrix(
+    sceSub@assays@data$logcounts)))/nrow(signGenes)
+sceSub$sign &lt;- cntMat
+sceSub$sign[which(sceSub$sign &gt; cutOff)] &lt;- cutOff
+p &lt;- visGroup_adapt(sceSub, &#39;sign&#39;, dim_red = &#39;DiffusionMap&#39;) +
+    sc +
+    guides(colour = guide_colourbar(title = &#39;&#39;)) +
+    ggtitle(paste0(sign, &#39; signature&#39;)) +
+    theme_classic() + 
+    theme(axis.text = element_blank(),
+          axis.ticks = element_blank()) +
+    labs(x=&#39;Dimension 1&#39;, y=&#39;Dimension 2&#39;)
+p</code></pre>
+<p><img src="figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut15 gliogenesis_DZFDC cut 15-1.png" width="768" style="display: block; margin: auto;" /></p>
+</div>
+<div id="cellular-response-to-fibroblast-growth-factor-stimulus_mrc-cut15" class="section level4">
+<h4>cellular response to fibroblast growth factor stimulus_MRC cut15</h4>
+<pre class="r"><code>sign &lt;- as.character(&#39;cellular response to fibroblast growth factor stimulus_MRC&#39;)
+signGenes &lt;- signDat %&gt;% dplyr::filter(signSubset == sign)
+sceSub &lt;- sce[which(rownames(sce) %in% signGenes$geneID),]
+cntMat &lt;- rowSums(t(as.matrix(
+    sceSub@assays@data$logcounts)))/nrow(signGenes)
+sceSub$sign &lt;- cntMat
+sceSub$sign[which(sceSub$sign &gt; cutOff)] &lt;- cutOff
+p &lt;- visGroup_adapt(sceSub, &#39;sign&#39;, dim_red = &#39;DiffusionMap&#39;) +
+    sc +
+    guides(colour = guide_colourbar(title = &#39;&#39;)) +
+    ggtitle(paste0(sign, &#39; signature&#39;)) +
+    theme_classic() + 
+    theme(axis.text = element_blank(),
+          axis.ticks = element_blank()) +
+    labs(x=&#39;Dimension 1&#39;, y=&#39;Dimension 2&#39;)
+p</code></pre>
+<p><img src="figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut15 cellular response to fibroblast growth factor stimulus_MRC cut 15-1.png" width="768" style="display: block; margin: auto;" /></p>
+</div>
+<div id="regulation-of-angiogenesis_tbrc-cut15" class="section level4">
+<h4>regulation of angiogenesis_TBRC cut15</h4>
+<pre class="r"><code>sign &lt;- as.character(&#39;regulation of angiogenesis_TBRC&#39;)
+signGenes &lt;- signDat %&gt;% dplyr::filter(signSubset == sign)
+sceSub &lt;- sce[which(rownames(sce) %in% signGenes$geneID),]
+cntMat &lt;- rowSums(t(as.matrix(
+    sceSub@assays@data$logcounts)))/nrow(signGenes)
+sceSub$sign &lt;- cntMat
+sceSub$sign[which(sceSub$sign &gt; cutOff)] &lt;- cutOff
+p &lt;- visGroup_adapt(sceSub, &#39;sign&#39;, dim_red = &#39;DiffusionMap&#39;) +
+    sc +
+    guides(colour = guide_colourbar(title = &#39;&#39;)) +
+    ggtitle(paste0(sign, &#39; signature&#39;)) +
+    theme_classic() + 
+    theme(axis.text = element_blank(),
+          axis.ticks = element_blank()) +
+    labs(x=&#39;Dimension 1&#39;, y=&#39;Dimension 2&#39;)
+p</code></pre>
+<p><img src="figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut15 regulation of angiogenesis_TBRC cut 15-1.png" width="768" style="display: block; margin: auto;" /></p>
+</div>
+<div id="response-to-interferon-alpha_tbrc-cut15" class="section level4">
+<h4>response to interferon-alpha_TBRC cut15</h4>
+<pre class="r"><code>sign &lt;- as.character(&#39;response to interferon-alpha_TBRC&#39;)
+signGenes &lt;- signDat %&gt;% dplyr::filter(signSubset == sign)
+sceSub &lt;- sce[which(rownames(sce) %in% signGenes$geneID),]
+cntMat &lt;- rowSums(t(as.matrix(
+    sceSub@assays@data$logcounts)))/nrow(signGenes)
+sceSub$sign &lt;- cntMat
+sceSub$sign[which(sceSub$sign &gt; cutOff)] &lt;- cutOff
+p &lt;- visGroup_adapt(sceSub, &#39;sign&#39;, dim_red = &#39;DiffusionMap&#39;) +
+    sc +
+    guides(colour = guide_colourbar(title = &#39;&#39;)) +
+    ggtitle(paste0(sign, &#39; signature&#39;)) +
+    theme_classic() + 
+    theme(axis.text = element_blank(),
+          axis.ticks = element_blank()) +
+    labs(x=&#39;Dimension 1&#39;, y=&#39;Dimension 2&#39;)
+p</code></pre>
+<p><img src="figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut15 response to interferon-alpha_TBRC cut 15-1.png" width="768" style="display: block; margin: auto;" /></p>
+</div>
+<div id="organ-growth_prc-cut15" class="section level4">
+<h4>organ growth_PRC cut15</h4>
+<pre class="r"><code>sign &lt;- as.character(&#39;organ growth_PRC&#39;)
+signGenes &lt;- signDat %&gt;% dplyr::filter(signSubset == sign)
+sceSub &lt;- sce[which(rownames(sce) %in% signGenes$geneID),]
+cntMat &lt;- rowSums(t(as.matrix(
+    sceSub@assays@data$logcounts)))/nrow(signGenes)
+sceSub$sign &lt;- cntMat
+sceSub$sign[which(sceSub$sign &gt; cutOff)] &lt;- cutOff
+p &lt;- visGroup_adapt(sceSub, &#39;sign&#39;, dim_red = &#39;DiffusionMap&#39;) +
+    sc +
+    guides(colour = guide_colourbar(title = &#39;&#39;)) +
+    ggtitle(paste0(sign, &#39; signature&#39;)) +
+    theme_classic() + 
+    theme(axis.text = element_blank(),
+          axis.ticks = element_blank()) +
+    labs(x=&#39;Dimension 1&#39;, y=&#39;Dimension 2&#39;)
+p</code></pre>
+<p><img src="figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut15 organ growth_PRC cut 15-1.png" width="768" style="display: block; margin: auto;" /></p>
+</div>
+<div id="regulation-of-angiogenesis_prc-cut15" class="section level4">
+<h4>regulation of angiogenesis_PRC cut15</h4>
+<pre class="r"><code>sign &lt;- as.character(&#39;regulation of angiogenesis_PRC&#39;)
+signGenes &lt;- signDat %&gt;% dplyr::filter(signSubset == sign)
+sceSub &lt;- sce[which(rownames(sce) %in% signGenes$geneID),]
+cntMat &lt;- rowSums(t(as.matrix(
+    sceSub@assays@data$logcounts)))/nrow(signGenes)
+sceSub$sign &lt;- cntMat
+sceSub$sign[which(sceSub$sign &gt; cutOff)] &lt;- cutOff
+p &lt;- visGroup_adapt(sceSub, &#39;sign&#39;, dim_red = &#39;DiffusionMap&#39;) +
+    sc +
+    guides(colour = guide_colourbar(title = &#39;&#39;)) +
+    ggtitle(paste0(sign, &#39; signature&#39;)) +
+    theme_classic() + 
+    theme(axis.text = element_blank(),
+          axis.ticks = element_blank()) +
+    labs(x=&#39;Dimension 1&#39;, y=&#39;Dimension 2&#39;)
+p</code></pre>
+<p><img src="figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut15 regulation of angiogenesis_PRC cut 15-1.png" width="768" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+<div id="project-sign-dm-cut-1" class="section level3 tabset">
+<h3 class="tabset">project sign DM cut 1</h3>
+<pre class="r"><code>cutOff &lt;- 1
+pal = colorRampPalette(c(&quot;#053061&quot;, &quot;#2166ac&quot;,&quot;#f7f7f7&quot;,
+                         &quot;#f4a582&quot;, &quot;#b2183c&quot;, &quot;#85122d&quot;))(100)
+sc &lt;- scale_colour_gradientn(colours = pal, limits=c(0, cutOff))
+
+template_gs &lt;- c(
+    &quot;#### {{sig}} cut1\n&quot;,
+    &quot;```{r sig expr DM cut1 {{sig}} cut 1, fig.height=6, fig.width=8}\n&quot;,
+    &quot;sign &lt;- as.character(&#39;{{sig}}&#39;)&quot;,
+    &quot;signGenes &lt;- signDat %&gt;% dplyr::filter(signSubset == sign)&quot;,
+    &quot;sceSub &lt;- sce[which(rownames(sce) %in% signGenes$geneID),]&quot;,
+    &quot;cntMat &lt;- rowSums(t(as.matrix(
+    sceSub@assays@data$logcounts)))/nrow(signGenes)&quot;,
+    &quot;sceSub$sign &lt;- cntMat&quot;,
+    &quot;sceSub$sign[which(sceSub$sign &gt; cutOff)] &lt;- cutOff&quot;,
+    &quot;p &lt;- visGroup_adapt(sceSub, &#39;sign&#39;, dim_red = &#39;DiffusionMap&#39;) +
+    sc +
+    guides(colour = guide_colourbar(title = &#39;&#39;)) +
+    ggtitle(paste0(sign, &#39; signature&#39;)) +
+    theme_classic() + 
+    theme(axis.text = element_blank(),
+          axis.ticks = element_blank()) +
+    labs(x=&#39;Dimension 1&#39;, y=&#39;Dimension 2&#39;)&quot;,
+    &quot;p\n&quot;,
+    &quot;```\n&quot;,
+    &quot;\n&quot;
+)
+    
+plots_gs &lt;- lapply(allSign, 
+  function(sig) knitr::knit_expand(text = template_gs)
+)</code></pre>
+<div id="regulation-of-lipid-biosynthetic-process_lzfdc-cut1" class="section level4">
+<h4>regulation of lipid biosynthetic process_LZFDC cut1</h4>
+<pre class="r"><code>sign &lt;- as.character(&#39;regulation of lipid biosynthetic process_LZFDC&#39;)
+signGenes &lt;- signDat %&gt;% dplyr::filter(signSubset == sign)
+sceSub &lt;- sce[which(rownames(sce) %in% signGenes$geneID),]
+cntMat &lt;- rowSums(t(as.matrix(
+    sceSub@assays@data$logcounts)))/nrow(signGenes)
+sceSub$sign &lt;- cntMat
+sceSub$sign[which(sceSub$sign &gt; cutOff)] &lt;- cutOff
+p &lt;- visGroup_adapt(sceSub, &#39;sign&#39;, dim_red = &#39;DiffusionMap&#39;) +
+    sc +
+    guides(colour = guide_colourbar(title = &#39;&#39;)) +
+    ggtitle(paste0(sign, &#39; signature&#39;)) +
+    theme_classic() + 
+    theme(axis.text = element_blank(),
+          axis.ticks = element_blank()) +
+    labs(x=&#39;Dimension 1&#39;, y=&#39;Dimension 2&#39;)
+p</code></pre>
+<p><img src="figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut1 regulation of lipid biosynthetic process_LZFDC cut 1-1.png" width="768" style="display: block; margin: auto;" /></p>
+</div>
+<div id="i-kappab-kinasenf-kappab-signaling_lzfdc-cut1" class="section level4">
+<h4>I-kappaB kinase/NF-kappaB signaling_LZFDC cut1</h4>
+<pre class="r"><code>sign &lt;- as.character(&#39;I-kappaB kinase/NF-kappaB signaling_LZFDC&#39;)
+signGenes &lt;- signDat %&gt;% dplyr::filter(signSubset == sign)
+sceSub &lt;- sce[which(rownames(sce) %in% signGenes$geneID),]
+cntMat &lt;- rowSums(t(as.matrix(
+    sceSub@assays@data$logcounts)))/nrow(signGenes)
+sceSub$sign &lt;- cntMat
+sceSub$sign[which(sceSub$sign &gt; cutOff)] &lt;- cutOff
+p &lt;- visGroup_adapt(sceSub, &#39;sign&#39;, dim_red = &#39;DiffusionMap&#39;) +
+    sc +
+    guides(colour = guide_colourbar(title = &#39;&#39;)) +
+    ggtitle(paste0(sign, &#39; signature&#39;)) +
+    theme_classic() + 
+    theme(axis.text = element_blank(),
+          axis.ticks = element_blank()) +
+    labs(x=&#39;Dimension 1&#39;, y=&#39;Dimension 2&#39;)
+p</code></pre>
+<p><img src="figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut1 I-kappaB kinase/NF-kappaB signaling_LZFDC cut 1-1.png" width="768" style="display: block; margin: auto;" /></p>
+</div>
+<div id="response-to-transforming-growth-factor-beta_lzfdc-cut1" class="section level4">
+<h4>response to transforming growth factor beta_LZFDC cut1</h4>
+<pre class="r"><code>sign &lt;- as.character(&#39;response to transforming growth factor beta_LZFDC&#39;)
+signGenes &lt;- signDat %&gt;% dplyr::filter(signSubset == sign)
+sceSub &lt;- sce[which(rownames(sce) %in% signGenes$geneID),]
+cntMat &lt;- rowSums(t(as.matrix(
+    sceSub@assays@data$logcounts)))/nrow(signGenes)
+sceSub$sign &lt;- cntMat
+sceSub$sign[which(sceSub$sign &gt; cutOff)] &lt;- cutOff
+p &lt;- visGroup_adapt(sceSub, &#39;sign&#39;, dim_red = &#39;DiffusionMap&#39;) +
+    sc +
+    guides(colour = guide_colourbar(title = &#39;&#39;)) +
+    ggtitle(paste0(sign, &#39; signature&#39;)) +
+    theme_classic() + 
+    theme(axis.text = element_blank(),
+          axis.ticks = element_blank()) +
+    labs(x=&#39;Dimension 1&#39;, y=&#39;Dimension 2&#39;)
+p</code></pre>
+<p><img src="figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut1 response to transforming growth factor beta_LZFDC cut 1-1.png" width="768" style="display: block; margin: auto;" /></p>
+</div>
+<div id="chondrocyte-differentiation_lzfdc-cut1" class="section level4">
+<h4>chondrocyte differentiation_LZFDC cut1</h4>
+<pre class="r"><code>sign &lt;- as.character(&#39;chondrocyte differentiation_LZFDC&#39;)
+signGenes &lt;- signDat %&gt;% dplyr::filter(signSubset == sign)
+sceSub &lt;- sce[which(rownames(sce) %in% signGenes$geneID),]
+cntMat &lt;- rowSums(t(as.matrix(
+    sceSub@assays@data$logcounts)))/nrow(signGenes)
+sceSub$sign &lt;- cntMat
+sceSub$sign[which(sceSub$sign &gt; cutOff)] &lt;- cutOff
+p &lt;- visGroup_adapt(sceSub, &#39;sign&#39;, dim_red = &#39;DiffusionMap&#39;) +
+    sc +
+    guides(colour = guide_colourbar(title = &#39;&#39;)) +
+    ggtitle(paste0(sign, &#39; signature&#39;)) +
+    theme_classic() + 
+    theme(axis.text = element_blank(),
+          axis.ticks = element_blank()) +
+    labs(x=&#39;Dimension 1&#39;, y=&#39;Dimension 2&#39;)
+p</code></pre>
+<p><img src="figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut1 chondrocyte differentiation_LZFDC cut 1-1.png" width="768" style="display: block; margin: auto;" /></p>
+</div>
+<div id="fatty-acid-metabolic-process_dzfdc-cut1" class="section level4">
+<h4>fatty acid metabolic process_DZFDC cut1</h4>
+<pre class="r"><code>sign &lt;- as.character(&#39;fatty acid metabolic process_DZFDC&#39;)
+signGenes &lt;- signDat %&gt;% dplyr::filter(signSubset == sign)
+sceSub &lt;- sce[which(rownames(sce) %in% signGenes$geneID),]
+cntMat &lt;- rowSums(t(as.matrix(
+    sceSub@assays@data$logcounts)))/nrow(signGenes)
+sceSub$sign &lt;- cntMat
+sceSub$sign[which(sceSub$sign &gt; cutOff)] &lt;- cutOff
+p &lt;- visGroup_adapt(sceSub, &#39;sign&#39;, dim_red = &#39;DiffusionMap&#39;) +
+    sc +
+    guides(colour = guide_colourbar(title = &#39;&#39;)) +
+    ggtitle(paste0(sign, &#39; signature&#39;)) +
+    theme_classic() + 
+    theme(axis.text = element_blank(),
+          axis.ticks = element_blank()) +
+    labs(x=&#39;Dimension 1&#39;, y=&#39;Dimension 2&#39;)
+p</code></pre>
+<p><img src="figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut1 fatty acid metabolic process_DZFDC cut 1-1.png" width="768" style="display: block; margin: auto;" /></p>
+</div>
+<div id="gliogenesis_dzfdc-cut1" class="section level4">
+<h4>gliogenesis_DZFDC cut1</h4>
+<pre class="r"><code>sign &lt;- as.character(&#39;gliogenesis_DZFDC&#39;)
+signGenes &lt;- signDat %&gt;% dplyr::filter(signSubset == sign)
+sceSub &lt;- sce[which(rownames(sce) %in% signGenes$geneID),]
+cntMat &lt;- rowSums(t(as.matrix(
+    sceSub@assays@data$logcounts)))/nrow(signGenes)
+sceSub$sign &lt;- cntMat
+sceSub$sign[which(sceSub$sign &gt; cutOff)] &lt;- cutOff
+p &lt;- visGroup_adapt(sceSub, &#39;sign&#39;, dim_red = &#39;DiffusionMap&#39;) +
+    sc +
+    guides(colour = guide_colourbar(title = &#39;&#39;)) +
+    ggtitle(paste0(sign, &#39; signature&#39;)) +
+    theme_classic() + 
+    theme(axis.text = element_blank(),
+          axis.ticks = element_blank()) +
+    labs(x=&#39;Dimension 1&#39;, y=&#39;Dimension 2&#39;)
+p</code></pre>
+<p><img src="figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut1 gliogenesis_DZFDC cut 1-1.png" width="768" style="display: block; margin: auto;" /></p>
+</div>
+<div id="cellular-response-to-fibroblast-growth-factor-stimulus_mrc-cut1" class="section level4">
+<h4>cellular response to fibroblast growth factor stimulus_MRC cut1</h4>
+<pre class="r"><code>sign &lt;- as.character(&#39;cellular response to fibroblast growth factor stimulus_MRC&#39;)
+signGenes &lt;- signDat %&gt;% dplyr::filter(signSubset == sign)
+sceSub &lt;- sce[which(rownames(sce) %in% signGenes$geneID),]
+cntMat &lt;- rowSums(t(as.matrix(
+    sceSub@assays@data$logcounts)))/nrow(signGenes)
+sceSub$sign &lt;- cntMat
+sceSub$sign[which(sceSub$sign &gt; cutOff)] &lt;- cutOff
+p &lt;- visGroup_adapt(sceSub, &#39;sign&#39;, dim_red = &#39;DiffusionMap&#39;) +
+    sc +
+    guides(colour = guide_colourbar(title = &#39;&#39;)) +
+    ggtitle(paste0(sign, &#39; signature&#39;)) +
+    theme_classic() + 
+    theme(axis.text = element_blank(),
+          axis.ticks = element_blank()) +
+    labs(x=&#39;Dimension 1&#39;, y=&#39;Dimension 2&#39;)
+p</code></pre>
+<p><img src="figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut1 cellular response to fibroblast growth factor stimulus_MRC cut 1-1.png" width="768" style="display: block; margin: auto;" /></p>
+</div>
+<div id="regulation-of-angiogenesis_tbrc-cut1" class="section level4">
+<h4>regulation of angiogenesis_TBRC cut1</h4>
+<pre class="r"><code>sign &lt;- as.character(&#39;regulation of angiogenesis_TBRC&#39;)
+signGenes &lt;- signDat %&gt;% dplyr::filter(signSubset == sign)
+sceSub &lt;- sce[which(rownames(sce) %in% signGenes$geneID),]
+cntMat &lt;- rowSums(t(as.matrix(
+    sceSub@assays@data$logcounts)))/nrow(signGenes)
+sceSub$sign &lt;- cntMat
+sceSub$sign[which(sceSub$sign &gt; cutOff)] &lt;- cutOff
+p &lt;- visGroup_adapt(sceSub, &#39;sign&#39;, dim_red = &#39;DiffusionMap&#39;) +
+    sc +
+    guides(colour = guide_colourbar(title = &#39;&#39;)) +
+    ggtitle(paste0(sign, &#39; signature&#39;)) +
+    theme_classic() + 
+    theme(axis.text = element_blank(),
+          axis.ticks = element_blank()) +
+    labs(x=&#39;Dimension 1&#39;, y=&#39;Dimension 2&#39;)
+p</code></pre>
+<p><img src="figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut1 regulation of angiogenesis_TBRC cut 1-1.png" width="768" style="display: block; margin: auto;" /></p>
+</div>
+<div id="response-to-interferon-alpha_tbrc-cut1" class="section level4">
+<h4>response to interferon-alpha_TBRC cut1</h4>
+<pre class="r"><code>sign &lt;- as.character(&#39;response to interferon-alpha_TBRC&#39;)
+signGenes &lt;- signDat %&gt;% dplyr::filter(signSubset == sign)
+sceSub &lt;- sce[which(rownames(sce) %in% signGenes$geneID),]
+cntMat &lt;- rowSums(t(as.matrix(
+    sceSub@assays@data$logcounts)))/nrow(signGenes)
+sceSub$sign &lt;- cntMat
+sceSub$sign[which(sceSub$sign &gt; cutOff)] &lt;- cutOff
+p &lt;- visGroup_adapt(sceSub, &#39;sign&#39;, dim_red = &#39;DiffusionMap&#39;) +
+    sc +
+    guides(colour = guide_colourbar(title = &#39;&#39;)) +
+    ggtitle(paste0(sign, &#39; signature&#39;)) +
+    theme_classic() + 
+    theme(axis.text = element_blank(),
+          axis.ticks = element_blank()) +
+    labs(x=&#39;Dimension 1&#39;, y=&#39;Dimension 2&#39;)
+p</code></pre>
+<p><img src="figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut1 response to interferon-alpha_TBRC cut 1-1.png" width="768" style="display: block; margin: auto;" /></p>
+</div>
+<div id="organ-growth_prc-cut1" class="section level4">
+<h4>organ growth_PRC cut1</h4>
+<pre class="r"><code>sign &lt;- as.character(&#39;organ growth_PRC&#39;)
+signGenes &lt;- signDat %&gt;% dplyr::filter(signSubset == sign)
+sceSub &lt;- sce[which(rownames(sce) %in% signGenes$geneID),]
+cntMat &lt;- rowSums(t(as.matrix(
+    sceSub@assays@data$logcounts)))/nrow(signGenes)
+sceSub$sign &lt;- cntMat
+sceSub$sign[which(sceSub$sign &gt; cutOff)] &lt;- cutOff
+p &lt;- visGroup_adapt(sceSub, &#39;sign&#39;, dim_red = &#39;DiffusionMap&#39;) +
+    sc +
+    guides(colour = guide_colourbar(title = &#39;&#39;)) +
+    ggtitle(paste0(sign, &#39; signature&#39;)) +
+    theme_classic() + 
+    theme(axis.text = element_blank(),
+          axis.ticks = element_blank()) +
+    labs(x=&#39;Dimension 1&#39;, y=&#39;Dimension 2&#39;)
+p</code></pre>
+<p><img src="figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut1 organ growth_PRC cut 1-1.png" width="768" style="display: block; margin: auto;" /></p>
+</div>
+<div id="regulation-of-angiogenesis_prc-cut1" class="section level4">
+<h4>regulation of angiogenesis_PRC cut1</h4>
+<pre class="r"><code>sign &lt;- as.character(&#39;regulation of angiogenesis_PRC&#39;)
+signGenes &lt;- signDat %&gt;% dplyr::filter(signSubset == sign)
+sceSub &lt;- sce[which(rownames(sce) %in% signGenes$geneID),]
+cntMat &lt;- rowSums(t(as.matrix(
+    sceSub@assays@data$logcounts)))/nrow(signGenes)
+sceSub$sign &lt;- cntMat
+sceSub$sign[which(sceSub$sign &gt; cutOff)] &lt;- cutOff
+p &lt;- visGroup_adapt(sceSub, &#39;sign&#39;, dim_red = &#39;DiffusionMap&#39;) +
+    sc +
+    guides(colour = guide_colourbar(title = &#39;&#39;)) +
+    ggtitle(paste0(sign, &#39; signature&#39;)) +
+    theme_classic() + 
+    theme(axis.text = element_blank(),
+          axis.ticks = element_blank()) +
+    labs(x=&#39;Dimension 1&#39;, y=&#39;Dimension 2&#39;)
+p</code></pre>
+<p><img src="figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig expr DM cut1 regulation of angiogenesis_PRC cut 1-1.png" width="768" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="plot-heatmap-signatures" class="section level3 tabset">
@@ -1733,6 +3000,43 @@ pOut &lt;- avgHeatmap(seurat = seurat, selGenes = signGenes,
                   gapVecC=gapC,cc=F,
                   cr=F, condCol=T, colVecCond = colorSLO)</code></pre>
 <p><img src="figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig hm regulation of lipid biosynthetic process_LZFDC-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-sig-hm-regulation-of-lipid-biosynthetic-process_LZFDC-1">
+Past versions of “sig hm regulation of lipid biosynthetic process_LZFDC-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-sig-hm-regulation-of-lipid-biosynthetic-process_LZFDC-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/d202c26a3d47b21ce7a146a8a175c19cd9d5c2e8/figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig hm regulation of lipid biosynthetic process_LZFDC-1.png" target="_blank">d202c26</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-12-01
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="i-kappab-kinasenf-kappab-signaling_lzfdc" class="section level4">
 <h4>I-kappaB kinase/NF-kappaB signaling_LZFDC</h4>
@@ -1745,6 +3049,43 @@ pOut &lt;- avgHeatmap(seurat = seurat, selGenes = signGenes,
                   gapVecC=gapC,cc=F,
                   cr=F, condCol=T, colVecCond = colorSLO)</code></pre>
 <p><img src="figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig hm I-kappaB kinase/NF-kappaB signaling_LZFDC-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-NF-kappaB-signaling_LZFDC-1">
+Past versions of “NF-kappaB signaling_LZFDC-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-NF-kappaB-signaling_LZFDC-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/d202c26a3d47b21ce7a146a8a175c19cd9d5c2e8/figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig hm I-kappaB kinase/NF-kappaB signaling_LZFDC-1.png" target="_blank">d202c26</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-12-01
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="response-to-transforming-growth-factor-beta_lzfdc" class="section level4">
 <h4>response to transforming growth factor beta_LZFDC</h4>
@@ -1757,6 +3098,55 @@ pOut &lt;- avgHeatmap(seurat = seurat, selGenes = signGenes,
                   gapVecC=gapC,cc=F,
                   cr=F, condCol=T, colVecCond = colorSLO)</code></pre>
 <p><img src="figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig hm response to transforming growth factor beta_LZFDC-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-sig-hm-response-to-transforming-growth-factor-beta_LZFDC-1">
+Past versions of “sig hm response to transforming growth factor beta_LZFDC-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-sig-hm-response-to-transforming-growth-factor-beta_LZFDC-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/d202c26a3d47b21ce7a146a8a175c19cd9d5c2e8/figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig hm response to transforming growth factor beta_LZFDC-1.png" target="_blank">d202c26</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-12-01
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="chondrocyte-differentiation_lzfdc" class="section level4">
+<h4>chondrocyte differentiation_LZFDC</h4>
+<pre class="r"><code>sign &lt;- as.character(&#39;chondrocyte differentiation_LZFDC&#39;)
+signGenes &lt;- signDat %&gt;% dplyr::filter(signSubset == sign)
+signGenes$gene &lt;- signGenes$geneID
+pOut &lt;- avgHeatmap(seurat = seurat, selGenes = signGenes,
+                  colVecIdent = colPal, 
+                  ordVec=ordVec,
+                  gapVecC=gapC,cc=F,
+                  cr=F, condCol=T, colVecCond = colorSLO)</code></pre>
+<p><img src="figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig hm chondrocyte differentiation_LZFDC-1.png" width="768" style="display: block; margin: auto;" /></p>
 </div>
 <div id="fatty-acid-metabolic-process_dzfdc" class="section level4">
 <h4>fatty acid metabolic process_DZFDC</h4>
@@ -1769,6 +3159,43 @@ pOut &lt;- avgHeatmap(seurat = seurat, selGenes = signGenes,
                   gapVecC=gapC,cc=F,
                   cr=F, condCol=T, colVecCond = colorSLO)</code></pre>
 <p><img src="figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig hm fatty acid metabolic process_DZFDC-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-sig-hm-fatty-acid-metabolic-process_DZFDC-1">
+Past versions of “sig hm fatty acid metabolic process_DZFDC-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-sig-hm-fatty-acid-metabolic-process_DZFDC-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/d202c26a3d47b21ce7a146a8a175c19cd9d5c2e8/figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig hm fatty acid metabolic process_DZFDC-1.png" target="_blank">d202c26</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-12-01
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="gliogenesis_dzfdc" class="section level4">
 <h4>gliogenesis_DZFDC</h4>
@@ -1781,6 +3208,43 @@ pOut &lt;- avgHeatmap(seurat = seurat, selGenes = signGenes,
                   gapVecC=gapC,cc=F,
                   cr=F, condCol=T, colVecCond = colorSLO)</code></pre>
 <p><img src="figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig hm gliogenesis_DZFDC-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-sig-hm-gliogenesis_DZFDC-1">
+Past versions of “sig hm gliogenesis_DZFDC-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-sig-hm-gliogenesis_DZFDC-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/d202c26a3d47b21ce7a146a8a175c19cd9d5c2e8/figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig hm gliogenesis_DZFDC-1.png" target="_blank">d202c26</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-12-01
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="cellular-response-to-fibroblast-growth-factor-stimulus_mrc" class="section level4">
 <h4>cellular response to fibroblast growth factor stimulus_MRC</h4>
@@ -1793,6 +3257,43 @@ pOut &lt;- avgHeatmap(seurat = seurat, selGenes = signGenes,
                   gapVecC=gapC,cc=F,
                   cr=F, condCol=T, colVecCond = colorSLO)</code></pre>
 <p><img src="figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig hm cellular response to fibroblast growth factor stimulus_MRC-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-sig-hm-cellular-response-to-fibroblast-growth-factor-stimulus_MRC-1">
+Past versions of “sig hm cellular response to fibroblast growth factor stimulus_MRC-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-sig-hm-cellular-response-to-fibroblast-growth-factor-stimulus_MRC-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/d202c26a3d47b21ce7a146a8a175c19cd9d5c2e8/figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig hm cellular response to fibroblast growth factor stimulus_MRC-1.png" target="_blank">d202c26</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-12-01
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="regulation-of-angiogenesis_tbrc" class="section level4">
 <h4>regulation of angiogenesis_TBRC</h4>
@@ -1805,6 +3306,43 @@ pOut &lt;- avgHeatmap(seurat = seurat, selGenes = signGenes,
                   gapVecC=gapC,cc=F,
                   cr=F, condCol=T, colVecCond = colorSLO)</code></pre>
 <p><img src="figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig hm regulation of angiogenesis_TBRC-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-sig-hm-regulation-of-angiogenesis_TBRC-1">
+Past versions of “sig hm regulation of angiogenesis_TBRC-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-sig-hm-regulation-of-angiogenesis_TBRC-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/d202c26a3d47b21ce7a146a8a175c19cd9d5c2e8/figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig hm regulation of angiogenesis_TBRC-1.png" target="_blank">d202c26</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-12-01
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="response-to-interferon-alpha_tbrc" class="section level4">
 <h4>response to interferon-alpha_TBRC</h4>
@@ -1817,6 +3355,43 @@ pOut &lt;- avgHeatmap(seurat = seurat, selGenes = signGenes,
                   gapVecC=gapC,cc=F,
                   cr=F, condCol=T, colVecCond = colorSLO)</code></pre>
 <p><img src="figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig hm response to interferon-alpha_TBRC-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-sig-hm-response-to-interferon-alpha_TBRC-1">
+Past versions of “sig hm response to interferon-alpha_TBRC-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-sig-hm-response-to-interferon-alpha_TBRC-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/d202c26a3d47b21ce7a146a8a175c19cd9d5c2e8/figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig hm response to interferon-alpha_TBRC-1.png" target="_blank">d202c26</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-12-01
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="organ-growth_prc" class="section level4">
 <h4>organ growth_PRC</h4>
@@ -1829,6 +3404,43 @@ pOut &lt;- avgHeatmap(seurat = seurat, selGenes = signGenes,
                   gapVecC=gapC,cc=F,
                   cr=F, condCol=T, colVecCond = colorSLO)</code></pre>
 <p><img src="figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig hm organ growth_PRC-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-sig-hm-organ-growth_PRC-1">
+Past versions of “sig hm organ growth_PRC-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-sig-hm-organ-growth_PRC-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/d202c26a3d47b21ce7a146a8a175c19cd9d5c2e8/figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig hm organ growth_PRC-1.png" target="_blank">d202c26</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-12-01
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="regulation-of-angiogenesis_prc" class="section level4">
 <h4>regulation of angiogenesis_PRC</h4>
@@ -1841,6 +3453,43 @@ pOut &lt;- avgHeatmap(seurat = seurat, selGenes = signGenes,
                   gapVecC=gapC,cc=F,
                   cr=F, condCol=T, colVecCond = colorSLO)</code></pre>
 <p><img src="figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig hm regulation of angiogenesis_PRC-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-sig-hm-regulation-of-angiogenesis_PRC-1">
+Past versions of “sig hm regulation of angiogenesis_PRC-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-sig-hm-regulation-of-angiogenesis_PRC-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/d202c26a3d47b21ce7a146a8a175c19cd9d5c2e8/figure/plotSubsetSpecificSignaturesSignaling.Rmd/sig hm regulation of angiogenesis_PRC-1.png" target="_blank">d202c26</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-12-01
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -1894,75 +3543,76 @@ loaded via a namespace (and not attached):
  [37] variancePartition_1.22.0  XML_3.99-0.8              zoo_1.8-9                
  [40] RcppHNSW_0.3.0            xtable_1.8-4              evaluate_0.14            
  [43] cli_3.1.0                 zlibbioc_1.38.0           rstudioapi_0.13          
- [46] miniUI_0.1.1.1            sp_1.4-5                  bslib_0.3.1              
- [49] rpart_4.1-15              fastmatch_1.1-3           treeio_1.16.2            
- [52] RcppEigen_0.3.3.9.1       shiny_1.7.1               BiocSingular_1.8.1       
- [55] xfun_0.28                 clue_0.3-60               cluster_2.1.2            
- [58] caTools_1.18.2            tidygraph_1.2.0           pcaMethods_1.84.0        
- [61] KEGGREST_1.32.0           ggrepel_0.9.1             ape_5.5                  
- [64] listenv_0.8.0             Biostrings_2.60.2         png_0.1-7                
- [67] future_1.23.0             withr_2.4.2               bitops_1.0-7             
- [70] ggforce_0.3.3             ranger_0.13.1             plyr_1.8.6               
- [73] cellranger_1.1.0          e1071_1.7-9               coda_0.19-4              
- [76] dqrng_0.3.0               pillar_1.6.4              gplots_3.1.1             
- [79] GlobalOptions_0.1.2       cachem_1.0.6              multcomp_1.4-17          
- [82] fs_1.5.0                  TTR_0.24.2                scatterplot3d_0.3-41     
- [85] GetoptLong_1.0.5          xts_0.12.1                DelayedMatrixStats_1.14.3
- [88] vctrs_0.3.8               ellipsis_0.3.2            generics_0.1.1           
- [91] tools_4.1.0               beeswarm_0.4.0            munsell_0.5.0            
- [94] tweenr_1.0.2              proxy_0.4-26              emmeans_1.7.0            
- [97] DelayedArray_0.18.0       fastmap_1.1.0             compiler_4.1.0           
-[100] abind_1.4-5               httpuv_1.6.3              rcartocolor_2.0.0        
-[103] plotly_4.10.0             GenomeInfoDbData_1.2.6    glmmTMB_1.1.2.3          
-[106] workflowr_1.6.2           edgeR_3.34.1              lattice_0.20-45          
-[109] deldir_1.0-6              utf8_1.2.2                later_1.3.0              
-[112] BiocFileCache_2.0.0       jsonlite_1.7.2            ggplot.multistats_1.0.0  
-[115] scales_1.1.1              ScaledMatrix_1.0.0        carData_3.0-4            
-[118] estimability_1.3          tidytree_0.3.5            pbapply_1.5-0            
-[121] sparseMatrixStats_1.4.2   genefilter_1.74.1         lazyeval_0.2.2           
-[124] promises_1.2.0.1          car_3.0-12                doParallel_1.0.16        
-[127] goftest_1.2-3             spatstat.utils_2.2-0      reticulate_1.22          
-[130] sandwich_3.0-1            rmarkdown_2.11            cowplot_1.1.1            
-[133] blme_1.0-5                statmod_1.4.36            Rtsne_0.15               
-[136] downloader_0.4            uwot_0.1.10               igraph_1.2.8             
-[139] survival_3.2-13           numDeriv_2016.8-1.1       yaml_2.2.1               
-[142] htmltools_0.5.2           memoise_2.0.0             locfit_1.5-9.4           
-[145] graphlayouts_0.7.1        destiny_3.7.1             digest_0.6.28            
-[148] assertthat_0.2.1          mime_0.12                 rappdirs_0.3.3           
-[151] RSQLite_2.2.8             yulab.utils_0.0.4         future.apply_1.8.1       
-[154] data.table_1.14.2         blob_1.2.2                labeling_0.4.2           
-[157] splines_4.1.0             Cairo_1.5-12.2            RCurl_1.98-1.5           
-[160] broom_0.7.10              hms_1.1.1                 modelr_0.1.8             
-[163] colorspace_2.0-2          ggbeeswarm_0.6.0          shape_1.4.6              
-[166] aplot_0.1.1               nnet_7.3-16               sass_0.4.0               
-[169] Rcpp_1.0.7                RANN_2.6.1                mvtnorm_1.1-3            
-[172] circlize_0.4.13           fansi_0.5.0               tzdb_0.2.0               
-[175] VIM_6.1.1                 parallelly_1.28.1         R6_2.5.1                 
-[178] ggridges_0.5.3            lifecycle_1.0.1           bluster_1.2.1            
-[181] curl_4.3.2                minqa_1.2.4               leiden_0.3.9             
-[184] jquerylib_0.1.4           robustbase_0.93-9         DO.db_2.9                
-[187] Matrix_1.3-4              qvalue_2.24.0             TH.data_1.1-0            
-[190] RcppAnnoy_0.0.19          iterators_1.0.13          TMB_1.7.22               
-[193] htmlwidgets_1.5.4         beachmat_2.8.1            polyclip_1.10-0          
-[196] shadowtext_0.0.9          gridGraphics_0.5-1        rvest_1.0.2              
-[199] ComplexHeatmap_2.8.0      mgcv_1.8-38               globals_0.14.0           
-[202] patchwork_1.1.1           codetools_0.2-18          lubridate_1.8.0          
-[205] GO.db_3.13.0              metapod_1.0.0             gtools_3.9.2             
-[208] prettyunits_1.1.1         dbplyr_2.1.1              RSpectra_0.16-0          
-[211] gtable_0.3.0              DBI_1.1.1                 git2r_0.28.0             
-[214] highr_0.9                 ggfun_0.0.4               tensor_1.5               
-[217] httr_1.4.2                KernSmooth_2.23-20        vroom_1.5.5              
-[220] stringi_1.7.5             progress_1.2.2            reshape2_1.4.4           
-[223] farver_2.1.0              ggthemes_4.2.4            annotate_1.70.0          
-[226] hexbin_1.28.2             ggtree_3.0.4              xml2_1.3.2               
-[229] colorRamps_2.3            boot_1.3-28               BiocNeighbors_1.10.0     
-[232] lme4_1.1-27.1             geneplotter_1.70.0        ggplotify_0.1.0          
-[235] scattermore_0.7           DEoptimR_1.0-9            DESeq2_1.32.0            
-[238] bit_4.0.4                 scatterpie_0.1.7          spatstat.data_2.1-0      
-[241] ggraph_2.0.5              pkgconfig_2.0.3           babelgene_21.4           
-[244] lmerTest_3.1-3            knn.covertree_1.0         knitr_1.36               </code></pre>
+ [46] miniUI_0.1.1.1            sp_1.4-5                  whisker_0.4              
+ [49] bslib_0.3.1               rpart_4.1-15              fastmatch_1.1-3          
+ [52] treeio_1.16.2             RcppEigen_0.3.3.9.1       shiny_1.7.1              
+ [55] BiocSingular_1.8.1        xfun_0.28                 clue_0.3-60              
+ [58] cluster_2.1.2             caTools_1.18.2            tidygraph_1.2.0          
+ [61] pcaMethods_1.84.0         KEGGREST_1.32.0           ggrepel_0.9.1            
+ [64] ape_5.5                   listenv_0.8.0             Biostrings_2.60.2        
+ [67] png_0.1-7                 future_1.23.0             withr_2.4.2              
+ [70] bitops_1.0-7              ggforce_0.3.3             ranger_0.13.1            
+ [73] plyr_1.8.6                cellranger_1.1.0          e1071_1.7-9              
+ [76] coda_0.19-4               dqrng_0.3.0               pillar_1.6.4             
+ [79] gplots_3.1.1              GlobalOptions_0.1.2       cachem_1.0.6             
+ [82] multcomp_1.4-17           fs_1.5.0                  TTR_0.24.2               
+ [85] scatterplot3d_0.3-41      GetoptLong_1.0.5          xts_0.12.1               
+ [88] DelayedMatrixStats_1.14.3 vctrs_0.3.8               ellipsis_0.3.2           
+ [91] generics_0.1.1            tools_4.1.0               beeswarm_0.4.0           
+ [94] munsell_0.5.0             tweenr_1.0.2              proxy_0.4-26             
+ [97] emmeans_1.7.0             DelayedArray_0.18.0       fastmap_1.1.0            
+[100] compiler_4.1.0            abind_1.4-5               httpuv_1.6.3             
+[103] rcartocolor_2.0.0         plotly_4.10.0             GenomeInfoDbData_1.2.6   
+[106] glmmTMB_1.1.2.3           workflowr_1.6.2           edgeR_3.34.1             
+[109] lattice_0.20-45           deldir_1.0-6              utf8_1.2.2               
+[112] later_1.3.0               BiocFileCache_2.0.0       jsonlite_1.7.2           
+[115] ggplot.multistats_1.0.0   scales_1.1.1              ScaledMatrix_1.0.0       
+[118] carData_3.0-4             estimability_1.3          tidytree_0.3.5           
+[121] pbapply_1.5-0             sparseMatrixStats_1.4.2   genefilter_1.74.1        
+[124] lazyeval_0.2.2            promises_1.2.0.1          car_3.0-12               
+[127] doParallel_1.0.16         goftest_1.2-3             spatstat.utils_2.2-0     
+[130] reticulate_1.22           sandwich_3.0-1            rmarkdown_2.11           
+[133] cowplot_1.1.1             blme_1.0-5                statmod_1.4.36           
+[136] Rtsne_0.15                downloader_0.4            uwot_0.1.10              
+[139] igraph_1.2.8              survival_3.2-13           numDeriv_2016.8-1.1      
+[142] yaml_2.2.1                htmltools_0.5.2           memoise_2.0.0            
+[145] locfit_1.5-9.4            graphlayouts_0.7.1        destiny_3.7.1            
+[148] digest_0.6.28             assertthat_0.2.1          mime_0.12                
+[151] rappdirs_0.3.3            RSQLite_2.2.8             yulab.utils_0.0.4        
+[154] future.apply_1.8.1        data.table_1.14.2         blob_1.2.2               
+[157] labeling_0.4.2            splines_4.1.0             Cairo_1.5-12.2           
+[160] RCurl_1.98-1.5            broom_0.7.10              hms_1.1.1                
+[163] modelr_0.1.8              colorspace_2.0-2          ggbeeswarm_0.6.0         
+[166] shape_1.4.6               aplot_0.1.1               nnet_7.3-16              
+[169] sass_0.4.0                Rcpp_1.0.7                RANN_2.6.1               
+[172] mvtnorm_1.1-3             circlize_0.4.13           fansi_0.5.0              
+[175] tzdb_0.2.0                VIM_6.1.1                 parallelly_1.28.1        
+[178] R6_2.5.1                  ggridges_0.5.3            lifecycle_1.0.1          
+[181] bluster_1.2.1             curl_4.3.2                minqa_1.2.4              
+[184] leiden_0.3.9              jquerylib_0.1.4           robustbase_0.93-9        
+[187] DO.db_2.9                 Matrix_1.3-4              qvalue_2.24.0            
+[190] TH.data_1.1-0             RcppAnnoy_0.0.19          iterators_1.0.13         
+[193] TMB_1.7.22                htmlwidgets_1.5.4         beachmat_2.8.1           
+[196] polyclip_1.10-0           shadowtext_0.0.9          gridGraphics_0.5-1       
+[199] rvest_1.0.2               ComplexHeatmap_2.8.0      mgcv_1.8-38              
+[202] globals_0.14.0            patchwork_1.1.1           codetools_0.2-18         
+[205] lubridate_1.8.0           GO.db_3.13.0              metapod_1.0.0            
+[208] gtools_3.9.2              prettyunits_1.1.1         dbplyr_2.1.1             
+[211] RSpectra_0.16-0           gtable_0.3.0              DBI_1.1.1                
+[214] git2r_0.28.0              highr_0.9                 ggfun_0.0.4              
+[217] tensor_1.5                httr_1.4.2                KernSmooth_2.23-20       
+[220] vroom_1.5.5               stringi_1.7.5             progress_1.2.2           
+[223] reshape2_1.4.4            farver_2.1.0              ggthemes_4.2.4           
+[226] annotate_1.70.0           hexbin_1.28.2             ggtree_3.0.4             
+[229] xml2_1.3.2                colorRamps_2.3            boot_1.3-28              
+[232] BiocNeighbors_1.10.0      lme4_1.1-27.1             geneplotter_1.70.0       
+[235] ggplotify_0.1.0           scattermore_0.7           DEoptimR_1.0-9           
+[238] DESeq2_1.32.0             bit_4.0.4                 scatterpie_0.1.7         
+[241] spatstat.data_2.1-0       ggraph_2.0.5              pkgconfig_2.0.3          
+[244] babelgene_21.4            lmerTest_3.1-3            knn.covertree_1.0        
+[247] knitr_1.36               </code></pre>
 <pre class="r"><code>date()</code></pre>
-<pre><code>[1] &quot;Thu Nov 25 13:25:02 2021&quot;</code></pre>
+<pre><code>[1] &quot;Mon Dec  6 13:47:16 2021&quot;</code></pre>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
@@ -2018,73 +3668,74 @@ loaded via a namespace (and not attached):
  [37] variancePartition_1.22.0  XML_3.99-0.8              zoo_1.8-9                
  [40] RcppHNSW_0.3.0            xtable_1.8-4              evaluate_0.14            
  [43] cli_3.1.0                 zlibbioc_1.38.0           rstudioapi_0.13          
- [46] miniUI_0.1.1.1            sp_1.4-5                  bslib_0.3.1              
- [49] rpart_4.1-15              fastmatch_1.1-3           treeio_1.16.2            
- [52] RcppEigen_0.3.3.9.1       shiny_1.7.1               BiocSingular_1.8.1       
- [55] xfun_0.28                 clue_0.3-60               cluster_2.1.2            
- [58] caTools_1.18.2            tidygraph_1.2.0           pcaMethods_1.84.0        
- [61] KEGGREST_1.32.0           ggrepel_0.9.1             ape_5.5                  
- [64] listenv_0.8.0             Biostrings_2.60.2         png_0.1-7                
- [67] future_1.23.0             withr_2.4.2               bitops_1.0-7             
- [70] ggforce_0.3.3             ranger_0.13.1             plyr_1.8.6               
- [73] cellranger_1.1.0          e1071_1.7-9               coda_0.19-4              
- [76] dqrng_0.3.0               pillar_1.6.4              gplots_3.1.1             
- [79] GlobalOptions_0.1.2       cachem_1.0.6              multcomp_1.4-17          
- [82] fs_1.5.0                  TTR_0.24.2                scatterplot3d_0.3-41     
- [85] GetoptLong_1.0.5          xts_0.12.1                DelayedMatrixStats_1.14.3
- [88] vctrs_0.3.8               ellipsis_0.3.2            generics_0.1.1           
- [91] tools_4.1.0               beeswarm_0.4.0            munsell_0.5.0            
- [94] tweenr_1.0.2              proxy_0.4-26              emmeans_1.7.0            
- [97] DelayedArray_0.18.0       fastmap_1.1.0             compiler_4.1.0           
-[100] abind_1.4-5               httpuv_1.6.3              rcartocolor_2.0.0        
-[103] plotly_4.10.0             GenomeInfoDbData_1.2.6    glmmTMB_1.1.2.3          
-[106] workflowr_1.6.2           edgeR_3.34.1              lattice_0.20-45          
-[109] deldir_1.0-6              utf8_1.2.2                later_1.3.0              
-[112] BiocFileCache_2.0.0       jsonlite_1.7.2            ggplot.multistats_1.0.0  
-[115] scales_1.1.1              ScaledMatrix_1.0.0        carData_3.0-4            
-[118] estimability_1.3          tidytree_0.3.5            pbapply_1.5-0            
-[121] sparseMatrixStats_1.4.2   genefilter_1.74.1         lazyeval_0.2.2           
-[124] promises_1.2.0.1          car_3.0-12                doParallel_1.0.16        
-[127] goftest_1.2-3             spatstat.utils_2.2-0      reticulate_1.22          
-[130] sandwich_3.0-1            rmarkdown_2.11            cowplot_1.1.1            
-[133] blme_1.0-5                statmod_1.4.36            Rtsne_0.15               
-[136] downloader_0.4            uwot_0.1.10               igraph_1.2.8             
-[139] survival_3.2-13           numDeriv_2016.8-1.1       yaml_2.2.1               
-[142] htmltools_0.5.2           memoise_2.0.0             locfit_1.5-9.4           
-[145] graphlayouts_0.7.1        destiny_3.7.1             digest_0.6.28            
-[148] assertthat_0.2.1          mime_0.12                 rappdirs_0.3.3           
-[151] RSQLite_2.2.8             yulab.utils_0.0.4         future.apply_1.8.1       
-[154] data.table_1.14.2         blob_1.2.2                labeling_0.4.2           
-[157] splines_4.1.0             Cairo_1.5-12.2            RCurl_1.98-1.5           
-[160] broom_0.7.10              hms_1.1.1                 modelr_0.1.8             
-[163] colorspace_2.0-2          ggbeeswarm_0.6.0          shape_1.4.6              
-[166] aplot_0.1.1               nnet_7.3-16               sass_0.4.0               
-[169] Rcpp_1.0.7                RANN_2.6.1                mvtnorm_1.1-3            
-[172] circlize_0.4.13           fansi_0.5.0               tzdb_0.2.0               
-[175] VIM_6.1.1                 parallelly_1.28.1         R6_2.5.1                 
-[178] ggridges_0.5.3            lifecycle_1.0.1           bluster_1.2.1            
-[181] curl_4.3.2                minqa_1.2.4               leiden_0.3.9             
-[184] jquerylib_0.1.4           robustbase_0.93-9         DO.db_2.9                
-[187] Matrix_1.3-4              qvalue_2.24.0             TH.data_1.1-0            
-[190] RcppAnnoy_0.0.19          iterators_1.0.13          TMB_1.7.22               
-[193] htmlwidgets_1.5.4         beachmat_2.8.1            polyclip_1.10-0          
-[196] shadowtext_0.0.9          gridGraphics_0.5-1        rvest_1.0.2              
-[199] ComplexHeatmap_2.8.0      mgcv_1.8-38               globals_0.14.0           
-[202] patchwork_1.1.1           codetools_0.2-18          lubridate_1.8.0          
-[205] GO.db_3.13.0              metapod_1.0.0             gtools_3.9.2             
-[208] prettyunits_1.1.1         dbplyr_2.1.1              RSpectra_0.16-0          
-[211] gtable_0.3.0              DBI_1.1.1                 git2r_0.28.0             
-[214] highr_0.9                 ggfun_0.0.4               tensor_1.5               
-[217] httr_1.4.2                KernSmooth_2.23-20        vroom_1.5.5              
-[220] stringi_1.7.5             progress_1.2.2            reshape2_1.4.4           
-[223] farver_2.1.0              ggthemes_4.2.4            annotate_1.70.0          
-[226] hexbin_1.28.2             ggtree_3.0.4              xml2_1.3.2               
-[229] colorRamps_2.3            boot_1.3-28               BiocNeighbors_1.10.0     
-[232] lme4_1.1-27.1             geneplotter_1.70.0        ggplotify_0.1.0          
-[235] scattermore_0.7           DEoptimR_1.0-9            DESeq2_1.32.0            
-[238] bit_4.0.4                 scatterpie_0.1.7          spatstat.data_2.1-0      
-[241] ggraph_2.0.5              pkgconfig_2.0.3           babelgene_21.4           
-[244] lmerTest_3.1-3            knn.covertree_1.0         knitr_1.36               </code></pre>
+ [46] miniUI_0.1.1.1            sp_1.4-5                  whisker_0.4              
+ [49] bslib_0.3.1               rpart_4.1-15              fastmatch_1.1-3          
+ [52] treeio_1.16.2             RcppEigen_0.3.3.9.1       shiny_1.7.1              
+ [55] BiocSingular_1.8.1        xfun_0.28                 clue_0.3-60              
+ [58] cluster_2.1.2             caTools_1.18.2            tidygraph_1.2.0          
+ [61] pcaMethods_1.84.0         KEGGREST_1.32.0           ggrepel_0.9.1            
+ [64] ape_5.5                   listenv_0.8.0             Biostrings_2.60.2        
+ [67] png_0.1-7                 future_1.23.0             withr_2.4.2              
+ [70] bitops_1.0-7              ggforce_0.3.3             ranger_0.13.1            
+ [73] plyr_1.8.6                cellranger_1.1.0          e1071_1.7-9              
+ [76] coda_0.19-4               dqrng_0.3.0               pillar_1.6.4             
+ [79] gplots_3.1.1              GlobalOptions_0.1.2       cachem_1.0.6             
+ [82] multcomp_1.4-17           fs_1.5.0                  TTR_0.24.2               
+ [85] scatterplot3d_0.3-41      GetoptLong_1.0.5          xts_0.12.1               
+ [88] DelayedMatrixStats_1.14.3 vctrs_0.3.8               ellipsis_0.3.2           
+ [91] generics_0.1.1            tools_4.1.0               beeswarm_0.4.0           
+ [94] munsell_0.5.0             tweenr_1.0.2              proxy_0.4-26             
+ [97] emmeans_1.7.0             DelayedArray_0.18.0       fastmap_1.1.0            
+[100] compiler_4.1.0            abind_1.4-5               httpuv_1.6.3             
+[103] rcartocolor_2.0.0         plotly_4.10.0             GenomeInfoDbData_1.2.6   
+[106] glmmTMB_1.1.2.3           workflowr_1.6.2           edgeR_3.34.1             
+[109] lattice_0.20-45           deldir_1.0-6              utf8_1.2.2               
+[112] later_1.3.0               BiocFileCache_2.0.0       jsonlite_1.7.2           
+[115] ggplot.multistats_1.0.0   scales_1.1.1              ScaledMatrix_1.0.0       
+[118] carData_3.0-4             estimability_1.3          tidytree_0.3.5           
+[121] pbapply_1.5-0             sparseMatrixStats_1.4.2   genefilter_1.74.1        
+[124] lazyeval_0.2.2            promises_1.2.0.1          car_3.0-12               
+[127] doParallel_1.0.16         goftest_1.2-3             spatstat.utils_2.2-0     
+[130] reticulate_1.22           sandwich_3.0-1            rmarkdown_2.11           
+[133] cowplot_1.1.1             blme_1.0-5                statmod_1.4.36           
+[136] Rtsne_0.15                downloader_0.4            uwot_0.1.10              
+[139] igraph_1.2.8              survival_3.2-13           numDeriv_2016.8-1.1      
+[142] yaml_2.2.1                htmltools_0.5.2           memoise_2.0.0            
+[145] locfit_1.5-9.4            graphlayouts_0.7.1        destiny_3.7.1            
+[148] digest_0.6.28             assertthat_0.2.1          mime_0.12                
+[151] rappdirs_0.3.3            RSQLite_2.2.8             yulab.utils_0.0.4        
+[154] future.apply_1.8.1        data.table_1.14.2         blob_1.2.2               
+[157] labeling_0.4.2            splines_4.1.0             Cairo_1.5-12.2           
+[160] RCurl_1.98-1.5            broom_0.7.10              hms_1.1.1                
+[163] modelr_0.1.8              colorspace_2.0-2          ggbeeswarm_0.6.0         
+[166] shape_1.4.6               aplot_0.1.1               nnet_7.3-16              
+[169] sass_0.4.0                Rcpp_1.0.7                RANN_2.6.1               
+[172] mvtnorm_1.1-3             circlize_0.4.13           fansi_0.5.0              
+[175] tzdb_0.2.0                VIM_6.1.1                 parallelly_1.28.1        
+[178] R6_2.5.1                  ggridges_0.5.3            lifecycle_1.0.1          
+[181] bluster_1.2.1             curl_4.3.2                minqa_1.2.4              
+[184] leiden_0.3.9              jquerylib_0.1.4           robustbase_0.93-9        
+[187] DO.db_2.9                 Matrix_1.3-4              qvalue_2.24.0            
+[190] TH.data_1.1-0             RcppAnnoy_0.0.19          iterators_1.0.13         
+[193] TMB_1.7.22                htmlwidgets_1.5.4         beachmat_2.8.1           
+[196] polyclip_1.10-0           shadowtext_0.0.9          gridGraphics_0.5-1       
+[199] rvest_1.0.2               ComplexHeatmap_2.8.0      mgcv_1.8-38              
+[202] globals_0.14.0            patchwork_1.1.1           codetools_0.2-18         
+[205] lubridate_1.8.0           GO.db_3.13.0              metapod_1.0.0            
+[208] gtools_3.9.2              prettyunits_1.1.1         dbplyr_2.1.1             
+[211] RSpectra_0.16-0           gtable_0.3.0              DBI_1.1.1                
+[214] git2r_0.28.0              highr_0.9                 ggfun_0.0.4              
+[217] tensor_1.5                httr_1.4.2                KernSmooth_2.23-20       
+[220] vroom_1.5.5               stringi_1.7.5             progress_1.2.2           
+[223] reshape2_1.4.4            farver_2.1.0              ggthemes_4.2.4           
+[226] annotate_1.70.0           hexbin_1.28.2             ggtree_3.0.4             
+[229] xml2_1.3.2                colorRamps_2.3            boot_1.3-28              
+[232] BiocNeighbors_1.10.0      lme4_1.1-27.1             geneplotter_1.70.0       
+[235] ggplotify_0.1.0           scattermore_0.7           DEoptimR_1.0-9           
+[238] DESeq2_1.32.0             bit_4.0.4                 scatterpie_0.1.7         
+[241] spatstat.data_2.1-0       ggraph_2.0.5              pkgconfig_2.0.3          
+[244] babelgene_21.4            lmerTest_3.1-3            knn.covertree_1.0        
+[247] knitr_1.36               </code></pre>
 </div>
 </div>
 
