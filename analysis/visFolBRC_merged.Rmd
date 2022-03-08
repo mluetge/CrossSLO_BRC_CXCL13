@@ -117,8 +117,8 @@ seuratSub <- RunUMAP(object = seuratSub,
                      dims = 1:20)
 
 ## save subsampled object
-saveRDS(seuratSub, file= paste0(basedir,
-                                "/data/folBRC_allSLO_subSampled_seurat.rds"))
+#saveRDS(seuratSub, file= paste0(basedir,
+#                                "/data/folBRC_allSLO_subSampled_seurat.rds"))
 ```
 
 ### clusterlabel
@@ -254,7 +254,7 @@ avgHeatmap <- function(seurat, selGenes, colVecIdent, colVecCond=NULL,
 
 ```{r avg heatmap, fig.height=8, fig.width=7}
 Idents(seurat) <- seurat$SLO_plus_clusterlabel
-selMarker <- list(Chemokine = c("Cxcl13", "Cxcl12", "Ccl19"),
+selMarker <- list(Chemokine = c("Cxcl13", "Cxcl12", "Ccl19", "Ccl21a"),
                   valMarker = c("Cr2", "Madcam1", "Tnfsf11"),
                   PRCMarker = c("Cd34", "Pi16")
                   )

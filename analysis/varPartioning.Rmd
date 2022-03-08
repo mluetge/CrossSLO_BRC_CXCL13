@@ -1,0 +1,194 @@
+---
+title: "variance partioning"
+author: "Mechthild Lütge"
+date: "14 May 2020"
+output:
+  html_document:
+    self_contained: no
+    code_folding: show
+    number_sections: no
+    toc: yes
+    toc_depth: 3
+    toc_float: true
+    collapsed: no
+    smooth_scroll: yes
+---
+
+```{r setup, include=FALSE}
+options(width = 100)
+knitr::opts_chunk$set(warning = FALSE, message = FALSE, dev = c("png", "pdf"))
+seed <- 1234
+```
+
+## load packages
+```{r libs}
+suppressPackageStartupMessages({
+  library(tidyverse)
+  library(Seurat)
+  library(magrittr)
+  library(dplyr)
+  library(purrr)
+  library(ggplot2)
+  library(here)
+  library(runSeurat3)
+  library(SingleCellExperiment)
+  library(RColorBrewer)
+  library(viridis)
+  library(ggsci)
+  library(scater)
+  library(scran)
+  library(variancePartition)
+  library(ggtern)
+})
+
+```
+
+
+## set dir and read input data
+```{r set dir}
+basedir <- here()
+
+## read seurat objects with BRCs
+seurat <- readRDS(file=paste0(basedir, "/data/folBRC_allSLO_seurat.rds"))
+
+
+
+```
+
+## set color Vectors
+```{r color vectors}
+
+colPal <- c("#87c5af", "#94033b", "#fc8f3b", "#2580fe", "#514e72")
+names(colPal) <- c("LZFDC", "MRC", "TBRC","DZFDC","PRC2")
+ordBRC <- c("LZFDC", "DZFDC","MRC", "TBRC", "PRC2")
+
+colorSLO <- c(viridis(3)[c(1,2)], brewer.pal(n=9, name="YlOrRd")[c(4)])
+colorCond <- brewer.pal(n=3, name="Paired")[c(1,2)]
+colorSLOCond <- c("#440154FF","#807DBA", "#FEB24C", "#F16913", "#21908CFF")
+colorBatch <- pal_igv()(n=length(unique(seurat$batch)))
+colCl <- c(rcartocolor::carto_pal(name="Safe"),pal_aaas()(8))
+
+names(colorSLO) <- c("LN", "PP", "Spleen")
+names(colorCond) <- c("naive", "immunized")
+names(colorBatch) <- unique(seurat$batch)
+names(colorSLOCond) <- c("LN_immunized","LN_naive", "Spleen_naive",
+                         "Spleen_immunized", "PP_immunized")
+
+```
+
+
+
+## visualize data {.tabset}
+
+### clustering
+```{r clustering}
+
+DimPlot(seurat, reduction = "umap", cols=colPal, group.by = "clusterLabel")+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+```
+
+### SLO
+```{r SLO}
+
+DimPlot(seurat, reduction = "umap", cols=colorSLO, group.by = "SLO")+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+DimPlot(seurat, reduction = "umap", cols=colorSLO, group.by = "SLO",
+        pt.size=0.6)+
+  theme_void()
+```
+
+
+## sce with variable genes
+```{r sce with var genes}
+seurat <- FindVariableFeatures(seurat, selection.method = "vst",
+                              nfeatures = 2000)
+genesVar <- VariableFeatures(seurat)
+
+sce <- as.SingleCellExperiment(seurat)
+dim(sce)
+
+```
+
+
+## run variance partitioning
+```{r}
+
+batch <- "SLO"
+celltype <- "clusterLabel"
+sample <- "cond"
+
+#remove genes with zrero counts only
+if( length(which(rowSums(assays(sce)$logcounts) == 0)) > 0 ){
+    sce <- sce[-which(rowSums(assays(sce)$logcounts) == 0),]
+}
+sce <- sce[genesVar,]
+expr <- as.matrix(assays(sce)$logcounts)
+meta_sub <- as.data.frame(colData(sce)[, c(celltype, batch, sample)])
+form <- as.formula(paste0("~ (1|", celltype, ") + (1|", batch, ") + (1|",
+                          sample, ")"))
+#form <- as.formula(paste0("~ (1|", celltype, ") + (1|", batch, ")"))
+#meta_sub <- as.data.frame(colData(sce)[, c(batch)])
+#colnames(meta_sub) <- batch
+#form <- as.formula(paste0("~ (1|", batch, ")"))
+varPart <- fitExtractVarPartModel(expr, form, meta_sub)
+# Add to sce
+rowData(sce)$vp_clusterLabel <- varPart[[celltype]]
+rowData(sce)$vp_SLO <- varPart[[batch]]
+rowData(sce)$vp_cond <- varPart[[sample]]
+rowData(sce)$vp_residuals <- varPart[["Residuals"]]
+
+```
+
+
+## ternary plots
+```{r ggtern}
+sumVar <- data.frame(do.call("cbind", varPart))
+
+ggtern(data=sumVar, aes(clusterLabel, cond, SLO)) +
+  guides(color = guide_legend(override.aes = list(size = 3, alpha = 1))) +
+  geom_point(size= 0.8, alpha = 0.5, color="black")  +
+  geom_density_tern(
+        bins=10,
+        bdl = 0.02,
+        color="black",
+        base = "identity", n = 20,
+        bdl.val = 0.1) +
+  Llab("cluster") +
+  Tlab("cond") +
+  Rlab("SLO") 
+
+
+ggtern(data=sumVar, aes(clusterLabel, cond, SLO)) +
+  guides(color = guide_legend(override.aes = list(size = 3, alpha = 1))) +
+  geom_point(size= 0.8, alpha = 0.5, color="#660000")  +
+  geom_density_tern(
+        bins=14,
+        bdl = 0.02,
+        color="black",
+        base = "identity", n = 20,
+        bdl.val = 0.1) +
+  Llab("cluster") +
+  Tlab("cond") +
+  Rlab("SLO") 
+
+
+```
+
+
+## session info
+```{r session info}
+sessionInfo()
+date()
+```
+
+

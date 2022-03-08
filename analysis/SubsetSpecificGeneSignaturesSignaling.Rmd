@@ -349,12 +349,11 @@ GOconsDat <- do.call("rbind", GOcons)
 #            file = paste0(basedir, "/data/GSEA/SubsetSpecificGO.txt"))
 	
 
-selGO <- c("LZFDC.GO:0046890", "LZFDC.GO:0007179", "LZFDC.GO:0007249",
-           "LZFDC.GO:0002062",
+selGO <- c("LZFDC.GO:0046890", "LZFDC.GO:0007249", "LZFDC.GO:0002062",
            "DZFDC.GO:0006631", "DZFDC.GO:0042063",
            "MRC.GO:0044344", 
            "TBRC.GO:0045765", "TBRC.GO:0035455",
-           "PRC2.GO:0045765", "PRC2.GO:0071772")
+           "PRC2.GO:0045765", "PRC2.GO:0071559")
 
 
 GOconsDat <- do.call("rbind", GOcons) %>% rownames_to_column(., var="IDlab") %>% 
@@ -395,7 +394,7 @@ ggplot(GOconsDat, aes(x=factor(DescriptionLab, level= level_order),
 ```
 
 
-```{r fig.height=8, fig.width=16}
+```{r fig.height=8, fig.width=12}
 
 p <- ggbarplot(GOconsDat, x = "DescriptionLab", y = "Qscore",
           fill = "subset",               

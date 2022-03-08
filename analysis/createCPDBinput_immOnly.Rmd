@@ -93,11 +93,11 @@ seuratLY$group <- "LYMPHO"
 
 ## subsample seuratLY
 Idents(seuratLY) <- seuratLY$label_plus_SLO
-seuratLY <- subset(seuratLY, downsample = 200) ## uncomment to subsample in R script
+#seuratLY <- subset(seuratLY, downsample = 500) ## uncomment to subsample in R script
 
 ## subsample seuratBRC
 Idents(seuratBRC) <- seuratBRC$SLO_plus_clusterlabel
-seuratBRC <- subset(seuratBRC, downsample = 200) ## uncomment to subsample in R script
+#seuratBRC <- subset(seuratBRC, downsample = 500) ## uncomment to subsample in R script
 
 
 Idents(seuratLY) <- seuratLY$clusterLabel
@@ -177,7 +177,7 @@ lapply(unique(sceMerge$SLO), function(slo){
   colnames(cellPhoneSLO)[1] <- "gene"
   write.table(cellPhoneSLO, 
               file = paste0(basedir,
-                            "/data/cellphonedb/folBRCimm_LYMGrpsub_",slo,
+                            "/data/cellphonedb/folBRCimm_LYMGrpNOsub_",slo,
                             "_countMatrix.txt"),
               row.names = FALSE, col.names = TRUE, quote = FALSE, sep = "\t")
 
@@ -186,7 +186,7 @@ lapply(unique(sceMerge$SLO), function(slo){
   colnames(metaDatSLO) <- c("Cell", "cell_type")
   write.table(metaDatSLO, 
               file = paste0(basedir,
-                            "/data/cellphonedb/folBRCimm_LYMGrpsub_",slo,
+                            "/data/cellphonedb/folBRCimm_LYMGrpNOsub_",slo,
                             "_metaData.txt"),
               row.names = FALSE, col.names = TRUE, quote = FALSE, sep = "\t")
 
@@ -216,11 +216,11 @@ cellphonedb database generate --user-interactions custom_interaction_file.csv
 
 ##run statistical analysis
 ## subsampling in R script.. 
-cellphonedb method statistical_analysis /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/folBRCimm_LYMGrpsub_LN_metaData.txt /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/folBRCimm_LYMGrpsub_LN_countMatrix.txt --output-path /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/outLNimmGrp/ --database /Users/mechthildluetge/Projects/scRNAseq/ILC_Hungwei/data/cellphonedb/out/cellphonedb_user_2021-10-05-09_17.db --debug-seed 3 --iterations 100
+cellphonedb method statistical_analysis /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/folBRCimm_LYMGrpNOsub_LN_metaData.txt /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/folBRCimm_LYMGrpNOsub_LN_countMatrix.txt --output-path /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/outLNimmGrpNO/ --database /Users/mechthildluetge/Projects/scRNAseq/ILC_Hungwei/data/cellphonedb/out/cellphonedb_user_2021-10-05-09_17.db --debug-seed 3 --iterations 100
 
-cellphonedb method statistical_analysis /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/folBRCimm_LYMGrpsub_PP_metaData.txt /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/folBRCimm_LYMGrpsub_PP_countMatrix.txt --output-path /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/outPPimmGrp/ --database /Users/mechthildluetge/Projects/scRNAseq/ILC_Hungwei/data/cellphonedb/out/cellphonedb_user_2021-10-05-09_17.db --debug-seed 3 --iterations 100
+cellphonedb method statistical_analysis /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/folBRCimm_LYMGrpNOsub_PP_metaData.txt /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/folBRCimm_LYMGrpNOsub_PP_countMatrix.txt --output-path /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/outPPimmGrpNO/ --database /Users/mechthildluetge/Projects/scRNAseq/ILC_Hungwei/data/cellphonedb/out/cellphonedb_user_2021-10-05-09_17.db --debug-seed 3 --iterations 100
 
-cellphonedb method statistical_analysis /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/folBRCimm_LYMGrpsub_Spleen_metaData.txt /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/folBRCimm_LYMGrpsub_Spleen_countMatrix.txt --output-path /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/outSPimmGrp/ --database /Users/mechthildluetge/Projects/scRNAseq/ILC_Hungwei/data/cellphonedb/out/cellphonedb_user_2021-10-05-09_17.db --debug-seed 3 --iterations 100
+cellphonedb method statistical_analysis /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/folBRCimm_LYMGrpNOsub_Spleen_metaData.txt /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/folBRCimm_LYMGrpNOsub_Spleen_countMatrix.txt --output-path /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/outSPimmGrpNO/ --database /Users/mechthildluetge/Projects/scRNAseq/ILC_Hungwei/data/cellphonedb/out/cellphonedb_user_2021-10-05-09_17.db --debug-seed 3 --iterations 100
 
 
 Count network interactions:

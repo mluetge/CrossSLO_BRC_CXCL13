@@ -1,0 +1,636 @@
+---
+title: "DE genes between cond"
+author: ""
+date: ""
+output: 
+  html_document:
+    keep_md: true
+    toc: true
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, echo = FALSE}
+options(width = 100)
+knitr::opts_chunk$set(warning = FALSE, message = FALSE, dev = c("png", "pdf"))
+seed <- 1234
+```
+
+
+## load packages
+```{r libs}
+suppressPackageStartupMessages({
+  library(tidyverse)
+  library(Seurat)
+  library(magrittr)
+  library(dplyr)
+  library(purrr)
+  library(ggplot2)
+  library(here)
+  library(runSeurat3)
+  library(SingleCellExperiment)
+  library(RColorBrewer)
+  library(viridis)
+  library(ggsci)
+  library(scater)
+  library(scran)
+  library(pheatmap)
+  library(biomaRt)
+  library(fgsea)
+  library(grid)
+  library(gridExtra)
+  library(clusterProfiler)
+  library(org.Mm.eg.db)
+  library(DOSE)
+  library(enrichplot)
+  library(msigdbr)
+  library(muscat)
+  library(ggpubr)
+})
+
+```
+
+
+
+
+## plotting funct
+```{r avg heatmap funct}
+
+avgHeatmap <- function(seurat, selGenes, colVecIdent, colVecCond=NULL,
+                       ordVec=NULL, gapVecR=NULL, gapVecC=NULL,cc=FALSE,
+                       cr=FALSE, condCol=FALSE){
+  
+  ## format gene names (depends on how gene list is inputed)
+  selGenes <- selGenes %>% 
+      mutate(geneID = (str_split(gene, '\\.', simplify = T)[,2]))
+  #selGenes <- selGenes$labelNam
+  
+  ## assay data
+  clusterAssigned <- as.data.frame(Idents(seurat)) %>%
+  dplyr::mutate(cell=rownames(.))
+  colnames(clusterAssigned)[1] <- "ident"
+  seuratDat <- GetAssayData(seurat)
+  
+  ## genes of interest
+  genes <- data.frame(gene=rownames(seurat)) %>% 
+    mutate(geneID=gsub("^.*\\.", "", gene)) %>%
+    filter(geneID %in% selGenes$geneID)
+
+  ## matrix with averaged cnts per ident
+  logNormExpres <- as.data.frame(t(as.matrix(
+    seuratDat[which(rownames(seuratDat) %in% genes$gene),])))
+  logNormExpres <- logNormExpres %>% dplyr::mutate(cell=rownames(.)) %>%
+    dplyr::left_join(.,clusterAssigned, by=c("cell")) %>%
+    dplyr::select(-cell) %>% dplyr::group_by(ident) %>%
+    dplyr::summarise_all(mean)
+  logNormExpresMa <- logNormExpres %>% dplyr::select(-ident) %>% as.matrix()
+  rownames(logNormExpresMa) <- logNormExpres$ident
+  logNormExpresMa <- t(logNormExpresMa)
+  rownames(logNormExpresMa) <- gsub("^.*?\\.","",rownames(logNormExpresMa))
+  
+  ## remove genes if they are all the same in all groups
+  ind <- apply(logNormExpresMa, 1, sd) == 0
+  logNormExpresMa <- logNormExpresMa[!ind,]
+  genes <- genes[!ind,]
+
+  ## color columns according to cluster
+  annotation_col <- as.data.frame(gsub("(^.*?_)","",
+                                       colnames(logNormExpresMa)))%>%
+    dplyr::mutate(celltype=gsub("(_.*$)","",colnames(logNormExpresMa)))
+  colnames(annotation_col)[1] <- "col1"
+  annotation_col <- annotation_col %>%
+    dplyr::mutate(cond = gsub("(^[0-9]_?)","",col1)) %>%
+    dplyr::select(cond, celltype)
+  rownames(annotation_col) <- colnames(logNormExpresMa) 
+
+  ann_colors = list(
+      cond = colVecCond,
+      celltype=colVecIdent)
+  if(is.null(ann_colors$cond)){
+    annotation_col$cond <- NULL
+  }
+  
+  ## adjust order
+  logNormExpresMa <- logNormExpresMa[selGenes$geneID,]
+  if(is.null(ordVec)){
+    ordVec <- levels(seurat)
+  }
+  logNormExpresMa <- logNormExpresMa[,ordVec]
+
+  ## scaled row-wise
+  pheatmap(logNormExpresMa, scale="row" ,treeheight_row = 0, cluster_rows = cr, 
+         cluster_cols = cc,
+         color = colorRampPalette(c("#45628f", "#F7F7F7", "#de425b"))(50),
+         annotation_col = annotation_col, cellwidth=15, cellheight=10,
+         annotation_colors = ann_colors, gaps_row = gapVecR, gaps_col = gapVecC)
+}
+
+
+
+```
+
+
+## set dir and read input data
+```{r set dir}
+basedir <- here()
+
+## read seurat objects with BRCs
+seurat <- readRDS(file=paste0(basedir, "/data/folBRC_allSLO_seurat.rds"))
+
+```
+
+
+## set color Vectors
+```{r color vectors}
+
+colPal <- c("#87c5af", "#94033b", "#fc8f3b", "#2580fe", "#514e72")
+names(colPal) <- c("LZFDC", "MRC", "TBRC","DZFDC","PRC2")
+ordBRC <- c("LZFDC", "DZFDC","MRC", "TBRC", "PRC2")
+
+colorSLO <- c(viridis(3)[c(1,2)], brewer.pal(n=9, name="YlOrRd")[c(4)])
+colorCond <- brewer.pal(n=3, name="Paired")[c(1,2)]
+colorSLOCond <- c("#440154FF","#807DBA", "#FEB24C", "#F16913", "#21908CFF")
+colorBatch <- pal_igv()(n=length(unique(seurat$batch)))
+colCl <- c(rcartocolor::carto_pal(name="Safe"),pal_aaas()(8))
+
+names(colorSLO) <- c("LN", "PP", "Spleen")
+names(colorCond) <- c("naive", "immunized")
+names(colorBatch) <- unique(seurat$batch)
+names(colorSLOCond) <- c("LN_immunized","LN_naive", "Spleen_naive",
+                         "Spleen_immunized", "PP_immunized")
+
+```
+
+## visualize data {.tabset}
+
+### clustering
+```{r clustering}
+
+DimPlot(seurat, reduction = "umap", cols=colPal, group.by = "clusterLabel")+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+```
+
+### SLO
+```{r SLO}
+
+DimPlot(seurat, reduction = "umap", cols=colorSLO, group.by = "SLO")+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+DimPlot(seurat, reduction = "umap", cols=colorSLO, group.by = "SLO",
+        pt.size=0.6)+
+  theme_void()
+```
+
+### Batch
+```{r Batch}
+
+DimPlot(seurat, reduction = "umap", cols=colorBatch, group.by = "batch")+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+```
+
+### Cond
+```{r Cond}
+
+DimPlot(seurat, reduction = "umap", cols=colorCond, group.by = "cond")+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+```
+
+
+### SLO plus cond
+```{r SLO plus cond}
+
+DimPlot(seurat, reduction = "umap", cols=colorSLOCond,group.by="SLO_plus_cond")+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+
+DimPlot(seurat, reduction = "umap",cols=colorSLOCond,group.by = "SLO_plus_cond",
+        pt.size=0.6)+
+  theme_void()
+```
+
+
+## overall DE genes {.tabset}
+### scatterplot all 
+```{r overall DE gene all}
+
+Idents(seurat) <- seurat$cond
+DEgenes <- FindAllMarkers(seurat, only.pos = T, logfc.threshold = 0.25,
+                           min.pct = 0.1)
+
+
+
+```
+
+
+```{r scatterplot overall DE all, fig.height=3.5, fig.width=4}
+
+## scatterplot
+## in red are all genes with an adjusted p_val < 0.01 and avg_logFC >0.25
+
+################################################################################
+### include only genes expressed in at least 10 % of cells in one condition ####
+################################################################################
+
+allID <- seurat
+Idents(allID) <-allID$cond
+avg.allID <- AverageExpression(allID, group.by="cond",
+                               show.progress = FALSE)
+avg.allID <- data.frame(log1p(avg.allID$originalexp)) %>% 
+  rownames_to_column(var="gene")
+
+## expression frequency
+GeneFreqSel <- as.data.frame(GetAssayData(allID, assay = "originalexp",
+                                          slot = "data")) %>%
+  tibble::rownames_to_column(var="gene") %>% mutate(count=rowSums(.!=0)-1) %>%
+  mutate(countFreq=count/ncol(allID)) %>%
+  dplyr::select(gene,count, countFreq) %>%
+  dplyr::filter(countFreq>=0.1)
+
+signGenes2 <- DEgenes %>% dplyr::filter(p_val_adj<0.01 & (avg_log2FC > 0.25)) 
+
+genes.to.label <- DEgenes %>% group_by(.,cluster) %>% 
+  slice_max(avg_log2FC, n=7) %>% mutate(labelNam=gsub("^.*\\.", "", gene))
+
+avg.allID <- avg.allID %>% mutate(labelNam=gsub("^.*\\.", "", gene)) %>%
+  mutate(colourGrp=ifelse(gene %in% genes.to.label$gene, "lab",
+                          ifelse(gene%in%signGenes2$gene, "sig", "notSig"))) %>%
+  dplyr::filter(gene%in%GeneFreqSel$gene)
+
+
+p_allID <- ggscatter(avg.allID, x="naive", y="immunized",
+                    color = "colourGrp",
+                    palette = c("#660000", "#808080", "#FF3333"),
+                    label="labelNam",
+                    label.select = genes.to.label$labelNam,
+                    repel = F,
+                    label.rectangle=F,
+                    xlab="naive",
+                    ylab = "immunized",
+                    title="",
+                    legend="none",
+                    font.label=10,
+                    alpha=0.9,
+                    size=0.5)
+
+
+p_allID 
+
+p_allID <- ggscatter(avg.allID, x="naive", y="immunized",
+                    color = "colourGrp",
+                    palette = c("#660000", "#808080", "#FF3333"),
+                    label=NULL,
+                    repel = F,
+                    label.rectangle=F,
+                    xlab="naive",
+                    ylab = "immunized",
+                    title="",
+                    legend="none",
+                    font.label=10,
+                    alpha=0.9,
+                    size=0.5)
+
+
+p_allID 
+
+
+```
+
+
+### scatterplot LN only
+```{r overall DE gene LN}
+seuratSub <- subset(seurat, SLO=="LN")
+Idents(seuratSub) <- seuratSub$cond
+DEgenes <- FindAllMarkers(seuratSub, only.pos = T, logfc.threshold = 0.25,
+                           min.pct = 0.1)
+
+
+
+```
+
+
+```{r scatterplot overall DE LN, fig.height=3.5, fig.width=4}
+
+## scatterplot
+## in red are all genes with an adjusted p_val < 0.01 and avg_logFC >0.25
+
+################################################################################
+### include only genes expressed in at least 10 % of cells in one condition ####
+################################################################################
+
+allID <- seuratSub
+Idents(allID) <-allID$cond
+avg.allID <- AverageExpression(allID, group.by="cond",
+                               show.progress = FALSE)
+avg.allID <- data.frame(log1p(avg.allID$originalexp)) %>% 
+  rownames_to_column(var="gene")
+
+## expression frequency
+GeneFreqSel <- as.data.frame(GetAssayData(allID, assay = "originalexp",
+                                          slot = "data")) %>%
+  tibble::rownames_to_column(var="gene") %>% mutate(count=rowSums(.!=0)-1) %>%
+  mutate(countFreq=count/ncol(allID)) %>%
+  dplyr::select(gene,count, countFreq) %>%
+  dplyr::filter(countFreq>=0.1)
+
+signGenes2 <- DEgenes %>% dplyr::filter(p_val_adj<0.01 & (avg_log2FC > 0.25)) 
+
+genes.to.label <- DEgenes %>% group_by(.,cluster) %>% 
+  slice_max(avg_log2FC, n=7) %>% mutate(labelNam=gsub("^.*\\.", "", gene))
+
+avg.allID <- avg.allID %>% mutate(labelNam=gsub("^.*\\.", "", gene)) %>%
+  mutate(colourGrp=ifelse(gene %in% genes.to.label$gene, "lab",
+                          ifelse(gene%in%signGenes2$gene, "sig", "notSig"))) %>%
+  dplyr::filter(gene%in%GeneFreqSel$gene)
+
+
+p_allID <- ggscatter(avg.allID, x="naive", y="immunized",
+                    color = "colourGrp",
+                    palette = c("#660000", "#808080", "#FF3333"),
+                    label="labelNam",
+                    label.select = genes.to.label$labelNam,
+                    repel = T,
+                    label.rectangle=F,
+                    xlab="naive",
+                    ylab = "immunized",
+                    title="",
+                    legend="none",
+                    font.label=10,
+                    alpha=0.9,
+                    size=0.5)
+p_allID
+
+p_allID2 <- p_allID +
+  geom_abline(intercept = 0, slope = 0.5, linetype = "dashed",color = "black") +
+  geom_abline(intercept = 0, slope = 2, linetype = "dashed",color = "black") 
+
+p_allID <- ggscatter(avg.allID, x="naive", y="immunized",
+                    color = "colourGrp",
+                    palette = c("#660000", "#808080", "#FF3333"),
+                    label=NULL,
+                    repel = F,
+                    label.rectangle=F,
+                    xlab="naive",
+                    ylab = "immunized",
+                    title="",
+                    legend="none",
+                    font.label=10,
+                    alpha=0.9,
+                    size=0.5)
+
+p_allID2 <- p_allID +
+  geom_abline(intercept = 0, slope = 0.5, linetype = "dashed",color = "black") +
+  geom_abline(intercept = 0, slope = 2, linetype = "dashed",color = "black") 
+
+
+p_allID2
+
+```
+
+### scatterplot Spleen only
+```{r overall DE gene Spleen}
+seuratSub <- subset(seurat, SLO=="Spleen")
+Idents(seuratSub) <- seuratSub$cond
+DEgenes <- FindAllMarkers(seuratSub, only.pos = T, logfc.threshold = 0.25,
+                           min.pct = 0.1)
+
+
+
+```
+
+
+```{r scatterplot overall DE Spleen, fig.height=3.5, fig.width=4}
+
+## scatterplot
+## in red are all genes with an adjusted p_val < 0.01 and avg_logFC >0.25
+
+################################################################################
+### include only genes expressed in at least 10 % of cells in one condition ####
+################################################################################
+
+allID <- seuratSub
+Idents(allID) <-allID$cond
+avg.allID <- AverageExpression(allID, group.by="cond",
+                               show.progress = FALSE)
+avg.allID <- data.frame(log1p(avg.allID$originalexp)) %>% 
+  rownames_to_column(var="gene")
+
+## expression frequency
+GeneFreqSel <- as.data.frame(GetAssayData(allID, assay = "originalexp",
+                                          slot = "data")) %>%
+  tibble::rownames_to_column(var="gene") %>% mutate(count=rowSums(.!=0)-1) %>%
+  mutate(countFreq=count/ncol(allID)) %>%
+  dplyr::select(gene,count, countFreq) %>%
+  dplyr::filter(countFreq>=0.1)
+
+signGenes2 <- DEgenes %>% dplyr::filter(p_val_adj<0.01 & (avg_log2FC > 0.25)) 
+
+genes.to.label <- DEgenes %>% group_by(.,cluster) %>% 
+  slice_max(avg_log2FC, n=7) %>% mutate(labelNam=gsub("^.*\\.", "", gene))
+
+avg.allID <- avg.allID %>% mutate(labelNam=gsub("^.*\\.", "", gene)) %>%
+  mutate(colourGrp=ifelse(gene %in% genes.to.label$gene, "lab",
+                          ifelse(gene%in%signGenes2$gene, "sig", "notSig"))) %>%
+  dplyr::filter(gene%in%GeneFreqSel$gene)
+
+
+p_allID <- ggscatter(avg.allID, x="naive", y="immunized",
+                    color = "colourGrp",
+                    palette = c("#660000", "#808080", "#FF3333"),
+                    label="labelNam",
+                    label.select = genes.to.label$labelNam,
+                    repel = F,
+                    label.rectangle=F,
+                    xlab="naive",
+                    ylab = "immunized",
+                    title="",
+                    legend="none",
+                    font.label=10,
+                    alpha=0.9,
+                    size=0.5)
+
+
+p_allID 
+
+p_allID <- ggscatter(avg.allID, x="naive", y="immunized",
+                    color = "colourGrp",
+                    palette = c("#660000", "#808080", "#FF3333"),
+                    label=NULL,
+                    repel = F,
+                    label.rectangle=F,
+                    xlab="naive",
+                    ylab = "immunized",
+                    title="",
+                    legend="none",
+                    font.label=10,
+                    alpha=0.9,
+                    size=0.5)
+
+
+p_allID 
+
+p_allID2 <- p_allID +
+  geom_abline(intercept = 0, slope = 0.5, linetype = "dashed",color = "black") +
+  geom_abline(intercept = 0, slope = 2, linetype = "dashed",color = "black") 
+
+
+p_allID2
+
+```
+
+
+## subset conserved DE genes {.tabset}
+### conserved marker all 
+```{r conserved marker all}
+
+Idents(seurat) <- seurat$cond
+seurat$cond <- factor(seurat$cond,
+                              levels=c("naive", "immunized"))
+
+clVec <- levels(seurat$cond)
+conservedMarker <- lapply(clVec, function(cl){
+  markers <- FindConservedMarkers(seurat, ident.1 = cl, ident.2 = NULL,
+                                  grouping.var = "clusterLabel", only.pos =T,
+                                  assay = "originalexp") %>% 
+    mutate(subset=cl) %>% rownames_to_column(var="gene")
+})
+names(conservedMarker) <- clVec
+conservedMarkerDat <- do.call("rbind", conservedMarker)
+
+```
+
+
+```{r avg heatmap cons marker all, fig.height=7, fig.width=6}
+seurat$cluster_plus_cond <- paste0(seurat$clusterLabel, "_", seurat$cond)
+Idents(seurat) <- seurat$cluster_plus_cond
+
+selGenes <- conservedMarkerDat
+grpCnt <- selGenes %>% group_by(subset) %>% summarise(cnt=n())
+gapR <- data.frame(subset=unique(selGenes$subset)) %>% 
+  left_join(.,grpCnt, by="subset") %>% mutate(cumSum=cumsum(cnt))
+gapC <- seq(from = 2, to = length(levels(seurat)), by = 2)
+ordVecDat <- crossing(subset=ordBRC, cond=names(colorCond)) %>% 
+  mutate(subsetCond = paste0(subset, "_", cond)) %>% 
+  arrange(match(subset, ordBRC))
+ordVec <- ordVecDat$subsetCond
+
+pOut <- avgHeatmap(seurat = seurat, selGenes = selGenes,
+                  colVecIdent = colPal, 
+                  ordVec=ordVec,
+                  gapVecR=gapR$cumSum, gapVecC=gapC,cc=F,
+                  cr=F, condCol=T, colVecCond = colorCond)
+
+```
+
+### conserved marker LN
+```{r conserved marker LN}
+
+seuratSub <- subset(seurat, SLO=="LN")
+Idents(seuratSub) <- seuratSub$cond
+
+clVec <- levels(seuratSub$cond)
+conservedMarker <- lapply(clVec, function(cl){
+  markers <- FindConservedMarkers(seuratSub, ident.1 = cl, ident.2 = NULL,
+                                  grouping.var = "clusterLabel", only.pos =T,
+                                  assay = "originalexp") %>% 
+    mutate(subset=cl) %>% rownames_to_column(var="gene")
+})
+names(conservedMarker) <- clVec
+conservedMarkerDat <- do.call("rbind", conservedMarker)
+
+```
+
+
+```{r avg heatmap cons marker LN, fig.height=7, fig.width=6}
+Idents(seuratSub) <- seuratSub$cluster_plus_cond
+
+selGenes <- conservedMarkerDat
+grpCnt <- selGenes %>% group_by(subset) %>% summarise(cnt=n())
+gapR <- data.frame(subset=unique(selGenes$subset)) %>% 
+  left_join(.,grpCnt, by="subset") %>% mutate(cumSum=cumsum(cnt))
+gapC <- seq(from = 2, to = length(levels(seuratSub)), by = 2)
+ordVecDat <- crossing(subset=ordBRC, cond=names(colorCond)) %>% 
+  mutate(subsetCond = paste0(subset, "_", cond)) %>% 
+  arrange(match(subset, ordBRC))
+ordVec <- ordVecDat$subsetCond
+
+pOut <- avgHeatmap(seurat = seuratSub, selGenes = selGenes,
+                  colVecIdent = colPal, 
+                  ordVec=ordVec,
+                  gapVecR=gapR$cumSum, gapVecC=gapC,cc=F,
+                  cr=F, condCol=T, colVecCond = colorCond)
+
+```
+
+### conserved marker Spleen
+```{r conserved marker Spleen}
+
+seuratSub <- subset(seurat, SLO=="Spleen")
+Idents(seuratSub) <- seuratSub$cond
+
+clVec <- levels(seuratSub$cond)
+conservedMarker <- lapply(clVec, function(cl){
+  markers <- FindConservedMarkers(seuratSub, ident.1 = cl, ident.2 = NULL,
+                                  grouping.var = "clusterLabel", only.pos =T,
+                                  assay = "originalexp") %>% 
+    mutate(subset=cl) %>% rownames_to_column(var="gene")
+})
+names(conservedMarker) <- clVec
+conservedMarkerDat <- do.call("rbind", conservedMarker)
+
+```
+
+
+```{r avg heatmap cons marker Spleen, fig.height=10, fig.width=7}
+Idents(seuratSub) <- seuratSub$cluster_plus_cond
+
+selGenes <- conservedMarkerDat
+grpCnt <- selGenes %>% group_by(subset) %>% summarise(cnt=n())
+gapR <- data.frame(subset=unique(selGenes$subset)) %>% 
+  left_join(.,grpCnt, by="subset") %>% mutate(cumSum=cumsum(cnt))
+gapC <- seq(from = 2, to = length(levels(seuratSub)), by = 2)
+ordVecDat <- crossing(subset=ordBRC, cond=names(colorCond)) %>% 
+  mutate(subsetCond = paste0(subset, "_", cond)) %>% 
+  arrange(match(subset, ordBRC))
+ordVec <- ordVecDat$subsetCond
+
+pOut <- avgHeatmap(seurat = seuratSub, selGenes = selGenes,
+                  colVecIdent = colPal, 
+                  ordVec=ordVec,
+                  gapVecR=gapR$cumSum, gapVecC=gapC,cc=F,
+                  cr=F, condCol=T, colVecCond = colorCond)
+
+```
+
+
+
+
+## session info
+```{r session info}
+sessionInfo()
+date()
+```
+
+

@@ -411,6 +411,120 @@ p
 ```
 
 
+#### heatmap all int independent of conservation
+```{r sign int all no cons dotplot, fig.height=3, fig.width=4.5}
+
+### ------------------ conserved sign INT ---------------------------------- ###
+
+## all interactions 
+signIntCons <- signIntDatOrd %>% 
+  dplyr::select(intPair, cellA, cellB, groupA, groupB) %>% 
+  group_by(intPair, cellA, cellB, groupA, groupB) %>%
+  summarise(cnt=n()) %>% 
+  filter(cnt >0)
+
+
+## cnt conserved sign interactions for each intPair + rel cnt
+lymphCntTot <- signIntCons %>% group_by(cellB) %>% 
+  summarize(cntTotL=n())
+cntPairCons <- signIntCons %>% group_by(cellA, cellB) %>% 
+  summarize(cntPair=n()) %>% left_join(., lymphCntTot, by = "cellB") %>% 
+  mutate(relCnt=cntPair/cntTotL)
+meanBRC <- cntPairCons %>% group_by(cellA) %>% 
+  summarise(meanRel=mean(relCnt), sdRel=sd(relCnt), relLyTot = sum(relCnt))
+cntPairCons <- cntPairCons %>% left_join(., meanBRC, by= "cellA") %>% 
+  mutate(zScore=(relCnt-meanRel)/sdRel) %>% 
+  mutate(relRelCnt=relCnt/relLyTot)
+  
+### heatmap with cons int
+cntPairConsform <- cntPairCons %>%
+  mutate(BRC=gsub(".*_", "", cellA)) %>% 
+  mutate(LYMPHO=gsub(".*_", "", cellB)) %>% ungroup(.) %>% 
+  dplyr::select(BRC, LYMPHO, cntPair) %>% 
+  spread(., BRC, cntPair)
+cntPairConsmat <- cntPairConsform %>% dplyr::select(-LYMPHO) %>% 
+  as.matrix(.)
+rownames(cntPairConsmat) <- cntPairConsform$LYMPHO
+
+annotation_col <-data.frame(lymph=rownames(cntPairConsmat)) 
+rownames(annotation_col) <- rownames(cntPairConsmat)  
+ann_colors <- list(lymph=colLab)
+
+ordLymph2 <- gsub(".*_", "", ordLymph)
+cntPairConsmat <- cntPairConsmat[,ordBRC]
+cntPairConsmat <- cntPairConsmat[ordLymph2,]
+pheatmap(t(cntPairConsmat), scale="row" ,treeheight_row = 0, cluster_rows = F, 
+         cluster_cols = F,
+         color = colorRampPalette(c("#11161d", "#4e5780", "#9cafff"))(50),
+         annotation_col = annotation_col, cellwidth=15, cellheight=10,
+         annotation_colors = ann_colors, gaps_row = NULL, gaps_col = NULL)
+
+## per BRC
+annotation_col <-data.frame(clu=colnames(cntPairConsmat)) 
+rownames(annotation_col) <- colnames(cntPairConsmat)  
+ann_colors <- list(clu = colBRC)
+pheatmap(cntPairConsmat, scale="row" ,treeheight_row = 0, cluster_rows = F, 
+         cluster_cols = F,
+         color = colorRampPalette(c("#11161d", "#4e5780", "#9cafff"))(50),
+         annotation_col = annotation_col, cellwidth=15, cellheight=10,
+         annotation_colors = ann_colors, gaps_row = NULL, gaps_col = NULL)
+
+### heatmap with cons int rel cnts..
+cntPairConsform <- cntPairCons %>%
+  mutate(BRC=gsub(".*_", "", cellA)) %>% 
+  mutate(LYMPHO=gsub(".*_", "", cellB)) %>% ungroup(.) %>% 
+  dplyr::select(BRC, LYMPHO, relCnt) %>% 
+  spread(., BRC, relCnt)
+cntPairConsmat <- cntPairConsform %>% dplyr::select(-LYMPHO) %>% 
+  as.matrix(.)
+rownames(cntPairConsmat) <- cntPairConsform$LYMPHO
+
+annotation_col <-data.frame(lymph=rownames(cntPairConsmat)) 
+rownames(annotation_col) <- rownames(cntPairConsmat)  
+ann_colors <- list(lymph=colLab)
+
+cntPairConsmat <- cntPairConsmat[,ordBRC]
+cntPairConsmat <- cntPairConsmat[ordLymph2,]
+
+pheatmap(t(cntPairConsmat), scale="row" ,treeheight_row = 0, cluster_rows = F, 
+         cluster_cols = F,
+         color = colorRampPalette(c("#11161d", "#7583bf", "#9cafff"))(20),
+         annotation_col = annotation_col, cellwidth=15, cellheight=10,
+         annotation_colors = ann_colors, gaps_row = NULL, gaps_col = NULL)
+
+
+### barplot
+cntPairConsBar <- cntPairCons %>%
+  mutate(ImmuneCell=gsub("LYMPHO_", "", cellB)) %>% 
+  mutate(BRC=gsub("BRC_", "", cellA)) 
+  
+p <- ggbarplot(cntPairConsBar, x = "BRC", y = "relRelCnt",
+               color = "ImmuneCell", fill= "ImmuneCell",
+               palette = colLab)
+p
+
+### Dotplot
+p <- ggplot(cntPairConsBar, aes(x=BRC,y=ImmuneCell)) +
+  geom_point(aes(size=relRelCnt,color=ImmuneCell)) +
+  scale_color_manual(values=colLab) +
+  scale_radius(range = c(1, 6)) +
+  scale_y_discrete(limits=ordLymphShort) +
+  scale_x_discrete(limits=ordBRC) +
+  theme_bw() +
+  theme(panel.grid.minor = element_blank(),
+        panel.grid.major = element_blank(),
+        axis.text=element_text(size=10, colour = "black"),
+        axis.text.x = element_text(angle = 90, hjust = 1),
+        axis.title=element_blank(),
+        panel.border = element_rect(size = 0.7, linetype = "solid",
+                                    colour = "black"))
+p
+
+
+```
+
+
+
 #### heatmap cons min 2
 ```{r cons sign int min 2}
 
@@ -520,7 +634,10 @@ p <- ggplot(cntPairConsBar, aes(x=BRC,y=ImmuneCell)) +
                                     colour = "black"))
 p
 
+
 ```
+
+
 
 
 #### circle plots for each subset

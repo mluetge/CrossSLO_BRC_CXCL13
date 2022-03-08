@@ -255,6 +255,13 @@ pOut <- avgHeatmap(seurat = seuratBRC, selGenes = genesBRC,
                   gapVecR=gapR$cumSum, cr=F,
                   condCol=T, colVecCond = colorSLO)
 
+Idents(seuratBRC) <- seuratBRC$clusterLabel
+pOut <- avgHeatmap(seurat = seuratBRC, selGenes = genesBRC,
+                  colVecIdent = colBRC, 
+                  ordVec=ordBRC,
+                  gapVecC=NULL,cc=F,
+                  gapVecR=gapR$cumSum, cr=F,
+                  condCol=F)
 
 ```
 
@@ -292,6 +299,14 @@ pOut <- avgHeatmap(seurat = seuratLY, selGenes = genesLym,
                   gapVecR=gapR$cumSum, cr=F,
                   condCol=T, colVecCond = colorSLO)
 
+
+Idents(seuratLY) <- seuratLY$clusterLabel2
+pOut <- avgHeatmap(seurat = seuratLY, selGenes = genesLym,
+                  colVecIdent = colLYM2, 
+                  ordVec=ordLYM,
+                  gapVecC=NULL,cc=F,
+                  gapVecR=gapR$cumSum, cr=F,
+                  condCol=F)
 
 ```
 
