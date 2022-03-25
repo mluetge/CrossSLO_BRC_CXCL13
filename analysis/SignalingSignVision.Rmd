@@ -1,0 +1,532 @@
+---
+title: "create input files for cellphonedb"
+author: ""
+date: ""
+output: 
+  html_document:
+    keep_md: true
+    toc: true
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, echo = FALSE}
+options(width = 100)
+knitr::opts_chunk$set(warning = FALSE, message = FALSE, dev = c("png", "pdf"))
+seed <- 1234
+```
+
+## Load packages
+
+```{r load-packages, warning = FALSE}
+suppressPackageStartupMessages({
+  library(scater)
+  library(dplyr)
+  library(reshape2)
+  library(Matrix)
+  library(purrr)
+  library(scran)
+  library(Seurat)
+  library(mclust)
+  library(tidyverse)
+  library(here)
+  library(viridis)
+  library(RColorBrewer)
+  library(pheatmap)
+  library(VISION)
+  library(biomaRt)
+  library(jsonlite)
+  library(ggplot2)
+  library(ggsci)
+})
+```
+
+
+
+## define plotting function DM
+```{r plotting function}
+## adapted from CellMixS
+visGroup_adapt <- function (sce,group,dim_red = "TSNE",col_group=pal_nejm()(8)) 
+{
+    if (!is(sce, "SingleCellExperiment")) {
+        stop("Error:'sce' must be a 'SingleCellExperiment' object.")
+    }
+    if (!group %in% names(colData(sce))) {
+        stop("Error: 'group' variable must be in 'colData(sce)'")
+    }
+    cell_names <- colnames(sce)
+    if (!dim_red %in% "TSNE") {
+        if (!dim_red %in% reducedDimNames(sce)) {
+            stop("Please provide a dim_red method listed in reducedDims of sce")
+        }
+        red_dim <- as.data.frame(reducedDim(sce, dim_red))
+    }
+    else {
+        if (!"TSNE" %in% reducedDimNames(sce)) {
+            if ("logcounts" %in% names(assays(sce))) {
+                sce <- runTSNE(sce)
+            }
+            else {
+                sce <- runTSNE(sce, exprs_values = "counts")
+            }
+        }
+        red_dim <- as.data.frame(reducedDim(sce, "TSNE"))
+    }
+    colnames(red_dim) <- c("red_dim1", "red_dim2")
+    df <- data.frame(sample_id = cell_names, group_var = colData(sce)[, 
+        group], red_Dim1 = red_dim$red_dim1, red_Dim2 = red_dim$red_dim2)
+    t <- ggplot(df, aes_string(x = "red_Dim1", y = "red_Dim2")) + 
+        xlab(paste0(dim_red, "_1")) + ylab(paste0(dim_red, "_2")) + 
+        theme_void() + theme(aspect.ratio = 1,
+                             panel.grid.minor = element_blank(), 
+        panel.grid.major = element_line(color = "grey", size = 0.3))
+    t_group <- t + geom_point(size = 1.5, alpha = 0.8,
+                              aes_string(color = "group_var")) + 
+        guides(color = guide_legend(override.aes = list(size = 1), 
+            title = group)) + ggtitle(group)
+    if (is.numeric(df$group_var)) {
+        t_group <- t_group + scale_color_viridis(option = "C")
+    }
+    else {
+        t_group <- t_group + scale_color_manual(values = col_group)
+    }
+    t_group
+}
+
+
+```
+
+
+
+## set color Vectors
+```{r color vectors}
+
+colBRC <- c("#87c5af", "#94033b", "#fc8f3b", "#2580fe", "#514e72")
+names(colBRC) <- c("LZFDC", "MRC", "TBRC","DZFDC","PRC2")
+
+
+colorSLO <- c(viridis(3)[c(1,2)], brewer.pal(n=9, name="YlOrRd")[c(4)])
+colorCond <- brewer.pal(n=3, name="Paired")[c(1,2)]
+colorSLOCond <- c("#440154FF","#807DBA", "#FEB24C", "#F16913", "#21908CFF")
+
+names(colorSLO) <- c("LN", "PP", "Spleen")
+names(colorCond) <- c("naive", "immunized")
+names(colorSLOCond) <- c("LN_immunized","LN_naive", "Spleen_naive",
+                         "Spleen_immunized", "PP_immunized")
+
+
+colLYM <- c("#a0b9c4", "#78abb7", "#567a83", "#3c454a", "#0C3C52",
+            "#924440", "#eab562",
+            "#f1d75f", "#b5a147", "#786c30")
+
+
+names(colLYM) <- c("naiveBcells", "LZBcells", "DZshmBcells", "proDZ",
+                   "plasmaCells", 
+                   "Tfh", "DCs",
+                   "mdMacrophages", "trMacrophages", "infMacrophages")
+
+colLYM2 <- c("#a0b9c4", "#567a83", "#0C3C52",
+            "#924440", "#eab562",
+            "#b5a147")
+
+
+names(colLYM2) <- c("naiveBcells", "GCBcells",
+                   "plasmaCells", 
+                   "Tfh", "DCs",
+                   "Myeloids")
+
+```
+
+
+## load input data
+```{r input data}
+basedir <- here()
+seuratLY <- readRDS(file = paste0(basedir, 
+                              "/data/lympho/allSamples_mergedLab_seurat.rds"))
+seuratLY <- subset(seuratLY, clusterLabel %in% names(colLYM))
+
+GCBs <- c("LZBcells", "DZshmBcells", "proDZ")
+Myel <- c("mdMacrophages", "trMacrophages", "infMacrophages")
+seuratLY$clusterLabel2 <- seuratLY$clusterLabel
+seuratLY$clusterLabel2[which(seuratLY$clusterLabel %in% GCBs)] <- "GCBcells"
+seuratLY$clusterLabel2[which(seuratLY$clusterLabel %in% Myel)] <- "Myeloids"
+
+seuratBRC <- readRDS(file=paste0(basedir,
+                                 "/data/folBRC_allSLO_subSampled_seurat.rds"))
+
+## Each SLO individually
+seuratLY$label_plus_SLO <- paste0(seuratLY$clusterLabel2, "_", seuratLY$SLO)
+seuratBRC$label_plus_SLO <- paste0(seuratBRC$clusterLabel, "_", seuratBRC$SLO)
+
+
+## plot input data
+Idents(seuratLY) <- seuratLY$clusterLabel2
+DimPlot(seuratLY, reduction = "umap", cols = colLYM2)+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+Idents(seuratBRC) <- seuratBRC$clusterLabel
+DimPlot(seuratBRC, reduction = "umap", cols = colBRC)+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+
+```
+
+## assign groups
+```{r assign groups}
+
+seuratBRC$group <- "BRC"
+seuratLY$group <- "LYMPHO"
+
+Idents(seuratLY) <- seuratLY$label_plus_SLO
+Idents(seuratBRC) <- seuratBRC$label_plus_SLO
+
+```
+
+## project signature on UMAP
+### create vision object BRC
+```{r create vis objects BRCs}
+
+sce <- as.SingleCellExperiment(seuratBRC)
+#sce <- runDiffusionMap(sce)
+
+## map genes to human homologs
+ensIDs <- gsub("\\..*","",rownames(sce))
+
+## map to human orthologs
+mart2 <- useMart("ensembl", dataset="hsapiens_gene_ensembl")
+mart1 = useMart("ensembl", dataset="mmusculus_gene_ensembl") 
+
+# human / mouse
+geneIDS_hum <- getLDS(attributes=c("ensembl_gene_id"),
+           filters=c("ensembl_gene_id"), values=ensIDs, mart=mart1,
+           attributesL=c("ensembl_gene_id", "hgnc_symbol"), martL=mart2)
+
+geneIDsMatch <- as.data.frame(ensIDs) %>% 
+  left_join(., geneIDS_hum, by=c("ensIDs"="Gene.stable.ID")) 
+
+## remove na, empty symbols or duplicated symbols
+geneIDsMatch <- geneIDsMatch[-which(duplicated(geneIDsMatch$ensIDs)),]
+sceMod <- sce[-which(is.na(geneIDsMatch$Gene.stable.ID.1)),]
+geneIDsMatch <- geneIDsMatch[-which(is.na(geneIDsMatch$Gene.stable.ID.1)),]
+sceMod <- sceMod[-which(geneIDsMatch$HGNC.symbol==""),]
+geneIDsMatch <- geneIDsMatch[-which(geneIDsMatch$HGNC.symbol==""),]
+sceMod <- sceMod[-which(duplicated(geneIDsMatch$HGNC.symbol)),]
+geneIDsMatch <- geneIDsMatch[-which(duplicated(geneIDsMatch$HGNC.symbol)),]
+
+## asssign rownames
+dim(sceMod)
+nrow(geneIDsMatch)
+rownames(sceMod) <- geneIDsMatch$HGNC.symbol
+seuratVis <- as.Seurat(sceMod)
+seuratVis@assays$RNA <- seuratVis@assays$originalexp
+seuratVis <- ScaleData(seuratVis, assay = "RNA")
+
+## create vision object
+vis <- Vision(seuratVis,
+              projection_methods = NULL,
+              dimRed = "PCA",
+              min_signature_genes = 3,
+              sig_gene_threshold = 0.001,
+              signatures = c(paste0(basedir,
+                                    "/data/vision/c2.cp.v7.5.1.symbols.gmt")))
+
+## analyse
+vis <- analyze(vis)
+#viewResults(vis)
+
+signOut <- data.frame(vis@SigScores)
+
+```
+
+### vis vision output
+```{r vis vision output}
+sceSub <- as.SingleCellExperiment(seuratBRC)
+pal = colorRampPalette(c("#053061", "#2166ac", "#f7f7f7",
+                         "#f4a582", "#b2183c", "#85122d"))(100)
+
+signList <- read_tsv(file = paste0(basedir, "/data/vision/selSignVision"))
+
+SignPout <- lapply(signList$Pathway, function(pw){
+  cutOffMax <- signList$cutMax[which(signList$Pathway == pw)]
+  cutOffMin <- signList$cutMin[which(signList$Pathway == pw)]
+  sc <- scale_colour_gradientn(colours = pal, limits=c(cutOffMin, cutOffMax))
+  sceSub$sign <- signOut[[pw]]
+  sceSub$sign[which(sceSub$sign > cutOffMax)] <- cutOffMax
+  sceSub$sign[which(sceSub$sign < cutOffMin)] <- cutOffMin
+  p <- visGroup_adapt(sceSub, 'sign', dim_red = 'UMAP') +
+    sc +
+    guides(colour = guide_colourbar(title = '')) +
+    ggtitle(paste0(pw, ' signature')) +
+    theme_classic() + 
+    theme(axis.text = element_blank(),
+          axis.ticks = element_blank()) +
+    labs(x='Dimension 1', y='Dimension 2')
+  p
+})
+SignPout
+
+SignPout2 <- lapply(signList$Pathway, function(pw){
+  cutOffMax <- signList$cutMax[which(signList$Pathway == pw)]
+  cutOffMin <- signList$cutMin[which(signList$Pathway == pw)]
+  sc <- scale_colour_gradientn(colours = pal, limits=c(cutOffMin, cutOffMax))
+  sceSub$sign <- signOut[[pw]]
+  sceSub$sign[which(sceSub$sign > cutOffMax)] <- cutOffMax
+  sceSub$sign[which(sceSub$sign < cutOffMin)] <- cutOffMin
+  p <- visGroup_adapt(sceSub, 'sign', dim_red = 'UMAP') +
+    scale_colour_viridis() +
+    guides(colour = guide_colourbar(title = '')) +
+    ggtitle(paste0(pw, ' signature')) +
+    theme_classic() + 
+    theme(axis.text = element_blank(),
+          axis.ticks = element_blank()) +
+    labs(x='Dimension 1', y='Dimension 2')
+  p
+})
+SignPout2
+
+```
+
+
+## Map signatures on DM
+### create vision object BRC for DM
+```{r create vis objects BRCs DM}
+
+seuratBRC <- readRDS(file=paste0(basedir, "/data/folBRC_allSLO_seurat.rds"))
+sce <- as.SingleCellExperiment(seuratBRC)
+
+## map genes to human homologs
+ensIDs <- gsub("\\..*","",rownames(sce))
+
+## map to human orthologs
+mart2 <- useMart("ensembl", dataset="hsapiens_gene_ensembl")
+mart1 = useMart("ensembl", dataset="mmusculus_gene_ensembl") 
+
+# human / mouse
+geneIDS_hum <- getLDS(attributes=c("ensembl_gene_id"),
+           filters=c("ensembl_gene_id"), values=ensIDs, mart=mart1,
+           attributesL=c("ensembl_gene_id", "hgnc_symbol"), martL=mart2)
+
+geneIDsMatch <- as.data.frame(ensIDs) %>% 
+  left_join(., geneIDS_hum, by=c("ensIDs"="Gene.stable.ID")) 
+
+## remove na, empty symbols or duplicated symbols
+geneIDsMatch <- geneIDsMatch[-which(duplicated(geneIDsMatch$ensIDs)),]
+sceMod <- sce[-which(is.na(geneIDsMatch$Gene.stable.ID.1)),]
+geneIDsMatch <- geneIDsMatch[-which(is.na(geneIDsMatch$Gene.stable.ID.1)),]
+sceMod <- sceMod[-which(geneIDsMatch$HGNC.symbol==""),]
+geneIDsMatch <- geneIDsMatch[-which(geneIDsMatch$HGNC.symbol==""),]
+sceMod <- sceMod[-which(duplicated(geneIDsMatch$HGNC.symbol)),]
+geneIDsMatch <- geneIDsMatch[-which(duplicated(geneIDsMatch$HGNC.symbol)),]
+
+## asssign rownames
+dim(sceMod)
+nrow(geneIDsMatch)
+rownames(sceMod) <- geneIDsMatch$HGNC.symbol
+seuratVis <- as.Seurat(sceMod)
+seuratVis@assays$RNA <- seuratVis@assays$originalexp
+seuratVis <- ScaleData(seuratVis, assay = "RNA")
+
+## create vision object
+vis <- Vision(seuratVis,
+              projection_methods = NULL,
+              dimRed = "PCA",
+              min_signature_genes = 3,
+              sig_gene_threshold = 0.001,
+              signatures = c(paste0(basedir,
+                                    "/data/vision/c2.cp.v7.5.1.symbols.gmt")))
+
+## analyse
+vis <- analyze(vis)
+#viewResults(vis)
+
+signOut <- data.frame(vis@SigScores)
+
+```
+
+### vis vision output
+```{r vis vision output DM}
+sceSub <- as.SingleCellExperiment(seuratBRC)
+sceSub <- runDiffusionMap(sceSub)
+
+p <- visGroup_adapt(sceSub, 'SLO', dim_red = 'DiffusionMap') +
+    scale_colour_manual(values = colorSLO) +
+    theme_classic() + 
+    theme(axis.text = element_blank(),
+          axis.ticks = element_blank()) +
+    labs(x='Dimension 1', y='Dimension 2')
+p
+
+p <- visGroup_adapt(sceSub, 'clusterLabel', dim_red = 'DiffusionMap') +
+    scale_colour_manual(values = colBRC) +
+    theme_classic() + 
+    theme(axis.text = element_blank(),
+          axis.ticks = element_blank()) +
+    labs(x='Dimension 1', y='Dimension 2')
+p
+
+pal = colorRampPalette(c("#053061", "#2166ac", "#f7f7f7",
+                         "#f4a582", "#b2183c", "#85122d"))(100)
+
+signList <- read_tsv(file = paste0(basedir, "/data/vision/selSignVision"))
+
+SignPout <- lapply(signList$Pathway, function(pw){
+  cutOffMax <- signList$cutMax[which(signList$Pathway == pw)]
+  cutOffMin <- signList$cutMin[which(signList$Pathway == pw)]
+  sc <- scale_colour_gradientn(colours = pal, limits=c(cutOffMin, cutOffMax))
+  sceSub$sign <- signOut[[pw]]
+  sceSub$sign[which(sceSub$sign > cutOffMax)] <- cutOffMax
+  sceSub$sign[which(sceSub$sign < cutOffMin)] <- cutOffMin
+  p <- visGroup_adapt(sceSub, 'sign', dim_red = 'DiffusionMap') +
+    sc +
+    guides(colour = guide_colourbar(title = '')) +
+    ggtitle(paste0(pw, ' signature')) +
+    theme_classic() + 
+    theme(axis.text = element_blank(),
+          axis.ticks = element_blank()) +
+    labs(x='Dimension 1', y='Dimension 2')
+  p
+})
+SignPout
+
+SignPout2 <- lapply(signList$Pathway, function(pw){
+  cutOffMax <- signList$cutMax[which(signList$Pathway == pw)]
+  cutOffMin <- signList$cutMin[which(signList$Pathway == pw)]
+  sc <- scale_colour_gradientn(colours = pal, limits=c(cutOffMin, cutOffMax))
+  sceSub$sign <- signOut[[pw]]
+  sceSub$sign[which(sceSub$sign > cutOffMax)] <- cutOffMax
+  sceSub$sign[which(sceSub$sign < cutOffMin)] <- cutOffMin
+  p <- visGroup_adapt(sceSub, 'sign', dim_red = 'DiffusionMap') +
+    scale_colour_viridis() +
+    guides(colour = guide_colourbar(title = '')) +
+    ggtitle(paste0(pw, ' signature')) +
+    theme_classic() + 
+    theme(axis.text = element_blank(),
+          axis.ticks = element_blank()) +
+    labs(x='Dimension 1', y='Dimension 2')
+  p
+})
+SignPout2
+
+```
+
+
+## project signature on UMAP LYM
+### create vision object LYM
+```{r create vis objects LYM}
+
+sce <- as.SingleCellExperiment(seuratLY)
+#sce <- runDiffusionMap(sce)
+
+## map genes to human homologs
+ensIDs <- gsub("\\..*","",rownames(sce))
+
+## map to human orthologs
+mart2 <- useMart("ensembl", dataset="hsapiens_gene_ensembl")
+mart1 = useMart("ensembl", dataset="mmusculus_gene_ensembl") 
+
+# human / mouse
+geneIDS_hum <- getLDS(attributes=c("ensembl_gene_id"),
+           filters=c("ensembl_gene_id"), values=ensIDs, mart=mart1,
+           attributesL=c("ensembl_gene_id", "hgnc_symbol"), martL=mart2)
+
+geneIDsMatch <- as.data.frame(ensIDs) %>% 
+  left_join(., geneIDS_hum, by=c("ensIDs"="Gene.stable.ID")) 
+
+## remove na, empty symbols or duplicated symbols
+geneIDsMatch <- geneIDsMatch[-which(duplicated(geneIDsMatch$ensIDs)),]
+sceMod <- sce[-which(is.na(geneIDsMatch$Gene.stable.ID.1)),]
+geneIDsMatch <- geneIDsMatch[-which(is.na(geneIDsMatch$Gene.stable.ID.1)),]
+sceMod <- sceMod[-which(geneIDsMatch$HGNC.symbol==""),]
+geneIDsMatch <- geneIDsMatch[-which(geneIDsMatch$HGNC.symbol==""),]
+sceMod <- sceMod[-which(duplicated(geneIDsMatch$HGNC.symbol)),]
+geneIDsMatch <- geneIDsMatch[-which(duplicated(geneIDsMatch$HGNC.symbol)),]
+
+## asssign rownames
+dim(sceMod)
+nrow(geneIDsMatch)
+rownames(sceMod) <- geneIDsMatch$HGNC.symbol
+seuratVis <- as.Seurat(sceMod)
+seuratVis <- ScaleData(seuratVis, assay = "RNA")
+
+## create vision object
+vis <- Vision(seuratVis,
+              projection_methods = NULL,
+              dimRed = "PCA",
+              min_signature_genes = 3,
+              sig_gene_threshold = 0.001,
+              signatures = c(paste0(basedir,
+                                    "/data/vision/c2.cp.v7.5.1.symbols.gmt")))
+
+## analyse
+vis <- analyze(vis)
+#viewResults(vis)
+
+signOut <- data.frame(vis@SigScores)
+
+```
+
+### vis vision output
+```{r vis vision output LYM}
+sceSub <- as.SingleCellExperiment(seuratLY)
+sceSub <- sceSub[,which(colnames(sceSub) %in% rownames(signOut))]
+pal = colorRampPalette(c("#053061", "#2166ac", "#f7f7f7",
+                         "#f4a582", "#b2183c", "#85122d"))(100)
+
+signList <- read_tsv(file = paste0(basedir, "/data/vision/selSignVision"))
+
+SignPout <- lapply(signList$Pathway, function(pw){
+  cutOffMax <- signList$cutMax[which(signList$Pathway == pw)]
+  cutOffMin <- signList$cutMin[which(signList$Pathway == pw)]
+  sc <- scale_colour_gradientn(colours = pal, limits=c(cutOffMin, cutOffMax))
+  sceSub$sign <- signOut[[pw]]
+  sceSub$sign[which(sceSub$sign > cutOffMax)] <- cutOffMax
+  sceSub$sign[which(sceSub$sign < cutOffMin)] <- cutOffMin
+  p <- visGroup_adapt(sceSub, 'sign', dim_red = 'UMAP') +
+    sc +
+    guides(colour = guide_colourbar(title = '')) +
+    ggtitle(paste0(pw, ' signature')) +
+    theme_classic() + 
+    theme(axis.text = element_blank(),
+          axis.ticks = element_blank()) +
+    labs(x='Dimension 1', y='Dimension 2')
+  p
+})
+SignPout
+
+SignPout2 <- lapply(signList$Pathway, function(pw){
+  cutOffMax <- signList$cutMax[which(signList$Pathway == pw)]
+  cutOffMin <- signList$cutMin[which(signList$Pathway == pw)]
+  sc <- scale_colour_gradientn(colours = pal, limits=c(cutOffMin, cutOffMax))
+  sceSub$sign <- signOut[[pw]]
+  sceSub$sign[which(sceSub$sign > cutOffMax)] <- cutOffMax
+  sceSub$sign[which(sceSub$sign < cutOffMin)] <- cutOffMin
+  p <- visGroup_adapt(sceSub, 'sign', dim_red = 'UMAP') +
+    scale_colour_viridis() +
+    guides(colour = guide_colourbar(title = '')) +
+    ggtitle(paste0(pw, ' signature')) +
+    theme_classic() + 
+    theme(axis.text = element_blank(),
+          axis.ticks = element_blank()) +
+    labs(x='Dimension 1', y='Dimension 2')
+  p
+})
+SignPout2
+
+```
+
+
+
+## session info
+```{r session info}
+sessionInfo()
+date()
+```
+
