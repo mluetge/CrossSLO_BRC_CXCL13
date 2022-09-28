@@ -377,7 +377,7 @@ div.tocify {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2022-03-25
+<strong>Last updated:</strong> 2022-03-29
 </p>
 <p>
 <strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 1
@@ -401,7 +401,7 @@ This reproducible <a href="https://rmarkdown.rstudio.com">R Markdown</a> analysi
 </div>
 <div id="strongRMarkdownfilestronguncommittedchanges" class="panel-collapse collapse">
 <div class="panel-body">
-<p>The R Markdown is untracked by Git. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
+<p>The R Markdown file has unstaged changes. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
 </div>
 </div>
 </div>
@@ -468,16 +468,16 @@ This reproducible <a href="https://rmarkdown.rstudio.com">R Markdown</a> analysi
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcommluetgeCrossSLOBRCCXCL13treefe2d3c36c405b261fc34e79f2dcf0a3463c12a25targetblankfe2d3c3a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/tree/fe2d3c36c405b261fc34e79f2dcf0a3463c12a25" target="_blank">fe2d3c3</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcommluetgeCrossSLOBRCCXCL13treeb2e5a81907d4d650867b04e8d061cb72989e04bftargetblankb2e5a81a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/tree/b2e5a81907d4d650867b04e8d061cb72989e04bf" target="_blank">b2e5a81</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcommluetgeCrossSLOBRCCXCL13treefe2d3c36c405b261fc34e79f2dcf0a3463c12a25targetblankfe2d3c3a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcommluetgeCrossSLOBRCCXCL13treeb2e5a81907d4d650867b04e8d061cb72989e04bftargetblankb2e5a81a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/tree/fe2d3c36c405b261fc34e79f2dcf0a3463c12a25" target="_blank">fe2d3c3</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/tree/b2e5a81907d4d650867b04e8d061cb72989e04bf" target="_blank">b2e5a81</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -488,6 +488,7 @@ Ignored files:
     Ignored:    .Rhistory
     Ignored:    .Rproj.user/
     Ignored:    analysis/.DS_Store
+    Ignored:    analysis/figure/
     Ignored:    data/GSEA/
     Ignored:    data/cellphonedb/
     Ignored:    data/destiny/
@@ -499,9 +500,9 @@ Ignored files:
     Ignored:    figure/plotSubsetSpecificSignatures.Rmd/
     Ignored:    figure/plotSubsetSpecificSignatures2.Rmd/.DS_Store
 
-Untracked files:
-    Untracked:  analysis/DownstreamSignalingSignAverageExpression.Rmd
-    Untracked:  analysis/SignalingSignVision.Rmd
+Unstaged changes:
+    Modified:   analysis/DownstreamSignalingSignAverageExpression.Rmd
+    Modified:   analysis/visFolBRC_merged.Rmd
 
 </code></pre>
 <p>
@@ -514,9 +515,69 @@ Note that any generated files, e.g. HTML, png, CSS, etc., are not included in t
 <hr>
 </div>
 <div id="versions" class="tab-pane fade">
+
 <p>
-There are no past versions. Publish this analysis with <code>wflow_publish()</code> to start tracking its development.
+These are the previous versions of the repository in which changes were made to the R Markdown (<code>analysis/DownstreamSignalingSignAverageExpression.Rmd</code>) and HTML (<code>docs/DownstreamSignalingSignAverageExpression.html</code>) files. If you’ve configured a remote Git repository (see <code>?wflow_git_remote</code>), click on the hyperlinks in the table below to view the files as they were in that past version.
 </p>
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+File
+</th>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+<th>
+Message
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/b2e5a81907d4d650867b04e8d061cb72989e04bf/analysis/DownstreamSignalingSignAverageExpression.Rmd" target="_blank">b2e5a81</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+<td>
+add vision analysis for downstream signaling pw
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/mluetge/CrossSLO_BRC_CXCL13/b2e5a81907d4d650867b04e8d061cb72989e04bf/docs/DownstreamSignalingSignAverageExpression.html" target="_blank">b2e5a81</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+<td>
+add vision analysis for downstream signaling pw
+</td>
+</tr>
+</tbody>
+</table>
+</div>
 <hr>
 </div>
 </div>
@@ -724,10 +785,84 @@ names(colLYM2) &lt;- c(&quot;naiveBcells&quot;, &quot;GCBcells&quot;,
   xlab(&quot;UMAP1&quot;) +
   ylab(&quot;UMAP2&quot;)</code></pre>
 <p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/clustering-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-clustering-1">
+Past versions of clustering-1.png
+</button>
+</p>
+<div id="fig-clustering-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/b2e5a81907d4d650867b04e8d061cb72989e04bf/docs/figure/DownstreamSignalingSignAverageExpression.Rmd/clustering-1.png" target="_blank">b2e5a81</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>DimPlot(seurat, reduction = &quot;umap&quot;, cols=colPal, group.by = &quot;clusterLabel&quot;,
         pt.size=0.6)+
   theme_void()</code></pre>
 <p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/clustering-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-clustering-2">
+Past versions of clustering-2.png
+</button>
+</p>
+<div id="fig-clustering-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/b2e5a81907d4d650867b04e8d061cb72989e04bf/docs/figure/DownstreamSignalingSignAverageExpression.Rmd/clustering-2.png" target="_blank">b2e5a81</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="slo" class="section level3">
 <h3>SLO</h3>
@@ -738,10 +873,84 @@ names(colLYM2) &lt;- c(&quot;naiveBcells&quot;, &quot;GCBcells&quot;,
   xlab(&quot;UMAP1&quot;) +
   ylab(&quot;UMAP2&quot;)</code></pre>
 <p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/SLO-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-SLO-1">
+Past versions of SLO-1.png
+</button>
+</p>
+<div id="fig-SLO-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/b2e5a81907d4d650867b04e8d061cb72989e04bf/docs/figure/DownstreamSignalingSignAverageExpression.Rmd/SLO-1.png" target="_blank">b2e5a81</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>DimPlot(seurat, reduction = &quot;umap&quot;, cols=colorSLO, group.by = &quot;SLO&quot;,
         pt.size=0.6)+
   theme_void()</code></pre>
 <p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/SLO-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-SLO-2">
+Past versions of SLO-2.png
+</button>
+</p>
+<div id="fig-SLO-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/b2e5a81907d4d650867b04e8d061cb72989e04bf/docs/figure/DownstreamSignalingSignAverageExpression.Rmd/SLO-2.png" target="_blank">b2e5a81</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="batch" class="section level3">
 <h3>Batch</h3>
@@ -752,6 +961,43 @@ names(colLYM2) &lt;- c(&quot;naiveBcells&quot;, &quot;GCBcells&quot;,
   xlab(&quot;UMAP1&quot;) +
   ylab(&quot;UMAP2&quot;)</code></pre>
 <p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/Batch-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-Batch-1">
+Past versions of Batch-1.png
+</button>
+</p>
+<div id="fig-Batch-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/b2e5a81907d4d650867b04e8d061cb72989e04bf/docs/figure/DownstreamSignalingSignAverageExpression.Rmd/Batch-1.png" target="_blank">b2e5a81</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="cond" class="section level3">
 <h3>Cond</h3>
@@ -762,6 +1008,43 @@ names(colLYM2) &lt;- c(&quot;naiveBcells&quot;, &quot;GCBcells&quot;,
   xlab(&quot;UMAP1&quot;) +
   ylab(&quot;UMAP2&quot;)</code></pre>
 <p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/Cond-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-Cond-1">
+Past versions of Cond-1.png
+</button>
+</p>
+<div id="fig-Cond-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/b2e5a81907d4d650867b04e8d061cb72989e04bf/docs/figure/DownstreamSignalingSignAverageExpression.Rmd/Cond-1.png" target="_blank">b2e5a81</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="slo-plus-cond" class="section level3">
 <h3>SLO plus cond</h3>
@@ -772,10 +1055,84 @@ names(colLYM2) &lt;- c(&quot;naiveBcells&quot;, &quot;GCBcells&quot;,
   xlab(&quot;UMAP1&quot;) +
   ylab(&quot;UMAP2&quot;)</code></pre>
 <p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/SLO%20plus%20cond-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-SLO-plus-cond-1">
+Past versions of “SLO plus cond-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-SLO-plus-cond-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/b2e5a81907d4d650867b04e8d061cb72989e04bf/docs/figure/DownstreamSignalingSignAverageExpression.Rmd/SLO plus cond-1.png" target="_blank">b2e5a81</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>DimPlot(seurat, reduction = &quot;umap&quot;,cols=colorSLOCond,group.by = &quot;SLO_plus_cond&quot;,
         pt.size=0.6)+
   theme_void()</code></pre>
 <p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/SLO%20plus%20cond-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-SLO-plus-cond-2">
+Past versions of “SLO plus cond-2.png”
+</button>
+</p>
+<div id="fig-no-spaces-SLO-plus-cond-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/b2e5a81907d4d650867b04e8d061cb72989e04bf/docs/figure/DownstreamSignalingSignAverageExpression.Rmd/SLO plus cond-2.png" target="_blank">b2e5a81</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 </div>
 <div id="vis-subset-specific-gene-signatures" class="section level2">
@@ -804,14 +1161,18 @@ genes &lt;- genes %&gt;% left_join(geneIDS_hum, by=c(&quot;ensID&quot; = &quot;G
 signDat &lt;- signDat %&gt;% left_join(.,genes, by=c(&quot;gene&quot; = &quot;HGNC.symbol&quot;))
 signDat &lt;- signDat[-which(is.na(signDat$geneID)),]</code></pre>
 </div>
-<div id="project-sign-brc-umap-cut-0.6" class="section level3">
-<h3>project sign BRC umap cut 0.6</h3>
+<div id="project-sign-brc-umap-cut-0.5" class="section level3">
+<h3>project sign BRC umap cut 0.5</h3>
 <pre class="r"><code>allSign &lt;- unique(signDat$signature)
 sce &lt;- as.SingleCellExperiment(seurat)
 
-cutOff &lt;- 0.6
-pal = colorRampPalette(c(&quot;#053061&quot;, &quot;#2166ac&quot;, &quot;#f7f7f7&quot;,
-                         &quot;#f4a582&quot;, &quot;#b2183c&quot;, &quot;#85122d&quot;))(100)
+cutOff &lt;- 0.5
+#pal = colorRampPalette(c(&quot;#053061&quot;, &quot;#2166ac&quot;, &quot;#f7f7f7&quot;,
+#                         &quot;#f4a582&quot;, &quot;#b2183c&quot;, &quot;#85122d&quot;))(100)
+pal = colorRampPalette(c(&quot;#053061&quot;, &quot;#f7f7f7&quot;,
+                         &quot;#85122d&quot;))(100)
+
+
 sc &lt;- scale_colour_gradientn(colours = pal, limits=c(0, cutOff))
 
 
@@ -837,43 +1198,43 @@ plots_gs &lt;- lapply(allSign, function(sign){
 
 plots_gs</code></pre>
 <pre><code>[[1]]</code></pre>
-<p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut0.6-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut0.5-1.png" width="672" style="display: block; margin: auto;" /></p>
 <pre><code>
 [[2]]</code></pre>
-<p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut0.6-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut0.5-2.png" width="672" style="display: block; margin: auto;" /></p>
 <pre><code>
 [[3]]</code></pre>
-<p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut0.6-3.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut0.5-3.png" width="672" style="display: block; margin: auto;" /></p>
 <pre><code>
 [[4]]</code></pre>
-<p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut0.6-4.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut0.5-4.png" width="672" style="display: block; margin: auto;" /></p>
 <pre><code>
 [[5]]</code></pre>
-<p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut0.6-5.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut0.5-5.png" width="672" style="display: block; margin: auto;" /></p>
 <pre><code>
 [[6]]</code></pre>
-<p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut0.6-6.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut0.5-6.png" width="672" style="display: block; margin: auto;" /></p>
 <pre><code>
 [[7]]</code></pre>
-<p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut0.6-7.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut0.5-7.png" width="672" style="display: block; margin: auto;" /></p>
 <pre><code>
 [[8]]</code></pre>
-<p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut0.6-8.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut0.5-8.png" width="672" style="display: block; margin: auto;" /></p>
 <pre><code>
 [[9]]</code></pre>
-<p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut0.6-9.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut0.5-9.png" width="672" style="display: block; margin: auto;" /></p>
 <pre><code>
 [[10]]</code></pre>
-<p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut0.6-10.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut0.5-10.png" width="672" style="display: block; margin: auto;" /></p>
 <pre><code>
 [[11]]</code></pre>
-<p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut0.6-11.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut0.5-11.png" width="672" style="display: block; margin: auto;" /></p>
 <pre><code>
 [[12]]</code></pre>
-<p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut0.6-12.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut0.5-12.png" width="672" style="display: block; margin: auto;" /></p>
 <pre><code>
 [[13]]</code></pre>
-<p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut0.6-13.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut0.5-13.png" width="672" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>plots_gs &lt;- lapply(allSign, function(sign){
     signGenes &lt;- signDat %&gt;% dplyr::filter(signature == sign)
     sceSub &lt;- sce[which(rownames(sce) %in% signGenes$geneID),]
@@ -896,52 +1257,51 @@ plots_gs</code></pre>
 
 plots_gs</code></pre>
 <pre><code>[[1]]</code></pre>
-<p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut0.6-14.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut0.5-14.png" width="672" style="display: block; margin: auto;" /></p>
 <pre><code>
 [[2]]</code></pre>
-<p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut0.6-15.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut0.5-15.png" width="672" style="display: block; margin: auto;" /></p>
 <pre><code>
 [[3]]</code></pre>
-<p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut0.6-16.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut0.5-16.png" width="672" style="display: block; margin: auto;" /></p>
 <pre><code>
 [[4]]</code></pre>
-<p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut0.6-17.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut0.5-17.png" width="672" style="display: block; margin: auto;" /></p>
 <pre><code>
 [[5]]</code></pre>
-<p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut0.6-18.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut0.5-18.png" width="672" style="display: block; margin: auto;" /></p>
 <pre><code>
 [[6]]</code></pre>
-<p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut0.6-19.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut0.5-19.png" width="672" style="display: block; margin: auto;" /></p>
 <pre><code>
 [[7]]</code></pre>
-<p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut0.6-20.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut0.5-20.png" width="672" style="display: block; margin: auto;" /></p>
 <pre><code>
 [[8]]</code></pre>
-<p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut0.6-21.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut0.5-21.png" width="672" style="display: block; margin: auto;" /></p>
 <pre><code>
 [[9]]</code></pre>
-<p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut0.6-22.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut0.5-22.png" width="672" style="display: block; margin: auto;" /></p>
 <pre><code>
 [[10]]</code></pre>
-<p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut0.6-23.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut0.5-23.png" width="672" style="display: block; margin: auto;" /></p>
 <pre><code>
 [[11]]</code></pre>
-<p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut0.6-24.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut0.5-24.png" width="672" style="display: block; margin: auto;" /></p>
 <pre><code>
 [[12]]</code></pre>
-<p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut0.6-25.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut0.5-25.png" width="672" style="display: block; margin: auto;" /></p>
 <pre><code>
 [[13]]</code></pre>
-<p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut0.6-26.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut0.5-26.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
-<div id="project-sign-brc-umap-cut-0.1" class="section level3">
-<h3>project sign BRC umap cut 0.1</h3>
+<div id="project-sign-brc-umap-cut-0.8" class="section level3">
+<h3>project sign BRC umap cut 0.8</h3>
 <pre class="r"><code>allSign &lt;- unique(signDat$signature)
 sce &lt;- as.SingleCellExperiment(seurat)
 
-cutOff &lt;- 0.1
-pal = colorRampPalette(c(&quot;#053061&quot;, &quot;#2166ac&quot;, &quot;#f7f7f7&quot;,
-                         &quot;#f4a582&quot;, &quot;#b2183c&quot;, &quot;#85122d&quot;))(100)
+cutOff &lt;- 0.8
+pal = colorRampPalette(c(&quot;#053061&quot;, &quot;#f7f7f7&quot;,&quot;#85122d&quot;))(100)
 sc &lt;- scale_colour_gradientn(colours = pal, limits=c(0, cutOff))
 
 
@@ -967,43 +1327,43 @@ plots_gs &lt;- lapply(allSign, function(sign){
 
 plots_gs</code></pre>
 <pre><code>[[1]]</code></pre>
-<p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut0.1-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut0.8-1.png" width="672" style="display: block; margin: auto;" /></p>
 <pre><code>
 [[2]]</code></pre>
-<p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut0.1-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut0.8-2.png" width="672" style="display: block; margin: auto;" /></p>
 <pre><code>
 [[3]]</code></pre>
-<p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut0.1-3.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut0.8-3.png" width="672" style="display: block; margin: auto;" /></p>
 <pre><code>
 [[4]]</code></pre>
-<p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut0.1-4.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut0.8-4.png" width="672" style="display: block; margin: auto;" /></p>
 <pre><code>
 [[5]]</code></pre>
-<p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut0.1-5.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut0.8-5.png" width="672" style="display: block; margin: auto;" /></p>
 <pre><code>
 [[6]]</code></pre>
-<p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut0.1-6.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut0.8-6.png" width="672" style="display: block; margin: auto;" /></p>
 <pre><code>
 [[7]]</code></pre>
-<p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut0.1-7.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut0.8-7.png" width="672" style="display: block; margin: auto;" /></p>
 <pre><code>
 [[8]]</code></pre>
-<p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut0.1-8.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut0.8-8.png" width="672" style="display: block; margin: auto;" /></p>
 <pre><code>
 [[9]]</code></pre>
-<p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut0.1-9.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut0.8-9.png" width="672" style="display: block; margin: auto;" /></p>
 <pre><code>
 [[10]]</code></pre>
-<p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut0.1-10.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut0.8-10.png" width="672" style="display: block; margin: auto;" /></p>
 <pre><code>
 [[11]]</code></pre>
-<p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut0.1-11.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut0.8-11.png" width="672" style="display: block; margin: auto;" /></p>
 <pre><code>
 [[12]]</code></pre>
-<p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut0.1-12.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut0.8-12.png" width="672" style="display: block; margin: auto;" /></p>
 <pre><code>
 [[13]]</code></pre>
-<p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut0.1-13.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut0.8-13.png" width="672" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>plots_gs &lt;- lapply(allSign, function(sign){
     signGenes &lt;- signDat %&gt;% dplyr::filter(signature == sign)
     sceSub &lt;- sce[which(rownames(sce) %in% signGenes$geneID),]
@@ -1026,43 +1386,43 @@ plots_gs</code></pre>
 
 plots_gs</code></pre>
 <pre><code>[[1]]</code></pre>
-<p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut0.1-14.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut0.8-14.png" width="672" style="display: block; margin: auto;" /></p>
 <pre><code>
 [[2]]</code></pre>
-<p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut0.1-15.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut0.8-15.png" width="672" style="display: block; margin: auto;" /></p>
 <pre><code>
 [[3]]</code></pre>
-<p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut0.1-16.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut0.8-16.png" width="672" style="display: block; margin: auto;" /></p>
 <pre><code>
 [[4]]</code></pre>
-<p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut0.1-17.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut0.8-17.png" width="672" style="display: block; margin: auto;" /></p>
 <pre><code>
 [[5]]</code></pre>
-<p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut0.1-18.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut0.8-18.png" width="672" style="display: block; margin: auto;" /></p>
 <pre><code>
 [[6]]</code></pre>
-<p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut0.1-19.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut0.8-19.png" width="672" style="display: block; margin: auto;" /></p>
 <pre><code>
 [[7]]</code></pre>
-<p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut0.1-20.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut0.8-20.png" width="672" style="display: block; margin: auto;" /></p>
 <pre><code>
 [[8]]</code></pre>
-<p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut0.1-21.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut0.8-21.png" width="672" style="display: block; margin: auto;" /></p>
 <pre><code>
 [[9]]</code></pre>
-<p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut0.1-22.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut0.8-22.png" width="672" style="display: block; margin: auto;" /></p>
 <pre><code>
 [[10]]</code></pre>
-<p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut0.1-23.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut0.8-23.png" width="672" style="display: block; margin: auto;" /></p>
 <pre><code>
 [[11]]</code></pre>
-<p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut0.1-24.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut0.8-24.png" width="672" style="display: block; margin: auto;" /></p>
 <pre><code>
 [[12]]</code></pre>
-<p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut0.1-25.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut0.8-25.png" width="672" style="display: block; margin: auto;" /></p>
 <pre><code>
 [[13]]</code></pre>
-<p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut0.1-26.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut0.8-26.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="project-sign-brc-umap-cut-1" class="section level3">
 <h3>project sign BRC umap cut 1</h3>
@@ -1070,8 +1430,7 @@ plots_gs</code></pre>
 sce &lt;- as.SingleCellExperiment(seurat)
 
 cutOff &lt;- 1
-pal = colorRampPalette(c(&quot;#053061&quot;, &quot;#2166ac&quot;, &quot;#f7f7f7&quot;,
-                         &quot;#f4a582&quot;, &quot;#b2183c&quot;, &quot;#85122d&quot;))(100)
+pal = colorRampPalette(c(&quot;#053061&quot;, &quot;#f7f7f7&quot;,&quot;#85122d&quot;))(100)
 sc &lt;- scale_colour_gradientn(colours = pal, limits=c(0, cutOff))
 
 
@@ -1098,42 +1457,523 @@ plots_gs &lt;- lapply(allSign, function(sign){
 plots_gs</code></pre>
 <pre><code>[[1]]</code></pre>
 <p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut1-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-project-sign-BRC-cut1-1">
+Past versions of “project sign BRC cut1-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-project-sign-BRC-cut1-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/b2e5a81907d4d650867b04e8d061cb72989e04bf/docs/figure/DownstreamSignalingSignAverageExpression.Rmd/project sign BRC cut1-1.png" target="_blank">b2e5a81</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[2]]</code></pre>
 <p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut1-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-project-sign-BRC-cut1-2">
+Past versions of “project sign BRC cut1-2.png”
+</button>
+</p>
+<div id="fig-no-spaces-project-sign-BRC-cut1-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/b2e5a81907d4d650867b04e8d061cb72989e04bf/docs/figure/DownstreamSignalingSignAverageExpression.Rmd/project sign BRC cut1-2.png" target="_blank">b2e5a81</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[3]]</code></pre>
 <p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut1-3.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-project-sign-BRC-cut1-3">
+Past versions of “project sign BRC cut1-3.png”
+</button>
+</p>
+<div id="fig-no-spaces-project-sign-BRC-cut1-3" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/b2e5a81907d4d650867b04e8d061cb72989e04bf/docs/figure/DownstreamSignalingSignAverageExpression.Rmd/project sign BRC cut1-3.png" target="_blank">b2e5a81</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[4]]</code></pre>
 <p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut1-4.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-project-sign-BRC-cut1-4">
+Past versions of “project sign BRC cut1-4.png”
+</button>
+</p>
+<div id="fig-no-spaces-project-sign-BRC-cut1-4" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/b2e5a81907d4d650867b04e8d061cb72989e04bf/docs/figure/DownstreamSignalingSignAverageExpression.Rmd/project sign BRC cut1-4.png" target="_blank">b2e5a81</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[5]]</code></pre>
 <p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut1-5.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-project-sign-BRC-cut1-5">
+Past versions of “project sign BRC cut1-5.png”
+</button>
+</p>
+<div id="fig-no-spaces-project-sign-BRC-cut1-5" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/b2e5a81907d4d650867b04e8d061cb72989e04bf/docs/figure/DownstreamSignalingSignAverageExpression.Rmd/project sign BRC cut1-5.png" target="_blank">b2e5a81</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[6]]</code></pre>
 <p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut1-6.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-project-sign-BRC-cut1-6">
+Past versions of “project sign BRC cut1-6.png”
+</button>
+</p>
+<div id="fig-no-spaces-project-sign-BRC-cut1-6" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/b2e5a81907d4d650867b04e8d061cb72989e04bf/docs/figure/DownstreamSignalingSignAverageExpression.Rmd/project sign BRC cut1-6.png" target="_blank">b2e5a81</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[7]]</code></pre>
 <p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut1-7.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-project-sign-BRC-cut1-7">
+Past versions of “project sign BRC cut1-7.png”
+</button>
+</p>
+<div id="fig-no-spaces-project-sign-BRC-cut1-7" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/b2e5a81907d4d650867b04e8d061cb72989e04bf/docs/figure/DownstreamSignalingSignAverageExpression.Rmd/project sign BRC cut1-7.png" target="_blank">b2e5a81</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[8]]</code></pre>
 <p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut1-8.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-project-sign-BRC-cut1-8">
+Past versions of “project sign BRC cut1-8.png”
+</button>
+</p>
+<div id="fig-no-spaces-project-sign-BRC-cut1-8" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/b2e5a81907d4d650867b04e8d061cb72989e04bf/docs/figure/DownstreamSignalingSignAverageExpression.Rmd/project sign BRC cut1-8.png" target="_blank">b2e5a81</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[9]]</code></pre>
 <p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut1-9.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-project-sign-BRC-cut1-9">
+Past versions of “project sign BRC cut1-9.png”
+</button>
+</p>
+<div id="fig-no-spaces-project-sign-BRC-cut1-9" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/b2e5a81907d4d650867b04e8d061cb72989e04bf/docs/figure/DownstreamSignalingSignAverageExpression.Rmd/project sign BRC cut1-9.png" target="_blank">b2e5a81</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[10]]</code></pre>
 <p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut1-10.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-project-sign-BRC-cut1-10">
+Past versions of “project sign BRC cut1-10.png”
+</button>
+</p>
+<div id="fig-no-spaces-project-sign-BRC-cut1-10" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/b2e5a81907d4d650867b04e8d061cb72989e04bf/docs/figure/DownstreamSignalingSignAverageExpression.Rmd/project sign BRC cut1-10.png" target="_blank">b2e5a81</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[11]]</code></pre>
 <p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut1-11.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-project-sign-BRC-cut1-11">
+Past versions of “project sign BRC cut1-11.png”
+</button>
+</p>
+<div id="fig-no-spaces-project-sign-BRC-cut1-11" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/b2e5a81907d4d650867b04e8d061cb72989e04bf/docs/figure/DownstreamSignalingSignAverageExpression.Rmd/project sign BRC cut1-11.png" target="_blank">b2e5a81</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[12]]</code></pre>
 <p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut1-12.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-project-sign-BRC-cut1-12">
+Past versions of “project sign BRC cut1-12.png”
+</button>
+</p>
+<div id="fig-no-spaces-project-sign-BRC-cut1-12" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/b2e5a81907d4d650867b04e8d061cb72989e04bf/docs/figure/DownstreamSignalingSignAverageExpression.Rmd/project sign BRC cut1-12.png" target="_blank">b2e5a81</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[13]]</code></pre>
 <p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut1-13.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-project-sign-BRC-cut1-13">
+Past versions of “project sign BRC cut1-13.png”
+</button>
+</p>
+<div id="fig-no-spaces-project-sign-BRC-cut1-13" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/b2e5a81907d4d650867b04e8d061cb72989e04bf/docs/figure/DownstreamSignalingSignAverageExpression.Rmd/project sign BRC cut1-13.png" target="_blank">b2e5a81</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>plots_gs &lt;- lapply(allSign, function(sign){
     signGenes &lt;- signDat %&gt;% dplyr::filter(signature == sign)
     sceSub &lt;- sce[which(rownames(sce) %in% signGenes$geneID),]
@@ -1157,42 +1997,523 @@ plots_gs</code></pre>
 plots_gs</code></pre>
 <pre><code>[[1]]</code></pre>
 <p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut1-14.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-project-sign-BRC-cut1-14">
+Past versions of “project sign BRC cut1-14.png”
+</button>
+</p>
+<div id="fig-no-spaces-project-sign-BRC-cut1-14" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/b2e5a81907d4d650867b04e8d061cb72989e04bf/docs/figure/DownstreamSignalingSignAverageExpression.Rmd/project sign BRC cut1-14.png" target="_blank">b2e5a81</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[2]]</code></pre>
 <p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut1-15.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-project-sign-BRC-cut1-15">
+Past versions of “project sign BRC cut1-15.png”
+</button>
+</p>
+<div id="fig-no-spaces-project-sign-BRC-cut1-15" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/b2e5a81907d4d650867b04e8d061cb72989e04bf/docs/figure/DownstreamSignalingSignAverageExpression.Rmd/project sign BRC cut1-15.png" target="_blank">b2e5a81</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[3]]</code></pre>
 <p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut1-16.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-project-sign-BRC-cut1-16">
+Past versions of “project sign BRC cut1-16.png”
+</button>
+</p>
+<div id="fig-no-spaces-project-sign-BRC-cut1-16" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/b2e5a81907d4d650867b04e8d061cb72989e04bf/docs/figure/DownstreamSignalingSignAverageExpression.Rmd/project sign BRC cut1-16.png" target="_blank">b2e5a81</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[4]]</code></pre>
 <p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut1-17.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-project-sign-BRC-cut1-17">
+Past versions of “project sign BRC cut1-17.png”
+</button>
+</p>
+<div id="fig-no-spaces-project-sign-BRC-cut1-17" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/b2e5a81907d4d650867b04e8d061cb72989e04bf/docs/figure/DownstreamSignalingSignAverageExpression.Rmd/project sign BRC cut1-17.png" target="_blank">b2e5a81</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[5]]</code></pre>
 <p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut1-18.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-project-sign-BRC-cut1-18">
+Past versions of “project sign BRC cut1-18.png”
+</button>
+</p>
+<div id="fig-no-spaces-project-sign-BRC-cut1-18" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/b2e5a81907d4d650867b04e8d061cb72989e04bf/docs/figure/DownstreamSignalingSignAverageExpression.Rmd/project sign BRC cut1-18.png" target="_blank">b2e5a81</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[6]]</code></pre>
 <p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut1-19.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-project-sign-BRC-cut1-19">
+Past versions of “project sign BRC cut1-19.png”
+</button>
+</p>
+<div id="fig-no-spaces-project-sign-BRC-cut1-19" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/b2e5a81907d4d650867b04e8d061cb72989e04bf/docs/figure/DownstreamSignalingSignAverageExpression.Rmd/project sign BRC cut1-19.png" target="_blank">b2e5a81</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[7]]</code></pre>
 <p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut1-20.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-project-sign-BRC-cut1-20">
+Past versions of “project sign BRC cut1-20.png”
+</button>
+</p>
+<div id="fig-no-spaces-project-sign-BRC-cut1-20" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/b2e5a81907d4d650867b04e8d061cb72989e04bf/docs/figure/DownstreamSignalingSignAverageExpression.Rmd/project sign BRC cut1-20.png" target="_blank">b2e5a81</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[8]]</code></pre>
 <p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut1-21.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-project-sign-BRC-cut1-21">
+Past versions of “project sign BRC cut1-21.png”
+</button>
+</p>
+<div id="fig-no-spaces-project-sign-BRC-cut1-21" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/b2e5a81907d4d650867b04e8d061cb72989e04bf/docs/figure/DownstreamSignalingSignAverageExpression.Rmd/project sign BRC cut1-21.png" target="_blank">b2e5a81</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[9]]</code></pre>
 <p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut1-22.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-project-sign-BRC-cut1-22">
+Past versions of “project sign BRC cut1-22.png”
+</button>
+</p>
+<div id="fig-no-spaces-project-sign-BRC-cut1-22" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/b2e5a81907d4d650867b04e8d061cb72989e04bf/docs/figure/DownstreamSignalingSignAverageExpression.Rmd/project sign BRC cut1-22.png" target="_blank">b2e5a81</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[10]]</code></pre>
 <p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut1-23.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-project-sign-BRC-cut1-23">
+Past versions of “project sign BRC cut1-23.png”
+</button>
+</p>
+<div id="fig-no-spaces-project-sign-BRC-cut1-23" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/b2e5a81907d4d650867b04e8d061cb72989e04bf/docs/figure/DownstreamSignalingSignAverageExpression.Rmd/project sign BRC cut1-23.png" target="_blank">b2e5a81</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[11]]</code></pre>
 <p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut1-24.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-project-sign-BRC-cut1-24">
+Past versions of “project sign BRC cut1-24.png”
+</button>
+</p>
+<div id="fig-no-spaces-project-sign-BRC-cut1-24" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/b2e5a81907d4d650867b04e8d061cb72989e04bf/docs/figure/DownstreamSignalingSignAverageExpression.Rmd/project sign BRC cut1-24.png" target="_blank">b2e5a81</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[12]]</code></pre>
 <p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut1-25.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-project-sign-BRC-cut1-25">
+Past versions of “project sign BRC cut1-25.png”
+</button>
+</p>
+<div id="fig-no-spaces-project-sign-BRC-cut1-25" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/b2e5a81907d4d650867b04e8d061cb72989e04bf/docs/figure/DownstreamSignalingSignAverageExpression.Rmd/project sign BRC cut1-25.png" target="_blank">b2e5a81</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[13]]</code></pre>
 <p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20cut1-26.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-project-sign-BRC-cut1-26">
+Past versions of “project sign BRC cut1-26.png”
+</button>
+</p>
+<div id="fig-no-spaces-project-sign-BRC-cut1-26" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/b2e5a81907d4d650867b04e8d061cb72989e04bf/docs/figure/DownstreamSignalingSignAverageExpression.Rmd/project sign BRC cut1-26.png" target="_blank">b2e5a81</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="project-sign-brc-dm" class="section level3 tabset">
 <h3 class="tabset">project sign BRC DM</h3>
@@ -1210,6 +2531,43 @@ p &lt;- visGroup_adapt(sce, &#39;SLO&#39;, dim_red = &#39;DiffusionMap&#39;) +
     labs(x=&#39;Dimension 1&#39;, y=&#39;Dimension 2&#39;)
 p</code></pre>
 <p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20DM-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-project-sign-BRC-DM-1">
+Past versions of “project sign BRC DM-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-project-sign-BRC-DM-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/b2e5a81907d4d650867b04e8d061cb72989e04bf/docs/figure/DownstreamSignalingSignAverageExpression.Rmd/project sign BRC DM-1.png" target="_blank">b2e5a81</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>p &lt;- visGroup_adapt(sce, &#39;clusterLabel&#39;, dim_red = &#39;DiffusionMap&#39;) +
     scale_colour_manual(values = colPal) +
     theme_classic() + 
@@ -1218,9 +2576,45 @@ p</code></pre>
     labs(x=&#39;Dimension 1&#39;, y=&#39;Dimension 2&#39;)
 p</code></pre>
 <p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20DM-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-project-sign-BRC-DM-2">
+Past versions of “project sign BRC DM-2.png”
+</button>
+</p>
+<div id="fig-no-spaces-project-sign-BRC-DM-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/b2e5a81907d4d650867b04e8d061cb72989e04bf/docs/figure/DownstreamSignalingSignAverageExpression.Rmd/project sign BRC DM-2.png" target="_blank">b2e5a81</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>cutOff &lt;- 0.6
-pal = colorRampPalette(c(&quot;#053061&quot;, &quot;#2166ac&quot;, &quot;#f7f7f7&quot;,
-                         &quot;#f4a582&quot;, &quot;#b2183c&quot;, &quot;#85122d&quot;))(100)
+pal = colorRampPalette(c(&quot;#053061&quot;, &quot;#f7f7f7&quot;,&quot;#85122d&quot;))(100)
 sc &lt;- scale_colour_gradientn(colours = pal, limits=c(0, cutOff))
 
 
@@ -1247,42 +2641,523 @@ plots_gs &lt;- lapply(allSign, function(sign){
 plots_gs</code></pre>
 <pre><code>[[1]]</code></pre>
 <p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20DM-3.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-project-sign-BRC-DM-3">
+Past versions of “project sign BRC DM-3.png”
+</button>
+</p>
+<div id="fig-no-spaces-project-sign-BRC-DM-3" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/b2e5a81907d4d650867b04e8d061cb72989e04bf/docs/figure/DownstreamSignalingSignAverageExpression.Rmd/project sign BRC DM-3.png" target="_blank">b2e5a81</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[2]]</code></pre>
 <p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20DM-4.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-project-sign-BRC-DM-4">
+Past versions of “project sign BRC DM-4.png”
+</button>
+</p>
+<div id="fig-no-spaces-project-sign-BRC-DM-4" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/b2e5a81907d4d650867b04e8d061cb72989e04bf/docs/figure/DownstreamSignalingSignAverageExpression.Rmd/project sign BRC DM-4.png" target="_blank">b2e5a81</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[3]]</code></pre>
 <p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20DM-5.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-project-sign-BRC-DM-5">
+Past versions of “project sign BRC DM-5.png”
+</button>
+</p>
+<div id="fig-no-spaces-project-sign-BRC-DM-5" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/b2e5a81907d4d650867b04e8d061cb72989e04bf/docs/figure/DownstreamSignalingSignAverageExpression.Rmd/project sign BRC DM-5.png" target="_blank">b2e5a81</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[4]]</code></pre>
 <p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20DM-6.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-project-sign-BRC-DM-6">
+Past versions of “project sign BRC DM-6.png”
+</button>
+</p>
+<div id="fig-no-spaces-project-sign-BRC-DM-6" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/b2e5a81907d4d650867b04e8d061cb72989e04bf/docs/figure/DownstreamSignalingSignAverageExpression.Rmd/project sign BRC DM-6.png" target="_blank">b2e5a81</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[5]]</code></pre>
 <p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20DM-7.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-project-sign-BRC-DM-7">
+Past versions of “project sign BRC DM-7.png”
+</button>
+</p>
+<div id="fig-no-spaces-project-sign-BRC-DM-7" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/b2e5a81907d4d650867b04e8d061cb72989e04bf/docs/figure/DownstreamSignalingSignAverageExpression.Rmd/project sign BRC DM-7.png" target="_blank">b2e5a81</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[6]]</code></pre>
 <p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20DM-8.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-project-sign-BRC-DM-8">
+Past versions of “project sign BRC DM-8.png”
+</button>
+</p>
+<div id="fig-no-spaces-project-sign-BRC-DM-8" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/b2e5a81907d4d650867b04e8d061cb72989e04bf/docs/figure/DownstreamSignalingSignAverageExpression.Rmd/project sign BRC DM-8.png" target="_blank">b2e5a81</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[7]]</code></pre>
 <p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20DM-9.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-project-sign-BRC-DM-9">
+Past versions of “project sign BRC DM-9.png”
+</button>
+</p>
+<div id="fig-no-spaces-project-sign-BRC-DM-9" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/b2e5a81907d4d650867b04e8d061cb72989e04bf/docs/figure/DownstreamSignalingSignAverageExpression.Rmd/project sign BRC DM-9.png" target="_blank">b2e5a81</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[8]]</code></pre>
 <p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20DM-10.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-project-sign-BRC-DM-10">
+Past versions of “project sign BRC DM-10.png”
+</button>
+</p>
+<div id="fig-no-spaces-project-sign-BRC-DM-10" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/b2e5a81907d4d650867b04e8d061cb72989e04bf/docs/figure/DownstreamSignalingSignAverageExpression.Rmd/project sign BRC DM-10.png" target="_blank">b2e5a81</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[9]]</code></pre>
 <p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20DM-11.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-project-sign-BRC-DM-11">
+Past versions of “project sign BRC DM-11.png”
+</button>
+</p>
+<div id="fig-no-spaces-project-sign-BRC-DM-11" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/b2e5a81907d4d650867b04e8d061cb72989e04bf/docs/figure/DownstreamSignalingSignAverageExpression.Rmd/project sign BRC DM-11.png" target="_blank">b2e5a81</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[10]]</code></pre>
 <p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20DM-12.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-project-sign-BRC-DM-12">
+Past versions of “project sign BRC DM-12.png”
+</button>
+</p>
+<div id="fig-no-spaces-project-sign-BRC-DM-12" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/b2e5a81907d4d650867b04e8d061cb72989e04bf/docs/figure/DownstreamSignalingSignAverageExpression.Rmd/project sign BRC DM-12.png" target="_blank">b2e5a81</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[11]]</code></pre>
 <p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20DM-13.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-project-sign-BRC-DM-13">
+Past versions of “project sign BRC DM-13.png”
+</button>
+</p>
+<div id="fig-no-spaces-project-sign-BRC-DM-13" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/b2e5a81907d4d650867b04e8d061cb72989e04bf/docs/figure/DownstreamSignalingSignAverageExpression.Rmd/project sign BRC DM-13.png" target="_blank">b2e5a81</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[12]]</code></pre>
 <p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20DM-14.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-project-sign-BRC-DM-14">
+Past versions of “project sign BRC DM-14.png”
+</button>
+</p>
+<div id="fig-no-spaces-project-sign-BRC-DM-14" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/b2e5a81907d4d650867b04e8d061cb72989e04bf/docs/figure/DownstreamSignalingSignAverageExpression.Rmd/project sign BRC DM-14.png" target="_blank">b2e5a81</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[13]]</code></pre>
 <p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20DM-15.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-project-sign-BRC-DM-15">
+Past versions of “project sign BRC DM-15.png”
+</button>
+</p>
+<div id="fig-no-spaces-project-sign-BRC-DM-15" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/b2e5a81907d4d650867b04e8d061cb72989e04bf/docs/figure/DownstreamSignalingSignAverageExpression.Rmd/project sign BRC DM-15.png" target="_blank">b2e5a81</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>plots_gs &lt;- lapply(allSign, function(sign){
     signGenes &lt;- signDat %&gt;% dplyr::filter(signature == sign)
     sceSub &lt;- sce[which(rownames(sce) %in% signGenes$geneID),]
@@ -1306,42 +3181,523 @@ plots_gs</code></pre>
 plots_gs</code></pre>
 <pre><code>[[1]]</code></pre>
 <p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20DM-16.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-project-sign-BRC-DM-16">
+Past versions of “project sign BRC DM-16.png”
+</button>
+</p>
+<div id="fig-no-spaces-project-sign-BRC-DM-16" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/b2e5a81907d4d650867b04e8d061cb72989e04bf/docs/figure/DownstreamSignalingSignAverageExpression.Rmd/project sign BRC DM-16.png" target="_blank">b2e5a81</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[2]]</code></pre>
 <p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20DM-17.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-project-sign-BRC-DM-17">
+Past versions of “project sign BRC DM-17.png”
+</button>
+</p>
+<div id="fig-no-spaces-project-sign-BRC-DM-17" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/b2e5a81907d4d650867b04e8d061cb72989e04bf/docs/figure/DownstreamSignalingSignAverageExpression.Rmd/project sign BRC DM-17.png" target="_blank">b2e5a81</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[3]]</code></pre>
 <p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20DM-18.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-project-sign-BRC-DM-18">
+Past versions of “project sign BRC DM-18.png”
+</button>
+</p>
+<div id="fig-no-spaces-project-sign-BRC-DM-18" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/b2e5a81907d4d650867b04e8d061cb72989e04bf/docs/figure/DownstreamSignalingSignAverageExpression.Rmd/project sign BRC DM-18.png" target="_blank">b2e5a81</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[4]]</code></pre>
 <p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20DM-19.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-project-sign-BRC-DM-19">
+Past versions of “project sign BRC DM-19.png”
+</button>
+</p>
+<div id="fig-no-spaces-project-sign-BRC-DM-19" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/b2e5a81907d4d650867b04e8d061cb72989e04bf/docs/figure/DownstreamSignalingSignAverageExpression.Rmd/project sign BRC DM-19.png" target="_blank">b2e5a81</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[5]]</code></pre>
 <p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20DM-20.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-project-sign-BRC-DM-20">
+Past versions of “project sign BRC DM-20.png”
+</button>
+</p>
+<div id="fig-no-spaces-project-sign-BRC-DM-20" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/b2e5a81907d4d650867b04e8d061cb72989e04bf/docs/figure/DownstreamSignalingSignAverageExpression.Rmd/project sign BRC DM-20.png" target="_blank">b2e5a81</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[6]]</code></pre>
 <p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20DM-21.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-project-sign-BRC-DM-21">
+Past versions of “project sign BRC DM-21.png”
+</button>
+</p>
+<div id="fig-no-spaces-project-sign-BRC-DM-21" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/b2e5a81907d4d650867b04e8d061cb72989e04bf/docs/figure/DownstreamSignalingSignAverageExpression.Rmd/project sign BRC DM-21.png" target="_blank">b2e5a81</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[7]]</code></pre>
 <p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20DM-22.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-project-sign-BRC-DM-22">
+Past versions of “project sign BRC DM-22.png”
+</button>
+</p>
+<div id="fig-no-spaces-project-sign-BRC-DM-22" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/b2e5a81907d4d650867b04e8d061cb72989e04bf/docs/figure/DownstreamSignalingSignAverageExpression.Rmd/project sign BRC DM-22.png" target="_blank">b2e5a81</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[8]]</code></pre>
 <p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20DM-23.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-project-sign-BRC-DM-23">
+Past versions of “project sign BRC DM-23.png”
+</button>
+</p>
+<div id="fig-no-spaces-project-sign-BRC-DM-23" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/b2e5a81907d4d650867b04e8d061cb72989e04bf/docs/figure/DownstreamSignalingSignAverageExpression.Rmd/project sign BRC DM-23.png" target="_blank">b2e5a81</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[9]]</code></pre>
 <p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20DM-24.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-project-sign-BRC-DM-24">
+Past versions of “project sign BRC DM-24.png”
+</button>
+</p>
+<div id="fig-no-spaces-project-sign-BRC-DM-24" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/b2e5a81907d4d650867b04e8d061cb72989e04bf/docs/figure/DownstreamSignalingSignAverageExpression.Rmd/project sign BRC DM-24.png" target="_blank">b2e5a81</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[10]]</code></pre>
 <p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20DM-25.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-project-sign-BRC-DM-25">
+Past versions of “project sign BRC DM-25.png”
+</button>
+</p>
+<div id="fig-no-spaces-project-sign-BRC-DM-25" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/b2e5a81907d4d650867b04e8d061cb72989e04bf/docs/figure/DownstreamSignalingSignAverageExpression.Rmd/project sign BRC DM-25.png" target="_blank">b2e5a81</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[11]]</code></pre>
 <p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20DM-26.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-project-sign-BRC-DM-26">
+Past versions of “project sign BRC DM-26.png”
+</button>
+</p>
+<div id="fig-no-spaces-project-sign-BRC-DM-26" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/b2e5a81907d4d650867b04e8d061cb72989e04bf/docs/figure/DownstreamSignalingSignAverageExpression.Rmd/project sign BRC DM-26.png" target="_blank">b2e5a81</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[12]]</code></pre>
 <p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20DM-27.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-project-sign-BRC-DM-27">
+Past versions of “project sign BRC DM-27.png”
+</button>
+</p>
+<div id="fig-no-spaces-project-sign-BRC-DM-27" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/b2e5a81907d4d650867b04e8d061cb72989e04bf/docs/figure/DownstreamSignalingSignAverageExpression.Rmd/project sign BRC DM-27.png" target="_blank">b2e5a81</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[13]]</code></pre>
 <p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20BRC%20DM-28.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-project-sign-BRC-DM-28">
+Past versions of “project sign BRC DM-28.png”
+</button>
+</p>
+<div id="fig-no-spaces-project-sign-BRC-DM-28" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/b2e5a81907d4d650867b04e8d061cb72989e04bf/docs/figure/DownstreamSignalingSignAverageExpression.Rmd/project sign BRC DM-28.png" target="_blank">b2e5a81</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="project-sign-lym" class="section level3">
 <h3>project sign LYM</h3>
@@ -1358,9 +3714,8 @@ seuratLY$clusterLabel2[which(seuratLY$clusterLabel %in% Myel)] &lt;- &quot;Myelo
 allSign &lt;- unique(signDat$signature)
 sce &lt;- as.SingleCellExperiment(seuratLY)
 
-cutOff &lt;- 0.6
-pal = colorRampPalette(c(&quot;#053061&quot;, &quot;#2166ac&quot;, &quot;#f7f7f7&quot;,
-                         &quot;#f4a582&quot;, &quot;#b2183c&quot;, &quot;#85122d&quot;))(100)
+cutOff &lt;- 0.5
+pal = colorRampPalette(c(&quot;#053061&quot;, &quot;#f7f7f7&quot;,&quot;#85122d&quot;))(100)
 sc &lt;- scale_colour_gradientn(colours = pal, limits=c(0, cutOff))
 
 
@@ -1387,42 +3742,523 @@ plots_gs &lt;- lapply(allSign, function(sign){
 plots_gs</code></pre>
 <pre><code>[[1]]</code></pre>
 <p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20LYM-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-project-sign-LYM-1">
+Past versions of “project sign LYM-1.png”
+</button>
+</p>
+<div id="fig-no-spaces-project-sign-LYM-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/b2e5a81907d4d650867b04e8d061cb72989e04bf/docs/figure/DownstreamSignalingSignAverageExpression.Rmd/project sign LYM-1.png" target="_blank">b2e5a81</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[2]]</code></pre>
 <p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20LYM-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-project-sign-LYM-2">
+Past versions of “project sign LYM-2.png”
+</button>
+</p>
+<div id="fig-no-spaces-project-sign-LYM-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/b2e5a81907d4d650867b04e8d061cb72989e04bf/docs/figure/DownstreamSignalingSignAverageExpression.Rmd/project sign LYM-2.png" target="_blank">b2e5a81</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[3]]</code></pre>
 <p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20LYM-3.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-project-sign-LYM-3">
+Past versions of “project sign LYM-3.png”
+</button>
+</p>
+<div id="fig-no-spaces-project-sign-LYM-3" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/b2e5a81907d4d650867b04e8d061cb72989e04bf/docs/figure/DownstreamSignalingSignAverageExpression.Rmd/project sign LYM-3.png" target="_blank">b2e5a81</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[4]]</code></pre>
 <p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20LYM-4.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-project-sign-LYM-4">
+Past versions of “project sign LYM-4.png”
+</button>
+</p>
+<div id="fig-no-spaces-project-sign-LYM-4" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/b2e5a81907d4d650867b04e8d061cb72989e04bf/docs/figure/DownstreamSignalingSignAverageExpression.Rmd/project sign LYM-4.png" target="_blank">b2e5a81</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[5]]</code></pre>
 <p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20LYM-5.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-project-sign-LYM-5">
+Past versions of “project sign LYM-5.png”
+</button>
+</p>
+<div id="fig-no-spaces-project-sign-LYM-5" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/b2e5a81907d4d650867b04e8d061cb72989e04bf/docs/figure/DownstreamSignalingSignAverageExpression.Rmd/project sign LYM-5.png" target="_blank">b2e5a81</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[6]]</code></pre>
 <p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20LYM-6.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-project-sign-LYM-6">
+Past versions of “project sign LYM-6.png”
+</button>
+</p>
+<div id="fig-no-spaces-project-sign-LYM-6" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/b2e5a81907d4d650867b04e8d061cb72989e04bf/docs/figure/DownstreamSignalingSignAverageExpression.Rmd/project sign LYM-6.png" target="_blank">b2e5a81</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[7]]</code></pre>
 <p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20LYM-7.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-project-sign-LYM-7">
+Past versions of “project sign LYM-7.png”
+</button>
+</p>
+<div id="fig-no-spaces-project-sign-LYM-7" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/b2e5a81907d4d650867b04e8d061cb72989e04bf/docs/figure/DownstreamSignalingSignAverageExpression.Rmd/project sign LYM-7.png" target="_blank">b2e5a81</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[8]]</code></pre>
 <p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20LYM-8.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-project-sign-LYM-8">
+Past versions of “project sign LYM-8.png”
+</button>
+</p>
+<div id="fig-no-spaces-project-sign-LYM-8" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/b2e5a81907d4d650867b04e8d061cb72989e04bf/docs/figure/DownstreamSignalingSignAverageExpression.Rmd/project sign LYM-8.png" target="_blank">b2e5a81</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[9]]</code></pre>
 <p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20LYM-9.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-project-sign-LYM-9">
+Past versions of “project sign LYM-9.png”
+</button>
+</p>
+<div id="fig-no-spaces-project-sign-LYM-9" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/b2e5a81907d4d650867b04e8d061cb72989e04bf/docs/figure/DownstreamSignalingSignAverageExpression.Rmd/project sign LYM-9.png" target="_blank">b2e5a81</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[10]]</code></pre>
 <p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20LYM-10.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-project-sign-LYM-10">
+Past versions of “project sign LYM-10.png”
+</button>
+</p>
+<div id="fig-no-spaces-project-sign-LYM-10" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/b2e5a81907d4d650867b04e8d061cb72989e04bf/docs/figure/DownstreamSignalingSignAverageExpression.Rmd/project sign LYM-10.png" target="_blank">b2e5a81</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[11]]</code></pre>
 <p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20LYM-11.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-project-sign-LYM-11">
+Past versions of “project sign LYM-11.png”
+</button>
+</p>
+<div id="fig-no-spaces-project-sign-LYM-11" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/b2e5a81907d4d650867b04e8d061cb72989e04bf/docs/figure/DownstreamSignalingSignAverageExpression.Rmd/project sign LYM-11.png" target="_blank">b2e5a81</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[12]]</code></pre>
 <p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20LYM-12.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-project-sign-LYM-12">
+Past versions of “project sign LYM-12.png”
+</button>
+</p>
+<div id="fig-no-spaces-project-sign-LYM-12" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/b2e5a81907d4d650867b04e8d061cb72989e04bf/docs/figure/DownstreamSignalingSignAverageExpression.Rmd/project sign LYM-12.png" target="_blank">b2e5a81</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[13]]</code></pre>
 <p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20LYM-13.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-project-sign-LYM-13">
+Past versions of “project sign LYM-13.png”
+</button>
+</p>
+<div id="fig-no-spaces-project-sign-LYM-13" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/b2e5a81907d4d650867b04e8d061cb72989e04bf/docs/figure/DownstreamSignalingSignAverageExpression.Rmd/project sign LYM-13.png" target="_blank">b2e5a81</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>plots_gs &lt;- lapply(allSign, function(sign){
     signGenes &lt;- signDat %&gt;% dplyr::filter(signature == sign)
     sceSub &lt;- sce[which(rownames(sce) %in% signGenes$geneID),]
@@ -1446,42 +4282,523 @@ plots_gs</code></pre>
 plots_gs</code></pre>
 <pre><code>[[1]]</code></pre>
 <p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20LYM-14.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-project-sign-LYM-14">
+Past versions of “project sign LYM-14.png”
+</button>
+</p>
+<div id="fig-no-spaces-project-sign-LYM-14" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/b2e5a81907d4d650867b04e8d061cb72989e04bf/docs/figure/DownstreamSignalingSignAverageExpression.Rmd/project sign LYM-14.png" target="_blank">b2e5a81</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[2]]</code></pre>
 <p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20LYM-15.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-project-sign-LYM-15">
+Past versions of “project sign LYM-15.png”
+</button>
+</p>
+<div id="fig-no-spaces-project-sign-LYM-15" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/b2e5a81907d4d650867b04e8d061cb72989e04bf/docs/figure/DownstreamSignalingSignAverageExpression.Rmd/project sign LYM-15.png" target="_blank">b2e5a81</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[3]]</code></pre>
 <p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20LYM-16.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-project-sign-LYM-16">
+Past versions of “project sign LYM-16.png”
+</button>
+</p>
+<div id="fig-no-spaces-project-sign-LYM-16" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/b2e5a81907d4d650867b04e8d061cb72989e04bf/docs/figure/DownstreamSignalingSignAverageExpression.Rmd/project sign LYM-16.png" target="_blank">b2e5a81</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[4]]</code></pre>
 <p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20LYM-17.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-project-sign-LYM-17">
+Past versions of “project sign LYM-17.png”
+</button>
+</p>
+<div id="fig-no-spaces-project-sign-LYM-17" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/b2e5a81907d4d650867b04e8d061cb72989e04bf/docs/figure/DownstreamSignalingSignAverageExpression.Rmd/project sign LYM-17.png" target="_blank">b2e5a81</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[5]]</code></pre>
 <p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20LYM-18.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-project-sign-LYM-18">
+Past versions of “project sign LYM-18.png”
+</button>
+</p>
+<div id="fig-no-spaces-project-sign-LYM-18" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/b2e5a81907d4d650867b04e8d061cb72989e04bf/docs/figure/DownstreamSignalingSignAverageExpression.Rmd/project sign LYM-18.png" target="_blank">b2e5a81</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[6]]</code></pre>
 <p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20LYM-19.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-project-sign-LYM-19">
+Past versions of “project sign LYM-19.png”
+</button>
+</p>
+<div id="fig-no-spaces-project-sign-LYM-19" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/b2e5a81907d4d650867b04e8d061cb72989e04bf/docs/figure/DownstreamSignalingSignAverageExpression.Rmd/project sign LYM-19.png" target="_blank">b2e5a81</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[7]]</code></pre>
 <p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20LYM-20.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-project-sign-LYM-20">
+Past versions of “project sign LYM-20.png”
+</button>
+</p>
+<div id="fig-no-spaces-project-sign-LYM-20" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/b2e5a81907d4d650867b04e8d061cb72989e04bf/docs/figure/DownstreamSignalingSignAverageExpression.Rmd/project sign LYM-20.png" target="_blank">b2e5a81</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[8]]</code></pre>
 <p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20LYM-21.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-project-sign-LYM-21">
+Past versions of “project sign LYM-21.png”
+</button>
+</p>
+<div id="fig-no-spaces-project-sign-LYM-21" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/b2e5a81907d4d650867b04e8d061cb72989e04bf/docs/figure/DownstreamSignalingSignAverageExpression.Rmd/project sign LYM-21.png" target="_blank">b2e5a81</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[9]]</code></pre>
 <p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20LYM-22.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-project-sign-LYM-22">
+Past versions of “project sign LYM-22.png”
+</button>
+</p>
+<div id="fig-no-spaces-project-sign-LYM-22" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/b2e5a81907d4d650867b04e8d061cb72989e04bf/docs/figure/DownstreamSignalingSignAverageExpression.Rmd/project sign LYM-22.png" target="_blank">b2e5a81</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[10]]</code></pre>
 <p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20LYM-23.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-project-sign-LYM-23">
+Past versions of “project sign LYM-23.png”
+</button>
+</p>
+<div id="fig-no-spaces-project-sign-LYM-23" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/b2e5a81907d4d650867b04e8d061cb72989e04bf/docs/figure/DownstreamSignalingSignAverageExpression.Rmd/project sign LYM-23.png" target="_blank">b2e5a81</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[11]]</code></pre>
 <p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20LYM-24.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-project-sign-LYM-24">
+Past versions of “project sign LYM-24.png”
+</button>
+</p>
+<div id="fig-no-spaces-project-sign-LYM-24" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/b2e5a81907d4d650867b04e8d061cb72989e04bf/docs/figure/DownstreamSignalingSignAverageExpression.Rmd/project sign LYM-24.png" target="_blank">b2e5a81</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[12]]</code></pre>
 <p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20LYM-25.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-project-sign-LYM-25">
+Past versions of “project sign LYM-25.png”
+</button>
+</p>
+<div id="fig-no-spaces-project-sign-LYM-25" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/b2e5a81907d4d650867b04e8d061cb72989e04bf/docs/figure/DownstreamSignalingSignAverageExpression.Rmd/project sign LYM-25.png" target="_blank">b2e5a81</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre><code>
 [[13]]</code></pre>
 <p><img src="figure/DownstreamSignalingSignAverageExpression.Rmd/project%20sign%20LYM-26.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-project-sign-LYM-26">
+Past versions of “project sign LYM-26.png”
+</button>
+</p>
+<div id="fig-no-spaces-project-sign-LYM-26" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/b2e5a81907d4d650867b04e8d061cb72989e04bf/docs/figure/DownstreamSignalingSignAverageExpression.Rmd/project sign LYM-26.png" target="_blank">b2e5a81</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2022-03-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 </div>
 <div id="session-info" class="section level2">
@@ -1545,43 +4862,43 @@ loaded via a namespace (and not attached):
  [79] rprojroot_2.0.2           polyclip_1.10-0           RcppHNSW_0.3.0           
  [82] lmtest_0.9-39             Matrix_1.4-0              carData_3.0-5            
  [85] boot_1.3-28               zoo_1.8-9                 reprex_2.0.1             
- [88] beeswarm_0.4.0            ggridges_0.5.3            png_0.1-7                
- [91] knn.covertree_1.0         bitops_1.0-7              KernSmooth_2.23-20       
- [94] Biostrings_2.60.2         blob_1.2.2                DelayedMatrixStats_1.14.3
- [97] workflowr_1.7.0           parallelly_1.30.0         beachmat_2.8.1           
-[100] scales_1.1.1              hexbin_1.28.2             memoise_2.0.1            
-[103] plyr_1.8.6                ica_1.0-2                 zlibbioc_1.38.0          
-[106] compiler_4.1.0            dqrng_0.3.0               pcaMethods_1.84.0        
-[109] fitdistrplus_1.1-6        cli_3.2.0                 XVector_0.32.0           
-[112] listenv_0.8.0             patchwork_1.1.1           pbapply_1.5-0            
-[115] ggplot.multistats_1.0.0   MASS_7.3-54               mgcv_1.8-38              
-[118] tidyselect_1.1.2          stringi_1.7.6             highr_0.9                
-[121] yaml_2.2.1                BiocSingular_1.8.1        locfit_1.5-9.4           
-[124] ggrepel_0.9.1             grid_4.1.0                sass_0.4.0               
-[127] tools_4.1.0               future.apply_1.8.1        rstudioapi_0.13          
-[130] bluster_1.2.1             git2r_0.29.0              metapod_1.0.0            
-[133] gridExtra_2.3             smoother_1.1              scatterplot3d_0.3-41     
-[136] farver_2.1.0              Rtsne_0.15                digest_0.6.29            
-[139] shiny_1.7.1               Rcpp_1.0.8.3              car_3.0-12               
-[142] broom_0.7.11              later_1.3.0               RcppAnnoy_0.0.19         
-[145] httr_1.4.2                colorspace_2.0-2          ranger_0.13.1            
-[148] rvest_1.0.2               XML_3.99-0.8              fs_1.5.2                 
-[151] tensor_1.5                reticulate_1.24           splines_4.1.0            
-[154] uwot_0.1.11               statmod_1.4.36            spatstat.utils_2.3-0     
-[157] sp_1.4-6                  plotly_4.10.0             xtable_1.8-4             
-[160] jsonlite_1.8.0            rcartocolor_2.0.0         destiny_3.7.1            
-[163] R6_2.5.1                  pillar_1.7.0              htmltools_0.5.2          
-[166] mime_0.12                 VIM_6.1.1                 glue_1.6.2               
-[169] fastmap_1.1.0             BiocParallel_1.26.2       BiocNeighbors_1.10.0     
-[172] class_7.3-19              codetools_0.2-18          utf8_1.2.2               
-[175] lattice_0.20-45           bslib_0.3.1               spatstat.sparse_2.1-0    
-[178] curl_4.3.2                ggbeeswarm_0.6.0          leiden_0.3.9             
-[181] survival_3.2-13           limma_3.48.3              rmarkdown_2.11           
-[184] munsell_0.5.0             e1071_1.7-9               GenomeInfoDbData_1.2.6   
-[187] haven_2.4.3               reshape2_1.4.4            gtable_0.3.0             
-[190] spatstat.core_2.3-2      </code></pre>
+ [88] beeswarm_0.4.0            whisker_0.4               ggridges_0.5.3           
+ [91] png_0.1-7                 knn.covertree_1.0         bitops_1.0-7             
+ [94] KernSmooth_2.23-20        Biostrings_2.60.2         blob_1.2.2               
+ [97] DelayedMatrixStats_1.14.3 workflowr_1.7.0           parallelly_1.30.0        
+[100] beachmat_2.8.1            scales_1.1.1              hexbin_1.28.2            
+[103] memoise_2.0.1             plyr_1.8.6                ica_1.0-2                
+[106] zlibbioc_1.38.0           compiler_4.1.0            dqrng_0.3.0              
+[109] pcaMethods_1.84.0         fitdistrplus_1.1-6        cli_3.2.0                
+[112] XVector_0.32.0            listenv_0.8.0             patchwork_1.1.1          
+[115] pbapply_1.5-0             ggplot.multistats_1.0.0   MASS_7.3-54              
+[118] mgcv_1.8-38               tidyselect_1.1.2          stringi_1.7.6            
+[121] highr_0.9                 yaml_2.2.1                BiocSingular_1.8.1       
+[124] locfit_1.5-9.4            ggrepel_0.9.1             grid_4.1.0               
+[127] sass_0.4.0                tools_4.1.0               future.apply_1.8.1       
+[130] rstudioapi_0.13           bluster_1.2.1             git2r_0.29.0             
+[133] metapod_1.0.0             gridExtra_2.3             smoother_1.1             
+[136] scatterplot3d_0.3-41      farver_2.1.0              Rtsne_0.15               
+[139] digest_0.6.29             shiny_1.7.1               Rcpp_1.0.8.3             
+[142] car_3.0-12                broom_0.7.11              later_1.3.0              
+[145] RcppAnnoy_0.0.19          httr_1.4.2                colorspace_2.0-2         
+[148] ranger_0.13.1             rvest_1.0.2               XML_3.99-0.8             
+[151] fs_1.5.2                  tensor_1.5                reticulate_1.24          
+[154] splines_4.1.0             uwot_0.1.11               statmod_1.4.36           
+[157] spatstat.utils_2.3-0      sp_1.4-6                  plotly_4.10.0            
+[160] xtable_1.8-4              jsonlite_1.8.0            rcartocolor_2.0.0        
+[163] destiny_3.7.1             R6_2.5.1                  pillar_1.7.0             
+[166] htmltools_0.5.2           mime_0.12                 VIM_6.1.1                
+[169] glue_1.6.2                fastmap_1.1.0             BiocParallel_1.26.2      
+[172] BiocNeighbors_1.10.0      class_7.3-19              codetools_0.2-18         
+[175] utf8_1.2.2                lattice_0.20-45           bslib_0.3.1              
+[178] spatstat.sparse_2.1-0     curl_4.3.2                ggbeeswarm_0.6.0         
+[181] leiden_0.3.9              survival_3.2-13           limma_3.48.3             
+[184] rmarkdown_2.11            munsell_0.5.0             e1071_1.7-9              
+[187] GenomeInfoDbData_1.2.6    haven_2.4.3               reshape2_1.4.4           
+[190] gtable_0.3.0              spatstat.core_2.3-2      </code></pre>
 <pre class="r"><code>date()</code></pre>
-<pre><code>[1] &quot;Fri Mar 25 15:36:38 2022&quot;</code></pre>
+<pre><code>[1] &quot;Tue Mar 29 15:43:08 2022&quot;</code></pre>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
@@ -1648,41 +4965,41 @@ loaded via a namespace (and not attached):
  [79] rprojroot_2.0.2           polyclip_1.10-0           RcppHNSW_0.3.0           
  [82] lmtest_0.9-39             Matrix_1.4-0              carData_3.0-5            
  [85] boot_1.3-28               zoo_1.8-9                 reprex_2.0.1             
- [88] beeswarm_0.4.0            ggridges_0.5.3            png_0.1-7                
- [91] knn.covertree_1.0         bitops_1.0-7              KernSmooth_2.23-20       
- [94] Biostrings_2.60.2         blob_1.2.2                DelayedMatrixStats_1.14.3
- [97] workflowr_1.7.0           parallelly_1.30.0         beachmat_2.8.1           
-[100] scales_1.1.1              hexbin_1.28.2             memoise_2.0.1            
-[103] plyr_1.8.6                ica_1.0-2                 zlibbioc_1.38.0          
-[106] compiler_4.1.0            dqrng_0.3.0               pcaMethods_1.84.0        
-[109] fitdistrplus_1.1-6        cli_3.2.0                 XVector_0.32.0           
-[112] listenv_0.8.0             patchwork_1.1.1           pbapply_1.5-0            
-[115] ggplot.multistats_1.0.0   MASS_7.3-54               mgcv_1.8-38              
-[118] tidyselect_1.1.2          stringi_1.7.6             highr_0.9                
-[121] yaml_2.2.1                BiocSingular_1.8.1        locfit_1.5-9.4           
-[124] ggrepel_0.9.1             grid_4.1.0                sass_0.4.0               
-[127] tools_4.1.0               future.apply_1.8.1        rstudioapi_0.13          
-[130] bluster_1.2.1             git2r_0.29.0              metapod_1.0.0            
-[133] gridExtra_2.3             smoother_1.1              scatterplot3d_0.3-41     
-[136] farver_2.1.0              Rtsne_0.15                digest_0.6.29            
-[139] shiny_1.7.1               Rcpp_1.0.8.3              car_3.0-12               
-[142] broom_0.7.11              later_1.3.0               RcppAnnoy_0.0.19         
-[145] httr_1.4.2                colorspace_2.0-2          ranger_0.13.1            
-[148] rvest_1.0.2               XML_3.99-0.8              fs_1.5.2                 
-[151] tensor_1.5                reticulate_1.24           splines_4.1.0            
-[154] uwot_0.1.11               statmod_1.4.36            spatstat.utils_2.3-0     
-[157] sp_1.4-6                  plotly_4.10.0             xtable_1.8-4             
-[160] jsonlite_1.8.0            rcartocolor_2.0.0         destiny_3.7.1            
-[163] R6_2.5.1                  pillar_1.7.0              htmltools_0.5.2          
-[166] mime_0.12                 VIM_6.1.1                 glue_1.6.2               
-[169] fastmap_1.1.0             BiocParallel_1.26.2       BiocNeighbors_1.10.0     
-[172] class_7.3-19              codetools_0.2-18          utf8_1.2.2               
-[175] lattice_0.20-45           bslib_0.3.1               spatstat.sparse_2.1-0    
-[178] curl_4.3.2                ggbeeswarm_0.6.0          leiden_0.3.9             
-[181] survival_3.2-13           limma_3.48.3              rmarkdown_2.11           
-[184] munsell_0.5.0             e1071_1.7-9               GenomeInfoDbData_1.2.6   
-[187] haven_2.4.3               reshape2_1.4.4            gtable_0.3.0             
-[190] spatstat.core_2.3-2      </code></pre>
+ [88] beeswarm_0.4.0            whisker_0.4               ggridges_0.5.3           
+ [91] png_0.1-7                 knn.covertree_1.0         bitops_1.0-7             
+ [94] KernSmooth_2.23-20        Biostrings_2.60.2         blob_1.2.2               
+ [97] DelayedMatrixStats_1.14.3 workflowr_1.7.0           parallelly_1.30.0        
+[100] beachmat_2.8.1            scales_1.1.1              hexbin_1.28.2            
+[103] memoise_2.0.1             plyr_1.8.6                ica_1.0-2                
+[106] zlibbioc_1.38.0           compiler_4.1.0            dqrng_0.3.0              
+[109] pcaMethods_1.84.0         fitdistrplus_1.1-6        cli_3.2.0                
+[112] XVector_0.32.0            listenv_0.8.0             patchwork_1.1.1          
+[115] pbapply_1.5-0             ggplot.multistats_1.0.0   MASS_7.3-54              
+[118] mgcv_1.8-38               tidyselect_1.1.2          stringi_1.7.6            
+[121] highr_0.9                 yaml_2.2.1                BiocSingular_1.8.1       
+[124] locfit_1.5-9.4            ggrepel_0.9.1             grid_4.1.0               
+[127] sass_0.4.0                tools_4.1.0               future.apply_1.8.1       
+[130] rstudioapi_0.13           bluster_1.2.1             git2r_0.29.0             
+[133] metapod_1.0.0             gridExtra_2.3             smoother_1.1             
+[136] scatterplot3d_0.3-41      farver_2.1.0              Rtsne_0.15               
+[139] digest_0.6.29             shiny_1.7.1               Rcpp_1.0.8.3             
+[142] car_3.0-12                broom_0.7.11              later_1.3.0              
+[145] RcppAnnoy_0.0.19          httr_1.4.2                colorspace_2.0-2         
+[148] ranger_0.13.1             rvest_1.0.2               XML_3.99-0.8             
+[151] fs_1.5.2                  tensor_1.5                reticulate_1.24          
+[154] splines_4.1.0             uwot_0.1.11               statmod_1.4.36           
+[157] spatstat.utils_2.3-0      sp_1.4-6                  plotly_4.10.0            
+[160] xtable_1.8-4              jsonlite_1.8.0            rcartocolor_2.0.0        
+[163] destiny_3.7.1             R6_2.5.1                  pillar_1.7.0             
+[166] htmltools_0.5.2           mime_0.12                 VIM_6.1.1                
+[169] glue_1.6.2                fastmap_1.1.0             BiocParallel_1.26.2      
+[172] BiocNeighbors_1.10.0      class_7.3-19              codetools_0.2-18         
+[175] utf8_1.2.2                lattice_0.20-45           bslib_0.3.1              
+[178] spatstat.sparse_2.1-0     curl_4.3.2                ggbeeswarm_0.6.0         
+[181] leiden_0.3.9              survival_3.2-13           limma_3.48.3             
+[184] rmarkdown_2.11            munsell_0.5.0             e1071_1.7-9              
+[187] GenomeInfoDbData_1.2.6    haven_2.4.3               reshape2_1.4.4           
+[190] gtable_0.3.0              spatstat.core_2.3-2      </code></pre>
 </div>
 </div>
 

@@ -159,7 +159,7 @@ DimPlot(seuratSub, reduction = "umap", cols=colorSLOCond,
 
 
 
-#### Featureplot
+### Featureplot
 ```{r LN chemokine expression featureplot, fig.height=5, fig.width=12}
 features <- c("ENSMUSG00000071005.Ccl19","ENSMUSG00000023078.Cxcl13")
 FeaturePlot(seuratSub,
@@ -180,6 +180,33 @@ RidgePlot(seuratSub, features = features, ncol = 2,
           cols=colPal2, group.by = "SLO_plus_clusterlabel")
 
 ```
+
+### sel Marker
+```{r feature plot FDCs}
+selVec <- c("Pi16", "Fndc1")
+genes <- data.frame(ensID=rownames(seuratSub)) %>% 
+  mutate(gene = gsub(".*\\.", "", ensID))
+selGenes <- data.frame(gene=selVec) %>% left_join(., genes, by="gene")
+
+pList <- sapply(selGenes$ensID, function(x){
+  p <- FeaturePlot(seuratSub, reduction = "umap", 
+            features = x, 
+            cols=c("lightgrey", "darkred"),
+            order = F)
+  plot(p)
+})
+
+pList <- sapply(selGenes$ensID, function(x){
+  p <- FeaturePlot(seuratSub, reduction = "umap", 
+            features = x, 
+            cols=c("lightgrey", "darkred"),
+            order = T)
+  plot(p)
+})
+
+```
+
+
 
 ### avg heatmap selected marker
 ```{r avg function}
@@ -256,7 +283,7 @@ avgHeatmap <- function(seurat, selGenes, colVecIdent, colVecCond=NULL,
 Idents(seurat) <- seurat$SLO_plus_clusterlabel
 selMarker <- list(Chemokine = c("Cxcl13", "Cxcl12", "Ccl19", "Ccl21a"),
                   valMarker = c("Cr2", "Madcam1", "Tnfsf11"),
-                  PRCMarker = c("Cd34", "Pi16")
+                  PRCMarker = c("Cd34", "Pi16", "Fndc1")
                   )
 
 selGenes <- data.frame(gene=unlist(selMarker)) %>%

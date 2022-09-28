@@ -1,0 +1,177 @@
+---
+title: "save SCE for figshare"
+author: ""
+date: ""
+output: 
+  html_document:
+    keep_md: true
+    toc: true
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, echo = FALSE}
+options(width = 100)
+knitr::opts_chunk$set(warning = FALSE, message = FALSE, dev = c("png", "pdf"))
+seed <- 1234
+```
+
+# Load packages
+
+```{r load-packages, warning = FALSE}
+suppressPackageStartupMessages({
+  library(scater)
+  library(dplyr)
+  library(reshape2)
+  library(Matrix)
+  library(purrr)
+  library(scran)
+  library(Seurat)
+  library(tidyverse)
+  library(here)
+  library(arrow)
+})
+```
+
+
+## load input data
+```{r input data}
+basedir <- here()
+seuratBRC <- readRDS(file=paste0(basedir, 
+                                 "/data/folBRC_allSLO_subSampled_seurat.rds"))
+seuratAll <- readRDS(file=paste0(basedir,
+                                 "/data/allCells_merged_plus_processed",
+                                 "_integrated_seurat.rds"))
+
+seuratLY <- readRDS(file = paste0(basedir, 
+                              "/data/lympho/allSamples_BRCintLab_seurat.rds"))
+
+```
+
+
+# adjust label and metadata slots
+```{r adjust label}
+
+### IMM CELLS
+seuratLY$label <- seuratLY$clusterLabel
+seuratLY$label_plus_SLO <- paste0(seuratLY$clusterLabel, "_", seuratLY$SLO)
+seuratLY$group_plus_SLO <- paste0(seuratLY$group, "_", seuratLY$SLO)
+
+selCol <- c("dataset","label","SLO","group", "label_plus_SLO", "group_plus_SLO",
+            "cond")
+sceLY <- as.SingleCellExperiment(seuratLY)
+colData(sceLY) <- colData(sceLY)[,selCol]
+
+### Fol BRCs
+seuratBRC$clusterLabel[which(seuratBRC$clusterLabel == "PRC2")] <- "Pi16+RC"
+seuratBRC$label <- seuratBRC$clusterLabel
+seuratBRC$label_plus_SLO <- paste0(seuratBRC$label, "_", seuratBRC$SLO)
+seuratBRC$label_plus_cond <- paste0(seuratBRC$label, "_", seuratBRC$cond)
+seuratBRC@assays$RNA <- seuratBRC@assays$originalexp
+seuratBRC@assays$originalexp <- NULL
+
+selCol <- c("dataset","label","SLO","cond", "label_plus_SLO", "SLO_plus_cond",
+            "label_plus_cond")
+sceBRC <- as.SingleCellExperiment(seuratBRC)
+colData(sceBRC) <- colData(sceBRC)[,selCol]
+
+
+### All BRCs
+seuratAll$clusterLabel[which(seuratAll$clusterLabel == "PRC2")] <- "Pi16+RC"
+seuratAll$clusterLabel[which(seuratAll$SLO_plus_clusterlabel == "Spleen_PRC1")] <- "capsular"
+seuratAll$clusterLabel[which(seuratAll$clusterLabel == "PRC1")] <- "PRC"
+seuratAll$clusterLabel[which(seuratAll$clusterLabel == "muralCells")] <- "PRC"
+seuratAll$clusterLabel[which(seuratAll$clusterLabel == "LPFRC")] <- "LPfibroblast"
+seuratAll$clusterLabel[which(seuratAll$clusterLabel == "Cxcl9TBRC")] <- "Cxcl9+TBRC"
+
+
+seuratAll$label <- seuratAll$clusterLabel
+seuratAll$label_plus_SLO <- paste0(seuratAll$label, "_", seuratAll$SLO)
+seuratAll$label_plus_cond <- paste0(seuratAll$label, "_", seuratAll$cond)
+seuratAll$SLO_plus_cond <- paste0(seuratAll$SLO, "_", seuratAll$cond)
+
+seuratAll@assays$RNA <- seuratAll@assays$originalexp
+seuratAll@assays$originalexp <- NULL
+seuratAll@assays$integrated <- NULL
+
+selCol <- c("dataset","label","SLO","cond", "label_plus_SLO", "SLO_plus_cond",
+            "label_plus_cond")
+sceAll <- as.SingleCellExperiment(seuratAll)
+colData(sceAll) <- colData(sceAll)[,selCol]
+reducedDim(sceAll, "UMAP") <- seuratAll@reductions$umap@cell.embeddings
+reducedDim(sceAll, "TSNE") <- seuratAll@reductions$tsne@cell.embeddings
+reducedDim(sceAll, "PCA") <- seuratAll@reductions$pca@cell.embeddings
+
+
+```
+
+
+## reduce size of sce objects
+```{r reduce size}
+
+sceBRC@assays@data$scaledata <- NULL
+
+sceLY@assays@data$scaledata <- NULL
+
+```
+
+
+## vis label
+```{r merge}
+
+## set color vectors
+colBRC <- c("#87c5af", "#94033b", "#fc8f3b", "#2580fe", "#514e72")
+names(colBRC) <- c("LZFDC", "MRC", "TBRC","DZFDC","Pi16+RC")
+
+colLYM <- c("#a0b9c4", "#567a83", "#0C3C52", "#924440", "#eab562", "#b5a147")
+names(colLYM) <- c("naiveBcells", "GCBcells","plasmaCells","Tfh", "DCs",
+                   "Myeloids")
+
+colAll <- c("#87c5af", "#94033b", "#fc8f3b", "#2580fe", "#514e72", "#007961",
+            "#38b5fc", "#eb6382", "#8fa38c", "#4673b4", "#b94403", "#b7d165",
+            "#9b5662", "#666b73")
+names(colAll) <- c("LZFDC", "MRC", "TBRC","DZFDC","Pi16+RC","RPF", 
+                   "PRC", "BCRC", "medRC","IFRC", "Cxcl9+TBRC", "capsular",
+                   "LPfibroblast", "subepithelial")
+
+
+## plot UMAPs
+p_tsne <- scater::plotReducedDim(sceBRC, dimred="UMAP",
+                                 colour_by="label") +
+  ggplot2::scale_colour_manual(values = colAll, name = "label") 
+p_tsne 
+
+p_tsne <- scater::plotReducedDim(sceAll, dimred="UMAP",
+                                 colour_by="label") +
+  ggplot2::scale_colour_manual(values = colAll)
+p_tsne 
+
+p_tsne <- scater::plotReducedDim(sceLY, dimred="UMAP",
+                                 colour_by="group") +
+  ggplot2::scale_colour_manual(values = colLYM)
+p_tsne 
+
+
+```
+
+
+## save sce objects
+```{r save sce objects}
+
+saveRDS(sceBRC, file = paste0(basedir,
+                              "/data/figshare/folBRCsub_sce.rds"))
+saveRDS(sceLY, file = paste0(basedir,
+                              "/data/figshare/IMMsub_sce.rds"))
+saveRDS(sceAll, file = paste0(basedir,
+                              "/data/figshare/allBRCint_sce.rds"))
+
+```
+
+
+## session info
+```{r session info}
+sessionInfo()
+date()
+```
+
+

@@ -1,0 +1,194 @@
+---
+title: "create LN reference for spatial decomposition"
+author: ""
+date: ""
+output: 
+  html_document:
+    keep_md: true
+    toc: true
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, echo = FALSE}
+options(width = 100)
+knitr::opts_chunk$set(warning = FALSE, message = FALSE, dev = c("png", "pdf"))
+seed <- 1234
+```
+
+# Load packages
+
+```{r load-packages, warning = FALSE}
+suppressPackageStartupMessages({
+  library(scater)
+  library(dplyr)
+  library(reshape2)
+  library(Matrix)
+  library(purrr)
+  library(scran)
+  library(Seurat)
+  library(tidyverse)
+  library(here)
+})
+```
+
+## color palettes
+```{r col palettes}
+colBRC <- c("#87c5af", "#94033b", "#fc8f3b", "#2580fe", "#514e72")
+names(colBRC) <- c("LZFDC", "MRC", "TBRC","DZFDC","PRC2")
+
+colLYM2 <- c("#a0b9c4", "#567a83", "#0C3C52", "#924440", "#eab562", "#b5a147")
+names(colLYM2) <- c("naiveBcells", "GCBcells","plasmaCells","Tfh", "DCs",
+                   "Myeloids")
+
+colBoth <- c(colBRC, colLYM2) 
+```
+
+
+## load input data
+```{r input data}
+basedir <- here()
+seuratLY <- readRDS(file = paste0(basedir, 
+                              "/data/lympho/allSamples_mergedLab_seurat.rds"))
+seuratBRC <- readRDS(file=paste0(basedir, "/data/folBRC_allSLO_seurat.rds"))
+
+## group and sel for immune cells interacting with BRCs
+selLab <- c("naiveBcells", "LZBcells", "DZshmBcells", "proDZ",
+                   "plasmaCells", 
+                   "Tfh", "DCs",
+                   "mdMacrophages", "trMacrophages", "infMacrophages")
+seuratLY <- subset(seuratLY, clusterLabel %in% selLab)
+GCBs <- c("LZBcells", "DZshmBcells", "proDZ")
+Myel <- c("mdMacrophages", "trMacrophages", "infMacrophages")
+seuratLY$clusterLabel2 <- seuratLY$clusterLabel
+seuratLY$clusterLabel2[which(seuratLY$clusterLabel %in% GCBs)] <- "GCBcells"
+seuratLY$clusterLabel2[which(seuratLY$clusterLabel %in% Myel)] <- "Myeloids"
+
+seuratLY$label_plus_SLO <- paste0(seuratLY$clusterLabel2, "_", seuratLY$SLO)
+seuratLY$clusterLabel <- seuratLY$clusterLabel2
+
+
+## subset on (naive) LN only
+dim(seuratLY)
+dim(seuratBRC)
+seuratLY <- subset(seuratLY, SLO == "LN")
+seuratBRC <- subset(seuratBRC, SLO == "LN" & cond=="naive")
+#seuratBRC <- subset(seuratBRC, SLO == "LN")
+dim(seuratLY)
+dim(seuratBRC)
+
+## plot input data
+Idents(seuratLY) <- seuratLY$clusterLabel
+DimPlot(seuratLY, reduction = "umap", cols = colLYM2)+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+Idents(seuratBRC) <- seuratBRC$clusterLabel
+DimPlot(seuratBRC, reduction = "umap", cols = colBRC)+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+
+```
+
+# merge BRCs and immune into one reference
+```{r merge}
+
+seuratBRC$group <- "BRC"
+seuratLY$group <- "LYMPHO"
+
+
+Idents(seuratLY) <- seuratLY$clusterLabel
+Idents(seuratBRC) <- seuratBRC$clusterLabel
+
+## merge
+### fix assay and gene names
+sceBRC <- as.SingleCellExperiment(seuratBRC)
+sceLY <- as.SingleCellExperiment(seuratLY)
+
+genesBRC <- data.frame(geneB=rownames(sceBRC)) %>% 
+  mutate(ensID=gsub("\\..*","",geneB))
+genesLY <- data.frame(geneL=rownames(sceLY)) %>% 
+  mutate(ensID=gsub("\\..*","",geneL))
+genesBoth <- full_join(genesBRC, genesLY, by="ensID") %>% 
+  mutate(gene=ifelse(is.na(geneL), geneB, geneL)) %>% 
+  dplyr::select(ensID, gene)
+genesBRC <- genesBRC %>% left_join(., genesBoth, by="ensID")
+genesLY <- genesLY %>% left_join(., genesBoth, by="ensID")
+
+rownames(sceBRC) <- genesBRC$gene
+rownames(sceLY) <- genesLY$gene
+
+seuratBRC <- as.Seurat(sceBRC)
+seuratLY <- as.Seurat(sceLY)
+
+seuratBRC@assays$RNA <- seuratBRC@assays$originalexp
+seuratLY@assays$originalexp <- seuratLY@assays$RNA
+
+seuratMerge <- merge(seuratBRC, seuratLY)
+seuratMerge <- ScaleData(seuratMerge, assay = "RNA")
+seuratMerge <- ScaleData(seuratMerge, assay = "originalexp")
+
+seuratMerge <- runSeurat3::rerunSeurat3(seuratMerge)
+
+## vis merge
+(table(seuratMerge$clusterLabel))
+
+Idents(seuratMerge) <- seuratMerge$clusterLabel
+DimPlot(seuratMerge, reduction = "umap", cols = colBoth)+
+  theme_bw() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), 
+        panel.grid.minor = element_blank()) +
+  xlab("UMAP1") +
+  ylab("UMAP2")
+
+```
+
+
+## save reference
+```{r save reference}
+
+saveRDS(seuratMerge, file = paste0(basedir,
+                                  "/data/LN_naiveBRCplusIMMmerged_seurat.rds"))
+```
+
+
+## session info
+```{r session info}
+sessionInfo()
+date()
+```
+
+
+
+cd /Users/mechthildluetge/Projects/scRNAseq/ILC_Hungwei/data/cellphonedb
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+
+## run cellphonedb
+### build database
+cellphonedb database generate --user-interactions custom_interaction_file.csv
+
+##run statistical analysis
+## subsampling in R script.. 
+cellphonedb method statistical_analysis /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/folBRC_LYMsub_LN_metaData.txt /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/folBRC_LYMsub_LN_countMatrix.txt --output-path /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/outLN/ --database /Users/mechthildluetge/Projects/scRNAseq/ILC_Hungwei/data/cellphonedb/out/cellphonedb_user_2021-10-05-09_17.db --debug-seed 3 --iterations 100
+
+cellphonedb method statistical_analysis /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/folBRC_LYMsub_PP_metaData.txt /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/folBRC_LYMsub_PP_countMatrix.txt --output-path /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/outPP/ --database /Users/mechthildluetge/Projects/scRNAseq/ILC_Hungwei/data/cellphonedb/out/cellphonedb_user_2021-10-05-09_17.db --debug-seed 3 --iterations 100
+
+cellphonedb method statistical_analysis /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/folBRC_LYMsub_Spleen_metaData.txt /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/folBRC_LYMsub_Spleen_countMatrix.txt --output-path /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/outSP/ --database /Users/mechthildluetge/Projects/scRNAseq/ILC_Hungwei/data/cellphonedb/out/cellphonedb_user_2021-10-05-09_17.db --debug-seed 3 --iterations 100
+
+
+Count network interactions:
+cellphonedb plot heatmap_plot /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/folBRC_LYMsub_LN_metaData.txt --pvalues-path /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/outLN/pvalues.txt --output-path /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/outLN
+cellphonedb plot heatmap_plot /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/folBRC_LYMsub_PP_metaData.txt --pvalues-path /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/outPP/pvalues.txt --output-path /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/outPP
+cellphonedb plot heatmap_plot /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/folBRC_LYMsub_Spleen_metaData.txt --pvalues-path /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/outSP/pvalues.txt --output-path /Users/mechthildluetge/Projects/scRNAseq/CrossSLO_BRC_CXCL13/data/cellphonedb/outSP
+
+We use CellPhoneDB as tool to predict cellular communication between SILT FRCs and ILC populations in our dataset. In brief, pairs of known interacting ligands and receptors are derived from public databases and cell types are analysed for enriched receptor–ligand interactions based on expression of a receptor by one cell type and a ligand by another cell type. 
+
+deactivate  

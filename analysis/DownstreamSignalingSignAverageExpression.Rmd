@@ -336,15 +336,19 @@ signDat <- signDat[-which(is.na(signDat$geneID)),]
 ```
 
 
-### project sign BRC umap cut 0.6
-```{r project sign BRC cut0.6}
+### project sign BRC umap cut 0.5
+```{r project sign BRC cut0.5}
 
 allSign <- unique(signDat$signature)
 sce <- as.SingleCellExperiment(seurat)
 
-cutOff <- 0.6
-pal = colorRampPalette(c("#053061", "#2166ac", "#f7f7f7",
-                         "#f4a582", "#b2183c", "#85122d"))(100)
+cutOff <- 0.5
+#pal = colorRampPalette(c("#053061", "#2166ac", "#f7f7f7",
+#                         "#f4a582", "#b2183c", "#85122d"))(100)
+pal = colorRampPalette(c("#053061", "#f7f7f7",
+                         "#85122d"))(100)
+
+
 sc <- scale_colour_gradientn(colours = pal, limits=c(0, cutOff))
 
 
@@ -395,15 +399,14 @@ plots_gs
 ```
 
 
-### project sign BRC umap cut 0.1
-```{r project sign BRC cut0.1}
+### project sign BRC umap cut 0.8
+```{r project sign BRC cut0.8}
 
 allSign <- unique(signDat$signature)
 sce <- as.SingleCellExperiment(seurat)
 
-cutOff <- 0.1
-pal = colorRampPalette(c("#053061", "#2166ac", "#f7f7f7",
-                         "#f4a582", "#b2183c", "#85122d"))(100)
+cutOff <- 0.8
+pal = colorRampPalette(c("#053061", "#f7f7f7","#85122d"))(100)
 sc <- scale_colour_gradientn(colours = pal, limits=c(0, cutOff))
 
 
@@ -461,8 +464,7 @@ allSign <- unique(signDat$signature)
 sce <- as.SingleCellExperiment(seurat)
 
 cutOff <- 1
-pal = colorRampPalette(c("#053061", "#2166ac", "#f7f7f7",
-                         "#f4a582", "#b2183c", "#85122d"))(100)
+pal = colorRampPalette(c("#053061", "#f7f7f7","#85122d"))(100)
 sc <- scale_colour_gradientn(colours = pal, limits=c(0, cutOff))
 
 
@@ -543,8 +545,7 @@ p
 
 
 cutOff <- 0.6
-pal = colorRampPalette(c("#053061", "#2166ac", "#f7f7f7",
-                         "#f4a582", "#b2183c", "#85122d"))(100)
+pal = colorRampPalette(c("#053061", "#f7f7f7","#85122d"))(100)
 sc <- scale_colour_gradientn(colours = pal, limits=c(0, cutOff))
 
 
@@ -612,9 +613,8 @@ seuratLY$clusterLabel2[which(seuratLY$clusterLabel %in% Myel)] <- "Myeloids"
 allSign <- unique(signDat$signature)
 sce <- as.SingleCellExperiment(seuratLY)
 
-cutOff <- 0.6
-pal = colorRampPalette(c("#053061", "#2166ac", "#f7f7f7",
-                         "#f4a582", "#b2183c", "#85122d"))(100)
+cutOff <- 0.5
+pal = colorRampPalette(c("#053061", "#f7f7f7","#85122d"))(100)
 sc <- scale_colour_gradientn(colours = pal, limits=c(0, cutOff))
 
 

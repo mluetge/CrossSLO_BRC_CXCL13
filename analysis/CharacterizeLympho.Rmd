@@ -23,7 +23,6 @@ seed <- 1234
 ## load packages
 ```{r libs}
 suppressPackageStartupMessages({
-  library(celldex)
   library(tidyverse)
   library(Seurat)
   library(magrittr)
@@ -38,7 +37,6 @@ suppressPackageStartupMessages({
   library(RColorBrewer)
   library(viridis)
   library(pheatmap)
-  library(SingleR)
 })
 
 ```
@@ -176,12 +174,12 @@ seurat$clusterLabel[which(seurat$RNA_snn_res.0.4 == "8")] <- "DCs"
 seurat$clusterLabel[which(seurat$RNA_snn_res.0.4 == "17")] <- "Neutrophils"
 seurat$clusterLabel[which(seurat$RNA_snn_res.0.4 == "16")] <- "infMacrophages"
 seurat$clusterLabel[which(seurat$RNA_snn_res.0.6 == "4")] <- "Tfh"
-seurat$clusterLabel[which(seurat$RNA_snn_res.0.6 == "19")] <- "Th17"
-seurat$clusterLabel[which(seurat$RNA_snn_res.0.6 == "16")] <- "Cd8Tcells"
+seurat$clusterLabel[which(seurat$RNA_snn_res.0.6 == "19")] <- "naiveCd4Tcells"
+seurat$clusterLabel[which(seurat$RNA_snn_res.0.6 == "16")] <- "Tcm"
 seurat$clusterLabel[which(seurat$RNA_snn_res.0.6 == "21")] <- "Cd8Tcells"
 seurat$clusterLabel[which(seurat$RNA_snn_res.0.6 == "15")] <- "proCd4Tcells"
-seurat$clusterLabel[which(seurat$RNA_snn_res.0.6 == "6")] <- "naiveCd4Tcells"
-seurat$clusterLabel[which(seurat$RNA_snn_res.0.6 == "1")] <- "Th1Th2"
+seurat$clusterLabel[which(seurat$RNA_snn_res.0.6 == "6")] <- "Tcm"
+seurat$clusterLabel[which(seurat$RNA_snn_res.0.6 == "1")] <- "Treg"
 
 seurat <- ScaleData(object = seurat, verbose = FALSE,
                         features = rownames(seurat))
@@ -203,7 +201,7 @@ colLab <- c("#a0b9c4", "#78abb7", "#567a83", "#3c454a", "#9eabb1",
 
 names(colLab) <- c("naiveBcells", "LZBcells", "DZshmBcells", "proDZ",
                    "plasmaCells", 
-                   "naiveCd4Tcells", "Th1Th2", "Th17", "Tfh", "proCd4Tcells", 
+                   "naiveCd4Tcells", "Treg", "Tcm", "Tfh", "proCd4Tcells", 
                    "Cd8Tcells", "NKcells", 
                    "DCs", "mdMacrophages", "trMacrophages", "infMacrophages", 
                    "Neutrophils")
@@ -320,7 +318,7 @@ selMarker <- list(Bcells_ = c("Cd79a", "Cd79b", "Cd38", "Ighd", "Ighm", "Bach2",
                              "Bcl6", "Mcm2", "Mcm3", "Ung", "Aurkb", "Kif11",
                              "Mki67", "Top2a", "Pclaf", "Jchain", "Prdm1"),                
                   Tcells_ = c("Cd3e", "Cd4", "Sell", "Ccr7", "Il7r", "Cd44",
-                             "Il2ra", "Il17a", "Rorc", "Il21", "Cxcr5", "Cd8a",
+                             "Il2ra", "Lef1", "Cxcr5", "Cd8a",
                              "Cd8b1"),
                   NKcells_ = c("Gzma", "Ncr1", "Nkg7"),                  
                   Myeloids_ = c("Cd68", "Itgax", "Csf1r", "Ccr1", "Fcgr3",
