@@ -38,6 +38,8 @@ suppressPackageStartupMessages({
   library(pheatmap)
   library(muscat)
   library(scater)
+  library(DelayedArray)
+  library(DelayedMatrixStats)
 })
 
 ```
@@ -308,20 +310,38 @@ pOut <- avgHeatmap(seurat = seurat, selGenes = selGenes,
 ```{r diff map}
 
 sce <- as.SingleCellExperiment(seurat)
-sce <- runDiffusionMap(sce)
+# sce <- runDiffusionMap(sce)
 
-plotReducedDim(sce, "DiffusionMap", colour_by = "clusterLabel", shape_by = "SLO")
+## from scater: subset to 500 most variable genes
+dmMat <- sce@assays@data@listData$logcounts
+rv <- rowVars(DelayedArray(dmMat))
+o <- order(rv, decreasing = TRUE)
+subset_row <- head(o, 500)
+dmMat <- dmMat[subset_row,, drop = FALSE]
+rv <- rv[subset_row]
+dmMat <- t(dmMat)
+dmMat <- as.matrix(dmMat)
+
+dm <- destiny::DiffusionMap(dmMat, verbose = TRUE)
+reducedDim(sce, 'DiffusionMap') <- dm@eigenvectors[, 1:2, drop = FALSE]
+
+
+
+plotReducedDim(sce, "DiffusionMap", colour_by = "clusterLabel",
+               shape_by = "SLO")
 plotReducedDim(sce, "DiffusionMap", colour_by = "SLO", shape_by = "SLO")
 
 seurat <- as.Seurat(sce)
-DimPlot(seurat, reduction = "DiffusionMap", cols=colPal, group.by = "clusterLabel")+
+DimPlot(seurat, reduction = "DiffusionMap", cols=colPal,
+        group.by = "clusterLabel")+
   theme_bw() +
   theme(axis.text = element_blank(), axis.ticks = element_blank(), 
         panel.grid.minor = element_blank()) +
   xlab("DM1") +
   ylab("DM2")
 
-DimPlot(seurat, reduction = "DiffusionMap", cols=colPal, group.by = "clusterLabel",
+DimPlot(seurat, reduction = "DiffusionMap", cols=colPal,
+        group.by = "clusterLabel",
         shuffle=T,pt.size=0.4)+
   theme_void()
 
@@ -329,8 +349,17 @@ DimPlot(seurat, reduction = "DiffusionMap", cols=colorSLO, group.by = "SLO",
         shuffle=T,pt.size=0.4)+
   theme_void()
 
-```
+## for each SLO individually
+lapply(unique(seurat$SLO), function(slo){
+  seuratSub <- subset(seurat, SLO==slo)
+  DimPlot(seuratSub, reduction = "DiffusionMap", cols=colPal,
+        group.by = "clusterLabel",
+        shuffle=T,pt.size=0.4)+
+  theme_void() +
+  ggtitle(paste0("DM ", slo))
+})
 
+```
 
 ## session info
 ```{r session info}
