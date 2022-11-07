@@ -33,6 +33,5 @@ Only lymphocytes that interact with BRC: [link](CharacterizeLymphoSubgrps.html)
 
 ## CellPhoneDB analysis
 create CellPhoneDB input: [link](createCPDBinput_immOnly.html)  
-visualize CellPhoneDB out: [link](analyseCPDBoutImm.html)  
 Expression of conserved receptor ligand pairs: [link](visSelIntHeatmapSignalingAll.html)  
 
