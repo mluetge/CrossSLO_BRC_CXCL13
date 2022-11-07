@@ -8,14 +8,10 @@ editor_options:
   chunk_output_type: console
 ---
 
-## Characterize BRC data each SLO indiviually
-Characterization LN: [link](CharacterizationLN_CXCL13seurat.html)  
-Characterization PP: [link](CharacterizePP_CXCL13seurat.html)  
-Characterization Spleen: [link](CharacterizeSpleen_CXCL13seurat.html)  
-
 ## Comparative analysis across SLOs
 Integrate all CXCL13 pos across SLOs: [link](IntegrateAcrossSLOs.html)  
-visualize shared subsets individual SLOs: [link](visFolBRC_individualSLOs.html)  
+visualize shared subsets only: [link](visFolBRC_merged.html)  
+variance partition analysis: [link](varPartioning.html)  
 
 ### SLO specific signatures
 Organ specific genes and GO: [link](SLOspecific_signature.html)  
@@ -27,14 +23,16 @@ Subset specific pathways signaling PW: [link](SubsetSpecificGeneSignaturesSignal
 Subset specific signature plots niche factors: [link](plotSubsetSpecificSignatures2.html)  
 Subset specific signature plots signaling PW: [link](plotSubsetSpecificSignaturesSignaling.html)  
 
+### DE genes analysis immunization
+DE genes upon VSV immunization: [link](DEgenesCond.html)  
+
 ## Cross SLO mouse Lymphocytes
 Merge lymphocyte data: [link](mergeData_lympho.html)  
 Characterization lymphocyte data: [link](CharacterizeLympho.html)  
+Only lymphocytes that interact with BRC: [link](CharacterizeLymphoSubgrps.html)  
 
 ## CellPhoneDB analysis
 create CellPhoneDB input: [link](createCPDBinput_immOnly.html)  
 visualize CellPhoneDB out: [link](analyseCPDBoutImm.html)  
-visualize sel int: [link](CellPhoneDBout_selInt_imm.html)  
-Expression of selected niche factor interactions: [link](visSelIntHeatmap.html)  
-Expression of selected signaling PW interactions: [link](visSelIntHeatmapSignaling.html)  
+Expression of conserved receptor ligand pairs: [link](visSelIntHeatmapSignalingAll.html)  
 

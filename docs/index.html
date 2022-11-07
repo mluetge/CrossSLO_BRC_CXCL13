@@ -13,7 +13,7 @@
 
 <title>Home</title>
 
-<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.17/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
@@ -33,7 +33,7 @@
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 
-<link rel="icon" href="https://github.com/workflowr/workflowr-assets/raw/master/img/reproducible.png">
+<link rel="icon" href="https://github.com/workflowr/workflowr-assets/raw/main/img/reproducible.png">
 <!-- Add a small amount of space between sections. -->
 <style type="text/css">
 div.section {
@@ -70,6 +70,7 @@ if (window.hljs) {
 
 
 
+
 <style type = "text/css">
 .main-container {
   max-width: 940px;
@@ -90,6 +91,9 @@ button.code-folding-btn:focus {
 }
 summary {
   display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
 }
 pre code {
   padding: 0;
@@ -147,11 +151,15 @@ $(document).ready(function () {
     href = "index.html";
   var menuAnchor = $('a[href="' + href + '"]');
 
-  // mark it active
-  menuAnchor.tab('show');
-
-  // if it's got a parent navbar menu mark it active as well
-  menuAnchor.closest('li.dropdown').addClass('active');
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
 
   // Navbar adjustments
   var navHeight = $(".navbar").first().height() + 15;
@@ -180,8 +188,8 @@ $(document).ready(function () {
   border-radius: 4px;
 }
 
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
   font-family: 'Glyphicons Halflings';
   display: inline-block;
   padding: 10px;
@@ -189,16 +197,9 @@ $(document).ready(function () {
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
+  content: "\e258";
   font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
+  border: none;
 }
 
 .tabset-dropdown > .nav-tabs > li.active {
@@ -242,7 +243,7 @@ $(document).ready(function () {
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -279,7 +280,9 @@ $(document).ready(function () {
 
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
-<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span>
 </button>
 </p>
 <div id="workflowr-report" class="collapse">
@@ -288,7 +291,9 @@ $(document).ready(function () {
 <a data-toggle="tab" href="#summary">Summary</a>
 </li>
 <li>
-<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> </a>
+<a data-toggle="tab" href="#checks"> Checks <span
+class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> </a>
 </li>
 <li>
 <a data-toggle="tab" href="#versions">Past versions</a>
@@ -297,17 +302,27 @@ $(document).ready(function () {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2021-12-01
+<strong>Last updated:</strong> 2022-11-07
 </p>
 <p>
-<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 1 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 1
+<strong>Checks:</strong> <span
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 1
+<span class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> 1
 </p>
 <p>
-<strong>Knit directory:</strong> <code>CrossSLO_BRC_CXCL13/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
+<strong>Knit directory:</strong> <code>CrossSLO_BRC_CXCL13/</code> <span
+class="glyphicon glyphicon-question-sign" aria-hidden="true"
+title="This is the local directory in which the code in this file was executed.">
+</span>
 </p>
 <p>
-This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis was created with <a
-  href="https://github.com/jdblischak/workflowr">workflowr</a> (version 1.6.2). The <em>Checks</em> tab describes the reproducibility checks that were applied when the results were created. The <em>Past versions</em> tab lists the development history.
+This reproducible <a href="https://rmarkdown.rstudio.com">R Markdown</a>
+analysis was created with <a
+  href="https://github.com/workflowr/workflowr">workflowr</a> (version
+1.7.0). The <em>Checks</em> tab describes the reproducibility checks
+that were applied when the results were created. The <em>Past
+versions</em> tab lists the development history.
 </p>
 <hr>
 </div>
@@ -316,58 +331,85 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges"> <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted changes </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges">
+<span class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted
+changes </a>
 </p>
 </div>
-<div id="strongRMarkdownfilestronguncommittedchanges" class="panel-collapse collapse">
+<div id="strongRMarkdownfilestronguncommittedchanges"
+class="panel-collapse collapse">
 <div class="panel-body">
-<p>The R Markdown file has unstaged changes. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
+<p>The R Markdown file has unstaged changes. To know which version of
+the R Markdown file created these results, you’ll want to first commit
+it to the Git repo. If you’re still working on the analysis, you can
+ignore this warning. When you’re finished, you can run
+<code>wflow_publish</code> to commit the R Markdown file and build the
+HTML.</p>
 </div>
 </div>
 </div>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcommluetgeCrossSLOBRCCXCL13treed202c26a3d47b21ce7a146a8a175c19cd9d5c2e8targetblankd202c26a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/tree/d202c26a3d47b21ce7a146a8a175c19cd9d5c2e8" target="_blank">d202c26</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcommluetgeCrossSLOBRCCXCL13tree135e0a3dbce5e1394c1354e3e88bb3d5f0293af2targetblank135e0a3a">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Repository version:</strong>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/tree/135e0a3dbce5e1394c1354e3e88bb3d5f0293af2" target="_blank">135e0a3</a>
+</a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcommluetgeCrossSLOBRCCXCL13treed202c26a3d47b21ce7a146a8a175c19cd9d5c2e8targetblankd202c26a" class="panel-collapse collapse">
+<div
+id="strongRepositoryversionstrongahrefhttpsgithubcommluetgeCrossSLOBRCCXCL13tree135e0a3dbce5e1394c1354e3e88bb3d5f0293af2targetblank135e0a3a"
+class="panel-collapse collapse">
 <div class="panel-body">
 <p>
-Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
+Great! You are using Git for version control. Tracking code development
+and connecting the code version to the results is critical for
+reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/tree/d202c26a3d47b21ce7a146a8a175c19cd9d5c2e8" target="_blank">d202c26</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/tree/135e0a3dbce5e1394c1354e3e88bb3d5f0293af2" target="_blank">135e0a3</a>.
+See the <em>Past versions</em> tab to see a history of the changes made
+to the R Markdown and HTML files.
 </p>
 <p>
-Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
+Note that you need to be careful to ensure that all relevant files for
+the analysis have been committed to Git prior to generating the results
+(you can use <code>wflow_publish</code> or
+<code>wflow_git_commit</code>). workflowr only checks the R Markdown
+file, but you know if there are other scripts or data files that it
+depends on. Below is the status of the Git repository when the results
+were generated:
 </p>
 <pre><code>
 Ignored files:
+    Ignored:    .DS_Store
     Ignored:    .Rhistory
     Ignored:    .Rproj.user/
+    Ignored:    analysis/.DS_Store
     Ignored:    data/GSEA/
+    Ignored:    data/browser/
     Ignored:    data/cellphonedb/
     Ignored:    data/destiny/
+    Ignored:    data/figshare/
     Ignored:    data/lympho/
     Ignored:    data/processedData/
     Ignored:    data/processedDataLymphocytes/
+    Ignored:    data/vision/
     Ignored:    figure/.DS_Store
     Ignored:    figure/plotSubsetSpecificSignatures.Rmd/
     Ignored:    figure/plotSubsetSpecificSignatures2.Rmd/.DS_Store
 
-Untracked files:
-    Untracked:  analysis/plotSubsetSLOSignatures.Rmd
-    Untracked:  figure/plotSubsetSLOSignatures.Rmd/
-
 Unstaged changes:
-    Modified:   analysis/SLOspecific_signature.Rmd
     Modified:   analysis/index.Rmd
-    Modified:   analysis/visSelIntHeatmapSignaling.Rmd
 
 </code></pre>
 <p>
-Note that any generated files, e.g. HTML, png, CSS, etc., are not included in this status report because it is ok for generated content to have uncommitted changes.
+Note that any generated files, e.g. HTML, png, CSS, etc., are not
+included in this status report because it is ok for generated content to
+have uncommitted changes.
 </p>
 </div>
 </div>
@@ -378,7 +420,11 @@ Note that any generated files, e.g. HTML, png, CSS, etc., are not included in t
 <div id="versions" class="tab-pane fade">
 
 <p>
-These are the previous versions of the repository in which changes were made to the R Markdown (<code>analysis/index.Rmd</code>) and HTML (<code>docs/index.html</code>) files. If you’ve configured a remote Git repository (see <code>?wflow_git_remote</code>), click on the hyperlinks in the table below to view the files as they were in that past version.
+These are the previous versions of the repository in which changes were
+made to the R Markdown (<code>analysis/index.Rmd</code>) and HTML
+(<code>docs/index.html</code>) files. If you’ve configured a remote Git
+repository (see <code>?wflow_git_remote</code>), click on the hyperlinks
+in the table below to view the files as they were in that past version.
 </p>
 <div class="table-responsive">
 <table class="table table-condensed table-hover">
@@ -402,6 +448,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/mluetge/CrossSLO_BRC_CXCL13/blob/18aa3552ba57cf0dd22dc96daa0260d008c7107f/analysis/index.Rmd" target="_blank">18aa355</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-12-21
+</td>
+<td>
+update interaction analysis
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/mluetge/CrossSLO_BRC_CXCL13/18aa3552ba57cf0dd22dc96daa0260d008c7107f/docs/index.html" target="_blank">18aa355</a>
+</td>
+<td>
+mluetge
+</td>
+<td>
+2021-12-21
+</td>
+<td>
+update interaction analysis
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -698,47 +778,59 @@ Start workflowr project.
 </div>
 </div>
 </div>
-<div id="characterize-brc-data-each-slo-indiviually" class="section level2">
-<h2>Characterize BRC data each SLO indiviually</h2>
-<p>Characterization LN: <a href="CharacterizationLN_CXCL13seurat.html">link</a><br />
-Characterization PP: <a href="CharacterizePP_CXCL13seurat.html">link</a><br />
-Characterization Spleen: <a href="CharacterizeSpleen_CXCL13seurat.html">link</a></p>
-</div>
 <div id="comparative-analysis-across-slos" class="section level2">
 <h2>Comparative analysis across SLOs</h2>
-<p>Integrate all CXCL13 pos across SLOs: <a href="IntegrateAcrossSLOs.html">link</a><br />
-visualize shared subsets individual SLOs: <a href="visFolBRC_individualSLOs.html">link</a></p>
+<p>Integrate all CXCL13 pos across SLOs: <a
+href="IntegrateAcrossSLOs.html">link</a><br />
+visualize shared subsets only: <a
+href="visFolBRC_merged.html">link</a><br />
+variance partition analysis: <a href="varPartioning.html">link</a></p>
 <div id="slo-specific-signatures" class="section level3">
 <h3>SLO specific signatures</h3>
-<p>Organ specific genes and GO: <a href="SLOspecific_signature.html">link</a><br />
-Organ specific signature plots: <a href="plotSubsetSLOSignatures.html">link</a></p>
+<p>Organ specific genes and GO: <a
+href="SLOspecific_signature.html">link</a><br />
+Organ specific signature plots: <a
+href="plotSubsetSLOSignatures.html">link</a></p>
 </div>
 <div id="subset-specific-pattern" class="section level3">
 <h3>Subset specific pattern</h3>
-<p>Subset specific pathways niche factors: <a href="SubsetSpecificGeneSignatures2.html">link</a><br />
-Subset specific pathways signaling PW: <a href="SubsetSpecificGeneSignaturesSignaling.html">link</a><br />
-Subset specific signature plots niche factors: <a href="plotSubsetSpecificSignatures2.html">link</a><br />
-Subset specific signature plots signaling PW: <a href="plotSubsetSpecificSignaturesSignaling.html">link</a></p>
+<p>Subset specific pathways niche factors: <a
+href="SubsetSpecificGeneSignatures2.html">link</a><br />
+Subset specific pathways signaling PW: <a
+href="SubsetSpecificGeneSignaturesSignaling.html">link</a><br />
+Subset specific signature plots niche factors: <a
+href="plotSubsetSpecificSignatures2.html">link</a><br />
+Subset specific signature plots signaling PW: <a
+href="plotSubsetSpecificSignaturesSignaling.html">link</a></p>
+</div>
+<div id="de-genes-analysis-immunization" class="section level3">
+<h3>DE genes analysis immunization</h3>
+<p>DE genes upon VSV immunization: <a
+href="DEgenesCond.html">link</a></p>
 </div>
 </div>
 <div id="cross-slo-mouse-lymphocytes" class="section level2">
 <h2>Cross SLO mouse Lymphocytes</h2>
 <p>Merge lymphocyte data: <a href="mergeData_lympho.html">link</a><br />
-Characterization lymphocyte data: <a href="CharacterizeLympho.html">link</a></p>
+Characterization lymphocyte data: <a
+href="CharacterizeLympho.html">link</a><br />
+Only lymphocytes that interact with BRC: <a
+href="CharacterizeLymphoSubgrps.html">link</a></p>
 </div>
 <div id="cellphonedb-analysis" class="section level2">
 <h2>CellPhoneDB analysis</h2>
-<p>create CellPhoneDB input: <a href="createCPDBinput_immOnly.html">link</a><br />
-visualize CellPhoneDB out: <a href="analyseCPDBoutImm.html">link</a><br />
-visualize sel int: <a href="CellPhoneDBout_selInt_imm.html">link</a><br />
-Expression of selected niche factor interactions: <a href="visSelIntHeatmap.html">link</a><br />
-Expression of selected signaling PW interactions: <a href="visSelIntHeatmapSignaling.html">link</a></p>
+<p>create CellPhoneDB input: <a
+href="createCPDBinput_immOnly.html">link</a><br />
+visualize CellPhoneDB out: <a
+href="analyseCPDBoutImm.html">link</a><br />
+Expression of conserved receptor ligand pairs: <a
+href="visSelIntHeatmapSignalingAll.html">link</a></p>
 </div>
 
 
 <!-- Adjust MathJax settings so that all math formulae are shown using
 TeX fonts only; see
-http://docs.mathjax.org/en/latest/configuration.html.  This will make
+https://docs.mathjax.org/en/latest/web/configuration.html. This will make
 the presentation more consistent at the cost of the webpage sometimes
 taking slightly longer to load. Note that this only works because the
 footer is added to webpages before the MathJax javascript. -->
